@@ -3,8 +3,6 @@
 
 from math import log
 import re
-import nltk
-from nltk import word_tokenize, pos_tag, ne_chunk
 import sys
 import random
 from urlparse import urlparse
@@ -150,8 +148,8 @@ class Model():
   def tkns_are_name(self, tkns, is_first_tkn, last_word, next_word, use_extra_features, extra_features, first_tkn_pos):
     if len([t for t in tkns if re.search('[0-9]', t) != None]) > 0:
       return [0, 1]
-    if len([t for t in tkns if t in ["mr", "mrs", "ms", "dr", "professor", "miss"]]) > 0:
-      return [0, 1]
+    # if len([t for t in tkns if t in ["mr", "mrs", "ms", "dr", "professor", "miss"]]) > 0:
+    #   return [0, 1]
 
     street_after = next_word in ["st", "street", "ave", "avenue", "highway"]
     has_hall = "hall" in tkns or next_word == "hall"
@@ -244,7 +242,10 @@ class Model():
       second_parent = old_text.parent.parent
 
       class_name = " ".join(old_text.parent.get("class") if old_text.parent.has_attr("class") else [])
-      second_class_name = " ".join(old_text.parent.parent.get("class") if old_text.parent.parent.has_attr("class") else [])
+
+      second_class_name = ""
+      if old_text.parent != None and old_text.parent.parent != None:
+        second_class_name = " ".join(old_text.parent.parent.get("class") if old_text.parent.parent.has_attr("class") else [])
 
       children = first_parent.children
       words_in_field = len(tkns)
@@ -255,15 +256,19 @@ class Model():
         child = child.parent
         child_pos += 1
 
-      first_parent_name = first_parent.name + second_parent.name
+      second_parent_name = ""
+      if second_parent != None:
+        second_parent_name = second_parent.name
+
+      first_parent_name = first_parent.name + second_parent_name
       if not first_parent_name  in self.first_parents:      self.first_parents[first_parent_name] = [0, 0]
-      if not second_parent.name in self.second_parents:     self.second_parents[second_parent.name] = [0, 0]
+      if not second_parent_name in self.second_parents:     self.second_parents[second_parent_name] = [0, 0]
       if not class_name         in self.class_names:        self.class_names[class_name] = [0, 0]
       if not second_class_name  in self.second_class_names: self.second_class_names[second_class_name] = [0, 0]
       if not child_pos          in self.child_pos_:         self.child_pos_[child_pos] = [0, 0]
       if not words_in_field     in self.words_in_field:     self.words_in_field[words_in_field] = [0, 0]
       extra_features['first_parent'] = first_parent_name
-      extra_features['second_parent'] = second_parent.name
+      extra_features['second_parent'] = second_parent_name
       extra_features['class_name'] = class_name
       extra_features['second_class_name'] = second_class_name
       extra_features['child_pos'] = child_pos
@@ -324,13 +329,14 @@ class Model():
           # ponderation = float(tkn_probs[name_length][1] - tkn_probs[name_length][0]) / (tkn_probs[name_length][0] + tkn_probs[name_length][1])
           ponderation = 1
 
-          name = " ".join(name_tkns)
-          name = re.sub('(ed d$)|(ph$)|(ph d$)|(m s$)', '', name).encode('utf-8')
+          name_tkns = [t for t in tkns if not t in ['dr', 'mr', 'mrs', 'ms', 'professor', 'dipl', 'prof', 'miss', 'emeritus', 'ing']]
+          name = " ".join(name_tkns).encode('utf-8')
+          # name = re.sub('(ed d$)|(ph$)|(ph d$)|(m s$)', '', name).encode('utf-8')
           if not name in self.found_names:
             self.name_count += ponderation
             if calculate_probs:
               self.first_parents[first_parent_name][0] += ponderation
-              self.second_parents[second_parent.name][0] += ponderation
+              self.second_parents[second_parent_name][0] += ponderation
               self.class_names[class_name][0] += ponderation
               self.second_class_names[second_class_name][0] += ponderation
               self.child_pos_[child_pos][0] += ponderation
@@ -344,7 +350,7 @@ class Model():
           self.not_name_count += 1
           if calculate_probs:
             self.first_parents[first_parent_name][1] += 1
-            self.second_parents[second_parent.name][1] += 1
+            self.second_parents[second_parent_name][1] += 1
             self.class_names[class_name][1] += 1
             self.second_class_names[second_class_name][1] += 1
             self.child_pos_[child_pos][1] += 1
