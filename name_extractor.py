@@ -68,9 +68,22 @@ class Token():
     self.is_first_tkn = is_first_tkn
     self.last_tkn = last_tkn
     self.next_tkn = next_tkn
+    self.is_name = False
+
+  def calculate_features(self):
+    n_tkn = self.next_tkn.tkn
+    nn_tkn = self.next_tkn.next_tkn.tkn
+    p_tkn = self.prev_tkn.tkn
+
+    self.street_after = n_tkn in ["st", "street", "ave", "avenue", "highway"] or nn_tkn in ["st", "street", "ave", "avenue", "highway"]
+    self.has_hall = self.tkn == "hall" or n_tkn == "hall" or nn_tkn == "hall"
+    self.title_before = p_tkn in ["mr", "mrs", "dr", "ms"]
+    self.number_after = is_number(n_tkn) or is_number(nn_tkn) or is_number(p_tkn)
+    self.less_than_seven_chars = len("".join(tkns)) < 7
 
 class Model():
   def __init__(self):
+    self.cond_probs = [0] * 16
     self.name_cond_probs = {}
     self.word_cond_probs = {}
     self.name_probs = [None] * 6
@@ -182,7 +195,6 @@ class Model():
     prob_word += log(self.less_than_seven_chars_not) if less_than_seven_chars else log(1 - self.less_than_seven_chars_not)
     prob_word += log(self.title_before_not) if title_before else log(1 - self.title_before_not)
     prob_word += log(self.num_tkns_not[num_tkns])
-
 
     if use_extra_features:
       prob_name += self.first_parents_[extra_features['first_parent']][0]
@@ -316,83 +328,58 @@ class Model():
     if not features['child_pos']      in self.child_pos_:     self.child_pos_[features['child_pos']]          = [0, 0]
     if not features['words_in_field'] in self.words_in_field: self.words_in_field[features['words_in_field']] = [0, 0]
 
-    index = 1 if is_name else 0
+    index = 0 if is_name else 1
     self.first_parents[features['first_parent']   ][index] += len(name_tkns)
     self.second_parents[features['second_parent'] ][index] += len(name_tkns) 
     self.class_names[features['class_name']       ][index] += len(name_tkns)
     self.child_pos_[features['child_pos']         ][index] += len(name_tkns) 
     self.words_in_field[features['words_in_field']][index] += len(name_tkns) 
 
-  def get_tkn_probs(self, tkns, calculate_probs):
+  def calculate_cond_probs(self):
+    self.cond_probs[0 ] = self.word_probs[0] + self.word_probs[1] + self.word_probs[2] + self.word_probs[3]                        # WWWW
+    self.cond_probs[1 ] = self.word_probs[0] + self.word_probs[1] + self.word_probs[2] + self.name_probs[0]                        # WWWN
+    self.cond_probs[2 ] = self.word_probs[0] + self.word_probs[1] + self.name_probs[0] + self.word_after_name_probs[1]             # WWNW
+    self.cond_probs[3 ] = self.word_probs[0] + self.word_probs[1] + self.name_probs[0] + self.name_probs[1]                        # WWNN
+    self.cond_probs[4 ] = self.word_probs[0] + self.name_probs[0] + self.word_after_name_probs[1] + self.word_probs[0]             # WNWW
+    self.cond_probs[5 ] = self.word_probs[0] + self.name_probs[0] + self.word_after_name_probs[1] + self.name_probs[0]             # WNWN
+    self.cond_probs[6 ] = self.word_probs[0] + self.name_probs[0] + self.name_probs[1] + self.word_after_name_probs[2]             # WNNW
+    self.cond_probs[7 ] = self.word_probs[0] + self.name_probs[0] + self.name_probs[1] + self.name_probs[2]                        # WNNN
+    self.cond_probs[8 ] = self.name_probs[0] + self.word_after_name_probs[1] + self.word_probs[1] + self.word_probs[2]             # NWWW
+    self.cond_probs[9 ] = self.name_probs[0] + self.word_after_name_probs[1] + self.word_probs[1] + self.name_probs[0]             # NWWN
+    self.cond_probs[10] = self.name_probs[0] + self.word_after_name_probs[1] + self.name_probs[0] + self.word_after_name_probs[1]  # NWNW
+    self.cond_probs[11] = self.name_probs[0] + self.word_after_name_probs[1] + self.name_probs[0] + self.name_probs[1]             # NWNN
+    self.cond_probs[12] = self.name_probs[0] + self.name_probs[1] + self.word_after_name_probs[2] + self.word_probs[1]             # NNWW
+    self.cond_probs[13] = self.name_probs[0] + self.name_probs[1] + self.word_after_name_probs[2] + self.name_probs[0]             # NNWN
+    self.cond_probs[14] = self.name_probs[0] + self.name_probs[1] + self.name_probs[2] + self.word_after_name_probs[3]             # NNNW
+    self.cond_probs[15] = self.name_probs[0] + self.name_probs[1] + self.name_probs[2] + self.name_probs[3]                        # NNNN
+
+  def get_tkn_probs(self, tkn):
+    tkn = tkn.tkn.strip().lower()
+    prob_word = log(float(1) / (84599521 + len(self.word_cond_probs)))
+    if tkn in self.word_cond_probs:
+      prob_word = self.word_cond_probs[tkn]
+
+    prob_name = log(float(1) / (3831851 + len(self.name_cond_probs)))
+    if tkn in self.name_cond_probs:
+      prob_name = self.name_cond_probs[tkn]
+
+    return prob_word, prob_name
+
+  def get_full_probs(self, tkns):
     if len([t for t in tkns if re.search('[0-9]', t.tkn) != None]) > 0:
-      return [0, 1]
+      arr = [0] * 16
+      arr[0] = 1
+      return arr
 
-    features = self.get_features(tkns)
-    street_after = features['street_after']
-    has_hall = features['has_hall']
-    title_before = features['title_before']
-    number_after = features['number_after']
-    less_than_seven_chars = features['less_than_seven_chars']
-    num_tkns = features['words_in_field']
+    tkn_probs = [self.get_tkn_probs(tkn) for tkn in tkns]
+    full_probs = [0] * 16
+    for i in range(0, 16):
+      selector_array = [1 if ((i & 2**j) == 2**j) else 0 for j in reversed(range(0,4))] 
+      for j in range(0, 4):
+        full_probs[i] += tkn_probs[j][selector_array[j]]
+      full_probs[i] += self.cond_probs[i] 
 
-    # Is name.
-    tkns = [t.tkn for t in tkns]
-    prob_name = self.prob_name(tkns)
-    # prob_name += log(self.number_after) if number_after else log(1 - self.number_after)
-    # prob_name += log(self.is_first_tkn) if is_first_tkn else log(1 - self.is_first_tkn)
-    prob_name += log(self.street_after) if street_after else log(1 - self.street_after)
-    prob_name += log(self.has_hall) if has_hall else log(1 - self.has_hall)
-    prob_name += log(self.less_than_seven_chars) if less_than_seven_chars else log(1 - self.less_than_seven_chars)
-    prob_name += log(self.title_before) if title_before else log(1 - self.title_before)
-    prob_name += log(self.num_tkns[num_tkns])
-
-    # Is not a name.
-    prob_word = self.prob_word(tkns)
-    # prob_word += log(self.number_after_not) if number_after else log(1 - self.number_after_not)
-    # prob_word += log(self.is_first_tkn_not) if is_first_tkn else log(1 - self.is_first_tkn_not)
-    prob_word += log(self.street_after_not) if street_after else log(1 - self.street_after_not)
-    prob_word += log(self.has_hall_not) if has_hall else log(1 - self.has_hall_not)
-    prob_word += log(self.less_than_seven_chars_not) if less_than_seven_chars else log(1 - self.less_than_seven_chars_not)
-    prob_word += log(self.title_before_not) if title_before else log(1 - self.title_before_not)
-    prob_word += log(self.num_tkns_not[num_tkns])
-
-    if not calculate_probs:
-      if features['first_parent'] in self.first_parents_:
-        prob_name += self.first_parents_[features['first_parent']][0]
-        prob_word += self.first_parents_[features['first_parent']][1]
-      else:
-        prob_name += float(1) / (self.name_count + len(self.first_parents_))
-        prob_word += float(1) / (self.not_name_count + len(self.first_parents_))
-
-      if features['second_parent'] in self.second_parents_:
-        prob_name += self.second_parents_[features['second_parent']][0]
-        prob_word += self.second_parents_[features['second_parent']][1]
-      else:
-        prob_name += float(1) / (self.name_count + len(self.second_parents_))
-        prob_word += float(1) / (self.not_name_count + len(self.second_parents_))
-
-      if features['class_name'] in self.class_names_:
-        prob_name += self.class_names_[features['class_name']][0]
-        prob_word += self.class_names_[features['class_name']][1]
-      else:
-        prob_name += float(1) / (self.name_count + len(self.class_names_))
-        prob_word += float(1) / (self.not_name_count + len(self.class_names_))
-
-      if features['child_pos'] in self.child_pos_:
-        prob_name += self.child_pos_[features['child_pos']][0]
-        prob_word += self.child_pos_[features['child_pos']][1]
-      else:
-        prob_name += float(1) / (self.name_count + len(self.child_pos_))
-        prob_word += float(1) / (self.not_name_count + len(self.child_pos_))
-
-      # prob_name += self.second_class_names_[features['second_class_name']][0]
-      # prob_word += self.second_class_names_[features['second_class_name']][1]
-      # prob_name += self.first_tkn_pos_[first_tkn_pos][0]
-      # prob_word += self.first_tkn_pos_[first_tkn_pos][1]
-      # prob_name += self.words_in_field_[features['words_in_field']][0]
-      # prob_word += self.words_in_field_[features['words_in_field']][1]
-
-    return [float(prob_name), float(prob_word)]
+    return full_probs
 
   def tokenize(self, html):
     result = []
@@ -427,51 +414,40 @@ class Model():
     return result
 
   def extract_names_2(self, html, calculate_probs):
+    calculate_probs = True
+
     self.found_names = {}
     tkns = self.tokenize(html)
     i = 0
-    while i < len(tkns):
-      current_name = []
-      name_length = 0
+    while i <= len(tkns) - 4:
+      full_probs = self.get_full_probs(tkns[i:i+4])
+      index = full_probs.index(max(full_probs))
 
-      tkn_probs = [None] * 5
-      if i <= len(tkns) - 4:
-        tkn_probs[4] = self.get_tkn_probs(tkns[i:i+4], calculate_probs)
-
-      if i <= len(tkns) - 3: 
-        tkn_probs[3] = self.get_tkn_probs(tkns[i:i+3], calculate_probs)
-
-      if i <= len(tkns) - 2: 
-        tkn_probs[2] = self.get_tkn_probs(tkns[i:i+2], calculate_probs)
-
-      if   tkn_probs[4] != None and tkn_probs[4][0] > tkn_probs[4][1]:
-        name_length = 4
-      elif tkn_probs[3] != None and tkn_probs[3][0] > tkn_probs[3][1]:
-        name_length = 3
-      elif tkn_probs[2] != None and tkn_probs[2][0] > tkn_probs[2][1]:
-        name_length = 2
+      if index < 12: # Is word.
+        tkns[i].is_name = False
+        i += 1
       else:
-        name_length = 0
-
-      if name_length > 0:
+        name_length = 2 if (index - 12 == 0) else index - 11
         name_start = int(i)
         name_end = int(i) + int(name_length)
         name_tkns = tkns[name_start:name_end]
 
-        self.train_features(name_tkns, True)
-        i += name_length
+        for tkn in name_tkns:
+          tkn.is_name = True
 
-        # Remove titles and numbers.
         name_tkns = [t.tkn for t in name_tkns if not is_number(t.tkn)]
         titles = ['dr', 'mr', 'mrs', 'ms', 'professor', 'dipl', 'prof', 'miss', 'emeritus', 'ing']
         name_tkns = [t for t in name_tkns if not t in titles]
-        name = " ".join(name_tkns).encode('utf-8')
-        self.found_names[name] = tkn_probs[name_length]
-        print name
 
-      else:
-        self.train_features([tkns[i]], False)
-        i += 1
+        i += name_length
+        if len(name_tkns) <= 1:
+          continue
+
+        if len([t for t in name_tkns if len(t) > 1]) == 0:
+          continue
+
+        name = " ".join(name_tkns).encode('utf-8')
+        self.found_names[name] = full_probs[index], full_probs[0]
 
   def extract_names(self, html, calculate_probs):
     self.found_names = {}
@@ -725,8 +701,9 @@ class Model():
   def extract(self, filename):
     with open(filename) as f:
       html =  f.read()
-      model.extract_names_2(html, True)
-      model.calculate_probs()
+      # model.extract_names_2(html, True)
+      # model.calculate_probs()
+      self.calculate_cond_probs()
       model.extract_names_2(html, False)
 
 if __name__ == "__main__":
