@@ -59,44 +59,62 @@ class ProbabilityCalculator():
 class CondProbabilityCalculator():
   def __init__(self):
     self.tokens = {}
-    self.num_tokens = 0
+    self.num_words = 0
+    self.num_names = 0
     self.num_names_in_sequence = 0
     self.num_words_in_sequence = 0
     self.words_after = [0] * 7
     self.words_after_words = [0] * 7
     self.names_after = [0] * 7
     self.names_after_words = [0] * 7
+    self.words_unconditional = 0
 
   def load_file(self, filename):
     with open(filename) as f:
       for line in f:
         tokens = line.split(" ")
-        for i in xrange(0, len(tokens), 2):
-          is_name = tokens[i + 1]
+        for i in xrange(0, len(tokens), 3):
+          is_name = tokens[i + 2]
           if int(is_name) == 1:
-            self.names_after[self.num_names_in_sequence] += 1
+            self.num_names += 1
+
+            # self.names_after[self.num_names_in_sequence] += 1
+            for j in range(0, self.num_names_in_sequence + 1):
+              self.names_after[j] += 1
+
             if self.num_words_in_sequence < 6:
               self.names_after_words[self.num_words_in_sequence] += 1
+
             self.num_names_in_sequence += 1
+            if self.num_names_in_sequence > 5:
+              self.num_names_in_sequence = 5
+
             self.num_words_in_sequence = 0
           else:
-            self.words_after[self.num_names_in_sequence] += 1
+            self.num_words += 1
+            # self.words_after[self.num_names_in_sequence] += 1
+            for j in range(0, self.num_names_in_sequence + 1):
+              self.words_after[j] += 1
+
             if self.num_words_in_sequence < 6:
               self.words_after_words[self.num_words_in_sequence] += 1
+
             self.num_names_in_sequence = 0
             self.num_words_in_sequence += 1
-      self.names_after[0] = float(self.names_after[0] + 1) / (self.names_after[0] + self.words_after[0] + 2)
-      self.names_after[1] = float(self.names_after[1] + 1) / (self.names_after[1] + self.words_after[1] + 2)
-      self.names_after[2] = float(self.names_after[2] + 1) / (self.names_after[2] + self.words_after[2] + 2)
-      self.names_after[3] = float(self.names_after[3] + 1) / (self.names_after[3] + self.words_after[3] + 2)
-      self.names_after[4] = float(self.names_after[4] + 1) / (self.names_after[4] + self.words_after[4] + 2)
-      self.names_after[5] = float(self.names_after[5] + 1) / (self.names_after[5] + self.words_after[5] + 2)
-      self.words_after_words[0] = float(self.words_after_words[0] + 1) / (self.names_after_words[0] + self.words_after_words[0] + 2)
-      self.words_after_words[1] = float(self.words_after_words[1] + 1) / (self.names_after_words[1] + self.words_after_words[1] + 2)
-      self.words_after_words[2] = float(self.words_after_words[2] + 1) / (self.names_after_words[2] + self.words_after_words[2] + 2)
-      self.words_after_words[3] = float(self.words_after_words[3] + 1) / (self.names_after_words[3] + self.words_after_words[3] + 2)
-      self.words_after_words[4] = float(self.words_after_words[4] + 1) / (self.names_after_words[4] + self.words_after_words[4] + 2)
-      self.words_after_words[5] = float(self.words_after_words[5] + 1) / (self.names_after_words[5] + self.words_after_words[5] + 2)
+
+      self.names_after[0] = float(self.names_after[0]) / (self.names_after[0] + self.words_after[0])
+      self.names_after[1] = float(self.names_after[1]) / (self.names_after[1] + self.words_after[1])
+      self.names_after[2] = float(self.names_after[2]) / (self.names_after[2] + self.words_after[2])
+      self.names_after[3] = float(self.names_after[3]) / (self.names_after[3] + self.words_after[3])
+      self.names_after[4] = float(self.names_after[4]) / (self.names_after[4] + self.words_after[4])
+      self.names_after[5] = float(self.names_after[5]) / (self.names_after[5] + self.words_after[5])
+      self.words_after_words[0] = float(self.words_after_words[0]) / (self.names_after_words[0] + self.words_after_words[0])
+      self.words_after_words[1] = float(self.words_after_words[1]) / (self.names_after_words[1] + self.words_after_words[1])
+      self.words_after_words[2] = float(self.words_after_words[2]) / (self.names_after_words[2] + self.words_after_words[2])
+      self.words_after_words[3] = float(self.words_after_words[3]) / (self.names_after_words[3] + self.words_after_words[3])
+      self.words_after_words[4] = float(self.words_after_words[4]) / (self.names_after_words[4] + self.words_after_words[4])
+      self.words_after_words[5] = float(self.words_after_words[5]) / (self.names_after_words[5] + self.words_after_words[5])
+      self.words_unconditional = float(self.num_words) / (self.num_names + self.num_words)
 
   def print_probabilities(self):
     print "0", log(self.names_after[0])
@@ -117,6 +135,8 @@ class CondProbabilityCalculator():
     print "x3", log(self.words_after_words[3])
     print "x4", log(self.words_after_words[4])
     print "x5", log(self.words_after_words[5])
+    # print "wu", log(self.words_unconditional)
+    # print "nu", log(1 - self.words_unconditional)
 
 class FeaturesCalculator():
   def __init__(self):

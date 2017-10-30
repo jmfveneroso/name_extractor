@@ -32,7 +32,7 @@ Bourjaillat, Susanne
 Brauer, Berit
 Brodesser, Mirko
 Brosi, Patrick
-Brox,-Ing. Thomas
+Brox, Thomas
 Buchhold, Björn
 Burchard, Jan
 Burgard, Wolfram
@@ -71,13 +71,13 @@ Feurer, Matthias
 Findlay, Cynthia
 Fischer, Peter Michael
 Frank, Barbara
-Färber,-Ing. Michael
+Färber, Michael
 Ge-Ernst, Aile
 Geffken, Manuel
 Geiger, Petra
 Geißer, Florian
 Ghodselahi, Abdolhamid
-Gissler, Dipl.-Inf. Marc
+Gissler, Marc
 Gissler, Christoph
 Gissler, Marc
 Gissler, Christoph
@@ -182,8 +182,8 @@ Podelski, Andreas
 Popa, Veria
 Preen, Martin
 Przyjaciel-Zablocki, Martin
-Ragni, PD Marco
-Raiola, M. Sc. Pascal
+Ragni, Marco
+Raiola, Pascal
 Reimer, Sven
 Reuter, Christian
 Riesterer, Nicolas

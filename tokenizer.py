@@ -23,7 +23,6 @@ class Token():
   def __str__(self):
     return self.tkn + (" 1" if self.is_first_token else " 0") + (" 1" if self.is_name else " 0")
 
-
 class Tokenizer():
   def __init__(self):
     self.tokens = []

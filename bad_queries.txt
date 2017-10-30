@@ -1,0 +1,974 @@
+False positives: 7 / 27 0.259259259259
+False negatives: 0 / 20 0.0
+False positive: enmu roswell
+False positive: enmu ruidoso
+False positive: myenmu portal
+False positive: jack williamson
+False positive: goto top
+False positive: a tour
+False positive: j s elwell
+False positives: 9 / 25 0.36
+False negatives: 3 / 19 0.157894736842
+False positive: new testament
+False positive: christian mdiv ma dmin
+False positive: jack c
+False positive: ruth wright
+False positive: a b cox
+False positive: mdiv harding
+False positive: mats austin
+False positive: pat e harrell
+False positive: billy gunn hocott
+False negative: les maloney
+False negative: woody woodrow
+False negative: don kinder
+False positives: 9 / 36 0.25
+False negatives: 0 / 27 0.0
+False positive: b e nagpur
+False positive: indira gandhi
+False positive: b a pepperdine
+False positive: b s hohai
+False positive: m phil periyar
+False positive: computer science
+False positive: hefei anhui
+False positive: santa cruz
+False positive: master of science in
+False positives: 13 / 42 0.309523809524
+False negatives: 3 / 32 0.09375
+False positive: b s san diego
+False positive: barbara m
+False positive: b a pomona
+False positive: san diego
+False positive: concepcion m a
+False positive: barbara san jose
+False positive: m phil
+False positive: o connor
+False positive: b s santa clara
+False positive: clare booth
+False positive: matthew o
+False positive: b a vanderbilt
+False positive: dennis c smolarski s
+False negative: dennis c smolarski s j
+False negative: matthew o dell
+False negative: norman paris
+False positives: 11 / 69 0.159420289855
+False negatives: 0 / 58 0.0
+False positive: clav vaa ek chva
+False positive: seyed ali
+False positive: seyed sadegh
+False positive: mokhov serguei a
+False positive: jababo khaled
+False positive: donald peter
+False positive: carlos luis
+False positive: steven m
+False positive: bcee l
+False positive: ranj bar
+False positive: daniel soujeri ebrahim
+False positives: 6 / 16 0.375
+False negatives: 6 / 16 0.375
+False positive: emily neutens mpa
+False positive: kara caruthers mspas pa
+False positive: ana lucia oliveira drph
+False positive: reginald l young mba
+False positive: zsuzsanna bebok m d
+False positive: tera webb mls ascp
+False negative: zsuzsanna bebok
+False negative: reginald l young
+False negative: emily neutens
+False negative: ana lucia oliveira
+False negative: kara caruthers
+False negative: tera webb
+False positives: 21 / 119 0.176470588235
+False negatives: 1 / 99 0.010101010101
+False positive: m f a rhode
+False positive: c e west virginia
+False positive: m a west virginia
+False positive: b s west virginia
+False positive: b s brigham young
+False positive: park jason bolyard
+False positive: e e johns hopkins
+False positive: m b a west
+False positive: a b fairmont
+False positive: b a moorhead
+False positive: b a st vincent
+False positive: b a west virginia
+False positive: m b a embry
+False positive: b s embry riddle
+False positive: stony brook
+False positive: embry riddle
+False positive: b s fairmont
+False positive: b a marshall
+False positive: b a fairmont
+False positive: b s bob jones
+False positive: m a marshall
+False negative: jason bolyard
+False positives: 11 / 55 0.2
+False negatives: 0 / 44 0.0
+False positive: a billzeng
+False positive: a xin
+False positive: a yetian
+False positive: a sfwang
+False positive: a xuyun
+False positive: a wjluo
+False positive: guoliang chen
+False positive: a kxing
+False positive: a xiangyangli
+False positive: a wangxfu
+False positive: a yuzhang
+False positives: 6 / 31 0.193548387097
+False negatives: 1 / 26 0.0384615384615
+False positive: sun yat sen universitydepartment
+False positive: tsing hua
+False positive: jer huang
+False positive: cheng kung
+False positive: sun yat sen
+False positive: chiao tung
+False negative: ing jer huang
+False positives: 17 / 40 0.425
+False negatives: 0 / 23 0.0
+False positive: li s
+False positive: bu yikun
+False positive: zhang h li s
+False positive: chiao tung
+False positive: cao d
+False positive: lv y xiao x
+False positive: ji r
+False positive: cai z
+False positive: chen f gao y
+False positive: lv y lin d
+False positive: ji r lin d
+False positive: a cross
+False positive: chen s su s
+False positive: lin d lv y
+False positive: chen c chen f
+False positive: lin x
+False positive: lin d
+False positives: 20 / 111 0.18018018018
+False negatives: 2 / 93 0.0215053763441
+False positive: q qiang cao
+False positive: x xiaojing ma
+False positive: w weizhong qiang
+False positive: h huang hao
+False positive: l lianghai jin
+False positive: y yu hua
+False positive: b ban pengxin
+False positive: d deqing zou
+False positive: t tao xia
+False positive: s songfeng lu
+False positive: f fuhao zou
+False positive: j jianzhong huang
+False positive: zhan shi zhouzhengyong
+False positive: g guiping xu
+False positive: k kai li
+False positive: z zhouzhengyong
+False positive: c chen yu
+False positive: m min chen
+False positive: r ruchu xu
+False positive: p pan peng
+False negative: zhouzhengyong
+False negative: huguanrong
+False positives: 15 / 61 0.245901639344
+False negatives: 9 / 55 0.163636363636
+False positive: solon pissis ab
+False positive: jose such smal
+False positive: vasa curcin
+False positive: sophia tsoka ab
+False positive: maria fox
+False positive: grigorios loukides ab
+False positive: amanda coles
+False positive: maribel fernandez smal
+False positive: daniele magazzeni
+False positive: richard overill smal
+False positive: christian urban smal
+False positive: o smal
+False positive: hana chockler smal
+False positive: colin cooper ab
+False positive: elizabeth sklar
+False negative: richard overill
+False negative: hana chockler
+False negative: maribel fernandez
+False negative: sophia tsoka
+False negative: grigorios loukides
+False negative: jose such
+False negative: christian urban
+False negative: solon pissis
+False negative: colin cooper
+False positives: 23 / 161 0.142857142857
+False negatives: 50 / 188 0.265957446809
+False positive: helen ramsay andrew
+False positive: elliot mathis
+False positive: haskell dowland
+False positive: jeremy stein sebastian
+False positive: simon sadowski tomasz
+False positive: harth natascha
+False positive: peyton jones
+False positive: steven kai juan
+False positive: aragon camarasa
+False positive: o donnell
+False positive: van rijsbergen
+False positive: david mccreadie richard
+False positive: garnock jones
+False positive: ron popescu iulia
+False positive: gonzalez olmos
+False positive: john omoronyia inah
+False positive: de muijnck hughes
+False positive: joseph malapaschas aris
+False positive: enfors asa
+False positive: john williamson julie
+False positive: murray smith
+False positive: fliatoura anastasia
+False positive: roderick nabi syed
+False negative: malapaschas aris
+False negative: wong steven kai juan
+False negative: garnock jones tony
+False negative: rogers simon
+False negative: van rijsbergen cornelis
+False negative: murray smith sophie
+False negative: singer jeremy
+False negative: schmidt adam
+False negative: williamson john
+False negative: popescu miss iulia
+False negative: storer tim
+False negative: fliatoura miss anastasia
+False negative: nabi syed
+False negative: stein sebastian
+False negative: haskell dowland paul
+False negative: murray smith roderick
+False negative: perkins colin
+False negative: trinder phil
+False negative: manlove david
+False negative: yuan ke
+False negative: peyton jones simon
+False negative: omoronyia inah
+False negative: purchase helen
+False negative: hall cordelia
+False negative: mccreadie richard
+False negative: vinciarelli alessandro
+False negative: de muijnck hughes jan
+False negative: steuwer michel
+False negative: border helen
+False negative: mackenzie lewis
+False negative: evangelopoulou miss maria
+False negative: aragon camarasa gerardo
+False negative: hammer per
+False negative: elliot mathis angela
+False negative: harth miss natascha
+False negative: miller alice
+False negative: prosser patrick
+False negative: marshall lydia
+False negative: gonzalez olmos alberto
+False negative: norman gethin
+False negative: poet ron
+False negative: pezaros dimitrios
+False negative: williamson julie
+False negative: chen long
+False negative: sadowski tomasz
+False negative: enfors miss asa
+False negative: macdonald craig
+False negative: ntarmos nikos
+False negative: o donnell john
+False negative: ramsay andrew
+False positives: 10 / 65 0.153846153846
+False negatives: 8 / 63 0.126984126984
+False positive: ger willi
+False positive: ruhestand befindliche
+False positive: aktiver lehrka rper
+False positive: berliner straa e
+False positive: unabha ngige forschungsgruppenleiter
+False positive: lehrka rper
+False positive: ommer bja
+False positive: unabh forschungsgruppenleiter
+False positive: ning holger
+False positive: ning ulrich
+False negative: beiglba ck wolf
+False negative: bra ning ulrich
+False negative: ka the ullrich
+False negative: fra ning holger
+False negative: schna rr christoph
+False negative: end werner
+False negative: ja ger willi
+False negative: ommer bja rn
+False positives: 4 / 167 0.0239520958084
+False negatives: 4 / 167 0.0239520958084
+False positive: gusew wladislaw c
+False positive: cagara daniel c
+False positive: reisig wolfgang habil
+False positive: zeuch steffen c
+False negative: zeuch steffen
+False negative: gusew wladislaw
+False negative: cagara daniel
+False negative: reisig wolfgang
+False positives: 9 / 38 0.236842105263
+False negatives: 8 / 37 0.216216216216
+False positive: heinz schweppe a d
+False positive: klaus dieter graf em
+False positive: pd klaus kriegel
+False positive: zur ubersicht
+False positive: gerhard berendt a d
+False positive: pd gerhard wunder
+False positive: klaus peter lohr a
+False positive: hon martin vingron
+False positive: pd christoph benzmuller
+False negative: klaus kriegel
+False negative: gerhard wunder
+False negative: ing klaus peter lohr
+False negative: christoph benzmuller
+False negative: klaus dieter graf
+False negative: martin vingron
+False negative: heinz schweppe
+False negative: gerhard berendt
+False positives: 31 / 59 0.525423728814
+False negatives: 2 / 30 0.0666666666667
+False positive: rgerliches recht wirtschaftsrecht
+False positive: forschungsgebiet experimentelle wirtschaftsforschung
+False positive: optimierung von distributionsnetzwerken
+False positive: paape bja
+False positive: verhaltensa konomik
+False positive: bbecke marco
+False positive: juniorprofessur fa r real
+False positive: lehrstuhl fa r wirtschaftswissenschaften
+False positive: lehrstuhl fa r volkswirtschaftslehre
+False positive: forschungsgebiet dienstleistungs
+False positive: lehrstuhl fa r ba
+False positive: lehrstuhl fa r
+False positive: juniorprofessur fa r spieltheorie
+False positive: forschungsgebiet empirische wirtschaftsforschung
+False positive: piller frank thomas
+False positive: lehrstuhl fa r betriebswirtschaftslehre
+False positive: forschungsgebiet entscheidungsforschung
+False positive: fa r ingenieure
+False positive: ga rerk a zga
+False positive: forschungsgebiet wirtschaftsinformatik
+False positive: insbes betriebliche finanzwirtschaft
+False positive: insb mikroa konomie
+False positive: juniorprofessur fa r
+False positive: innovationsa konomik
+False positive: lehrstuhl fa r controlling
+False positive: rerk a zga r
+False positive: hm robert
+False positive: insb energiea konomik
+False positive: post lehrstuhl fa r
+False positive: oec julia c bendul
+False positive: juniorprofessur fa r energieressourcen
+False negative: ga rerk a zga r
+False negative: paape bja rn
+False positives: 25 / 40 0.625
+False negatives: 13 / 28 0.464285714286
+False positive: phil peter schroeder heister
+False positive: apl klaus reinhardt
+False positive: martin giese kooptiert
+False positive: sc kuchlin
+False positive: jun alexandra kirsch
+False positive: wichmann dphil
+False positive: michael j black honorarprof
+False positive: methodik computerunterstutzter textinterpretation
+False positive: professoren im ruhestand
+False positive: herbert klaeren
+False positive: jun enkelejda kasneci
+False positive: theol harald schweizer
+False positive: wilhelm schickard
+False positive: diskrete mathematik
+False positive: andrei lupas honorarprof
+False positive: bettina rolke kooptiert
+False positive: apl michael huber
+False positive: peter hauck
+False positive: jun doz britta dorn
+False positive: datenbanken ulrich guntzer
+False positive: auserplanmasige professoren heisenbergstipendiaten
+False positive: apl math kay nieselt
+False positive: rudiger loos
+False positive: rer nat nico pfeifer
+False positive: math daniel huson
+False negative: enkelejda kasneci
+False negative: britta dorn
+False negative: kay nieselt
+False negative: felix wichmann
+False negative: daniel huson
+False negative: martin giese
+False negative: nico pfeifer
+False negative: bettina rolke
+False negative: wolfgang kuchlin
+False negative: andrei lupas
+False negative: peter schroeder heister
+False negative: michael j black
+False negative: alexandra kirsch
+False positives: 15 / 72 0.208333333333
+False negatives: 14 / 71 0.197183098592
+False positive: datenschutzerkla rung
+False positive: walid maalej mast
+False positive: jianwei zhang tams
+False positive: hans helmut
+False positive: klaus von
+False positive: maria knobelsdorf csed
+False positive: dreschler fischer
+False positive: steffi beckhaus imve
+False positive: bernd e
+False positive: min fakulta t
+False positive: norbert ritter isys
+False positive: walther von
+False positive: der heide
+False positive: joachim w
+False positive: eva bittner wists
+False negative: stefan vos
+False negative: norbert ritter
+False negative: walther von hahn
+False negative: bernd e wolfinger
+False negative: leonie dreschler fischer
+False negative: klaus von der heide
+False negative: bernd page
+False negative: maria knobelsdorf
+False negative: hans helmut nagel
+False negative: joachim w schmidt
+False negative: walid maalej
+False negative: jianwei zhang
+False negative: steffi beckhaus
+False negative: eva bittner
+False positives: 0 / 61 0.0
+False negatives: 11 / 72 0.152777777778
+False negative: strefler mario
+False negative: attrapadung nuttapong
+False negative: hanaoka goichiro
+False negative: yvo desmedt
+False negative: yamanashi akira
+False negative: lee gyesik
+False negative: yamaguchi rie shigetomi
+False negative: perrin nicolas
+False negative: yonezawa shoko
+False negative: laguardia areal janaina
+False negative: kobara kazukuni
+False positives: 9 / 40 0.225
+False negatives: 2 / 33 0.0606060606061
+False positive: atr hiroshi ishiguro
+False positive: takashi minato
+False positive: m shiomi
+False positive: masashi kasaki
+False positive: oriza hirata
+False positive: geminoid f
+False positive: yutaka nakamura nakamura
+False positive: masahiro shiomi
+False positive: m igashira
+False negative: hideyuki takahashi
+False negative: yutaka nakamura
+False positives: 40 / 85 0.470588235294
+False negatives: 32 / 77 0.415584415584
+False positive: douglas o shaughnessy m
+False positive: eng mcgill
+False positive: steve mcfee mcgill
+False positive: marthe kassouf mcgill
+False positive: milica popovich northwestern
+False positive: mourad el gamal mcgill
+False positive: ishiang shih mcgill
+False positive: geza joos mcgill
+False positive: tomas mcgill
+False positive: nicholas c rumin mcgill
+False positive: mcgill william dawson
+False positive: kenneth david wagner stanford
+False positive: david v plant brown
+False positive: frank ferrie mcgill
+False positive: tiago h falk inrs
+False positive: alex stephenne inrs
+False positive: frederic nabki mcgill
+False positive: mehrsan javan roshtkhari mcgill
+False positive: joshua david schwartz mcgill
+False positive: james j clark ubc
+False positive: roni khazaka carleton
+False positive: andraws swidan electrotechnical
+False positive: clifford champness mcgill
+False positive: eric adler mcgill
+False positive: zetian mi michigan ann
+False positive: photonic interconnects
+False positive: carnegie mellon
+False positive: martin levine london
+False positive: qunbi zhuge mcgill
+False positive: william dawson
+False positive: queen s
+False positive: pierre belanger m i
+False positive: boon teck ooi mcgill
+False positive: david a lowther u
+False positive: james mcgill
+False positive: andrew kirk london
+False positive: rys allan adams m
+False positive: innocent kamwa laval
+False positive: katarzyna radecka mcgill
+False positive: de paris xi
+False negative: frank ferrie
+False negative: nicholas c rumin
+False negative: qunbi zhuge
+False negative: kenneth david wagner
+False negative: martin levine
+False negative: clifford champness
+False negative: katarzyna radecka
+False negative: roni khazaka
+False negative: mehrsan javan roshtkhari
+False negative: boon teck ooi
+False negative: andraws swidan
+False negative: andrew kirk
+False negative: mourad el gamal
+False negative: joshua david schwartz
+False negative: milica popovich
+False negative: tiago h falk
+False negative: douglas o shaughnessy
+False negative: frederic nabki
+False negative: innocent kamwa
+False negative: geza joos
+False negative: rys allan adams
+False negative: david a lowther
+False negative: marthe kassouf
+False negative: steve mcfee
+False negative: david v plant
+False negative: james j clark
+False negative: alex stephenne
+False negative: ishiang shih
+False negative: zetian mi
+False negative: eric adler
+False negative: pierre belanger
+False negative: tomas j f pavlasek
+Traceback (most recent call last):
+  File "comparator.py", line 44, in <module>
+    type_1, type_2, correct_names = calculate_errors(sys.argv[1], test_names)
+  File "comparator.py", line 18, in calculate_errors
+    with open(expected_names_file) as f:
+IOError: [Errno 2] No such file or directory: 'data/correct_names/names_130.txt'
+False positives: 19 / 27 0.703703703704
+False negatives: 2 / 10 0.2
+False positive: jordi casas
+False positive: i telecomunicacia
+False positive: i reconeixements
+False positive: sar pablo ca rcoles
+False positive: i beques
+False positive: i assignatures
+False positive: preguntes ma s freqa
+False positive: ma sters i postgraus
+False positive: a dispositius ma bils
+False positive: ma s
+False positive: paraules a cercar
+False positive: a rees docents
+False positive: bliques acup
+False positive: negoci i
+False positive: vives d
+False positive: bioinforma tica i bioestada
+False positive: ma sters universitaris
+False positive: disseny i creacia digitals
+False positive: seminaris i
+False negative: jordi casas roma
+False negative: ca sar pablo ca rcoles briongos
+False positives: 11 / 20 0.55
+False negatives: 0 / 9 0.0
+False positive: colegio maximo de cartuja
+False positive: de cartuja c p
+False positive: facultad de comunicacion y
+False positive: secretario de
+False positive: periodista daniel saucedo aranda
+False positive: catedras ugr
+False positive: catedratico de
+False positive: avenida de la fuente
+False positive: ingenierias informatica y de
+False positive: c cortadura del valle
+False positive: e t s de
+False positives: 41 / 344 0.119186046512
+False negatives: 72 / 375 0.192
+False positive: maria alejandra
+False positive: naghi zadeh kakhki
+False positive: rehan abdul
+False positive: friedrich burkhard
+False positive: hasan shahid
+False positive: david knobby
+False positive: rodriguez sossa
+False positive: nikolay grozdanov
+False positive: paul christopher
+False positive: zay maung maung
+False positive: van hau
+False positive: md akter
+False positive: md redowan
+False positive: ghasempour ganji
+False positive: von der osten
+False positive: al mukaddim
+False positive: thomas gale
+False positive: judith ross
+False positive: redmond barry
+False positive: mohamed reda
+False positive: rahman khan
+False positive: estrada martinez de alva
+False positive: craig andrew
+False positive: ivo widjaja
+False positive: judith hughes
+False positive: bruns jnr
+False positive: miguel angel
+False positive: kardani moghaddam
+False positive: agudelo serna
+False positive: a k m mustafizur
+False positive: al turki
+False positive: zobel redmond barry
+False positive: kwan hui
+False positive: irum fahim
+False positive: jey han
+False positive: seyedeh mohadeseh
+False positive: le tan chanh
+False positive: gerardo luis
+False positive: asadi someh
+False positive: cong duy vu
+False positive: carlos andres
+False negative: cristian vecchiola
+False negative: judith ross visitor
+False negative: rajkumar buyya
+False negative: ida asadi someh
+False negative: egemen tanin
+False negative: carlos andres agudelo serna
+False negative: redowan mahmud
+False negative: paul christopher cook
+False negative: miguel angel wood
+False negative: leon sterling
+False negative: nikolay grozdanov grozev
+False negative: jurij semkiw
+False negative: diego de una gomez
+False negative: maria rodriguez sossa
+False negative: glenn jayaputera
+False negative: graeme gange
+False negative: jey han lau
+False negative: mukesh mohania
+False negative: suelette dreyfus
+False negative: william voorsluys
+False negative: jay son
+False negative: steven bird
+False negative: le tan chanh nguyen
+False negative: thomas gale profile tom tg id au
+False negative: kwan hui lim
+False negative: cong duy vu hoang
+False negative: julie ireland
+False negative: ivo widjaja aurin
+False negative: judith hughes visitor
+False negative: irum fahim bukhari
+False negative: kevin elz
+False negative: zay maung maung aye
+False negative: cathy izzard
+False negative: rehan abdul aziz
+False negative: gerson galang
+False negative: a k m mustafizur rahman khan
+False negative: virginia dignum
+False negative: anthony stell
+False negative: akter hussain
+False negative: jenny kennedy
+False negative: rhonda smithies
+False negative: van hau trieu
+False negative: craig andrew horne
+False negative: frank dignum
+False negative: nazik al turki
+False negative: friedrich burkhard von der osten
+False negative: hasan shahid ferdous
+False negative: richard sinnott
+False negative: elham naghi zadeh kakhki
+False negative: loren bruns jnr
+False negative: luca morandini
+False negative: al mukaddim pathan
+False negative: hossein pursultani
+False negative: nicole barbee manager
+False negative: mohamed reda bouadjenek
+False negative: joshua newn
+False negative: sara kardani moghaddam
+False negative: seyedeh mohadeseh ghasempour ganji
+False negative: philip greenwood
+False negative: maria alejandra rodriguez sossa
+False negative: linda stern
+False negative: bernd ploderer
+False negative: leslie kitchen
+False negative: gerardo luis dimaguila
+False negative: christopher keen
+False negative: david knobby clarke
+False negative: liz sonenberg
+False negative: partha de
+False negative: james jayaputera
+False negative: david hawking
+False negative: chris guest
+False negative: fernando estrada martinez de alva
+False positives: 28 / 42 0.666666666667
+False negatives: 0 / 14 0.0
+False positive: mikhalev a yu oseledets
+False positive: rashit ibrayev
+False positive: a s sarkisyan r
+False positive: a quadratic
+False positive: tensor structured siam j
+False positive: rank matrix algebras preconditioners
+False positive: multilevel toeplitz matrices generated
+False positive: eugene tyrtyshnikov
+False positive: tudisco f di fiore
+False positive: c tyrtyshnikov e optimal
+False positive: guriy marchuk valery agoshkov
+False positive: a ibrayev n g
+False positive: russ j numer anal
+False positive: quasiseparable matrices
+False positive: projective solver
+False positive: vijay ganesh
+False positive: v v shashkin
+False positive: n tyrtyshnikov e e
+False positive: b kiktev r b
+False positive: lagrangian atmospheric model izvestiya
+False positive: a a finite gradient
+False positive: kazeev v khoromsky b
+False positive: tyrtysnikov e e tretyakov
+False positive: zaripov m yu zaichenko
+False positive: vladimir zalesny
+False positive: a prospect
+False positive: m a tolstykh d
+False positive: yuri vassilevski
+False positives: 6 / 16 0.375
+False negatives: 6 / 16 0.375
+False positive: andrei agapi vu
+False positive: ir marc x makkes
+False positive: ceriel jacobs vu
+False positive: rutger hofman vu
+False positive: henri bal vu
+False positive: kees verstoep vu
+False negative: kees verstoep
+False negative: ceriel jacobs
+False negative: andrei agapi
+False negative: rutger hofman
+False negative: henri bal
+False negative: marc x makkes
+False positives: 36 / 62 0.58064516129
+False negatives: 6 / 32 0.1875
+False positive: eeg cognitief modelleren
+False positive: psychologie experimentele
+False positive: kunstmatige intelligentie geheugen beslissingswetenschap
+False positive: bosch k a van
+False positive: kunstmatige intelligentie patroonherkenning machineleren
+False positive: kunstmatige intelligentie
+False positive: ernstige verstandelijke en meervoudige
+False positive: informatica cybernetica
+False positive: dhali m a msc
+False positive: groninger universiteitsfonds
+False positive: interdisciplinaire toepassingen
+False positive: computationele semantiek informatiekunde
+False positive: interactie rijgedrag
+False positive: van medische vaardigheden
+False positive: experimenteel ontwerp
+False positive: cognitie multi agentsystemen
+False positive: elektro encefalografie
+False positive: statistiek kansrekening
+False positive: nerbonne ir j
+False positive: optimalisatie van leerprocessen taalverwerking
+False positive: taal taalwetenschap
+False positive: informatica kunstmatige intelligentie
+False positive: de msc
+False positive: psychologie toegepaste
+False positive: noord g j m
+False positive: wetenschappen interdisciplinaire
+False positive: dilatatie neurowetenschappen
+False positive: auditieve omgevingen
+False positive: radiologie nucleaire geneeskunde medische
+False positive: den msc
+False positive: orthopedagogiek chanda s
+False positive: koster a m b
+False positive: beperkingen akoestiek
+False positive: kunstmatige intelligentie biofysica
+False positive: universitair hoofddocent
+False positive: argumentatie rechtsgeleerdheid
+False negative: noord g j m van
+False negative: koster a m b de
+False negative: chanda s
+False negative: dhali m a
+False negative: nerbonne j
+False negative: bosch k a van den
+False positives: 55 / 82 0.670731707317
+False negatives: 43 / 70 0.614285714286
+False positive: boi faltings lia
+False positive: olivier leveque lthi
+False positive: g candea m grossglauser
+False positive: frank kschischang
+False positive: arjen k
+False positive: willy zwaenepoel labos
+False positive: frederic kaplan dhlab
+False positive: jean pierre
+False positive: isc lthc
+False positive: janson lacal
+False positive: martin hasler dynnet
+False positive: hanrahan stanford
+False positive: marcel salathe upsalathe
+False positive: bryan ford dedis
+False positive: hari balakrishnan
+False positive: avi wigderson
+False positive: edouard bugnion dcsl
+False positive: hubert kirrmann lams
+False positive: mark pauly lgg
+False positive: sabine susstrunk ivrl
+False positive: steve seitz
+False positive: lenstra lacal
+False positive: roger d
+False positive: maneesh agrawala
+False positive: andre schiper lsr
+False positive: pu faltings
+False positive: serge vaudenay lasec
+False positive: christian piguet lap
+False positive: michael c
+False positive: viktor kuncak lara
+False positive: jeff w lichtman
+False positive: muthu muthukrishnan
+False positive: jean daniel
+False positive: alain wegmann lams
+False positive: anastasia ailamaki dias
+False positive: nick goldman
+False positive: christos papadimitriou
+False positive: martin rehak
+False positive: le boudec
+False positive: babak falsafi parsa
+False positive: karl aberer lsir
+False positive: pascal fua cvlab
+False positive: robert west dlab
+False positive: rudiger urbanke lthc
+False positive: emre telatar lthi
+False positive: alon orlitsky
+False positive: jean yves
+False positive: paolo ienne lap
+False positive: wulfram gerstner lcn
+False positive: james larus vlsc
+False positive: jean dominique
+False positive: george candea dslab
+False positive: eduardo sanchez rdsg
+False positive: rachid guerraoui lpd
+False positive: bixio rimoldi lcm
+False negative: pascal fua
+False negative: jean pierre hubaux
+False negative: rachid guerraoui
+False negative: martin rajman
+False negative: jean yves le boudec
+False negative: pearl pu faltings
+False negative: arjen k lenstra
+False negative: christian piguet
+False negative: edouard bugnion
+False negative: babak falsafi
+False negative: rudiger urbanke
+False negative: jean dominique decotignie
+False negative: giovanni coray
+False negative: james larus
+False negative: wulfram gerstner
+False negative: marcel salathe
+False negative: bixio rimoldi
+False negative: robert west
+False negative: daniel mange
+False negative: martin jaggi
+False negative: philippe janson
+False negative: frederic kaplan
+False negative: alfred strohmeier
+False negative: friedrich eisenbrand
+False negative: hubert kirrmann
+False negative: alain wegmann
+False negative: karl aberer
+False negative: olivier leveque
+False negative: emre telatar
+False negative: paolo ienne
+False negative: jean daniel nicoud
+False negative: stefano spaccapietra
+False negative: daniel thalmann
+False negative: bernard moret
+False negative: mark pauly
+False negative: willy zwaenepoel
+False negative: martin hasler
+False negative: serge vaudenay
+False negative: bryan ford
+False negative: boi faltings
+False negative: pierre bremaud
+False negative: sabine susstrunk
+False negative: ronan boulic
+False positives: 13 / 66 0.19696969697
+False negatives: 8 / 61 0.131147540984
+False positive: a jieh hsiang
+False positive: chiao tung
+False positive: a feipei lai
+False positive: ling wu
+False positive: chapel hill
+False positive: stony brooks
+False positive: tsung tso
+False positive: stony brook
+False positive: a pangfeng liu
+False positive: young lee
+False positive: santa babara
+False positive: a ming ouhyoung
+False positive: tsing hua
+False negative: share young lee
+False negative: feipei lai
+False negative: ja ling wu
+False negative: phone lin
+False negative: ming ouhyoung
+False negative: tsung tso kan
+False negative: jieh hsiang
+False negative: pangfeng liu
+False positives: 16 / 29 0.551724137931
+False negatives: 3 / 16 0.1875
+False positive: dahlberg hannes ebner
+False positive: arvoden stipendier utlamning
+False positive: adam jacobsson
+False positive: l b becker c
+False positive: eeie jacobsson
+False positive: becker t vlad c
+False positive: till forskningsrapporter m m
+False positive: stefan s
+False positive: tudor vlad
+False positive: reserakningar kontorsmaterial arkivering sjukanmalan
+False positive: a hollifield adam jacobsson
+False positive: a hollifield c
+False positive: mariann berggren ekonomiadministrator leverantorsfakturor
+False positive: a jacobsson l b
+False positive: leif handbergs
+False positive: sodertorns hogskolat
+False negative: tommo reti
+False negative: mariann berggren
+False negative: hannes ebner
+False positives: 39 / 192 0.203125
+False negatives: 11 / 164 0.0670731707317
+False positive: dali ferhat altunsoy
+False positive: katihal fizi i anabilim
+False positive: temel ve endustriyel mikrobiyoloji
+False positive: ekoloji anabilim dali
+False positive: dali mustafa saltan
+False positive: dali yasemin cimen
+False positive: yuksek enerji ve plazma
+False positive: genel biyoloji anabilim dali
+False positive: istatistiksel bilgi sistemleri anabilim
+False positive: fonksiyonlar teorisi anabilim dali
+False positive: dali tulay tira
+False positive: fizikokimya anabilim dali
+False positive: zooloji anabilim dali
+False positive: analitik kimya anabilim dali
+False positive: biyokimya anabilim dali
+False positive: uygulamali istatistik anabilim dali
+False positive: dali ali deniz
+False positive: cebir ve sayilar teorisi
+False positive: botanik anabilim dali
+False positive: dali atilla aslanargun
+False positive: dali rasime demirel
+False positive: olasilik teorisi ve surecleri
+False positive: fen fakultesi
+False positive: geometri anabilim dali
+False positive: dali tulay tolan
+False positive: dali ersin yucel
+False positive: organik kimya anabilim dali
+False positive: fizi i anabilim dali
+False positive: dali mehmet candan
+False positive: istatistik teorisi anabilim dali
+False positive: anabilim dali
+False positive: topoloji anabilim dali
+False positive: genel fizik anabilim dali
+False positive: anorganik kimya anabilim dali
+False positive: molekuler biyoloji anabilim dali
+False positive: molekul fizi i anabilim
+False positive: matematiksel fizik anabilim dali
+False positive: uygulamali matematik anabilim dali
+False positive: dali muhittin arslanyolu
+False negative: tulay tira
+False negative: mehmet candan
+False negative: ersin yucel
+False negative: yasemin cimen
+False negative: tulay tolan
+False negative: ali deniz
+False negative: atilla aslanargun
+False negative: ferhat altunsoy
+False negative: muhittin arslanyolu
+False negative: mustafa saltan
+False negative: rasime demirel
+False positives: 7 / 10 0.7
+False negatives: 0 / 3 0.0
+False positive: baharloo hospital bahrami
+False positive: moheb yas
+False positive: amir a
+False positive: tell a friend
+False positive: tissue engineeri
+False positive: hospital arash
+False positive: vali e

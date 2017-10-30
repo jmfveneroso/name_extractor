@@ -69,18 +69,18 @@ Harris, Holly
 Harris, Tonya
 Hart, Kimberly
 Hartley, James
-Hartley, Dr. Jillian
+Hartley, Jillian
 Hernandez, Frank
 Hicks, Deanita
 Higgs-House, Karen
 Holifield, Brenda
 Howard, Bettie Sue
-Hunt, Dr. Blanche
+Hunt, Blanche
 Hutto, Ron
 Johnson, Johnnie
 Jones, Joseph
 Jones, KeTierra
-Jones, Dr. Lisa
+Jones, Lisa
 Jones, Maci
 John Kelly
 Kemper, Dustin
@@ -123,8 +123,8 @@ Reid, Renea
 Samford, Lanice
 Scott, Susie
 Semmel, Robert
-Shemwell, Dr. Bridget
-Shemwell, Dr. James
+Shemwell, Bridget
+Shemwell, James
 Siegler, Brooke
 Sikes, Bobby Lynn
 Singleton, Robin
@@ -155,4 +155,4 @@ Wilson, Latanya
 Wilson, Sally
 Winchester, Shauna
 Winford, Regina
-Yarbrough, Dr. Gary
+Yarbrough, Gary

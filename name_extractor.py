@@ -21,25 +21,43 @@ def compare(x, y):
   return int((float(y[0]) - float(y[1])) - (float(x[0]) - float(x[1])))
 
 def remove_emails(text):
-  return re.sub('\S+@\S+(\.\S+)+', '', text)
+  text = re.sub('\S+@\S+(\.\S+)+', '', text)
+  text = re.sub('\S\S\S+\.\S\S\S+', '', text)
+  return text
 
 def remove_urls(text):
   regex = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
   return re.sub(regex, '', text)
 
 def remove_titles(text):
-  text = re.sub('(M\. Sc\.)|(M\.Sc\.)', '', text)
-  text = re.sub('(Ph\. D\.)|(Ph\.D\.)', '', text)
+  text = re.sub('(M\. Sc\.)|(M\.Sc\.)|(MS\. SC\.)|(MS\.SC\.)', '', text)
+  text = re.sub('(M\. Sc)|(M\.Sc)|(MS\. SC)|(MS\.SC)', '', text)
+  text = re.sub('(M\. Ed\.)|(M\.Ed\.)|(M\. ED\.)|(M\.ED\.)', '', text)
+  text = re.sub('(M\. Ed)|(M\.Ed)|(M\. ED)|(M\.ED)', '', text)
+  text = re.sub('(sc\. nat\.)|(sc\.nat\.)', '', text)
+  text = re.sub('(rer\. nat\.)|(rer\.nat\.)|(rer nat)', '', text)
+  text = re.sub('(i\. R\.)', '', text)
+  text = re.sub(' PD ', '', text)
+  text = re.sub('(Sc\. Nat\.)|(Sc\.Nat\.)|(SC\. NAT\.)|(SC\.NAT\.)', '', text)
+  text = re.sub('(Sc\. Nat)|(Sc\.Nat)|(SC\. NAT)|(SC\.NAT)', '', text)
+  text = re.sub('(MD\.)|(Md\.)', '', text)
+  text = re.sub('(B\. Sc\.)|(B\.Sc\.)|(BS\. SC\.)|(BS\.SC\.)', '', text)
+  text = re.sub('(B\. Sc)|(B\.Sc)|(BS\. SC)|(BS\.SC)', '', text)
+  text = re.sub('(Ph\. D\.)|(Ph\.D\.)|(PH\. D\.)|(PH\.D\.)', '', text)
+  text = re.sub('(Ph\. D)|(Ph\.D)|(PH\. D)|(PH\.D)', '', text)
+  text = re.sub('(Ed\. D\.)|(Ed\.D\.)|(ED\. D\.)|(ED\.D\.)', '', text)
+  text = re.sub('(Ed\. D)|(Ed\.D)|(ED\. D)|(ED\.D)', '', text)
   text = re.sub('(M\. S\.)|(M\.S\.)', '', text)
-  return re.sub('M\.Sc\.', '', text)
+  text = re.sub('(M\. S)|(M\.S)', '', text)
+  return text
 
 def is_number(text):
   return re.search('[0-9]', text) != None
 
 def tokenize_text(text):
-  text = remove_emails(text)
   text = remove_urls(text)
   text = remove_titles(text)
+  text = remove_emails(text)
   text = convert_token(text.strip()).lower()
   if len(text) == 0 or text == None:
     return [];
@@ -69,6 +87,25 @@ class Token():
     self.last_tkn = last_tkn
     self.next_tkn = next_tkn
     self.is_name = False
+    self.is_first_name = False
+
+    second_parent_name = ''
+    if element.parent != None:
+      second_parent_name = element.parent.name
+
+    self.parent = second_parent_name + element.name
+    self.second_parent = second_parent_name
+    self.class_name = ""
+    while element != None:
+      if element.has_attr("class"):
+        self.class_name = " ".join(element.get("class"))
+        break
+      element = element.parent
+
+    self.text_depth = 0
+    while element != None:
+      element = element.parent
+      self.text_depth += 1
 
   def calculate_features(self):
     n_tkn = self.next_tkn.tkn
@@ -81,8 +118,160 @@ class Token():
     self.number_after = is_number(n_tkn) or is_number(nn_tkn) or is_number(p_tkn)
     self.less_than_seven_chars = len("".join(tkns)) < 7
 
+class Tokenizer():
+  def tokenize(self, html):
+    result = []
+    soup = BeautifulSoup(html, 'html.parser')
+
+    # Remove code elements.
+    [s.extract() for s in soup('script')]
+    [s.extract() for s in soup('style')]
+    for br in soup.find_all("br"):
+      if len(br.findChildren()) == 0:
+        br.replace_with(" linebreak ")
+
+    # Iterate through all text elements.
+    n_strs = [i for i in soup.recursiveChildGenerator() if type(i) == NavigableString]
+    for n_str in n_strs:
+      content = n_str.strip()
+      if len(content) == 0 or content == None:
+        continue;
+
+      # Tokenize content and remove double spaces.
+      tkns = tokenize_text(content)
+      tkns = [t for t in tkns if (len(t) > 0 and re.match("^\S+$", t) != None)]
+      if len(tkns) == 0:
+        continue
+
+      last_tkn = None
+      cur_tkn = None
+      for i in range(0, len(tkns)):
+        cur_tkn = Token(tkns[i], n_str.parent, i == 0, last_tkn, None)
+        if last_tkn != None:
+          last_tkn.next_tkn = cur_tkn
+        last_tkn = cur_tkn
+        result.append(cur_tkn)
+
+    return result
+
+  def get_num_repeated_elements(self, tokens):
+    el = tokens[0].element
+    for i in range(1, len(tokens)):
+      if tokens[i].element != el:
+        return i - 1
+    return 3
+
+class Trainer():
+  def __init__(self, tokenizer):
+    self.tokenizer = tokenizer
+    self.probabilities = [[0] * 19, [0] * 19, [0] * 19, [0] * 19]
+    self.num_4_sequences = 0
+    self.unique_tkns = {}
+    self.token_incidence = [[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0]]
+    self.name_count = 0
+    self.not_name_count = 0
+
+  def mark_names(self, filename, tokens):
+    correct_names = []
+    with open(filename) as f:
+      for line in f:
+        correct_names.append([s.lower() for s in tokenize_text(line.decode("utf-8")) if len(s) >= 2])
+
+    i = 0
+    while i < len(tokens):
+      size = 0
+      for name in correct_names: 
+        match = True
+        for j in range(0, len(name)):
+          if i + j >= len(tokens) or tokens[i + j].tkn != name[j]:
+            match = False
+            break
+        if match:
+          size = len(name)  
+          break
+
+      if size == 0:
+        i += 1
+      else:
+        tokens[i].is_first_name = True
+        for j in range(i, i + size):
+          tokens[j].is_name = True
+        i += size
+
+  def get_word_configuration_index(self, tokens):
+    index = sum([2**j if tokens[::-1][j].is_name else 0 for j in range(0,4)])
+    if index == 15:
+      if tokens[1].is_first_name:
+        index = 16
+      elif tokens[2].is_first_name:
+        index = 17
+      elif tokens[3].is_first_name:
+        index = 18
+    return index
+
+  def train(self, filename, correct_names_filename):
+    with open(filename) as f:
+      html =  f.read()
+
+      tkns = self.tokenizer.tokenize(html)
+      self.mark_names(correct_names_filename, tkns)
+
+      i = 0
+      while i <= len(tkns) - 4:
+        cur_tkns = tkns[i:i+4]
+        index = self.get_word_configuration_index(cur_tkns)
+        num_repeated_elements = self.tokenizer.get_num_repeated_elements(cur_tkns)
+        self.probabilities[num_repeated_elements][index] += 1
+        # print [t.tkn for t in cur_tkns], index, num_repeated_elements
+        # if num_repeated_elements == 0 and index > 14:
+        #   print index, [t.tkn for t in cur_tkns]
+
+        self.num_4_sequences += 1
+        i += 1
+
+      for t in tkns:
+        if not t.tkn in self.unique_tkns:
+          self.unique_tkns[t.tkn] = [0, 0]
+
+        if t.is_name:
+          self.name_count += 1
+          self.unique_tkns[t.tkn][1] += 1
+        else:
+          self.not_name_count += 1
+          self.unique_tkns[t.tkn][0] += 1
+
+  def compute_probabilities(self):
+    arr = [
+      'WWWW', 'WWWN', 'WWNW', 'WWNN', 'WNWW', 'WNWN', 'WNNW', 'WNNN', 
+      'NWWW', 'NWWN', 'NWNW', 'NWNN', 'NNWW', 'NNWN', 'NNNW', 'NNNN',
+      'Nnnn', 'NNnn', 'NNNn'
+    ]
+    for i in range(0, 4):
+      print i
+      for j in range(0, 19):
+        self.probabilities[i][j] = log((float(self.probabilities[i][j]) + 1) / (self.num_4_sequences + 76))
+        print arr[j], self.probabilities[i][j]
+
+    for key in self.unique_tkns:
+      t = self.unique_tkns[key]
+      incidence_word = t[0] if t[0] < 9 else 9
+      incidence_name = t[1] if t[1] < 9 else 9
+      self.token_incidence[incidence_word][0] += t[0]
+      self.token_incidence[incidence_name][1] += t[1]
+
+    print 'Token incidence'
+    for i in range(1, 10):
+      self.token_incidence[i][0] = log(float(self.token_incidence[i][0] + 1) / (self.not_name_count + 10))
+      self.token_incidence[i][1] = log(float(self.token_incidence[i][1] + 1) / (self.name_count + 10))
+      print 'wTI' + str(i), self.token_incidence[i][0]
+      print 'nTI' + str(i), self.token_incidence[i][1]
+
 class Model():
-  def __init__(self):
+  def __init__(self, tokenizer):
+    self.tokenizer = tokenizer
+    self.conditional_probabilities = [[0] * 19, [0] * 19, [0] * 19, [0] * 19]
+    self.token_incidence = [[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0]]
+    self.unique_tkns = {}
     self.cond_probs = [0] * 16
     self.name_cond_probs = {}
     self.word_cond_probs = {}
@@ -339,95 +528,131 @@ class Model():
     self.cond_probs[0 ] = self.word_probs[0] + self.word_probs[1] + self.word_probs[2] + self.word_probs[3]                        # WWWW
     self.cond_probs[1 ] = self.word_probs[0] + self.word_probs[1] + self.word_probs[2] + self.name_probs[0]                        # WWWN
     self.cond_probs[2 ] = self.word_probs[0] + self.word_probs[1] + self.name_probs[0] + self.word_after_name_probs[1]             # WWNW
+    self.cond_probs[2 ] = -1000
     self.cond_probs[3 ] = self.word_probs[0] + self.word_probs[1] + self.name_probs[0] + self.name_probs[1]                        # WWNN
     self.cond_probs[4 ] = self.word_probs[0] + self.name_probs[0] + self.word_after_name_probs[1] + self.word_probs[0]             # WNWW
+    self.cond_probs[4 ] = -1000
     self.cond_probs[5 ] = self.word_probs[0] + self.name_probs[0] + self.word_after_name_probs[1] + self.name_probs[0]             # WNWN
     self.cond_probs[6 ] = self.word_probs[0] + self.name_probs[0] + self.name_probs[1] + self.word_after_name_probs[2]             # WNNW
     self.cond_probs[7 ] = self.word_probs[0] + self.name_probs[0] + self.name_probs[1] + self.name_probs[2]                        # WNNN
     self.cond_probs[8 ] = self.name_probs[0] + self.word_after_name_probs[1] + self.word_probs[1] + self.word_probs[2]             # NWWW
+    self.cond_probs[8 ] = -1000
     self.cond_probs[9 ] = self.name_probs[0] + self.word_after_name_probs[1] + self.word_probs[1] + self.name_probs[0]             # NWWN
+    self.cond_probs[9 ] = -1000
     self.cond_probs[10] = self.name_probs[0] + self.word_after_name_probs[1] + self.name_probs[0] + self.word_after_name_probs[1]  # NWNW
+    self.cond_probs[10] = -1000
     self.cond_probs[11] = self.name_probs[0] + self.word_after_name_probs[1] + self.name_probs[0] + self.name_probs[1]             # NWNN
+    self.cond_probs[11] = -1000
     self.cond_probs[12] = self.name_probs[0] + self.name_probs[1] + self.word_after_name_probs[2] + self.word_probs[1]             # NNWW
     self.cond_probs[13] = self.name_probs[0] + self.name_probs[1] + self.word_after_name_probs[2] + self.name_probs[0]             # NNWN
     self.cond_probs[14] = self.name_probs[0] + self.name_probs[1] + self.name_probs[2] + self.word_after_name_probs[3]             # NNNW
     self.cond_probs[15] = self.name_probs[0] + self.name_probs[1] + self.name_probs[2] + self.name_probs[3]                        # NNNN
 
-  def get_tkn_probs(self, tkn):
-    tkn = tkn.tkn.strip().lower()
+  def get_tkn_probs(self, tkn, second_passing):
+    if tkn.tkn == 'linebreak' or re.search('[0-9]', tkn.tkn):
+      return (0, -100)
+
+    tkn_value = tkn.tkn.strip().lower()
     prob_word = log(float(1) / (84599521 + len(self.word_cond_probs)))
-    if tkn in self.word_cond_probs:
-      prob_word = self.word_cond_probs[tkn]
+    if tkn_value in self.word_cond_probs:
+      prob_word = self.word_cond_probs[tkn_value]
 
     prob_name = log(float(1) / (3831851 + len(self.name_cond_probs)))
-    if tkn in self.name_cond_probs:
-      prob_name = self.name_cond_probs[tkn]
+    if tkn_value in self.name_cond_probs:
+      prob_name = self.name_cond_probs[tkn_value]
 
+    if second_passing:
+      prob_word += self.first_parents[tkn.parent][0]
+      prob_word += self.second_parents[tkn.second_parent][0]
+      prob_word += self.class_names[tkn.class_name][0]
+      # prob_word += self.child_pos_[tkn.text_depth][0]
+      prob_name += self.first_parents[tkn.parent][1]
+      prob_name += self.second_parents[tkn.second_parent][1]
+      prob_name += self.class_names[tkn.class_name][1]
+      # prob_name += self.child_pos_[tkn.text_depth][1]
+
+      # Token incidence.
+      # incidence = self.unique_tkns[tkn_value] if self.unique_tkns[tkn_value] < 9 else 9
+      # prob_word += self.token_incidence[incidence][0]
+      # prob_name += self.token_incidence[incidence][1]
+
+    # print tkn, prob_name, prob_word
     return prob_word, prob_name
 
-  def get_full_probs(self, tkns):
-    if len([t for t in tkns if re.search('[0-9]', t.tkn) != None]) > 0:
-      arr = [0] * 16
-      arr[0] = 1
-      return arr
-
-    tkn_probs = [self.get_tkn_probs(tkn) for tkn in tkns]
-    full_probs = [0] * 16
+  def get_full_probs(self, tkns, second_passing):
+    num_repeated_elements = self.tokenizer.get_num_repeated_elements(tkns)
+    tkn_probs = [self.get_tkn_probs(tkn, second_passing) for tkn in tkns]
+    full_probs = [0] * 19
     for i in range(0, 16):
       selector_array = [1 if ((i & 2**j) == 2**j) else 0 for j in reversed(range(0,4))] 
-      for j in range(0, 4):
+      for j in range(0, len(tkns)):
         full_probs[i] += tkn_probs[j][selector_array[j]]
-      full_probs[i] += self.cond_probs[i] 
+        if i == 15:
+          full_probs[16] += tkn_probs[j][selector_array[j]]
+          full_probs[17] += tkn_probs[j][selector_array[j]]
+          full_probs[18] += tkn_probs[j][selector_array[j]]
 
+      full_probs[i] += self.conditional_probabilities[num_repeated_elements][i]
+      if i == 15:
+        full_probs[16] += self.conditional_probabilities[num_repeated_elements][16]
+        full_probs[17] += self.conditional_probabilities[num_repeated_elements][17]
+        full_probs[18] += self.conditional_probabilities[num_repeated_elements][18]
+
+    arr = [
+      'WWWW', 'WWWN', 'WWNW', 'WWNN', 'WNWW', 'WNWN', 'WNNW', 'WNNN', 
+      'NWWW', 'NWWN', 'NWNW', 'NWNN', 'NNWW', 'NNWN', 'NNNW', 'NNNN',
+      'Nnnn', 'NNnn', 'NNNn'
+    ]
+    # probs = [arr[j] + str(self.conditional_probabilities[num_repeated_elements][j]) for j in range(0,18)]
+    probs = [arr[j] + str(full_probs[j]) for j in range(0,19)]
+    # print [t.tkn for t in tkns], probs
+    if verbose:
+      print [t.tkn for t in tkns], num_repeated_elements, max(full_probs), probs
     return full_probs
 
-  def tokenize(self, html):
-    result = []
-    soup = BeautifulSoup(html, 'html.parser')
-
-    # Remove code elements.
-    [s.extract() for s in soup('script')]
-    [s.extract() for s in soup('style')]
-
-    # Iterate through all text elements.
-    n_strs = [i for i in soup.recursiveChildGenerator() if type(i) == NavigableString]
-    for n_str in n_strs:
-      content = n_str.strip()
-      if len(content) == 0 or content == None:
-        continue;
-
-      # Tokenize content and remove double spaces.
-      tkns = tokenize_text(content)
-      tkns = [t for t in tkns if (len(t) > 0 and re.match("^\S+$", t) != None)]
-      if len(tkns) == 0:
-        continue
-
-      last_tkn = None
-      cur_tkn = None
-      for i in range(0, len(tkns)):
-        cur_tkn = Token(tkns[i], n_str.parent, i == 0, last_tkn, None)
-        if last_tkn != None:
-          last_tkn.next_tkn = cur_tkn
-        last_tkn = cur_tkn
-        result.append(cur_tkn)
-
-    return result
-
-  def extract_names_2(self, html, calculate_probs):
+  def extract_names_2(self, html, second_passing):
     calculate_probs = True
 
     self.found_names = {}
-    tkns = self.tokenize(html)
+    tkns = self.tokenizer.tokenize(html)
+
+    tkns = [t for t in tkns if not t.tkn in ['dr', 'drs', 'drd', 'mr', 'mrs', 'ms', 'professor', 'dipl', 'prof', 'miss', 'emeritus', 'ing', 'assoc', 'asst', 'lecturer', 'ast', 'res', 'inf', 'diplom', 'junprof', 'inform', 'lect', 'senior', 'ass']]
+
     i = 0
     while i <= len(tkns) - 4:
-      full_probs = self.get_full_probs(tkns[i:i+4])
+      cur_tkns = tkns[i:i+4]
+      # el = cur_tkns[0].element
+      # cur_tkns = [t for t in cur_tkns if t.element == el]
+
+      full_probs = self.get_full_probs(cur_tkns, second_passing)
       index = full_probs.index(max(full_probs))
+      arr = [
+        'WWWW', 'WWWN', 'WWNW', 'WWNN', 'WNWW', 'WNWN', 'WNNW', 'WNNN', 
+        'NWWW', 'NWWN', 'NWNW', 'NWNN', 'NNWW', 'NNWN', 'NNNW', 'NNNN',
+        'Nnnn', 'NNnn', 'NNNn'
+      ]
+      name = " ".join([t.tkn for t in tkns[i:i+4]])
+      probs = [arr[j] + str(full_probs[j]) for j in range(0,19)]
+      # print "xxx", name, probs
 
       if index < 12: # Is word.
         tkns[i].is_name = False
         i += 1
       else:
         name_length = 2 if (index - 12 == 0) else index - 11
+
+        if index == 16:
+          tkns[i].is_name = False
+          i += 1
+          continue
+        elif index == 17:
+          name_length = 2
+        elif index == 18:
+          name_length = 3
+
+        if name_length > len(cur_tkns):
+          name_length = len(cur_tkns)
+
         name_start = int(i)
         name_end = int(i) + int(name_length)
         name_tkns = tkns[name_start:name_end]
@@ -448,6 +673,53 @@ class Model():
 
         name = " ".join(name_tkns).encode('utf-8')
         self.found_names[name] = full_probs[index], full_probs[0]
+    return tkns
+
+  def calculate_secondary_features(self, tkns):
+    self.first_parents = {}
+    self.second_parents = {}
+    self.class_names = {}
+    self.child_pos_ = {}
+    self.name_count = 0
+    self.not_name_count = 0
+
+    for tkn in tkns:
+      if not tkn.tkn in self.unique_tkns:
+        self.unique_tkns[tkn.tkn] = 0
+
+      self.unique_tkns[tkn.tkn] += 1
+      index = 1 if tkn.is_name else 0
+      if tkn.is_name:
+        self.name_count += 1
+      else:
+        self.not_name_count += 1
+
+      if not tkn.parent in self.first_parents:
+        self.first_parents[tkn.parent] = [0, 0]
+      if not tkn.second_parent in self.second_parents:
+        self.second_parents[tkn.second_parent] = [0, 0]
+      if not tkn.class_name in self.class_names:
+        self.class_names[tkn.class_name] = [0, 0]
+      if not tkn.text_depth in self.child_pos_:
+        self.child_pos_[tkn.text_depth] = [0, 0]
+
+      self.first_parents[tkn.parent][index] += 1
+      self.second_parents[tkn.second_parent][index] += 1
+      self.class_names[tkn.class_name][index] += 1
+      self.child_pos_[tkn.text_depth][index] += 1
+
+    for key in self.first_parents:
+      self.first_parents[key][0] = log(float(self.first_parents[key][0] + 1) / (self.not_name_count + len(self.first_parents)))
+      self.first_parents[key][1] = log(float(self.first_parents[key][1] + 1) / (self.name_count + len(self.first_parents)))
+    for key in self.second_parents:
+      self.second_parents[key][0] = log(float(self.second_parents[key][0] + 1) / (self.not_name_count + len(self.second_parents)))
+      self.second_parents[key][1] = log(float(self.second_parents[key][1] + 1) / (self.name_count + len(self.second_parents)))
+    for key in self.class_names:
+      self.class_names[key][0] = log(float(self.class_names[key][0] + 1) / (self.not_name_count + len(self.class_names)))
+      self.class_names[key][1] = log(float(self.class_names[key][1] + 1) / (self.name_count + len(self.class_names)))
+    for key in self.child_pos_:
+      self.child_pos_[key][0] = log(float(self.child_pos_[key][0] + 1) / (self.not_name_count + len(self.child_pos_)))
+      self.child_pos_[key][1] = log(float(self.child_pos_[key][1] + 1) / (self.name_count + len(self.child_pos_)))
 
   def extract_names(self, html, calculate_probs):
     self.found_names = {}
@@ -667,6 +939,17 @@ class Model():
         line = f.readline().split(" ")[1]
         self.word_probs[i] = float(line)
 
+  def load_conditional_probabilities(self, filename):
+    with open(filename) as f:
+      for i in range(0, 4):
+        f.readline()
+        for j in range(0, 19):
+          self.conditional_probabilities[i][j] = float(f.readline().split(" ")[1])
+      f.readline()
+      for i in range(0, 9):
+        for j in range(0, 1):
+          self.token_incidence[i][j] = float(f.readline().split(" ")[1])
+
   def load_feature_probs(self, filename):
     with open(filename) as f:
       self.is_first_tkn     = float(f.readline().split(" ")[1])
@@ -703,22 +986,46 @@ class Model():
       html =  f.read()
       # model.extract_names_2(html, True)
       # model.calculate_probs()
-      self.calculate_cond_probs()
-      model.extract_names_2(html, False)
+      tkns = model.extract_names_2(html, False)
+      self.calculate_secondary_features(tkns)
+      tkns = model.extract_names_2(html, True)
+      self.unique_tkns = {}
 
 if __name__ == "__main__":
-  model = Model()
+  tokenizer = Tokenizer()
+  trainer = Trainer(tokenizer)
+  model = Model(tokenizer)
   model.load_name_cond_probs("data/probabilities/tokenized_authors_prob.txt")
   model.load_word_cond_probs("data/probabilities/conditional_not_a_name_prob.txt")
-  model.load_name_probs("data/probabilities/name_log_prob_3.txt")
+  model.load_name_probs("data/probabilities/name_log_prob_5.txt")
   model.load_feature_probs("data/probabilities/feature_probs.txt")
+  model.load_conditional_probabilities("data/probabilities/conditional_probs.txt")
 
   if len(sys.argv) > 1:
     if len(sys.argv) > 2 and sys.argv[2] == '-v':
       verbose = True
   
-    model.extract(sys.argv[1])
-    model.print_results()
+    if sys.argv[1] == 'train':
+      test_path = "downloaded_pages/faculty"
+      expected_path = "data/correct_names"
+      file_nums = [f[-7:-4] for f in os.listdir(expected_path) if os.path.isfile(os.path.join(expected_path, f))]
+
+      for file_num in file_nums:
+        print "File", file_num
+        test_file = os.path.join(test_path, file_num + ".html")
+        expected_file = os.path.join(expected_path, "names_" + file_num + ".txt")
+        if not os.path.isfile(test_file):
+          print "Missing file", test_file
+          quit()
+        elif not os.path.isfile(expected_file):
+          print "Missing file", expected_file
+          quit()
+
+        trainer.train(test_file, expected_file)
+      trainer.compute_probabilities()
+    else:
+      model.extract(sys.argv[1])
+      model.print_results()
   else:
     test_path = "downloaded_pages/faculty"
     expected_path = "data/correct_names"
