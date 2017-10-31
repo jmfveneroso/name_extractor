@@ -1,7 +1,7 @@
 Afzal, Raheela
 Ahmadi Fatlaki, Ahmad
 Ahmed, Ferdous
-Akand, Md Mamunur Rashid
+Akand, Mamunur Rashid
 Aksac, Alper
 Alhajj (Elhajj), Reda
 Alim, Usman
@@ -130,10 +130,10 @@ Prusinkiewicz, Przemyslaw
 Pusch, Richard
 Qing, Chen
 Quach, Lien
-Rabbani, Md. Reza
-Rahman, Md Wasiur
+Rabbani, Reza
+Rahman, Wasiur
 Rajabiyazdi, Fatemeh
-Rashid, Md Mamunur
+Rashid, Mamunur
 Ratzlaff, Scott
 Reardon, Joel
 Rizvi, Syed Zain

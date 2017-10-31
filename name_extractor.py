@@ -40,7 +40,7 @@ def remove_titles(text):
   text = re.sub(' PD ', '', text)
   text = re.sub('(Sc\. Nat\.)|(Sc\.Nat\.)|(SC\. NAT\.)|(SC\.NAT\.)', '', text)
   text = re.sub('(Sc\. Nat)|(Sc\.Nat)|(SC\. NAT)|(SC\.NAT)', '', text)
-  text = re.sub('(MD\.)|(Md\.)', '', text)
+  text = re.sub('(MD\.)|(Md\.)|(Md )', '', text)
   text = re.sub('(B\. Sc\.)|(B\.Sc\.)|(BS\. SC\.)|(BS\.SC\.)', '', text)
   text = re.sub('(B\. Sc)|(B\.Sc)|(BS\. SC)|(BS\.SC)', '', text)
   text = re.sub('(Ph\. D\.)|(Ph\.D\.)|(PH\. D\.)|(PH\.D\.)', '', text)
@@ -88,14 +88,22 @@ class Token():
     self.next_tkn = next_tkn
     self.is_name = False
     self.is_first_name = False
+    self.next_tkn = next_tkn
 
     second_parent_name = ''
     if element.parent != None:
       second_parent_name = element.parent.name
 
+    third_parent_name = ''
+    if element.parent != None and element.parent.parent != None:
+      third_parent_name = element.parent.parent.name
+
     self.parent = second_parent_name + element.name
     self.second_parent = second_parent_name
+    self.third_parent = third_parent_name
     self.class_name = ""
+
+    el = element
     while element != None:
       if element.has_attr("class"):
         self.class_name = " ".join(element.get("class"))
@@ -103,9 +111,18 @@ class Token():
       element = element.parent
 
     self.text_depth = 0
+    element = el
     while element != None:
       element = element.parent
       self.text_depth += 1
+
+    element = el
+    self.element_position = 0
+    if element.parent != None:
+      for child in element.parent.findChildren():
+        if child == element:
+          break
+        self.element_position += 1
 
   def calculate_features(self):
     n_tkn = self.next_tkn.tkn
@@ -168,6 +185,7 @@ class Trainer():
     self.num_4_sequences = 0
     self.unique_tkns = {}
     self.token_incidence = [[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0]]
+    self.word_length = [[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0]]
     self.name_count = 0
     self.not_name_count = 0
 
@@ -175,7 +193,7 @@ class Trainer():
     correct_names = []
     with open(filename) as f:
       for line in f:
-        correct_names.append([s.lower() for s in tokenize_text(line.decode("utf-8")) if len(s) >= 2])
+        correct_names.append([s.lower() for s in tokenize_text(line.decode("utf-8"))])
 
     i = 0
     while i < len(tokens):
@@ -233,12 +251,23 @@ class Trainer():
         if not t.tkn in self.unique_tkns:
           self.unique_tkns[t.tkn] = [0, 0]
 
+        word_length = len(t.tkn) if len(t.tkn) < 10 else 9
         if t.is_name:
           self.name_count += 1
           self.unique_tkns[t.tkn][1] += 1
+          self.word_length[word_length][1] += 1
         else:
           self.not_name_count += 1
           self.unique_tkns[t.tkn][0] += 1
+          self.word_length[word_length][0] += 1
+
+      for key in self.unique_tkns:
+        t = self.unique_tkns[key]
+        incidence_word = t[0] if t[0] < 9 else 9
+        incidence_name = t[1] if t[1] < 9 else 9
+        self.token_incidence[incidence_word][0] += t[0]
+        self.token_incidence[incidence_name][1] += t[1]
+      self.unique_tkns = {}
 
   def compute_probabilities(self):
     arr = [
@@ -252,13 +281,6 @@ class Trainer():
         self.probabilities[i][j] = log((float(self.probabilities[i][j]) + 1) / (self.num_4_sequences + 76))
         print arr[j], self.probabilities[i][j]
 
-    for key in self.unique_tkns:
-      t = self.unique_tkns[key]
-      incidence_word = t[0] if t[0] < 9 else 9
-      incidence_name = t[1] if t[1] < 9 else 9
-      self.token_incidence[incidence_word][0] += t[0]
-      self.token_incidence[incidence_name][1] += t[1]
-
     print 'Token incidence'
     for i in range(1, 10):
       self.token_incidence[i][0] = log(float(self.token_incidence[i][0] + 1) / (self.not_name_count + 10))
@@ -266,11 +288,19 @@ class Trainer():
       print 'wTI' + str(i), self.token_incidence[i][0]
       print 'nTI' + str(i), self.token_incidence[i][1]
 
+    print 'Word length'
+    for i in range(1, 10):
+      self.word_length[i][0] = log(float(self.word_length[i][0] + 1) / (self.not_name_count + 10))
+      self.word_length[i][1] = log(float(self.word_length[i][1] + 1) / (self.name_count + 10))
+      print 'wWL' + str(i), self.word_length[i][0]
+      print 'nWL' + str(i), self.word_length[i][1]
+
 class Model():
   def __init__(self, tokenizer):
     self.tokenizer = tokenizer
     self.conditional_probabilities = [[0] * 19, [0] * 19, [0] * 19, [0] * 19]
     self.token_incidence = [[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0]]
+    self.word_length = [[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0],[0, 0]]
     self.unique_tkns = {}
     self.cond_probs = [0] * 16
     self.name_cond_probs = {}
@@ -303,6 +333,9 @@ class Model():
 
     self.first_parents = {}
     self.second_parents = {}
+    self.third_parents = {}
+    self.element_positions = {}
+
     self.class_names = {}
     self.second_class_names = {}
     self.first_tkn_pos = {}
@@ -310,6 +343,7 @@ class Model():
     self.words_in_field = {}
     self.first_parents_ = {}
     self.second_parents_ = {}
+    self.third_parents_ = {}
     self.class_names_ = {}
     self.second_class_names_ = {}
     self.first_tkn_pos_ = {}
@@ -548,9 +582,13 @@ class Model():
     self.cond_probs[14] = self.name_probs[0] + self.name_probs[1] + self.name_probs[2] + self.word_after_name_probs[3]             # NNNW
     self.cond_probs[15] = self.name_probs[0] + self.name_probs[1] + self.name_probs[2] + self.name_probs[3]                        # NNNN
 
-  def get_tkn_probs(self, tkn, second_passing):
+  def get_tkn_probs(self, tkn, last_el, second_passing):
     if tkn.tkn == 'linebreak' or re.search('[0-9]', tkn.tkn):
       return (0, -100)
+
+    if last_el != None:
+      if tkn.element != last_el and tkn.element != last_el.parent and tkn.element.parent != last_el and tkn.element.parent != last_el.parent:
+        return (0, -100)
 
     tkn_value = tkn.tkn.strip().lower()
     prob_word = log(float(1) / (84599521 + len(self.word_cond_probs)))
@@ -563,25 +601,43 @@ class Model():
 
     if second_passing:
       prob_word += self.first_parents[tkn.parent][0]
-      prob_word += self.second_parents[tkn.second_parent][0]
+      # prob_word += self.second_parents[tkn.second_parent][0]
+      prob_word += self.third_parents[tkn.third_parent][0]
       prob_word += self.class_names[tkn.class_name][0]
       # prob_word += self.child_pos_[tkn.text_depth][0]
+      prob_word += self.element_positions[tkn.element_position][0]
       prob_name += self.first_parents[tkn.parent][1]
-      prob_name += self.second_parents[tkn.second_parent][1]
+      # prob_name += self.second_parents[tkn.second_parent][1]
+      prob_name += self.third_parents[tkn.third_parent][1]
       prob_name += self.class_names[tkn.class_name][1]
       # prob_name += self.child_pos_[tkn.text_depth][1]
+      prob_name += self.element_positions[tkn.element_position][1]
 
       # Token incidence.
-      # incidence = self.unique_tkns[tkn_value] if self.unique_tkns[tkn_value] < 9 else 9
-      # prob_word += self.token_incidence[incidence][0]
-      # prob_name += self.token_incidence[incidence][1]
+      incidence = self.unique_tkns[tkn_value] if self.unique_tkns[tkn_value] < 9 else 9
+      # print prob_word, prob_name, self.token_incidence
+      prob_word += self.token_incidence[incidence][0]
+      prob_name += self.token_incidence[incidence][1]
+      # print tkn_value, self.unique_tkns[tkn_value], incidence
+      # print prob_word, prob_name
+
+      # Token length.
+      # length = len(tkn_value) if len(tkn_value) < 9 else 9
+      # prob_word += self.word_length[length][0]
+      # prob_name += self.word_length[length][1]
 
     # print tkn, prob_name, prob_word
     return prob_word, prob_name
 
   def get_full_probs(self, tkns, second_passing):
     num_repeated_elements = self.tokenizer.get_num_repeated_elements(tkns)
-    tkn_probs = [self.get_tkn_probs(tkn, second_passing) for tkn in tkns]
+
+    last_el = None
+    tkn_probs = []
+    for tkn in tkns:
+      tkn_probs.append(self.get_tkn_probs(tkn, last_el, second_passing))
+      last_el = tkn.element
+
     full_probs = [0] * 19
     for i in range(0, 16):
       selector_array = [1 if ((i & 2**j) == 2**j) else 0 for j in reversed(range(0,4))] 
@@ -605,9 +661,9 @@ class Model():
     ]
     # probs = [arr[j] + str(self.conditional_probabilities[num_repeated_elements][j]) for j in range(0,18)]
     probs = [arr[j] + str(full_probs[j]) for j in range(0,19)]
-    # print [t.tkn for t in tkns], probs
+    # print [t.tkn for t in tkns], tkn_probs, self.conditional_probabilities[num_repeated_elements]
     if verbose:
-      print [t.tkn for t in tkns], num_repeated_elements, max(full_probs), probs
+      print [t.tkn for t in tkns], num_repeated_elements, max(full_probs), probs, tkn_probs
     return full_probs
 
   def extract_names_2(self, html, second_passing):
@@ -616,7 +672,7 @@ class Model():
     self.found_names = {}
     tkns = self.tokenizer.tokenize(html)
 
-    tkns = [t for t in tkns if not t.tkn in ['dr', 'drs', 'drd', 'mr', 'mrs', 'ms', 'professor', 'dipl', 'prof', 'miss', 'emeritus', 'ing', 'assoc', 'asst', 'lecturer', 'ast', 'res', 'inf', 'diplom', 'junprof', 'inform', 'lect', 'senior', 'ass']]
+    tkns = [t for t in tkns if not t.tkn in ['dr', 'drs', 'drd', 'mr', 'mrs', 'ms', 'professor', 'dipl', 'prof', 'miss', 'emeritus', 'ing', 'assoc', 'asst', 'lecturer', 'ast', 'res', 'inf', 'diplom', 'junprof', 'inform', 'lect', 'senior', 'ass', 'ajarn']]
 
     i = 0
     while i <= len(tkns) - 4:
@@ -678,8 +734,10 @@ class Model():
   def calculate_secondary_features(self, tkns):
     self.first_parents = {}
     self.second_parents = {}
+    self.third_parents = {}
     self.class_names = {}
     self.child_pos_ = {}
+    self.element_positions = {}
     self.name_count = 0
     self.not_name_count = 0
 
@@ -698,15 +756,21 @@ class Model():
         self.first_parents[tkn.parent] = [0, 0]
       if not tkn.second_parent in self.second_parents:
         self.second_parents[tkn.second_parent] = [0, 0]
+      if not tkn.third_parent in self.third_parents:
+        self.third_parents[tkn.third_parent] = [0, 0]
       if not tkn.class_name in self.class_names:
         self.class_names[tkn.class_name] = [0, 0]
       if not tkn.text_depth in self.child_pos_:
         self.child_pos_[tkn.text_depth] = [0, 0]
+      if not tkn.element_position in self.element_positions:
+        self.element_positions[tkn.element_position] = [0, 0]
 
       self.first_parents[tkn.parent][index] += 1
       self.second_parents[tkn.second_parent][index] += 1
+      self.third_parents[tkn.third_parent][index] += 1
       self.class_names[tkn.class_name][index] += 1
       self.child_pos_[tkn.text_depth][index] += 1
+      self.element_positions[tkn.element_position][index] += 1
 
     for key in self.first_parents:
       self.first_parents[key][0] = log(float(self.first_parents[key][0] + 1) / (self.not_name_count + len(self.first_parents)))
@@ -714,12 +778,18 @@ class Model():
     for key in self.second_parents:
       self.second_parents[key][0] = log(float(self.second_parents[key][0] + 1) / (self.not_name_count + len(self.second_parents)))
       self.second_parents[key][1] = log(float(self.second_parents[key][1] + 1) / (self.name_count + len(self.second_parents)))
+    for key in self.third_parents:
+      self.third_parents[key][0] = log(float(self.third_parents[key][0] + 1) / (self.not_name_count + len(self.third_parents)))
+      self.third_parents[key][1] = log(float(self.third_parents[key][1] + 1) / (self.name_count + len(self.third_parents)))
     for key in self.class_names:
       self.class_names[key][0] = log(float(self.class_names[key][0] + 1) / (self.not_name_count + len(self.class_names)))
       self.class_names[key][1] = log(float(self.class_names[key][1] + 1) / (self.name_count + len(self.class_names)))
     for key in self.child_pos_:
       self.child_pos_[key][0] = log(float(self.child_pos_[key][0] + 1) / (self.not_name_count + len(self.child_pos_)))
       self.child_pos_[key][1] = log(float(self.child_pos_[key][1] + 1) / (self.name_count + len(self.child_pos_)))
+    for key in self.element_positions:
+      self.element_positions[key][0] = log(float(self.element_positions[key][0] + 1) / (self.not_name_count + len(self.element_positions)))
+      self.element_positions[key][1] = log(float(self.element_positions[key][1] + 1) / (self.name_count + len(self.element_positions)))
 
   def extract_names(self, html, calculate_probs):
     self.found_names = {}
@@ -947,8 +1017,12 @@ class Model():
           self.conditional_probabilities[i][j] = float(f.readline().split(" ")[1])
       f.readline()
       for i in range(0, 9):
-        for j in range(0, 1):
-          self.token_incidence[i][j] = float(f.readline().split(" ")[1])
+        for j in range(0, 2):
+          self.token_incidence[i + 1][j] = float(f.readline().split(" ")[1])
+      f.readline()
+      for i in range(0, 9):
+        for j in range(0, 2):
+          self.word_length[i + 1][j] = float(f.readline().split(" ")[1])
 
   def load_feature_probs(self, filename):
     with open(filename) as f:
@@ -989,7 +1063,26 @@ class Model():
       tkns = model.extract_names_2(html, False)
       self.calculate_secondary_features(tkns)
       tkns = model.extract_names_2(html, True)
-      self.unique_tkns = {}
+      self.calculate_secondary_features(tkns)
+      tkns = model.extract_names_2(html, True)
+      self.calculate_secondary_features(tkns)
+      tkns = model.extract_names_2(html, True)
+      self.calculate_secondary_features(tkns)
+      tkns = model.extract_names_2(html, True)
+      self.calculate_secondary_features(tkns)
+      tkns = model.extract_names_2(html, True)
+      self.calculate_secondary_features(tkns)
+      tkns = model.extract_names_2(html, True)
+      self.calculate_secondary_features(tkns)
+      tkns = model.extract_names_2(html, True)
+      self.calculate_secondary_features(tkns)
+      tkns = model.extract_names_2(html, True)
+      self.calculate_secondary_features(tkns)
+      tkns = model.extract_names_2(html, True)
+      self.calculate_secondary_features(tkns)
+      tkns = model.extract_names_2(html, True)
+      self.calculate_secondary_features(tkns)
+      tkns = model.extract_names_2(html, True)
 
 if __name__ == "__main__":
   tokenizer = Tokenizer()
@@ -999,7 +1092,7 @@ if __name__ == "__main__":
   model.load_word_cond_probs("data/probabilities/conditional_not_a_name_prob.txt")
   model.load_name_probs("data/probabilities/name_log_prob_5.txt")
   model.load_feature_probs("data/probabilities/feature_probs.txt")
-  model.load_conditional_probabilities("data/probabilities/conditional_probs.txt")
+  model.load_conditional_probabilities("data/probabilities/conditional_probs_3.txt")
 
   if len(sys.argv) > 1:
     if len(sys.argv) > 2 and sys.argv[2] == '-v':

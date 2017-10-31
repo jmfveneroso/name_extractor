@@ -13,7 +13,7 @@ Dalton, Jeff
 Dardha, Ornela 
 De Muijnck-Hughes, Jan 
 Deshmukh, Amol 
-Evangelopoulou, Miss Maria 
+Evangelopoulou, Maria 
 Foster, Mary Ellen 
 Freeman, Euan 
 Gay, Simon 
@@ -50,7 +50,7 @@ Perera, Roly
 Perkins, Colin 
 Pezaros, Dimitrios 
 Poet, Ron 
-Popescu, Miss Iulia 
+Popescu, Iulia 
 Prosser, Patrick 
 Purchase, Helen 
 Ramsay, Andrew 
@@ -82,10 +82,10 @@ Bailey, Peter
 Beavers, Alexander 
 Bonner, Teresa 
 Border, Helen 
-Fliatoura, Miss Anastasia 
+Fliatoura, Anastasia 
 Galabova, Tania 
 Hamilton, Derek 
-Harth, Miss Natascha 
+Harth, Natascha 
 Kendrick, Steven 
 MacDonald, Iain 
 Macfarlane, Douglas 
@@ -100,7 +100,7 @@ Settery, Alan
 Aragon Camarasa, Gerardo 
 Douglas, Brett 
 Dunlop, Mark 
-Enfors, Miss Asa 
+Enfors, Asa 
 England, David 
 Gordon, Christopher 
 Greenshaw, Liam 

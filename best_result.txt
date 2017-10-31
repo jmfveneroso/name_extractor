@@ -2458,3 +2458,1359 @@ False negatives: 11 / 164
 File downloaded_pages/faculty/187.html
 False positives: 7 / 10
 False negatives: 0 / 3
+//////////////////////////////////////////
+File downloaded_pages/faculty/001.html
+False positives: 1 / 389
+False negatives: 0 / 388
+File downloaded_pages/faculty/002.html
+False positives: 4 / 37
+False negatives: 0 / 33
+File downloaded_pages/faculty/004.html
+False positives: 0 / 176
+False negatives: 0 / 176
+File downloaded_pages/faculty/005.html
+False positives: 11 / 71
+False negatives: 0 / 60
+File downloaded_pages/faculty/006.html
+False positives: 0 / 22
+False negatives: 0 / 22
+File downloaded_pages/faculty/007.html
+False positives: 2 / 33
+False negatives: 0 / 31
+File downloaded_pages/faculty/008.html
+False positives: 9 / 29
+False negatives: 0 / 20
+File downloaded_pages/faculty/009.html
+False positives: 1 / 9
+False negatives: 0 / 8
+File downloaded_pages/faculty/010.html
+False positives: 0 / 43
+False negatives: 0 / 43
+File downloaded_pages/faculty/011.html
+False positives: 0 / 83
+False negatives: 0 / 83
+File downloaded_pages/faculty/013.html
+False positives: 2 / 16
+False negatives: 0 / 14
+File downloaded_pages/faculty/014.html
+False positives: 1 / 638
+False negatives: 2 / 639
+File downloaded_pages/faculty/015.html
+False positives: 6 / 25
+False negatives: 0 / 19
+File downloaded_pages/faculty/016.html
+False positives: 1 / 20
+False negatives: 0 / 19
+File downloaded_pages/faculty/017.html
+False positives: 9 / 36
+False negatives: 0 / 27
+File downloaded_pages/faculty/019.html
+False positives: 2 / 7
+False negatives: 0 / 5
+File downloaded_pages/faculty/020.html
+False positives: 2 / 68
+False negatives: 0 / 66
+File downloaded_pages/faculty/021.html
+False positives: 0 / 211
+False negatives: 0 / 211
+File downloaded_pages/faculty/022.html
+False positives: 2 / 13
+False negatives: 0 / 11
+File downloaded_pages/faculty/023.html
+False positives: 1 / 111
+False negatives: 0 / 110
+File downloaded_pages/faculty/024.html
+False positives: 10 / 40
+False negatives: 2 / 32
+File downloaded_pages/faculty/025.html
+False positives: 10 / 68
+False negatives: 0 / 58
+File downloaded_pages/faculty/026.html
+False positives: 1 / 16
+False negatives: 0 / 15
+File downloaded_pages/faculty/027.html
+False positives: 0 / 5
+False negatives: 0 / 5
+File downloaded_pages/faculty/029.html
+False positives: 0 / 158
+False negatives: 0 / 158
+File downloaded_pages/faculty/031.html
+False positives: 0 / 9
+False negatives: 0 / 9
+File downloaded_pages/faculty/033.html
+False positives: 3 / 33
+False negatives: 0 / 30
+File downloaded_pages/faculty/034.html
+False positives: 0 / 454
+False negatives: 0 / 454
+File downloaded_pages/faculty/036.html
+False positives: 6 / 16
+False negatives: 6 / 16
+File downloaded_pages/faculty/037.html
+False positives: 11 / 109
+False negatives: 1 / 99
+File downloaded_pages/faculty/038.html
+False positives: 0 / 9
+False negatives: 0 / 9
+File downloaded_pages/faculty/039.html
+False positives: 3 / 50
+False negatives: 0 / 47
+File downloaded_pages/faculty/041.html
+False positives: 1 / 13
+False negatives: 3 / 15
+File downloaded_pages/faculty/044.html
+False positives: 1 / 42
+False negatives: 1 / 42
+File downloaded_pages/faculty/045.html
+False positives: 1 / 6
+False negatives: 0 / 5
+File downloaded_pages/faculty/047.html
+False positives: 0 / 51
+False negatives: 1 / 52
+File downloaded_pages/faculty/049.html
+False positives: 5 / 40
+False negatives: 0 / 35
+File downloaded_pages/faculty/050.html
+False positives: 1 / 45
+False negatives: 0 / 44
+File downloaded_pages/faculty/052.html
+False positives: 3 / 46
+False negatives: 0 / 43
+File downloaded_pages/faculty/053.html
+False positives: 1 / 41
+False negatives: 1 / 41
+File downloaded_pages/faculty/057.html
+False positives: 5 / 89
+False negatives: 3 / 87
+File downloaded_pages/faculty/061.html
+False positives: 10 / 54
+False negatives: 0 / 44
+File downloaded_pages/faculty/063.html
+False positives: 0 / 57
+False negatives: 0 / 57
+File downloaded_pages/faculty/064.html
+False positives: 7 / 32
+False negatives: 1 / 26
+File downloaded_pages/faculty/066.html
+False positives: 0 / 162
+False negatives: 0 / 162
+File downloaded_pages/faculty/067.html
+False positives: 1 / 22
+False negatives: 0 / 21
+File downloaded_pages/faculty/069.html
+False positives: 1 / 12
+False negatives: 0 / 11
+File downloaded_pages/faculty/071.html
+False positives: 17 / 40
+False negatives: 0 / 23
+File downloaded_pages/faculty/072.html
+False positives: 2 / 12
+False negatives: 0 / 10
+File downloaded_pages/faculty/074.html
+False positives: 20 / 111
+False negatives: 2 / 93
+File downloaded_pages/faculty/076.html
+False positives: 0 / 405
+False negatives: 0 / 405
+File downloaded_pages/faculty/077.html
+False positives: 0 / 96
+False negatives: 0 / 96
+File downloaded_pages/faculty/080.html
+False positives: 11 / 61
+False negatives: 5 / 55
+File downloaded_pages/faculty/082.html
+False positives: 0 / 134
+False negatives: 0 / 134
+File downloaded_pages/faculty/085.html
+False positives: 1 / 81
+False negatives: 0 / 80
+File downloaded_pages/faculty/086.html
+False positives: 20 / 170
+False negatives: 38 / 188
+File downloaded_pages/faculty/087.html
+False positives: 0 / 36
+False negatives: 0 / 36
+File downloaded_pages/faculty/088.html
+False positives: 0 / 50
+False negatives: 0 / 50
+File downloaded_pages/faculty/091.html
+False positives: 5 / 61
+False negatives: 1 / 57
+File downloaded_pages/faculty/092.html
+False positives: 0 / 70
+False negatives: 0 / 70
+File downloaded_pages/faculty/093.html
+False positives: 9 / 68
+False negatives: 4 / 63
+File downloaded_pages/faculty/094.html
+False positives: 4 / 167
+False negatives: 4 / 167
+File downloaded_pages/faculty/095.html
+False positives: 10 / 39
+False negatives: 8 / 37
+File downloaded_pages/faculty/096.html
+False positives: 23 / 51
+False negatives: 2 / 30
+File downloaded_pages/faculty/098.html
+False positives: 26 / 41
+False negatives: 13 / 28
+File downloaded_pages/faculty/099.html
+False positives: 2 / 253
+False negatives: 0 / 251
+File downloaded_pages/faculty/100.html
+False positives: 6 / 78
+False negatives: 2 / 74
+File downloaded_pages/faculty/101.html
+False positives: 5 / 43
+False negatives: 3 / 41
+File downloaded_pages/faculty/102.html
+False positives: 28 / 77
+False negatives: 22 / 71
+File downloaded_pages/faculty/105.html
+False positives: 0 / 42
+False negatives: 0 / 42
+File downloaded_pages/faculty/106.html
+False positives: 3 / 50
+False negatives: 0 / 47
+File downloaded_pages/faculty/107.html
+False positives: 1 / 71
+False negatives: 2 / 72
+File downloaded_pages/faculty/108.html
+False positives: 19 / 47
+False negatives: 0 / 28
+File downloaded_pages/faculty/111.html
+False positives: 9 / 40
+False negatives: 2 / 33
+File downloaded_pages/faculty/112.html
+False positives: 0 / 9
+False negatives: 0 / 9
+File downloaded_pages/faculty/113.html
+False positives: 3 / 24
+False negatives: 1 / 22
+File downloaded_pages/faculty/114.html
+False positives: 0 / 15
+False negatives: 0 / 15
+File downloaded_pages/faculty/115.html
+False positives: 6 / 22
+False negatives: 1 / 17
+File downloaded_pages/faculty/116.html
+False positives: 5 / 84
+False negatives: 1 / 80
+File downloaded_pages/faculty/117.html
+False positives: 14 / 126
+False negatives: 3 / 115
+File downloaded_pages/faculty/118.html
+False positives: 1 / 113
+False negatives: 0 / 112
+File downloaded_pages/faculty/120.html
+False positives: 6 / 25
+False negatives: 0 / 19
+File downloaded_pages/faculty/121.html
+False positives: 3 / 16
+False negatives: 1 / 14
+File downloaded_pages/faculty/122.html
+False positives: 1 / 12
+False negatives: 0 / 11
+File downloaded_pages/faculty/123.html
+False positives: 0 / 48
+False negatives: 0 / 48
+File downloaded_pages/faculty/124.html
+False positives: 1 / 21
+False negatives: 0 / 20
+File downloaded_pages/faculty/125.html
+False positives: 39 / 87
+False negatives: 29 / 77
+File downloaded_pages/faculty/126.html
+False positives: 5 / 199
+False negatives: 5 / 199
+File downloaded_pages/faculty/127.html
+False positives: 1 / 82
+False negatives: 0 / 81
+File downloaded_pages/faculty/128.html
+False positives: 3 / 135
+False negatives: 7 / 139
+File downloaded_pages/faculty/129.html
+False positives: 0 / 89
+False negatives: 0 / 89
+File downloaded_pages/faculty/131.html
+False positives: 1 / 102
+False negatives: 1 / 102
+File downloaded_pages/faculty/132.html
+False positives: 0 / 75
+False negatives: 0 / 75
+File downloaded_pages/faculty/133.html
+False positives: 6 / 97
+False negatives: 3 / 94
+File downloaded_pages/faculty/134.html
+False positives: 0 / 43
+False negatives: 0 / 43
+File downloaded_pages/faculty/135.html
+False positives: 7 / 953
+False negatives: 6 / 952
+File downloaded_pages/faculty/136.html
+False positives: 1 / 16
+False negatives: 0 / 15
+File downloaded_pages/faculty/141.html
+False positives: 0 / 12
+False negatives: 8 / 20
+File downloaded_pages/faculty/144.html
+False positives: 22 / 30
+False negatives: 2 / 10
+File downloaded_pages/faculty/146.html
+False positives: 10 / 19
+False negatives: 0 / 9
+File downloaded_pages/faculty/147.html
+False positives: 5 / 77
+False negatives: 3 / 75
+File downloaded_pages/faculty/149.html
+False positives: 31 / 373
+False negatives: 33 / 375
+File downloaded_pages/faculty/150.html
+False positives: 4 / 377
+False negatives: 5 / 378
+File downloaded_pages/faculty/151.html
+False positives: 0 / 41
+False negatives: 0 / 41
+File downloaded_pages/faculty/152.html
+False positives: 1 / 76
+False negatives: 1 / 76
+File downloaded_pages/faculty/154.html
+False positives: 7 / 114
+False negatives: 4 / 111
+File downloaded_pages/faculty/155.html
+False positives: 0 / 35
+False negatives: 0 / 35
+File downloaded_pages/faculty/156.html
+False positives: 0 / 80
+False negatives: 0 / 80
+File downloaded_pages/faculty/157.html
+False positives: 0 / 20
+False negatives: 0 / 20
+File downloaded_pages/faculty/158.html
+False positives: 0 / 21
+False negatives: 0 / 21
+File downloaded_pages/faculty/159.html
+False positives: 30 / 44
+False negatives: 0 / 14
+File downloaded_pages/faculty/160.html
+False positives: 7 / 147
+False negatives: 0 / 140
+File downloaded_pages/faculty/161.html
+False positives: 1 / 26
+False negatives: 0 / 25
+File downloaded_pages/faculty/162.html
+False positives: 1 / 22
+False negatives: 1 / 22
+File downloaded_pages/faculty/166.html
+False positives: 1 / 16
+False negatives: 1 / 16
+File downloaded_pages/faculty/167.html
+False positives: 37 / 61
+False negatives: 8 / 32
+File downloaded_pages/faculty/170.html
+False positives: 2 / 12
+False negatives: 0 / 10
+File downloaded_pages/faculty/171.html
+False positives: 65 / 92
+False negatives: 43 / 70
+File downloaded_pages/faculty/174.html
+False positives: 4 / 21
+False negatives: 0 / 17
+File downloaded_pages/faculty/175.html
+False positives: 9 / 25
+False negatives: 0 / 16
+File downloaded_pages/faculty/176.html
+False positives: 8 / 67
+False negatives: 2 / 61
+File downloaded_pages/faculty/177.html
+False positives: 16 / 110
+False negatives: 1 / 95
+File downloaded_pages/faculty/178.html
+False positives: 21 / 33
+False negatives: 4 / 16
+File downloaded_pages/faculty/179.html
+False positives: 9 / 75
+False negatives: 0 / 66
+File downloaded_pages/faculty/180.html
+False positives: 13 / 26
+False negatives: 1 / 14
+File downloaded_pages/faculty/182.html
+False positives: 15 / 179
+False negatives: 0 / 164
+File downloaded_pages/faculty/183.html
+False positives: 1 / 35
+False negatives: 1 / 35
+File downloaded_pages/faculty/184.html
+False positives: 1 / 109
+False negatives: 1 / 109
+File downloaded_pages/faculty/186.html
+False positives: 1 / 7
+False negatives: 0 / 6
+File downloaded_pages/faculty/187.html
+False positives: 6 / 9
+False negatives: 0 / 3
+File downloaded_pages/faculty/189.html
+False positives: 1 / 220
+False negatives: 3 / 222
+File downloaded_pages/faculty/190.html
+False positives: 1 / 52
+False negatives: 0 / 51
+File downloaded_pages/faculty/191.html
+False positives: 0 / 230
+False negatives: 0 / 230
+File downloaded_pages/faculty/192.html
+False positives: 1 / 5
+False negatives: 0 / 4
+File downloaded_pages/faculty/194.html
+False positives: 4 / 19
+False negatives: 2 / 17
+File downloaded_pages/faculty/195.html
+False positives: 4 / 102
+False negatives: 2 / 100
+File downloaded_pages/faculty/197.html
+False positives: 0 / 8
+False negatives: 0 / 8
+File downloaded_pages/faculty/199.html
+False positives: 0 / 65
+False negatives: 1 / 66
+File downloaded_pages/faculty/201.html
+False positives: 1 / 42
+False negatives: 0 / 41
+File downloaded_pages/faculty/202.html
+False positives: 0 / 51
+False negatives: 0 / 51
+File downloaded_pages/faculty/203.html
+False positives: 0 / 28
+False negatives: 0 / 28
+File downloaded_pages/faculty/206.html
+False positives: 0 / 49
+False negatives: 0 / 49
+File downloaded_pages/faculty/207.html
+False positives: 18 / 94
+False negatives: 9 / 85
+File downloaded_pages/faculty/208.html
+False positives: 0 / 27
+False negatives: 0 / 27
+File downloaded_pages/faculty/209.html
+False positives: 0 / 21
+False negatives: 0 / 21
+File downloaded_pages/faculty/210.html
+False positives: 0 / 7
+False negatives: 0 / 7
+File downloaded_pages/faculty/211.html
+False positives: 0 / 11
+False negatives: 0 / 11
+File downloaded_pages/faculty/214.html
+False positives: 0 / 210
+False negatives: 0 / 210
+File downloaded_pages/faculty/215.html
+False positives: 5 / 33
+False negatives: 0 / 28
+File downloaded_pages/faculty/216.html
+False positives: 0 / 22
+False negatives: 0 / 22
+Total false positives: 822 / 12190 0.0674323215751
+Total false negatives: 323 / 11691 0.0276280899837
+//////////////////////////////////
+File downloaded_pages/faculty/001.html
+False positives: 1 / 389
+False negatives: 0 / 388
+File downloaded_pages/faculty/002.html
+False positives: 3 / 36
+False negatives: 0 / 33
+File downloaded_pages/faculty/004.html
+False positives: 0 / 176
+False negatives: 0 / 176
+File downloaded_pages/faculty/005.html
+False positives: 17 / 77
+False negatives: 0 / 60
+File downloaded_pages/faculty/006.html
+False positives: 0 / 22
+False negatives: 0 / 22
+File downloaded_pages/faculty/007.html
+False positives: 3 / 34
+False negatives: 0 / 31
+File downloaded_pages/faculty/008.html
+False positives: 10 / 30
+False negatives: 0 / 20
+File downloaded_pages/faculty/009.html
+False positives: 1 / 9
+False negatives: 0 / 8
+File downloaded_pages/faculty/010.html
+False positives: 0 / 43
+False negatives: 0 / 43
+File downloaded_pages/faculty/011.html
+False positives: 0 / 83
+False negatives: 0 / 83
+File downloaded_pages/faculty/013.html
+False positives: 1 / 15
+False negatives: 0 / 14
+File downloaded_pages/faculty/014.html
+False positives: 1 / 638
+False negatives: 2 / 639
+File downloaded_pages/faculty/015.html
+False positives: 7 / 26
+False negatives: 0 / 19
+File downloaded_pages/faculty/016.html
+False positives: 1 / 20
+False negatives: 0 / 19
+File downloaded_pages/faculty/017.html
+False positives: 15 / 42
+False negatives: 0 / 27
+File downloaded_pages/faculty/019.html
+False positives: 2 / 7
+False negatives: 0 / 5
+File downloaded_pages/faculty/020.html
+False positives: 2 / 68
+False negatives: 0 / 66
+File downloaded_pages/faculty/021.html
+False positives: 0 / 211
+False negatives: 0 / 211
+File downloaded_pages/faculty/022.html
+False positives: 2 / 13
+False negatives: 0 / 11
+File downloaded_pages/faculty/023.html
+False positives: 1 / 111
+False negatives: 0 / 110
+File downloaded_pages/faculty/024.html
+False positives: 13 / 43
+False negatives: 2 / 32
+File downloaded_pages/faculty/025.html
+False positives: 20 / 78
+False negatives: 0 / 58
+File downloaded_pages/faculty/026.html
+False positives: 0 / 15
+False negatives: 0 / 15
+File downloaded_pages/faculty/027.html
+False positives: 0 / 5
+False negatives: 0 / 5
+File downloaded_pages/faculty/029.html
+False positives: 2 / 160
+False negatives: 0 / 158
+File downloaded_pages/faculty/031.html
+False positives: 0 / 9
+False negatives: 0 / 9
+File downloaded_pages/faculty/033.html
+False positives: 4 / 34
+False negatives: 0 / 30
+File downloaded_pages/faculty/034.html
+False positives: 1 / 455
+False negatives: 0 / 454
+File downloaded_pages/faculty/036.html
+False positives: 6 / 16
+False negatives: 6 / 16
+File downloaded_pages/faculty/037.html
+False positives: 12 / 111
+False negatives: 0 / 99
+File downloaded_pages/faculty/038.html
+False positives: 0 / 9
+False negatives: 0 / 9
+File downloaded_pages/faculty/039.html
+False positives: 1 / 48
+False negatives: 0 / 47
+File downloaded_pages/faculty/041.html
+False positives: 0 / 15
+False negatives: 0 / 15
+File downloaded_pages/faculty/044.html
+False positives: 2 / 44
+False negatives: 0 / 42
+File downloaded_pages/faculty/045.html
+False positives: 1 / 6
+False negatives: 0 / 5
+File downloaded_pages/faculty/047.html
+False positives: 0 / 51
+False negatives: 1 / 52
+File downloaded_pages/faculty/049.html
+False positives: 5 / 40
+False negatives: 0 / 35
+File downloaded_pages/faculty/050.html
+False positives: 1 / 45
+False negatives: 0 / 44
+File downloaded_pages/faculty/052.html
+False positives: 3 / 46
+False negatives: 0 / 43
+File downloaded_pages/faculty/053.html
+False positives: 1 / 41
+False negatives: 1 / 41
+File downloaded_pages/faculty/057.html
+False positives: 4 / 89
+False negatives: 2 / 87
+File downloaded_pages/faculty/061.html
+False positives: 6 / 50
+False negatives: 0 / 44
+File downloaded_pages/faculty/063.html
+False positives: 0 / 57
+False negatives: 0 / 57
+File downloaded_pages/faculty/064.html
+False positives: 7 / 32
+False negatives: 1 / 26
+File downloaded_pages/faculty/066.html
+False positives: 0 / 162
+False negatives: 0 / 162
+File downloaded_pages/faculty/067.html
+False positives: 0 / 21
+False negatives: 0 / 21
+File downloaded_pages/faculty/069.html
+False positives: 1 / 12
+False negatives: 0 / 11
+File downloaded_pages/faculty/071.html
+False positives: 19 / 42
+False negatives: 0 / 23
+File downloaded_pages/faculty/072.html
+False positives: 1 / 11
+False negatives: 0 / 10
+File downloaded_pages/faculty/074.html
+False positives: 1 / 92
+False negatives: 2 / 93
+File downloaded_pages/faculty/076.html
+False positives: 0 / 405
+False negatives: 0 / 405
+File downloaded_pages/faculty/077.html
+False positives: 0 / 96
+False negatives: 0 / 96
+File downloaded_pages/faculty/080.html
+False positives: 8 / 62
+False negatives: 1 / 55
+File downloaded_pages/faculty/082.html
+False positives: 0 / 134
+False negatives: 0 / 134
+File downloaded_pages/faculty/085.html
+False positives: 6 / 86
+False negatives: 0 / 80
+File downloaded_pages/faculty/086.html
+False positives: 5 / 186
+False negatives: 7 / 188
+File downloaded_pages/faculty/087.html
+False positives: 1 / 37
+False negatives: 0 / 36
+File downloaded_pages/faculty/088.html
+False positives: 1 / 51
+False negatives: 0 / 50
+File downloaded_pages/faculty/091.html
+False positives: 6 / 63
+False negatives: 0 / 57
+File downloaded_pages/faculty/092.html
+False positives: 0 / 70
+False negatives: 0 / 70
+File downloaded_pages/faculty/093.html
+False positives: 7 / 69
+False negatives: 1 / 63
+File downloaded_pages/faculty/094.html
+False positives: 4 / 167
+False negatives: 4 / 167
+File downloaded_pages/faculty/095.html
+False positives: 13 / 42
+False negatives: 8 / 37
+File downloaded_pages/faculty/096.html
+False positives: 23 / 52
+False negatives: 1 / 30
+File downloaded_pages/faculty/098.html
+False positives: 25 / 40
+False negatives: 13 / 28
+File downloaded_pages/faculty/099.html
+False positives: 2 / 253
+False negatives: 0 / 251
+File downloaded_pages/faculty/100.html
+False positives: 6 / 78
+False negatives: 2 / 74
+File downloaded_pages/faculty/101.html
+False positives: 5 / 43
+False negatives: 3 / 41
+File downloaded_pages/faculty/102.html
+False positives: 16 / 86
+False negatives: 1 / 71
+File downloaded_pages/faculty/105.html
+False positives: 0 / 42
+False negatives: 0 / 42
+File downloaded_pages/faculty/106.html
+False positives: 4 / 51
+False negatives: 0 / 47
+File downloaded_pages/faculty/107.html
+False positives: 1 / 67
+False negatives: 6 / 72
+File downloaded_pages/faculty/108.html
+False positives: 7 / 35
+False negatives: 0 / 28
+File downloaded_pages/faculty/111.html
+False positives: 7 / 39
+False negatives: 1 / 33
+File downloaded_pages/faculty/112.html
+False positives: 0 / 9
+False negatives: 0 / 9
+File downloaded_pages/faculty/113.html
+False positives: 3 / 25
+False negatives: 0 / 22
+File downloaded_pages/faculty/114.html
+False positives: 0 / 15
+False negatives: 0 / 15
+File downloaded_pages/faculty/115.html
+False positives: 3 / 19
+False negatives: 1 / 17
+File downloaded_pages/faculty/116.html
+False positives: 5 / 84
+False negatives: 1 / 80
+File downloaded_pages/faculty/117.html
+False positives: 10 / 125
+False negatives: 0 / 115
+File downloaded_pages/faculty/118.html
+False positives: 1 / 113
+False negatives: 0 / 112
+File downloaded_pages/faculty/120.html
+False positives: 3 / 22
+False negatives: 0 / 19
+File downloaded_pages/faculty/121.html
+False positives: 2 / 15
+False negatives: 1 / 14
+File downloaded_pages/faculty/122.html
+False positives: 0 / 11
+False negatives: 0 / 11
+File downloaded_pages/faculty/123.html
+False positives: 0 / 48
+False negatives: 0 / 48
+File downloaded_pages/faculty/124.html
+False positives: 2 / 22
+False negatives: 0 / 20
+File downloaded_pages/faculty/125.html
+False positives: 43 / 86
+False negatives: 34 / 77
+File downloaded_pages/faculty/126.html
+False positives: 1 / 199
+False negatives: 1 / 199
+File downloaded_pages/faculty/127.html
+False positives: 0 / 81
+False negatives: 0 / 81
+File downloaded_pages/faculty/128.html
+False positives: 2 / 137
+False negatives: 4 / 139
+File downloaded_pages/faculty/129.html
+False positives: 1 / 90
+False negatives: 0 / 89
+File downloaded_pages/faculty/131.html
+False positives: 2 / 103
+False negatives: 1 / 102
+File downloaded_pages/faculty/132.html
+False positives: 0 / 75
+False negatives: 0 / 75
+File downloaded_pages/faculty/133.html
+False positives: 3 / 96
+False negatives: 1 / 94
+File downloaded_pages/faculty/134.html
+False positives: 0 / 43
+False negatives: 0 / 43
+File downloaded_pages/faculty/135.html
+False positives: 14 / 953
+False negatives: 13 / 952
+File downloaded_pages/faculty/136.html
+False positives: 4 / 19
+False negatives: 0 / 15
+File downloaded_pages/faculty/141.html
+False positives: 0 / 12
+False negatives: 8 / 20
+File downloaded_pages/faculty/144.html
+False positives: 18 / 27
+False negatives: 1 / 10
+File downloaded_pages/faculty/146.html
+False positives: 10 / 19
+False negatives: 0 / 9
+File downloaded_pages/faculty/147.html
+False positives: 6 / 78
+False negatives: 3 / 75
+File downloaded_pages/faculty/149.html
+False positives: 23 / 368
+False negatives: 30 / 375
+File downloaded_pages/faculty/150.html
+False positives: 5 / 377
+False negatives: 6 / 378
+File downloaded_pages/faculty/151.html
+False positives: 0 / 41
+False negatives: 0 / 41
+File downloaded_pages/faculty/152.html
+False positives: 1 / 76
+False negatives: 1 / 76
+File downloaded_pages/faculty/154.html
+False positives: 6 / 113
+False negatives: 4 / 111
+File downloaded_pages/faculty/155.html
+False positives: 0 / 35
+False negatives: 0 / 35
+File downloaded_pages/faculty/156.html
+False positives: 1 / 81
+False negatives: 0 / 80
+File downloaded_pages/faculty/157.html
+False positives: 0 / 20
+False negatives: 0 / 20
+File downloaded_pages/faculty/158.html
+False positives: 0 / 21
+False negatives: 0 / 21
+File downloaded_pages/faculty/159.html
+False positives: 30 / 43
+False negatives: 1 / 14
+File downloaded_pages/faculty/160.html
+False positives: 3 / 143
+False negatives: 0 / 140
+File downloaded_pages/faculty/161.html
+False positives: 1 / 26
+False negatives: 0 / 25
+File downloaded_pages/faculty/162.html
+False positives: 1 / 22
+False negatives: 1 / 22
+File downloaded_pages/faculty/166.html
+False positives: 1 / 16
+False negatives: 1 / 16
+File downloaded_pages/faculty/167.html
+False positives: 33 / 60
+False negatives: 5 / 32
+File downloaded_pages/faculty/170.html
+False positives: 2 / 12
+False negatives: 0 / 10
+File downloaded_pages/faculty/171.html
+False positives: 19 / 88
+False negatives: 1 / 70
+File downloaded_pages/faculty/174.html
+False positives: 4 / 21
+False negatives: 0 / 17
+File downloaded_pages/faculty/175.html
+False positives: 10 / 26
+False negatives: 0 / 16
+File downloaded_pages/faculty/176.html
+False positives: 6 / 67
+False negatives: 0 / 61
+File downloaded_pages/faculty/177.html
+False positives: 15 / 109
+False negatives: 1 / 95
+File downloaded_pages/faculty/178.html
+False positives: 20 / 32
+False negatives: 4 / 16
+File downloaded_pages/faculty/179.html
+False positives: 12 / 78
+False negatives: 0 / 66
+File downloaded_pages/faculty/180.html
+False positives: 13 / 25
+False negatives: 2 / 14
+File downloaded_pages/faculty/182.html
+False positives: 25 / 189
+False negatives: 0 / 164
+File downloaded_pages/faculty/183.html
+False positives: 1 / 35
+False negatives: 1 / 35
+File downloaded_pages/faculty/184.html
+False positives: 1 / 109
+False negatives: 1 / 109
+File downloaded_pages/faculty/186.html
+False positives: 3 / 3
+False negatives: 6 / 6
+File downloaded_pages/faculty/187.html
+False positives: 6 / 9
+False negatives: 0 / 3
+File downloaded_pages/faculty/189.html
+False positives: 1 / 220
+False negatives: 3 / 222
+File downloaded_pages/faculty/190.html
+False positives: 1 / 52
+False negatives: 0 / 51
+File downloaded_pages/faculty/191.html
+False positives: 0 / 230
+False negatives: 0 / 230
+File downloaded_pages/faculty/192.html
+False positives: 1 / 5
+False negatives: 0 / 4
+File downloaded_pages/faculty/194.html
+False positives: 4 / 19
+False negatives: 2 / 17
+File downloaded_pages/faculty/195.html
+False positives: 3 / 102
+False negatives: 1 / 100
+File downloaded_pages/faculty/197.html
+False positives: 1 / 9
+False negatives: 0 / 8
+File downloaded_pages/faculty/199.html
+False positives: 0 / 66
+False negatives: 0 / 66
+File downloaded_pages/faculty/201.html
+False positives: 0 / 41
+False negatives: 0 / 41
+File downloaded_pages/faculty/202.html
+False positives: 0 / 51
+False negatives: 0 / 51
+File downloaded_pages/faculty/203.html
+False positives: 0 / 28
+False negatives: 0 / 28
+File downloaded_pages/faculty/206.html
+False positives: 0 / 49
+False negatives: 0 / 49
+File downloaded_pages/faculty/207.html
+False positives: 16 / 95
+False negatives: 8 / 87
+File downloaded_pages/faculty/208.html
+False positives: 0 / 27
+False negatives: 0 / 27
+File downloaded_pages/faculty/209.html
+False positives: 0 / 21
+False negatives: 0 / 21
+File downloaded_pages/faculty/210.html
+False positives: 0 / 7
+False negatives: 0 / 7
+File downloaded_pages/faculty/211.html
+False positives: 0 / 11
+False negatives: 0 / 11
+File downloaded_pages/faculty/214.html
+False positives: 0 / 210
+False negatives: 0 / 210
+File downloaded_pages/faculty/215.html
+False positives: 1 / 29
+False negatives: 0 / 28
+File downloaded_pages/faculty/216.html
+False positives: 0 / 22
+False negatives: 0 / 22
+Total false positives: 728 / 12208 0.0596330275229
+Total false negatives: 213 / 11693 0.0182160266826
+///////////////////////////
+File downloaded_pages/faculty/001.html
+False positives: 1 / 389
+False negatives: 0 / 388
+File downloaded_pages/faculty/002.html
+False positives: 1 / 34
+False negatives: 0 / 33
+File downloaded_pages/faculty/004.html
+False positives: 0 / 176
+False negatives: 0 / 176
+File downloaded_pages/faculty/005.html
+False positives: 0 / 60
+False negatives: 0 / 60
+File downloaded_pages/faculty/006.html
+False positives: 0 / 22
+False negatives: 0 / 22
+File downloaded_pages/faculty/007.html
+False positives: 2 / 33
+False negatives: 0 / 31
+File downloaded_pages/faculty/008.html
+False positives: 8 / 28
+False negatives: 0 / 20
+File downloaded_pages/faculty/009.html
+False positives: 1 / 9
+False negatives: 0 / 8
+File downloaded_pages/faculty/010.html
+False positives: 0 / 43
+False negatives: 0 / 43
+File downloaded_pages/faculty/011.html
+False positives: 0 / 83
+False negatives: 0 / 83
+File downloaded_pages/faculty/013.html
+False positives: 0 / 14
+False negatives: 0 / 14
+File downloaded_pages/faculty/014.html
+False positives: 1 / 636
+False negatives: 4 / 639
+File downloaded_pages/faculty/015.html
+False positives: 5 / 21
+False negatives: 3 / 19
+File downloaded_pages/faculty/016.html
+False positives: 0 / 19
+False negatives: 0 / 19
+File downloaded_pages/faculty/017.html
+False positives: 4 / 31
+False negatives: 0 / 27
+File downloaded_pages/faculty/019.html
+False positives: 1 / 6
+False negatives: 0 / 5
+File downloaded_pages/faculty/020.html
+False positives: 2 / 66
+False negatives: 2 / 66
+File downloaded_pages/faculty/021.html
+False positives: 0 / 211
+False negatives: 0 / 211
+File downloaded_pages/faculty/022.html
+False positives: 2 / 13
+False negatives: 0 / 11
+File downloaded_pages/faculty/023.html
+False positives: 0 / 110
+False negatives: 0 / 110
+File downloaded_pages/faculty/024.html
+False positives: 3 / 33
+False negatives: 2 / 32
+File downloaded_pages/faculty/025.html
+False positives: 18 / 76
+False negatives: 0 / 58
+File downloaded_pages/faculty/026.html
+False positives: 0 / 15
+False negatives: 0 / 15
+File downloaded_pages/faculty/027.html
+False positives: 0 / 5
+False negatives: 0 / 5
+File downloaded_pages/faculty/029.html
+False positives: 0 / 158
+False negatives: 0 / 158
+File downloaded_pages/faculty/031.html
+False positives: 0 / 9
+False negatives: 0 / 9
+File downloaded_pages/faculty/033.html
+False positives: 3 / 33
+False negatives: 0 / 30
+File downloaded_pages/faculty/034.html
+False positives: 0 / 454
+False negatives: 0 / 454
+File downloaded_pages/faculty/036.html
+False positives: 6 / 16
+False negatives: 6 / 16
+File downloaded_pages/faculty/037.html
+False positives: 0 / 99
+False negatives: 0 / 99
+File downloaded_pages/faculty/038.html
+False positives: 0 / 9
+False negatives: 0 / 9
+File downloaded_pages/faculty/039.html
+False positives: 1 / 48
+False negatives: 0 / 47
+File downloaded_pages/faculty/041.html
+False positives: 0 / 15
+False negatives: 0 / 15
+File downloaded_pages/faculty/044.html
+False positives: 0 / 42
+False negatives: 0 / 42
+File downloaded_pages/faculty/045.html
+False positives: 0 / 5
+False negatives: 0 / 5
+File downloaded_pages/faculty/047.html
+False positives: 0 / 51
+False negatives: 1 / 52
+File downloaded_pages/faculty/049.html
+False positives: 0 / 35
+False negatives: 0 / 35
+File downloaded_pages/faculty/050.html
+False positives: 3 / 46
+False negatives: 1 / 44
+File downloaded_pages/faculty/052.html
+False positives: 1 / 44
+False negatives: 0 / 43
+File downloaded_pages/faculty/053.html
+False positives: 0 / 41
+False negatives: 0 / 41
+File downloaded_pages/faculty/057.html
+False positives: 0 / 86
+False negatives: 1 / 87
+File downloaded_pages/faculty/061.html
+False positives: 5 / 48
+False negatives: 1 / 44
+File downloaded_pages/faculty/063.html
+False positives: 0 / 57
+False negatives: 0 / 57
+File downloaded_pages/faculty/064.html
+False positives: 3 / 28
+False negatives: 1 / 26
+File downloaded_pages/faculty/066.html
+False positives: 0 / 162
+False negatives: 0 / 162
+File downloaded_pages/faculty/067.html
+False positives: 0 / 21
+False negatives: 0 / 21
+File downloaded_pages/faculty/069.html
+False positives: 1 / 12
+False negatives: 0 / 11
+File downloaded_pages/faculty/071.html
+False positives: 8 / 31
+False negatives: 0 / 23
+File downloaded_pages/faculty/072.html
+False positives: 1 / 11
+False negatives: 0 / 10
+File downloaded_pages/faculty/074.html
+False positives: 0 / 91
+False negatives: 2 / 93
+File downloaded_pages/faculty/076.html
+False positives: 0 / 405
+False negatives: 0 / 405
+File downloaded_pages/faculty/077.html
+False positives: 0 / 96
+False negatives: 0 / 96
+File downloaded_pages/faculty/080.html
+False positives: 6 / 60
+False negatives: 1 / 55
+File downloaded_pages/faculty/082.html
+False positives: 0 / 134
+False negatives: 0 / 134
+File downloaded_pages/faculty/085.html
+False positives: 1 / 81
+False negatives: 0 / 80
+File downloaded_pages/faculty/086.html
+False positives: 12 / 101
+False negatives: 99 / 188
+File downloaded_pages/faculty/087.html
+False positives: 0 / 36
+False negatives: 0 / 36
+File downloaded_pages/faculty/088.html
+False positives: 0 / 49
+False negatives: 1 / 50
+File downloaded_pages/faculty/091.html
+False positives: 1 / 58
+False negatives: 0 / 57
+File downloaded_pages/faculty/092.html
+False positives: 0 / 70
+False negatives: 0 / 70
+File downloaded_pages/faculty/093.html
+False positives: 10 / 65
+False negatives: 8 / 63
+File downloaded_pages/faculty/094.html
+False positives: 4 / 167
+False negatives: 4 / 167
+File downloaded_pages/faculty/095.html
+False positives: 11 / 40
+False negatives: 8 / 37
+File downloaded_pages/faculty/096.html
+False positives: 34 / 61
+False negatives: 3 / 30
+File downloaded_pages/faculty/098.html
+False positives: 22 / 37
+False negatives: 13 / 28
+File downloaded_pages/faculty/099.html
+False positives: 1 / 252
+False negatives: 0 / 251
+File downloaded_pages/faculty/100.html
+False positives: 6 / 78
+False negatives: 2 / 74
+File downloaded_pages/faculty/101.html
+False positives: 4 / 40
+False negatives: 5 / 41
+File downloaded_pages/faculty/102.html
+False positives: 4 / 74
+False negatives: 1 / 71
+File downloaded_pages/faculty/105.html
+False positives: 0 / 42
+False negatives: 0 / 42
+File downloaded_pages/faculty/106.html
+False positives: 3 / 50
+False negatives: 0 / 47
+File downloaded_pages/faculty/107.html
+False positives: 1 / 53
+False negatives: 20 / 72
+File downloaded_pages/faculty/108.html
+False positives: 7 / 35
+False negatives: 0 / 28
+File downloaded_pages/faculty/111.html
+False positives: 6 / 37
+False negatives: 2 / 33
+File downloaded_pages/faculty/112.html
+False positives: 0 / 9
+False negatives: 0 / 9
+File downloaded_pages/faculty/113.html
+False positives: 1 / 20
+False negatives: 3 / 22
+File downloaded_pages/faculty/114.html
+False positives: 0 / 15
+False negatives: 0 / 15
+File downloaded_pages/faculty/115.html
+False positives: 3 / 19
+False negatives: 1 / 17
+File downloaded_pages/faculty/116.html
+False positives: 0 / 80
+False negatives: 0 / 80
+File downloaded_pages/faculty/117.html
+False positives: 5 / 120
+False negatives: 0 / 115
+File downloaded_pages/faculty/118.html
+False positives: 0 / 112
+False negatives: 0 / 112
+File downloaded_pages/faculty/120.html
+False positives: 0 / 19
+False negatives: 0 / 19
+File downloaded_pages/faculty/121.html
+False positives: 2 / 15
+False negatives: 1 / 14
+File downloaded_pages/faculty/122.html
+False positives: 0 / 11
+False negatives: 0 / 11
+File downloaded_pages/faculty/123.html
+False positives: 0 / 48
+False negatives: 0 / 48
+File downloaded_pages/faculty/124.html
+False positives: 0 / 20
+False negatives: 0 / 20
+File downloaded_pages/faculty/125.html
+False positives: 28 / 79
+False negatives: 26 / 77
+File downloaded_pages/faculty/126.html
+False positives: 1 / 199
+False negatives: 1 / 199
+File downloaded_pages/faculty/127.html
+False positives: 0 / 81
+False negatives: 0 / 81
+File downloaded_pages/faculty/128.html
+False positives: 0 / 132
+False negatives: 7 / 139
+File downloaded_pages/faculty/129.html
+False positives: 0 / 89
+False negatives: 0 / 89
+File downloaded_pages/faculty/131.html
+False positives: 2 / 103
+False negatives: 1 / 102
+File downloaded_pages/faculty/132.html
+False positives: 0 / 75
+False negatives: 0 / 75
+File downloaded_pages/faculty/133.html
+False positives: 1 / 91
+False negatives: 4 / 94
+File downloaded_pages/faculty/134.html
+False positives: 0 / 43
+False negatives: 0 / 43
+File downloaded_pages/faculty/135.html
+False positives: 5 / 953
+False negatives: 4 / 952
+File downloaded_pages/faculty/136.html
+False positives: 2 / 17
+False negatives: 0 / 15
+File downloaded_pages/faculty/141.html
+False positives: 0 / 12
+False negatives: 8 / 20
+File downloaded_pages/faculty/144.html
+False positives: 8 / 17
+False negatives: 1 / 10
+File downloaded_pages/faculty/146.html
+False positives: 8 / 17
+False negatives: 0 / 9
+File downloaded_pages/faculty/147.html
+False positives: 5 / 77
+False negatives: 3 / 75
+File downloaded_pages/faculty/149.html
+False positives: 26 / 351
+False negatives: 50 / 375
+File downloaded_pages/faculty/150.html
+False positives: 6 / 377
+False negatives: 7 / 378
+File downloaded_pages/faculty/151.html
+False positives: 0 / 41
+False negatives: 0 / 41
+File downloaded_pages/faculty/152.html
+False positives: 1 / 76
+False negatives: 1 / 76
+File downloaded_pages/faculty/154.html
+False positives: 5 / 111
+False negatives: 5 / 111
+File downloaded_pages/faculty/155.html
+False positives: 0 / 35
+False negatives: 0 / 35
+File downloaded_pages/faculty/156.html
+False positives: 0 / 80
+False negatives: 0 / 80
+File downloaded_pages/faculty/157.html
+False positives: 0 / 20
+False negatives: 0 / 20
+File downloaded_pages/faculty/158.html
+False positives: 0 / 21
+False negatives: 0 / 21
+File downloaded_pages/faculty/159.html
+False positives: 20 / 34
+False negatives: 0 / 14
+File downloaded_pages/faculty/160.html
+False positives: 3 / 143
+False negatives: 0 / 140
+File downloaded_pages/faculty/161.html
+False positives: 0 / 25
+False negatives: 0 / 25
+File downloaded_pages/faculty/162.html
+False positives: 2 / 22
+False negatives: 2 / 22
+File downloaded_pages/faculty/166.html
+False positives: 6 / 16
+False negatives: 6 / 16
+File downloaded_pages/faculty/170.html
+False positives: 1 / 11
+False negatives: 0 / 10
+File downloaded_pages/faculty/171.html
+False positives: 2 / 71
+False negatives: 1 / 70
+File downloaded_pages/faculty/174.html
+False positives: 1 / 18
+False negatives: 0 / 17
+File downloaded_pages/faculty/175.html
+False positives: 5 / 17
+False negatives: 4 / 16
+File downloaded_pages/faculty/176.html
+False positives: 1 / 61
+False negatives: 1 / 61
+File downloaded_pages/faculty/177.html
+False positives: 13 / 107
+False negatives: 1 / 95
+File downloaded_pages/faculty/178.html
+False positives: 10 / 13
+False negatives: 13 / 16
+File downloaded_pages/faculty/179.html
+False positives: 2 / 68
+False negatives: 0 / 66
+File downloaded_pages/faculty/180.html
+False positives: 12 / 24
+False negatives: 2 / 14
+File downloaded_pages/faculty/182.html
+False positives: 29 / 190
+False negatives: 3 / 164
+File downloaded_pages/faculty/183.html
+False positives: 1 / 35
+False negatives: 1 / 35
+File downloaded_pages/faculty/184.html
+False positives: 1 / 109
+False negatives: 1 / 109
+File downloaded_pages/faculty/186.html
+False positives: 2 / 2
+False negatives: 6 / 6
+File downloaded_pages/faculty/187.html
+False positives: 2 / 5
+False negatives: 0 / 3
+File downloaded_pages/faculty/189.html
+False positives: 5 / 220
+False negatives: 7 / 222
+File downloaded_pages/faculty/190.html
+False positives: 0 / 51
+False negatives: 0 / 51
+File downloaded_pages/faculty/191.html
+False positives: 0 / 230
+False negatives: 0 / 230
+File downloaded_pages/faculty/192.html
+False positives: 1 / 5
+False negatives: 0 / 4
+File downloaded_pages/faculty/194.html
+False positives: 3 / 18
+False negatives: 2 / 17
+File downloaded_pages/faculty/195.html
+False positives: 1 / 100
+False negatives: 1 / 100
+File downloaded_pages/faculty/197.html
+False positives: 0 / 8
+False negatives: 0 / 8
+File downloaded_pages/faculty/199.html
+False positives: 1 / 65
+False negatives: 2 / 66
+File downloaded_pages/faculty/201.html
+False positives: 0 / 41
+False negatives: 0 / 41
+File downloaded_pages/faculty/202.html
+False positives: 0 / 51
+False negatives: 0 / 51
+File downloaded_pages/faculty/203.html
+False positives: 0 / 28
+False negatives: 0 / 28
+File downloaded_pages/faculty/206.html
+False positives: 0 / 49
+False negatives: 0 / 49
+File downloaded_pages/faculty/207.html
+False positives: 9 / 83
+False negatives: 13 / 87
+File downloaded_pages/faculty/208.html
+False positives: 0 / 27
+False negatives: 0 / 27
+File downloaded_pages/faculty/209.html
+False positives: 0 / 21
+False negatives: 0 / 21
+File downloaded_pages/faculty/210.html
+False positives: 0 / 7
+False negatives: 0 / 7
+File downloaded_pages/faculty/211.html
+False positives: 0 / 11
+False negatives: 0 / 11
+File downloaded_pages/faculty/214.html
+False positives: 0 / 210
+False negatives: 0 / 210
+File downloaded_pages/faculty/215.html
+False positives: 1 / 29
+False negatives: 0 / 28
+File downloaded_pages/faculty/216.html
+False positives: 0 / 22
+False negatives: 0 / 22
+Total false positives: 457 / 11738 0.0389333787698
+Total false negatives: 380 / 11661 0.0325872566675
