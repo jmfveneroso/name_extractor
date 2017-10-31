@@ -51,7 +51,7 @@ Darren Ellis
 Yee Wei Law
 Steve Leib
 Nick Mermelengas
-Mrs Lee-Anne Palubinski
+Lee-Anne Palubinski
 Silvia Pignata
 Aruna Ranganathan
 Jan Rose
@@ -79,7 +79,6 @@ Bin Huang
 Maryam Shirmohammadi
 Mustafa Ucgul
 David Whaley
-Research Assistant
 Hayley Tindle
 Renae Leverenz
 Jean Lim
@@ -101,7 +100,6 @@ Deidre Armour
 Andrew Burge
 Raymond Liddle 
 Dean Thiele
-Technical Officers
 Peter Bain
 Phil Dixon
 Anthony Duffy
