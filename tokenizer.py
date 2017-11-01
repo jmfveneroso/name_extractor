@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from bs4.element import NavigableString
 
 class Token():
-  def __init__(self, tkn, element, is_first_tkn, last_tkn, next_tkn):
+  def __init__(self, tkn, element, is_first_tkn, last_tkn, next_tkn, word_pos):
     self.tkn = tkn
     self.element = element
     self.is_first_tkn = is_first_tkn
@@ -15,6 +15,7 @@ class Token():
     self.is_name = False
     self.is_first_name = False
     self.next_tkn = next_tkn
+    self.word_pos = word_pos
 
     second_parent_name = ''
     if element.parent != None:
@@ -24,17 +25,19 @@ class Token():
     if element.parent != None and element.parent.parent != None:
       third_parent_name = element.parent.parent.name
 
-    self.parent = second_parent_name + element.name
-    self.second_parent = second_parent_name
-    self.third_parent = third_parent_name
-    self.class_name = ""
-
     el = element
+    self.class_name = ""
     while element != None:
       if element.has_attr("class"):
         self.class_name = " ".join(element.get("class"))
         break
       element = element.parent
+    # if element.has_attr('class'):
+    #   self.class_name = " ".join(element.get("class"))
+
+    self.parent = second_parent_name + el.name
+    self.second_parent = second_parent_name
+    self.third_parent = third_parent_name
 
     self.text_depth = 0
     element = el
@@ -99,12 +102,12 @@ class Tokenizer():
         new_text += c
     return new_text
   
-  def tokenize_text(text):
-    text = convert_token(text.strip()).lower()
+  def tokenize_url(self, url):
+    text = self.convert_token(url.strip()).lower()
     if len(text) == 0 or text == None:
       return [];
    
-    return re.compile("[^a-zA-Z]+").split(text)
+    return re.compile("[^a-zA-Z0-9]+").split(text)
   
   def tokenize_text(self, text):
     text = self.remove_urls(text)
@@ -143,7 +146,7 @@ class Tokenizer():
       last_tkn = None
       cur_tkn = None
       for i in range(0, len(tkns)):
-        cur_tkn = Token(tkns[i], n_str.parent, i == 0, last_tkn, None)
+        cur_tkn = Token(tkns[i], n_str.parent, i == 0, last_tkn, None, i)
         if last_tkn != None:
           last_tkn.next_tkn = cur_tkn
         last_tkn = cur_tkn

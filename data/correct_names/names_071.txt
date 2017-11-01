@@ -1,8 +1,8 @@
-Weihua Zhuang: 
-Jun Li: 
-Xiaojiang Du: 
-Jun Dong: 
-Baoping Zhang: 
+Weihua Zhuang
+Jun Li
+Xiaojiang Du
+Jun Dong
+Baoping Zhang
 Zhimin Lin
 Rongrong Ji
 Xiaoping Zhang
@@ -21,3 +21,5 @@ Liang Xiao
 Jianping Zeng
 Chen Baoquan
 Cao Donglin
+Bu Yikun
+Clarence de Silva

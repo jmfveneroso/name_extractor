@@ -91,6 +91,8 @@ class Estimator():
     prob_name += self.word_length[length][1]
 
     if second_passing:
+      # print tkn.tkn, tkn.class_name, self.class_names[tkn.class_name], self.first_parents[tkn.parent]
+      # print tkn.tkn, prob_word, prob_name
       prob_word += self.first_parents[tkn.parent][0]
       # prob_word += self.second_parents[tkn.second_parent][0]
       prob_word += self.third_parents[tkn.third_parent][0]
@@ -103,6 +105,7 @@ class Estimator():
       prob_name += self.class_names[tkn.class_name][1]
       # prob_name += self.child_pos_[tkn.text_depth][1]
       prob_name += self.element_positions[tkn.element_position][1]
+    # print tkn.tkn, prob_word, prob_name
 
     return prob_word, prob_name
 
