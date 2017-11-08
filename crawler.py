@@ -19,6 +19,9 @@ from orm import Url, WebPage, ResearchGroup
 import find_dblp_researcher
 
 def strip_url(url):
+  if url == None or len(url) == 0:
+    return ''
+
   url = re.sub('(^http\:\/\/)|(^https\:\/\/)', '', url)
   url = re.sub('^www\.', '', url)
   if url == None or len(url) == 0:
