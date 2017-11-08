@@ -19,11 +19,11 @@ from orm import Url, WebPage, ResearchGroup
 import find_dblp_researcher
 
 def strip_url(url):
+  url = re.sub('(^http\:\/\/)|(^https\:\/\/)', '', url)
+  url = re.sub('^www\.', '', url)
   if url == None or len(url) == 0:
     return ''
 
-  url = re.sub('(^http\:\/\/)|(^https\:\/\/)', '', url)
-  url = re.sub('^www\.', '', url)
   if url[-1] == '/':
     url = url[:-1]
   return url.strip()
