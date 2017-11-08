@@ -1,6 +1,7 @@
 #!/usr/bin/python2.4
 
 import psycopg2
+import datetime
 
 class DB():
   class __DB():
@@ -61,7 +62,7 @@ class Entity():
       values = {}
       row = row[0][1:-1].split(',')
       for i in range(0, len(cls.fields)):
-        values[cls.fields[i]] = row[i + 1]
+        values[cls.fields[i]] = row[i + 1] if row[i + 1] != '' else None
       obj = cls(values)
       obj.values['id'] = int(row[0])
       objs.append(obj)
@@ -132,7 +133,7 @@ class DblpResearcher(Entity):
     values = {}
     row = row[0][0][1:-1].split(',')
     for i in range(0, len(DblpResearcher.fields)):
-      values[DblpResearcher.fields[i]] = row[i + 1]
+      values[DblpResearcher.fields[i]] = row[i + 1] if row[i + 1] != '' else None
     obj = DblpResearcher(values)
     obj.values['id'] = int(row[0])
     return obj
@@ -157,7 +158,7 @@ class ResearchGroup(Entity):
     values = {}
     row = row[0][0][1:-1].split(',')
     for i in range(0, len(ResearchGroup.fields)):
-      values[ResearchGroup.fields[i]] = row[i + 1]
+      values[ResearchGroup.fields[i]] = row[i + 1] if row[i + 1] != '' else None
     obj = ResearchGroup(values)
     obj.values['id'] = int(row[0])
     return obj
@@ -178,16 +179,19 @@ class Url(Entity):
     values = {}
     row = row[0][0][1:-1].split(',')
     for i in range(0, len(Url.fields)):
-      values[Url.fields[i]] = row[i + 1]
+      values[Url.fields[i]] = row[i + 1] if row[i + 1] != '' else None
     obj = Url(values)
     obj.values['id'] = int(row[0])
     return obj
 
   @staticmethod
   def get_next_uncrawled_url():
+    timestamp = str(datetime.datetime.utcnow())[:-7]
+
     field_str = ', '.join(Url.fields)
     query = "SELECT (id, " + field_str + ") FROM " + Url.table_name + \
-            " WHERE crawled = FALSE ORDER BY LENGTH(url) ASC LIMIT 1"
+            " WHERE crawled = FALSE AND (scheduled_time < TIMESTAMP '" + timestamp + \
+            "' OR scheduled_time IS NULL) ORDER BY LENGTH(url) ASC LIMIT 1"
     DB().execute(query)
 
     objs = []
@@ -196,7 +200,7 @@ class Url(Entity):
       values = {}
       row = row[0][1:-1].split(',')
       for i in range(0, len(Url.fields)):
-        values[Url.fields[i]] = row[i + 1]
+        values[Url.fields[i]] = row[i + 1] if row[i + 1] != '' else None
       obj = Url(values)
       obj.values['id'] = int(row[0])
       objs.append(obj)
@@ -223,7 +227,7 @@ class WebPage(Entity):
     values = {}
     row = row[0][0][1:-1].split(',')
     for i in range(0, len(WebPage.fields)):
-      values[WebPage.fields[i]] = row[i + 1]
+      values[WebPage.fields[i]] = row[i + 1] if row[i + 1] != '' else None
     obj = WebPage(values)
     obj.values['id'] = int(row[0])
     return obj
