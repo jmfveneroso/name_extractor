@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=1" name="viewport"/>
+<meta content="index,follow" name="robots"/>
+                     <meta content="Salisbury University - Center for International Education - The English Language Institute - Faculty" property="og:title"/>
+<meta content="website" property="og:type"/>
+<meta content="http://www.salisbury.edu/intled/eli/faculty.html" property="og:url"/>
+<meta content="" property="og:image"/>
+<meta content="Faculty" property="og:description"/>
+<meta content="Faculty" name="description"/>
+<meta content="Salisbury University, Center for International Education, The English Language Institute, Faculty" name="keywords"/>
+<title>Salisbury University - Center for International Education - The English Language Institute - Faculty</title>
+
+
+
+
+
+<!--xml block: header-tags -->
+
+
+<link href="../../_files/images/su-favicon.png" rel="shortcut icon" type="image/png"/>
+<link href="../../_files/images/su-favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="../../_files/images/su-favicon.png" rel="apple-touch-icon"/>
+<link href="../../_files/css/normalize.css" rel="stylesheet"/>
+<link href="../../_files/css/directory.css" rel="stylesheet"/>
+<link href="../../_files/css/desktop.css" rel="stylesheet"/>
+<link href="../../_files/css/user.css" rel="stylesheet"/>
+<link href="../../_files/css/mobile.css" rel="stylesheet"/>
+<link href="../../_files/css/dropdown.css" rel="stylesheet" type="text/css"/>
+<link href="../../_files/css/print.css" media="print" rel="stylesheet" type="text/css"/>
+
+<script src="../../_files/js/jquery-1.9.1.min.js"></script>
+<script src="../../_files/js/modernizr-2.6.2.min.js"></script>
+<script src="../../_files/js/moment.min.js"></script>
+<!--<script src="/_files/js/dropdown_links.js" type="text/javascript"></script>-->
+<script src="../../_files/js/dropdown.js" type="text/javascript"></script>
+<script src="../../_files/js/SU-functions.js" type="text/javascript"></script>
+<!--
+<script src="/_files/js/cycle2.js"></script>
+<script src="/_files/js/caption2.js"></script>
+-->
+<!-- CUSTOM CSS FOR SITES -->
+<link href="../../_files/css/hr.css" media="screen" rel="stylesheet"/>
+
+<!--directory js and css -->
+<link href="../../_files/css/directory.css" media="screen" rel="stylesheet"/>
+<script src="../../_files/js/getBio.js" type="text/javascript"></script>
+<script src="../../_files/js/getCourses.js" type="text/javascript"></script>
+<script src="../../_files/js/getPress.js" type="text/javascript"></script>
+<script src="../../_files/js/getOutsidePress.js" type="text/javascript"></script>
+<script src="../../_files/js/getScholarship.js" type="text/javascript"></script>   
+<script>
+jQuery(document).ready(function ($) {
+    
+    //Not sure the purpose of the line below, but it was causing a problem in 
+    //firefox using anchors, so I removed it. It appears to be related to mobile 
+    //view in IOS.. DNR 8/17/2017
+    //window.scrollTo(0, 1);
+
+    var pathname = window.location.pathname;
+
+	$('.sheader').click(function(){
+	//get collapse content selector
+		var collapse_content_selector = $(this).next('.scontent');					
+	
+	//make the collapse content to be shown or hide
+		var toggle_switch = $(this);
+	
+		$(collapse_content_selector).slideToggle(function(){
+			if($(this).css('display')=='block'){
+			//change the button label to be 'Show'
+			//toggle_switch.html('');
+			}else{
+			//change the button label to be 'Hide'
+			//toggle_switch.html('');
+			}
+		});
+	});
+
+    $('.toggletable tbody').hide();
+    $('.toggletable caption').click(function () {
+    	$(this).toggleClass('hide')
+		$(this).next('.toggletable tbody').toggle('1000');
+    });
+    
+    /*
+    $('.t-table tbody').hide();
+    $('.t-table caption').click(function () {
+    	$(this).toggleClass('hide')
+		$(this).next('.t-table tbody').toggle('1000');
+    });
+    */
+    
+    $('.faq .answer').hide();
+    $('.faq .question').click(function () {
+	    $(this).toggleClass('hide')
+	    $(this).next('.faq .answer').slideToggle();
+    });
+
+    $('#help_page').attr("href", "https://webapps.salisbury.edu/help.asp?cmspage=" + pathname);
+    $('#help_page').attr("target", "_blank");
+    $('#help_page').attr("title", "link opens in new window");
+
+
+
+$('.mobile-search-toggle').click(function(){
+		//get collapse content selector
+		var collapse_content_selector = $(this).next('.msearch');					
+	
+		//make the collapse content to be shown or hide
+		var toggle_switch = $(this);
+	
+		$(collapse_content_selector).toggle(function(){
+	
+		});
+	});
+    $('.mobile-nav').click(function(){
+		//get collapse content selector
+		var collapse_content_selector = $(this).next('.sitemenu');					
+	
+		//make the collapse content to be shown or hide
+		var toggle_switch = $(this);
+	
+		$(collapse_content_selector).toggle(function(){
+	
+		});
+	});
+
+    $('.mobile-nav-new').click(function(){
+		//get collapse content selector
+		var collapse_content_selector = $(this).next('.sitemenu');					
+	
+		//make the collapse content to be shown or hide
+		var toggle_switch = $(this);
+	
+		$(collapse_content_selector).toggle(function(){
+	
+		});
+	});
+
+});	
+
+</script>
+</head>
+<body><a id="top"></a>
+<div class="container" id="container"><div id="skipnavigation" style="display:inline;"><a href="#pagecontent" id="" tabindex="1">Skip to Main Content</a></div>
+
+<!--PRINT HEADER-->
+<div class="printheader">
+    <img alt="Salisbury University BW" src="../../_files/images/su-logo.png"/>
+    <div class="tagline">A Maryland University of National Distinction</div>
+</div>
+<!--END PRINT HEADER-->
+<!--MOBILE HEADER-->
+	<div class="mobile-header" style="cursor:pointer">
+		<div class="mobile-search-toggle" title="SU Home">
+		<img alt="navigation icon opens header" id="nav-icon-search" src="../../_files/images/nav-icon.png" style="float: left; margin-left: 10px; margin-right: 10px; margin-top: 4px;"/>
+		SALISBURY UNIVERSITY</div>
+		<div class="msearch" style="padding: 0px 10px; font-family:Arial, Helvetica, sans-serif; text-align:left;">
+		<form action="http://www.salisbury.edu/search/" id="searchbox_012922190682254864109:x5_7wzea6la" style="margin: 0px 0px 0px 0px;">
+		<input name="cx" type="hidden" value="012922190682254864109:x5_7wzea6la"/>
+		<input name="cof" type="hidden" value="FORID:11"/>
+        
+        <label class="hiddenformlabel" for="qm">Enter Search Text</label>
+        <input class="q" id="qm" name="q" size="30" type="text" value="" placeholder="search pages and directories"/>
+                   
+        <input class="search-button" name="sa" type="submit" value="search"/>
+		</form><br/>
+
+		<button class="mheaderlinks" onclick="window.location='http://www.salisbury.edu/'" style="float: left;">SU Home</button>
+		<button class="mheaderlinks" onclick="window.location='http://www.salisbury.edu/about/'" style="float: right;">About SU</button>
+		<button class="mheaderlinks" onclick="window.location='http://www.salisbury.edu/academics/'" style="float: left;">Academics</button>
+		<button class="mheaderlinks" onclick="window.location='http://www.salisbury.edu/administration/'" style="float: right;">Administration</button>
+		<button class="mheaderlinks" onclick="window.location='http://www.salisbury.edu/admissions/'" style="float: left;">Admissions</button>
+		<button class="mheaderlinks" onclick="window.location='http://www.suseagulls.com/'" style="float: right;">Athletics</button>
+		<button class="mheaderlinks" onclick="window.location='http://www.salisbury.edu/community/'" style="float: left;">Community</button>
+		<button class="mheaderlinks" onclick="window.location='http://www.salisbury.edu/hr/'" style="float: right;">Human Resources</button>
+		<button class="mheaderlinks" onclick="window.location='http://www.salisbury.edu/library/'" style="float: left;">Library</button>
+		<button class="mheaderlinks" onclick="window.location='http://www.salisbury.edu/camptech/'" style="float: right;">Technology</button>
+
+    	<button class="mheaderlinksu" onclick="window.location='http://www.salisbury.edu/calendar/'" style="float: left;">Calendars</button>
+		<button class="mheaderlinksu" onclick="window.location='http://www.salisbury.edu/helpdesk/Email_Outlook_Exchange/'" style="float: right;">Campus Email</button>
+		<button class="mheaderlinksu" onclick="window.location='http://www.salisbury.edu/directories/'" style="float: left;">Directories</button>
+		<button class="mheaderlinksu" onclick="window.location='http://www.salisbury.edu/gullnet/'" style="float: right;">GullNet</button>
+		<button class="mheaderlinksu" onclick="window.location='http://www.salisbury.edu/instructionaldesign/cms/'" style="float: left;">MyClasses</button>
+		<button class="mheaderlinksu" onclick="window.location='http://www.salisbury.edu/news/'" style="float: right;">News &amp; Events </button>
+		
+
+		
+		</div>
+
+<div style="clear:both;"></div>		
+</div><div class="mobilecontentheader"></div>
+
+	<!--END MOBILE HEADER--> <!--DESKTOP HEADER-->
+<div class="mainheader" style="">
+<div class="utilities">
+<a href="http://www.salisbury.edu/calendar/">Calendars</a>
+<a href="http://www.salisbury.edu/helpdesk/Email_Outlook_Exchange/">Campus Email</a>
+<a href="http://www.salisbury.edu/directories/">Directories</a>
+<a href="http://www.salisbury.edu/gullnet/">GullNet</a>
+<a href="http://www.salisbury.edu/instructionaldesign/cms/">MyClasses</a>
+<a href="http://www.salisbury.edu/news/">News &amp; Events</a>
+<form action="http://www.salisbury.edu/search/" id="searchbox_012922190682254864109:x5_7wzea6la" style="margin: 0px 0px 0px 0px;">
+<input id="cx" name="cx" type="hidden" value="012922190682254864109:x5_7wzea6la"/>
+<input id="cof" name="cof" type="hidden" value="FORID:11"/>
+<label class="hiddenformlabel" for="q">Enter Search Text</label>
+<input class="q" id="q" name="q" title="enter search term" type="text"/>
+<input class="buttons search-button" name="sa" title="click to search" type="submit" value="search"/>
+</form>
+</div>
+<img alt="Salisbury University" class="logo" height="82" onclick="window.location='http://www.salisbury.edu/'" src="//www.salisbury.edu/_files/images/SU_Logo_white.gif" width="260"/>
+</div>
+<div class="navbar">
+<a href="http://www.salisbury.edu/about/" onmouseout="delayhidemenu()" onmouseover="dropdownmenu(this, event, menu1, '')">About SU</a>
+&#183;
+<a href="http://www.salisbury.edu/academics/" onmouseout="delayhidemenu()" onmouseover="dropdownmenu(this, event, menu2, '')">Academics</a>
+&#183;
+<a href="http://www.salisbury.edu/administration/" onmouseout="delayhidemenu()" onmouseover="dropdownmenu(this, event, menu3, '')">Administration</a>
+&#183;
+<a href="http://www.salisbury.edu/admissions/" onmouseout="delayhidemenu()" onmouseover="dropdownmenu(this, event, menu4, '')">Admissions</a>
+&#183;
+<a href="http://www.suseagulls.com/" onmouseout="delayhidemenu()" onmouseover="dropdownmenu(this, event, menu5, '')">Athletics</a>
+&#183;
+<a href="http://www.salisbury.edu/community/" onmouseout="delayhidemenu()" onmouseover="dropdownmenu(this, event, menu6, '')">Community</a>
+&#183;
+<a href="http://www.salisbury.edu/hr/" onmouseout="delayhidemenu()" onmouseover="dropdownmenu(this, event, menu7, '')">Human Resources</a>
+&#183;
+<a href="http://www.salisbury.edu/library/" onmouseout="delayhidemenu()" onmouseover="dropdownmenu(this, event, menu8, '')">Library</a>
+&#183;
+<a href="http://www.salisbury.edu/helpdesk/" onmouseout="delayhidemenu()" onmouseover="dropdownmenu(this, event, menu9, '')">Technology</a>
+</div>
+<div style="clear: both;"></div>    	
+
+<!--END DESKTOP HEADER--> 
+<div class="maincontent" id="maincontent">  <div class="mobile-nav-new">
+    <!--MOBILE HEADER SITE NAME-->
+    <div class="mobile-site-title" onclick="window.location='/intled/eli'" style="font-size: 18px;">The English Language Institute</div>
+    <img alt="mobile menu icon" id="nav-icon" src="//www.salisbury.edu/_files/images/nav-icon.png"/>
+    <div class="clear-both"></div>
+ </div>
+    <div class="sitemenu">
+         <div class="siteheader" onclick="window.location='/intled/eli/'" title="/intled/eli/">
+    <!--DESKTOP HEADER SITE NAME-->
+            <span id="sitemenu_heading" style="font-size: 30px; line-height: 30px;">The English Language Institute</span>
+        </div>
+                            <div class="nav"><custommenugroup/></div>
+                 <div class="nav" id="Accordion">  
+    <div class="mobile-home-link" onclick="window.location='/intled/eli//'" style="padding-left: 10px; border-bottom: 1px #400000 dotted;" title="/eli/">The English Language Institute</div>
+                         
+                                     <div class="menudiv" id="menudiv1">
+                                                <div class="divider">About the Institute</div>
+            <ul class="accordionul">
+                
+                                                                                                                                                                                                                                                                                                                                                          <li title="Mission Statement"><a href="program.html">Mission Statement</a></li>
+                                                                                                            <li title="ELI Student Handbook"><a href="docs/ELI StudentHandbookGUTS_FONTS.pdf">ELI Student Handbook</a></li>
+                                                                                                            <li title="Tuition &#38; Costs"><a href="costs.html">Tuition &#38; Costs</a></li>
+                                                                                                            <li title="Faculty"><a href="faculty.html">Faculty</a></li>
+                                                                                                            <li title="ELI - Important Dates"><a href="ImportantDates.html">ELI - Important Dates</a></li>
+                                            <li><a href="http://www.salisbury.edu/intled/eli/applynow.html" title="ELI Apply Now"><strong>Apply Now</strong></a>
+</li>
+            </ul>
+        </div>
+                    
+                                     <div class="menudiv" id="menudiv2">
+                                                <div class="divider">SU Center for International Education</div>
+            <ul class="accordionul">
+                
+                                                                                                                                                                                                                                                                                          <li title="International Students and Scholar Services"><a href="../iss/default.html">International Students and Scholar Services</a></li>
+                                                                                                            <li title="Center for International Education"><a href="../default.html">Center for International Education</a></li>
+                                                                                                            <li title="Salisbury International Publications"><a href="../intled-publications.html">Salisbury International Publications</a></li>
+                                            
+            </ul>
+        </div>
+    </div>
+    <div class="nav">
+       <div class="divider">Contact Information</div>
+        <ul>
+                                                                    </ul>       
+        <div class="contactinfo">
+            <p>Salisbury University<br/> Center for International Education<br/> 1101 Camden Ave.<br/> Salisbury, MD 21801<br/> USA</p>
+<p>Office Hours: 9 am-5 pm<br/> Phone: (+1) 410-677-5027<br/> Email: <a href="mailto:sucie@salisbury.edu" rel="noopener noreferrer" target="_blank">sucie@salisbury.edu</a></p>
+<div class="addthis_toolbox addthis_default_style" style="text-align: right;"><a class="addthis_button_facebook"></a> <a class="addthis_button_email"></a> <a class="addthis_button_favorites"></a> <a class="addthis_button_print"></a> <span class="addthis_separator">|</span> <a class="addthis_button_expanded" href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4bbe5c4156c1f43e">More</a></div>
+<script src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4bbe5c4156c1f43e" type="text/javascript">// <![CDATA[
+
+// ]]></script>
+        </div>
+                   
+
+                <div class="clear"> </div>
+    </div>
+</div>
+    
+ 
+<div class="pagecontent" id="pagecontent">
+
+
+<div class="pagecontentheader"> </div>
+
+ 
+<div class="pagecontenttext">
+     
+    
+                        <a id="anchormenu" name="anchormenu"> </a>
+            <a id="Meet the Faculty" name="Meet the Faculty"></a>
+        <h1 class="pagetitle" style="clear: top; text-align: left"> Meet the Faculty</h1>
+        
+
+
+
+
+<noscript>
+    <style>
+    
+            .pagecontenttext .hidethisdiv_2 {display: none}
+        .pagecontenttext .shadow-container {display: none}
+    
+    </style>
+            <h3>Oops!</h3>
+        <p>JavaScript is required to view some of the content on this page!</p>
+        <p>Learn how to enable JavaScript in your web browser here: <a href="http://activatejavascript.org/" target="_blank">http://activatejavascript.org/</a></p>
+    </noscript>
+
+
+
+    <script>
+    //$(document).ready(function(){
+    //jQuery(document).ready(function( $ ) {
+    //pagepath: /intled/eli/faculty
+    jQuery(document).ready(function( $ ) {
+        var current = new Date();
+        var enable = "";
+        var expire = "";
+
+
+                
+        });
+    </script>
+ 
+
+    
+    
+                       
+        
+            
+                <div class="hidethisdiv_1" id="hidethisdiv_1">
+                    <a name="Full-time Faculty"></a>
+                            <h2 id="Full-time Faculty" style="text-align: left">Full-time Faculty</h2>
+                         
+
+                    
+                                            <p><strong>Senior Lecturer, Sean Cooper</strong><strong><img alt="Sean Cooper" height="132" src="images/sean-cooper.jpg" style="float: left; padding-right: 10px;" width="114"/></strong></p>
+<p>Mr. Sean Cooper graduated with an MA in TESOL from The University of Texas at Arlington in 2011. Prior to that, he spent four years in Japan teaching EFL at the elementary, junior high, and senior high levels. During that time, he pioneered an innovative English curriculum for elementary school students, the first of its kind in the region. Since returning to the United States, he has participated in a variety of ESL-oriented events, including long-term volunteer teaching to preliterate non-native speakers. Now at Salisbury University, he coordinates the Speaking curriculum of our English Language Institute. He is also involved in increasing international ties between our university and Japan, including teaching the first-ever Japanese language class at Salisbury University. Sean&#8217;s research interests include pedagogical phonology for East Asian L2 English speakers, intercultural competence for international students, and community-based language revitalization.</p>
+<p style="text-align: center;">* * *</p>
+<p><strong><img alt="Dr. Cooledge" height="144" src="images/Dr-Cooledge.jpg" style="float: left; padding-right: 10px;" width="114"/></strong></p>
+<p><strong>Senior Lecturer, Susan Mahoney, PhD</strong></p>
+<p>Dr. Susan Mahoney&#160;holds a PhD in Second Language Acquisition and Teaching from the University of Arizona.&#160; She has taught all basic levels of French, English writing and reading for ELLs, and&#160;TESOL assessment &amp; writing.&#160; Her research interests include&#160;L2 reading, writing &amp; vocabulary, intercultural competence, study abroad, and assessment.</p>
+<p style="text-align: center;">* * *</p>
+<p style="text-align: center;"></p>
+<p><strong>Senior Lecturer, Chandra Yesiltas</strong><strong><img alt="Chandra" height="145" src="images/ChandraYesiltas.JPG" style="float: left; padding-right: 10px;" width="113"/></strong></p>
+<p>Ms. Chandra Yesiltas earned her M.A. in Applied Linguistics, with an emphasis in teaching English as a second language, from the University of Delaware.&#160; She earned her B.S. in psychology from Brigham Young University.&#160; Ms. Yesiltas has&#160;8 years of experience teaching ESL courses such as history, pronunciation, reading, and academic writing at the high school, community college, and English Language Institute level.</p>
+                                    
+                                            <!--<div class="clear-both"><span> </span></div>
+            <div style="height: 1px; margin: 0px; padding: 0px"><span> </span></div>-->
+            </div>
+       
+                       
+        
+            
+                <div class="hidethisdiv_2" id="hidethisdiv_2">
+                    <a name="Part-time Faculty"></a>
+                            <h2 id="Part-time Faculty" style="text-align: left">Part-time Faculty</h2>
+                         
+
+                    
+                                            <p><strong><img alt="Jean" height="139" src="images/Jean Goblinger.jpg" style="float: left; padding-right: 10px;" width="124"/></strong>Instructor, Jean Goblinger</p>
+<p>Jean Goblinger obtained a bachelor's degree in English from Notre Dame&#160;&#160; College and a master's degree in Communications from the University of Akron. She has been teaching English as a second language for the past two years for the English Language Institute and is also an adjunct instructor for the Communications Department at Salisbury University. She is a bridge instructor for the ELI group, teaching native speakers to talk with confidence.</p>
+<p style="text-align: center;">* * *</p>
+<p><span face="Verdana" style="font-family: Verdana;"><strong><img alt="Sandy" height="140" src="images/Sandy-Johnston.jpg" style="float: left; padding-right: 10px; padding-bottom: 5px;" width="110"/></strong></span><span face="Verdana" style="font-family: Verdana;"><strong>Instructor, Sandy Johnston</strong></span></p>
+<p>Ms. Sandy Johnston earned her M.A. in Composition and Rhetoric from Salisbury University, with additional graduate credits in TESOL, and a B.A. Communication/Journalism from Shippensburg University. She has taught technical writing and composition at the University of Maryland Eastern Shore for the past 10 years. She also has taught writing workshops for international students to improve their writing skills.</p>
+<p style="text-align: center;">* * *</p>
+<p><strong>Senior Lecturer, Caroline Porter-Long</strong></p>
+<p>Mrs. Caroline Porter-Long is a native of Salisbury.&#160; She received a bachelor&#8217;s degree at the University of Mary Washington and a Master of Arts in English from Wake Forest University.&#160; She has taught Language Arts at Nansemond-Suffolk Academy in Suffolk, Virginia, &#160;English grammar, composition and literature at Wor-Wic Community College, and Honors Critical Thinking and Writing at Salisbury University.&#160; She also worked as a research interviewer for Johns Hopkins University&#8217;s Wilmer Eye Institute.&#160; She lives in Salisbury with her husband and three children.</p>
+                                    
+                                            <!--<div class="clear-both"><span> </span></div>
+            <div style="height: 1px; margin: 0px; padding: 0px"><span> </span></div>-->
+            </div>
+   
+
+ 
+    
+</div>    
+</div>
+<div style="clear:both"></div>
+</div>
+
+
+<div class="mainfooter">
+
+    <div class="mainfooter_row infofor">
+    <strong>Info for:  </strong>
+	<a href="/pstudent/welcome.html">Future Students</a><a href="/cstudent">Current 
+	Students</a><a href="/parfrnds/">Parents &amp; Friends</a><a href="http://alumni.salisbury.edu">Alumni</a><a href="/facstaff/">Faculty &amp; Staff</a><a href="/careerservices/employers/">Employers</a> 
+	</div>
+
+    <div class="mainfooter_row infoabout">
+	<strong>About:  </strong> <a href="/about/">
+	SU</a><a href="/academics/">Academics</a><a href="/administration/">Administration</a><a href="/admissions/">Admissions</a><a href="http://www.suseagulls.com/">Athletics</a><a href="/community/">Community</a><a href="/hr/">Human Resources</a><a href="/library/">Library</a><a href="/helpdesk/">Technology</a>
+	</div>
+
+    <div style="width: 800px; margin: 0px auto 0px auto; text-align:center; border-top: 1px white dotted; padding-top: 10px"> </div>
+    
+    <div class="help_page">
+        Need help or have questions about this page? Please visit our <a href="#" id="help_page">Ask a Question or Report a Problem</a> page.
+    </div>
+
+    
+    <div class="mainfooter_row sitelinks">
+	<a href="/suggestionbox">Online Suggestion Box</a><a href="https://webapps.salisbury.edu/feedback/?rpage=/intled/eli/faculty.html" target="_blank">
+	Web Site Feedback</a><a href="/weboffice/workrequest.html?rpage=/intled/eli/faculty.html">Web Site Help</a> 
+    <a href="/about/terms.html">Terms of Use</a><a href="/administration/mpia.html">Public Information Act (PIA) Requests</a>
+    </div>
+    
+    <div class="mainfooter_row address">
+	<strong>Salisbury University</strong>    1101 Camden Avenue    Salisbury, MD 21801    <strong>410-543-6000</strong>		
+	</div>
+
+    <div class="mainfooter_row copyright">
+	<a class="copyrighteditlink" href="https://cms.salisbury.edu/entity/open.act?type=page&amp;id=d90df4df837621bd56c14680dbb2abbf#highlight" target="_blank">Copyright © 2017</a> 
+	</div>
+
+</div>
+
+
+
+<!-- Google Analytics - new version, added 6/17/2016, DNR -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2436904-1', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+<!--old google analytics - removed 6/17/2016, DNR-->
+<!--<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+<script type="text/javascript">
+//_uacct = "UA-2436904-1";
+//urchinTracker();
+</script>-->
+<!--end-->
+<!--siteimprove analytics added 4/13/2016-->
+<script type="text/javascript">
+/*<![CDATA[*/
+(function() {
+var sz = document.createElement('script'); sz.type = 'text/javascript'; sz.async = true;
+sz.src = '//siteimproveanalytics.com/js/siteanalyze_66356453.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz, s);
+})();
+/*]]>*/
+</script>
+<!--end-->
+
+
+<div class="mobilefooter">
+	   <button onclick="window.location='#top'" title="Top of page">Top</button> 
+	   <button onclick="window.location=''" title="">Site Home</button> 
+	   <button onclick="window.location='/'" title="SU Home">SU Home</button> 
+	   <button onclick="history.go(-1);" title="Back one page">Back</button>
+	   <br/>
+   	   
+   	   	<button onclick="window.location='?vmode=desktop'" style="display: none;" title="">Desktop Version</button> 
+   	   
+</div>
+
+<div style="color: #800000; text-align: center">/intled/eli/faculty.html</div>
+
+</div>
+</body>
+</html>

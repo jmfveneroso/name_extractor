@@ -1,0 +1,4048 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>Faculty by Dept.. | College of Engineering - Peking University</title>
+	<link type="image/x-icon" href="/images/favicon.ico" rel="shortcut icon"/>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link type="text/css" rel="stylesheet" href="/css/homeBody.css">
+	<link type="text/css" rel="stylesheet" href="/css/common.css">
+	<link type="text/css" rel="stylesheet" href="/css/faculty/a_z.css">
+	<script src="/jquery/jquery-1.5.1.min.js" type="text/javascript"></script>
+	<script src="/jquery/ui/jquery.ui.core.min.js" type="text/javascript"></script>
+	<script src="/jquery/ui/jquery.ui.widget.min.js" type="text/javascript"></script>
+	<script src="/jquery/ui/jquery.ui.accordion.min.js" type="text/javascript"></script>
+  </head>
+  
+  <body>
+	<div id="top-wrapper">
+<link href="/css/header.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/js/href.js"></script>
+<div id="header">
+	<a href="/" class="logo">
+		<img src="/images/logo.gif" alt="College of Engineering Peking University">
+	</a>
+	<div class="header_top_link">
+		<a href="http://www.coe.pku.edu.cn" target="_blank"><span>简体中文</span></a>
+		<span style="color: #fff;float: left;">|</span>
+		<a href="http://english.pku.edu.cn" target="_blank"  class="last"><span>Peking University</span></a>
+	</div>
+	<div id="search_box">
+		<form id="search" method="get" action="/search.htm">
+			<fieldset>
+				<input id="search_input" type="text" name="q"
+					onblur="if(this.value==''){this.style.color='#7d7d7d'; this.value='Search entire website...';}"
+					onfocus="if(this.value=='Search entire website...'){this.value=''; this.style.color='#333333';}"
+					class="input_text" value="Search entire website..."
+					style="color: rgb(125, 125, 125);"/>
+					<a href="javascript:search();"><img height="22" width="22" alt="Search!" src="/images/search_btn.png"></a>
+			</fieldset>
+		</form>
+	</div>
+	<div  class="clear"></div>
+</div>
+<script>
+	var search = function(){
+		var q = document.getElementById('search_input').value;
+		if(q && q=='Search entire website...'){
+			return;
+		}
+		document.location.href="/search.htm?q="+q;
+	}
+</script>		<div id="features">
+<script src="/js/nav.js" type="text/javascript"></script>
+<link href="/css/menuNav.css" type="text/css" rel="stylesheet">
+<div class="home_nav">
+	<ul class="main_nav">
+			<li  >
+				<a  href="/our-college/index.htm">OUR COLLEGE</a><span>&nbsp;</span>
+			</li>
+			<li  id='dept'>
+				<a  href="/departments-programs/index.htm">DEPARTMENTS & PROGRAMS</a><span>&nbsp;</span>
+			</li>
+			<li class='navActived' >
+				<a  href="/faculty/index.htm">FACULTY</a><span>&nbsp;</span>
+			</li>
+			<li  >
+				<a  href="/research/index.htm">RESEARCH</a><span>&nbsp;</span>
+			</li>
+			<li  >
+				<a  href="/news-events/index.htm">NEWS & EVENTS</a><span>&nbsp;</span>
+			</li>
+			<li  >
+				<a href="http://globex.coe.pku.edu.cn" target="_blank">GLOBEX</a><span>&nbsp;</span>
+			</li>
+	</ul>
+	<div class="second_nav">
+				<ul class='hide'>
+						<li >
+							<a  channelId='2'  href="/about-us/index.htm"" >About Us</a>
+						</li>
+						<li >
+							<a  channelId='9'  href="/administration/index.htm"" >Administration</a>
+						</li>
+						<li >
+							<a  channelId='10' href="http://en.coe.pku.edu.cn/Faculty-Positions/index.htm" target="_blank"" >Job Opportunities</a>
+						</li>
+						<li >
+							<a  channelId='11'  href="/giving-to-COE/index.htm"" >Giving To COE</a>
+						</li>
+						<li >
+							<a  channelId='12'  href="/contact-us/index.htm"" class='last'>Contact Us</a>
+						</li>
+				</ul>
+				<ul class='hide'>
+				</ul>
+				<ul >
+						<li >
+							<a  channelId='19'  href="/Faculty-A-Z/index.htm"" >Faculty A-Z</a>
+						</li>
+						<li >
+							<a style="color:#990000;" channelId='20'  href="/Faculty-by-Dept/index.htm"" >Faculty by Dept.</a>
+						</li>
+						<li >
+							<a  channelId='21'  href="/Outstanding-Talents/index.htm"" class='last'>Outstanding Talents</a>
+						</li>
+				</ul>
+				<ul class='hide'>
+						<li >
+							<a  channelId='22'  href="/Research-Interests/index.htm"" >Research Interests</a>
+						</li>
+						<li >
+							<a  channelId='23'  href="/Research-Units/index.htm"" class='last'>Research Units</a>
+						</li>
+				</ul>
+				<ul class='hide'>
+						<li >
+							<a  channelId='24'  href="/news/index.htm"" >Latest News</a>
+						</li>
+						<li >
+							<a  channelId='25'  href="/events/index.htm"" >Events Calendar</a>
+						</li>
+						<li >
+							<a  channelId='26'  href="/announcements/index.htm"" class='last'>Announcements</a>
+						</li>
+				</ul>
+	</div>
+	<div class="dept_channel hide">
+		<dl>
+							<dt><a channelId='54' href="http://en.coe.pku.edu.cn/departments-programs/index.htm" target="_blank">Programs & Degrees</a></dt>
+							<dt><a channelId='18'  href="/Aeronautics-Astronautics/index.htm">Aeronautics & Astronautics</a></dt>
+							<dt><a channelId='14'  href="/Departments-Biomedical-Engineering/index.htm">Biomedical Engineering</a></dt>
+							<dt><a channelId='15'  href="/Energy-Resources-Engineering/index.htm">Energy & Resources Engineering</a></dt>
+							<dt><a channelId='16'  href="/Industrial-Engineering-Manag/index.htm">Industrial Engineering & Management</a></dt>
+							<dt><a channelId='17'  href="/Materials-Science-Engineerin/index.htm">Materials Science & Engineering</a></dt>
+							<dt><a channelId='83' href="http://en.mech.pku.edu.cn/" target="_blank">Mechanics & Engineering Science</a></dt>
+		</dl>
+	</div>
+</div>
+		</div>
+		<div id="home_body">
+<div id="fast_nav">
+	<ul class="">
+		<li>
+			<a index=1 href="/menu_1.htm">Prospective Students</a>
+		</li>
+		<li>
+			<a index=2 href="/menu_2.htm">Current Students</a>
+		</li>
+		<li>
+			<a index=3 href="/menu_3.htm">Visitors</a>
+		</li>
+		<li>
+			<a index=4 href="/menu_4.htm">Alumni</a>
+		</li>
+		<li>
+			<a index=5 href="/menu_5.htm" class="last">Partners</a>
+		</li>
+	</ul>
+</div>			<div class="path_nav">
+				<span class="you_are_here">You are here:</span>
+				<a href="/"> Home</a>
+				<span class="breadcrumbSeparator">         →              </span>
+				<a href='/faculty/index.htm'> FACULTY</a><span class='breadcrumbSeparator'>         →              </span>
+				<span dir="ltr">Faculty by Dept.</span>
+			</div>
+<link type="text/css" rel="stylesheet" href="/css/font_style.css">
+<div id="body_container">
+	<div class="container_left">
+<link rel="stylesheet" href="/css/accordion2.css" type="text/css"></link>
+<div class="accordion_container">
+	<div class="acc_top">
+		<span class="acc_top_left"></span><span class="acc_top_right"></span>
+	</div>
+	<div id="accordion">
+		<h3 class="home" style="padding-top: 7px;">
+			<a href="/">Home</a>
+		</h3>
+			<h3  index=0 >
+				<a   href="/our-college/index.htm">OUR COLLEGE</a>
+			</h3>
+			<div class='hide'>
+				<ul>
+							<li >
+								<a   href="/about-us/index.htm">About Us</a>
+									<div class="hide"  >
+										<ul style="padding-top: 4px;">
+												<li>
+													<a   href="/Dean-message/index.htm">Dean's message</a>
+												</li>
+												<li>
+													<a   href="/Quick-facts/index.htm">Quick facts</a>
+												</li>
+												<li>
+													<a   href="/History/index.htm">History</a>
+												</li>
+												<li>
+													<a   href="/Timeline/index.htm">Timeline</a>
+												</li>
+										</ul>
+									</div>
+							</li>
+							<li >
+								<a   href="/administration/index.htm">Administration</a>
+									<div class="hide"  >
+										<ul style="padding-top: 4px;">
+												<li>
+													<a   href="/Leadership/index.htm">Leadership</a>
+												</li>
+												<li>
+													<a   href="/Committee/index.htm">Committee</a>
+												</li>
+												<li>
+													<a   href="/Advisory/index.htm">Advisory</a>
+												</li>
+												<li>
+													<a   href="/Offices-And-Services/index.htm">Offices And Services</a>
+												</li>
+										</ul>
+									</div>
+							</li>
+							<li >
+								<a  href="http://en.coe.pku.edu.cn/Faculty-Positions/index.htm" target="_blank">Job Opportunities</a>
+									<div class="hide"  >
+										<ul style="padding-top: 4px;">
+												<li>
+													<a   href="/Faculty-Positions/index.htm">Faculty Positions</a>
+												</li>
+												<li>
+													<a   href="/Postdoctoral-Positions/index.htm">Postdoctoral Positions</a>
+												</li>
+										</ul>
+									</div>
+							</li>
+							<li >
+								<a   href="/giving-to-COE/index.htm">Giving To COE</a>
+							</li>
+							<li >
+								<a   href="/contact-us/index.htm">Contact Us</a>
+							</li>
+				</ul>
+			</div>
+			<h3  index=1 >
+				<a   href="/departments-programs/index.htm">DEPARTMENTS & PROGRAMS</a>
+			</h3>
+			<div class='hide'>
+				<ul>
+							<li >
+								<a  href="http://en.coe.pku.edu.cn/departments-programs/index.htm" target="_blank">Programs & Degrees</a>
+							</li>
+							<li >
+								<a   href="/Aeronautics-Astronautics/index.htm">Aeronautics & Astronautics</a>
+							</li>
+							<li >
+								<a   href="/Departments-Biomedical-Engineering/index.htm">Biomedical Engineering</a>
+							</li>
+							<li >
+								<a   href="/Energy-Resources-Engineering/index.htm">Energy & Resources Engineering</a>
+							</li>
+							<li >
+								<a   href="/Industrial-Engineering-Manag/index.htm">Industrial Engineering & Management</a>
+							</li>
+							<li >
+								<a   href="/Materials-Science-Engineerin/index.htm">Materials Science & Engineering</a>
+							</li>
+							<li >
+								<a  href="http://en.mech.pku.edu.cn/" target="_blank">Mechanics & Engineering Science</a>
+							</li>
+				</ul>
+			</div>
+			<h3  index=2 style="background: none;">
+				<a   href="/faculty/index.htm">FACULTY</a>
+			</h3>
+			<div class="current_next">
+				<ul>
+							<li >
+								<a   href="/Faculty-A-Z/index.htm">Faculty A-Z</a>
+							</li>
+							<li >
+								<a style="color: #DDB138;text-decoration: underline;"  href="/Faculty-by-Dept/index.htm">Faculty by Dept.</a>
+							</li>
+							<li >
+								<a   href="/Outstanding-Talents/index.htm">Outstanding Talents</a>
+							</li>
+				</ul>
+			</div>
+			<h3  index=3 >
+				<a   href="/research/index.htm">RESEARCH</a>
+			</h3>
+			<div class='hide'>
+				<ul>
+							<li >
+								<a   href="/Research-Interests/index.htm">Research Interests</a>
+							</li>
+							<li >
+								<a   href="/Research-Units/index.htm">Research Units</a>
+							</li>
+				</ul>
+			</div>
+			<h3  index=4 >
+				<a   href="/news-events/index.htm">NEWS & EVENTS</a>
+			</h3>
+			<div class='hide'>
+				<ul>
+							<li >
+								<a   href="/news/index.htm">Latest News</a>
+							</li>
+							<li >
+								<a   href="/events/index.htm">Events Calendar</a>
+							</li>
+							<li >
+								<a   href="/announcements/index.htm">Announcements</a>
+							</li>
+				</ul>
+			</div>
+			<h3 class='last' index=5 >
+				<a  href="http://globex.coe.pku.edu.cn" target="_blank">GLOBEX</a>
+			</h3>
+			<div class='hide'>
+				<ul>
+				</ul>
+			</div>
+	</div>
+	<div class="acc_top">
+		<span class="acc_bottom_left"></span><span class="acc_bottom_right"></span>
+	</div>
+</div>
+	</div>
+	<a name='top' id='top'></a>
+	<div class="container_right">
+		<div>
+			<div class="faculty_header fl">
+				<span>Faculty by Dept.</span>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="faculty_content fl">
+			<div>
+				<div class="gold content_ul">
+					<ul>
+				    	<li><a href="#Aeronautics and Astronautics">Aeronautics and Astronautics</a></li>
+				    	<li><a href="#Biomedical Engineering">Biomedical Engineering</a></li>
+				    	<li><a href="#Energy and Resources Engineering">Energy and Resources Engineering</a></li>
+				    	<li><a href="#Industrial Engineering and Management">Industrial Engineering and Management</a></li>
+				    	<li><a href="#Materials Science and Engineering">Materials Science and Engineering</a></li>
+						<li><a href="#Mechanics and Engineering Science">Mechanics and Engineering Science</a></li>
+					</ul>
+				</div>
+					<a name='Aeronautics and Astronautics' id='Aeronautics and Astronautics'></a>
+					<div class="current_az" style="color: #333333;font-size: 14px; margin-bottom: 9px;padding-bottom:7px;margin-top: 23px;">
+						<span style="float: left;">Aeronautics and Astronautics</span>
+						<div class="clear"></div>
+					</div>
+					<ul class="capitalize">
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/128.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201106/01101315jo3o/loadImage.htm.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/128.htm">
+												Chengqi Cheng 
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor </span>
+										</div>
+										<div>
+											<span>+86-10-62751966</span>
+										</div>
+										<div>
+											<span>ccq@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/17.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/17102009ex54/3.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/17.htm">
+												Xun Huang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62758538</span>
+										</div>
+										<div>
+											<span>huangxun@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/93.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/20214408wi23/20091127110912572297.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/93.htm">
+												Cunbiao Lee
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62755098</span>
+										</div>
+										<div>
+											<span>cblee@mech.pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 313, Mechanics building </span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/95.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/10143444r449/Caishan Liu.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/95.htm">
+												Caishan Liu 
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62756177</span>
+										</div>
+										<div>
+											<span>liucs@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/96.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/10143213gqs6/Yipeng Shi.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/96.htm">
+												Yipeng Shi 
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Associate Professor </span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/110.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/10143040w5tj/Chao Zhou.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/110.htm">
+												Chao  Zhou
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62751825</span>
+										</div>
+										<div>
+											<span>czhou@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>East Room 202, PKU Jiwu Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+					</ul>
+					<a name='Biomedical Engineering' id='Biomedical Engineering'></a>
+					<div class="current_az" style="color: #333333;font-size: 14px; margin-bottom: 9px;padding-bottom:7px;margin-top: 23px;">
+						<span style="float: left;">Biomedical Engineering</span>
+						<div class="clear"></div>
+					</div>
+					<ul class="capitalize">
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/142.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201304/160944151w0i/Chen A.K.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/142.htm">
+												Antony K. Chen
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62768343</span>
+										</div>
+										<div>
+											<span>chenak@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Integrated Science and Research Building, Room 112</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/40.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/18190043auov/3.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/40.htm">
+												Haifeng Chen
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D. Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62754396</span>
+										</div>
+										<div>
+											<span>haifeng.chen@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Leo KoGuan 2-104</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/134.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/10142533ou6b/Zhifei Dai.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/134.htm">
+												Zhifei Dai
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span>zhifei.dai@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 206, Fangzheng Building, No 298 Chengfu Road</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/143.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201304/16095448494f/Xiaojie Duan1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/143.htm">
+												Xiaojie Duan
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62767113</span>
+										</div>
+										<div>
+											<span>xjduan@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Rm. 206, Founder Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/42.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24200749e4et/2016726797.jpeg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/42.htm">
+												Zigang Ge
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62756736</span>
+										</div>
+										<div>
+											<span>gez@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/57.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/18183700j1rs/3.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/57.htm">
+												Changhui Li
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62767894</span>
+										</div>
+										<div>
+											<span>chli@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room A535, Beida Hospital Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/141.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201211/14172417giuj/Zuhong Lu1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/141.htm">
+												Zuhong Lu
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62756160</span>
+										</div>
+										<div>
+											<span>zuhonglu@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 511 No.1 Building of College of Engineering</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/45.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/2421032337sv/2016635535.jpeg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/45.htm">
+												Ying Luo
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-82529288</span>
+										</div>
+										<div>
+											<span>yluo@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 206, Founder Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/56.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24232043todh/20134455657.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/56.htm">
+												Qiushi Ren
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-6276-7113</span>
+										</div>
+										<div>
+											<span>renqsh@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Beijing 100871  People's Republic of China</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/51.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24224438f544/20155956768.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/51.htm">
+												Jeff Jianzhong Xi
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D.,Professor</span>
+										</div>
+										<div>
+											<span>86-10-6276-0698</span>
+										</div>
+										<div>
+											<span>xi@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/52.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/242251323obt/2016253298.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/52.htm">
+												Peng Xi
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62767155</span>
+										</div>
+										<div>
+											<span>xipeng@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Peking University Hospital A536, No. 5 Yiheyuan Road, Beijing 100871, China</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/53.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24225637izsl/2016453449.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/53.htm">
+												Tianyu Xie
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D.,Professor</span>
+										</div>
+										<div>
+											<span>+86-10- 6276-7405</span>
+										</div>
+										<div>
+											<span>tianyu_xie@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/59.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/170945205o3b/3.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/59.htm">
+												Huaiqiu Zhu
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-6276-7261</span>
+										</div>
+										<div>
+											<span>hqzhu@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Mechanics Building Rm. 505</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+					</ul>
+					<a name='Energy and Resources Engineering' id='Energy and Resources Engineering'></a>
+					<div class="current_az" style="color: #333333;font-size: 14px; margin-bottom: 9px;padding-bottom:7px;margin-top: 23px;">
+						<span style="float: left;">Energy and Resources Engineering</span>
+						<div class="clear"></div>
+					</div>
+					<ul class="capitalize">
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/63.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/29170742iicu/20110303173626238409.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/63.htm">
+												Steven Feng Chen
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Chair Professor</span>
+										</div>
+										<div>
+											<span>+86-10-82529003</span>
+										</div>
+										<div>
+											<span>sfchen@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 206, Founder Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/156.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201601/15110022wiv7/Cheng Ka Wing1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/156.htm">
+												Ka Wing Cheng
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span>+86 13146657923</span>
+										</div>
+										<div>
+											<span>kwcheng@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/38.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24153658czvg/qwer.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/38.htm">
+												Yuan Di
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62757418</span>
+										</div>
+										<div>
+											<span>diyuan@mech.pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/151.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201510/271118558wgv/gsj1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/151.htm">
+												Shaojun Guo
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span>guosj@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/119.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/171115350c1k/2s.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/119.htm">
+												Heng Li
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62562048</span>
+										</div>
+										<div>
+											<span>liheng@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/153.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201601/12105555k4cv/Jin Liu1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/153.htm">
+												Jin Liu
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62766391</span>
+										</div>
+										<div>
+											<span>gjinliu@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Rm 110, COE Building No.1</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/121.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/181831028yvs/3.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/121.htm">
+												Jianchun Mi
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62767074</span>
+										</div>
+										<div>
+											<span>jmi@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/150.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201602/29165406kl5k/fanyang mo.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/150.htm">
+												Fanyang Mo
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span>+86-10-82529331</span>
+										</div>
+										<div>
+											<span>fmo@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 301, Founder Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/69.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/29214314qzpc/20091127112909678889.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/69.htm">
+												Hao Wang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-82529060</span>
+										</div>
+										<div>
+											<span>hwang@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/70.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/30121412a8bc/20091127113151580944.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/70.htm">
+												Xidong Wang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-82529083</span>
+										</div>
+										<div>
+											<span>xidong@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/71.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/301222417gt3/20091021141550591695.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/71.htm">
+												Xiaolei  Wu
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62759047</span>
+										</div>
+										<div>
+											<span>xiaolei_wu@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/139.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/101446484w3n/Dingguo Xia.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/139.htm">
+												Dingguo Xia
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62767962</span>
+										</div>
+										<div>
+											<span>dgxia@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/72.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/30124052igy9/20091021141734259778.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/72.htm">
+												Ling Xu
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Research Associate Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span>lingxu@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/74.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/3013000942ui/20100108093442672245.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/74.htm">
+												Dongxiao Zhang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor </span>
+										</div>
+										<div>
+											<span>+86-10-62757432</span>
+										</div>
+										<div>
+											<span>dxz@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>60 YanNanYuan, Peking University,  Beijing, 100871, P.R. China</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/39.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24154708gjsj/as.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/39.htm">
+												Xinrong Zhang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor </span>
+										</div>
+										<div>
+											<span>+86-10-6275-5052</span>
+										</div>
+										<div>
+											<span>xrzhang@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Rm 812, Wangkezhen Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/102.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/20185343qw19/20091127110912572297.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/102.htm">
+												Chunmiao Zheng 
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-82529073</span>
+										</div>
+										<div>
+											<span>czheng@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/130.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201106/021457181ts6/loadImage.htm.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/130.htm">
+												Ruqiang Zou
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span> (86) 10-62760532</span>
+										</div>
+										<div>
+											<span>rzou@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 403, Integrated Science Research Center, Peking University</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+					</ul>
+					<a name='Industrial Engineering and Management' id='Industrial Engineering and Management'></a>
+					<div class="current_az" style="color: #333333;font-size: 14px; margin-bottom: 9px;padding-bottom:7px;margin-top: 23px;">
+						<span style="float: left;">Industrial Engineering and Management</span>
+						<div class="clear"></div>
+					</div>
+					<ul class="capitalize">
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/88.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/301512573ffq/20091231110653691096.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/88.htm">
+												Tianguang Chu
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62752737</span>
+										</div>
+										<div>
+											<span>chutg@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 234, Mechanics Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/163.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201709/01143810ybh6/pyj.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/163.htm">
+												Yijie Peng
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span>+86-10-82524919</span>
+										</div>
+										<div>
+											<span>pengyijie@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 512, Founder Building, 298 Chengfu Rd, Beijing, China, 100871</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/89.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/10144827qzg6/Leyuan Shi.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/89.htm">
+												Leyuan Shi
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-82524889</span>
+										</div>
+										<div>
+											<span>leyuan@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span>PekingUniversity  Beijing,100871, China</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/136.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201504/13132752c1nt/DSC_0008.JPG">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/136.htm">
+												Jie Song
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span>songjie@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/91.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/30155839qyw5/20091127145555562570.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/91.htm">
+												Long Wang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span>longwang@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/129.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201106/011328211kp1/2010324115817763.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/129.htm">
+												Qining Wang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor </span>
+										</div>
+										<div>
+											<span>86-10-62769138</span>
+										</div>
+										<div>
+											<span>qiningwang@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 235, Mechanics Building, Peking University</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/164.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201710/13144337jejo/wujianguo1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/164.htm">
+												Jianguo Wu 
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/114.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/16181203n7q7/xgm.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/114.htm">
+												Guangming Xie
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor </span>
+										</div>
+										<div>
+											<span>(86) 10-62754083</span>
+										</div>
+										<div>
+											<span>xiegming@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Mechanics Building 232</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/132.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/10142444lvm6/Xiaoyun Xu.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/132.htm">
+												Xiaoyun Xu
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span>+86-10-82524866</span>
+										</div>
+										<div>
+											<span>xiaoyun.xu@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 608, Founder Bld., 298 Chengfu Road</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/115.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/16181736d0uc/zx.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/115.htm">
+												Xi Zhang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span>(86)10-82524911</span>
+										</div>
+										<div>
+											<span>xi.zhang@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Founder Building 608</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/116.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/16182256pib5/zq.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/116.htm">
+												Qiang Zheng
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span> Ph.D.,Professor </span>
+										</div>
+										<div>
+											<span>(010) 6275-6142</span>
+										</div>
+										<div>
+											<span>zhengqiang@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Life Sciences Building 613</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+					</ul>
+					<a name='Materials Science and Engineering' id='Materials Science and Engineering'></a>
+					<div class="current_az" style="color: #333333;font-size: 14px; margin-bottom: 9px;padding-bottom:7px;margin-top: 23px;">
+						<span style="float: left;">Materials Science and Engineering</span>
+						<div class="clear"></div>
+					</div>
+					<ul class="capitalize">
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/78.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201703/0608494113bd/baishulin1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/78.htm">
+												Shulin Bai
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62759379</span>
+										</div>
+										<div>
+											<span>slbai@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/79.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/161627465knj/a.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/79.htm">
+												Anyuan Cao
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62767142</span>
+										</div>
+										<div>
+											<span>anyuan@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 2-204, LiaoKaiYuanLou </span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/159.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201609/28142416g26f/cui yue11.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/159.htm">
+												Yue Cui
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-82524860</span>
+										</div>
+										<div>
+											<span>ycui@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/80.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/30135221uctu/20091127141102414492.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/80.htm">
+												Shuxiang Dong
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62765994</span>
+										</div>
+										<div>
+											<span>sxdong@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/151.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201510/271118558wgv/gsj1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/151.htm">
+												Shaojun Guo
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span>guosj@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/81.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/30140516lbwp/20091127141239805535.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/81.htm">
+												Pingchou Han 
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span> +86-10-62767394 </span>
+										</div>
+										<div>
+											<span>ray-han@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 211, Dianjiao Building, Peking University Beijing, 100871, China</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/82.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/16170442mm2r/2s.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/82.htm">
+												Yanglong Hou
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62753115</span>
+										</div>
+										<div>
+											<span>hou@pku.edu.cn</span>
+										</div>
+										<div>
+											<span> 2-105 Liao Kai Yuan Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/83.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/251223556edp/3.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/83.htm">
+												Yanyi Huang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Sc.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62744058</span>
+										</div>
+										<div>
+											<span>yanyi@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Keo Koguan 2-205, BIOPIC 202</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/85.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/10164817anr0/sq.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/85.htm">
+												Qiang Sun
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62752043</span>
+										</div>
+										<div>
+											<span>sunqiang@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>PekingUniversity  Beijing, 100871, China</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/157.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201603/21171539jx0q/wangqian2.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/157.htm">
+												Qian Wang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62755644</span>
+										</div>
+										<div>
+											<span>qianwang2@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/139.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/101446484w3n/Dingguo Xia.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/139.htm">
+												Dingguo Xia
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62767962</span>
+										</div>
+										<div>
+											<span>dgxia@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/131.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201609/06135223de2x/yangh1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/131.htm">
+												Huai Yang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62766919</span>
+										</div>
+										<div>
+											<span>yanghuai@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 602, No. 1 Building, College of Engineering, Peking University, No. 5 Yiheyuan Road Haidian District, Beijing, P.R. China, 100871</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/133.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201202/271658122knx/Yu1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/133.htm">
+												Haifeng Yu
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62764244</span>
+										</div>
+										<div>
+											<span>yuhaifeng@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 614, No.1 Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/140.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201209/19150721jpez/xiaowei zhan.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/140.htm">
+												Xiaowei Zhan
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D, Professor</span>
+										</div>
+										<div>
+											<span>86-10-62766835</span>
+										</div>
+										<div>
+											<span>xwzhan@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/158.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201605/23164042twzx/zhnag-qing.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/158.htm">
+												Qing Zhang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span>q_zhang@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Rm. 206, Founder Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/111.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/25175856q5fj/3.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/111.htm">
+												Yanfeng Zhang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span>(86) 10-62751728</span>
+										</div>
+										<div>
+											<span>Yanfengzhang@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>College of Chemistry and Molecular Engineering, A-405</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/86.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/16173618qd5x/zzz.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/86.htm">
+												Yufeng Zheng
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D.,Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62767411</span>
+										</div>
+										<div>
+											<span>yfzheng@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 218, Mechanics Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/152.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201601/111108011c8r/zhouhp1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/152.htm">
+												Huanping Zhou
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span>hpzhou@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 206, Founder Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/130.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201106/021457181ts6/loadImage.htm.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/130.htm">
+												Ruqiang Zou
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span> (86) 10-62760532</span>
+										</div>
+										<div>
+											<span>rzou@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 403, Integrated Science Research Center, Peking University</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+					</ul>
+					<a name='Mechanics and Engineering Science' id='Mechanics and Engineering Science'></a>
+					<div class="current_az" style="color: #333333;font-size: 14px; margin-bottom: 9px;padding-bottom:7px;margin-top: 23px;">
+						<span style="float: left;">Mechanics and Engineering Science</span>
+						<div class="clear"></div>
+					</div>
+					<ul class="capitalize">
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/4.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/23002226mv49/cai.gif">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/4.htm">
+												Qingdong Cai
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62757942</span>
+										</div>
+										<div>
+											<span>caiqd@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Mechanics Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/62.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/10165547urmi/cgx2.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/62.htm">
+												Guoxin Cao
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62756284</span>
+										</div>
+										<div>
+											<span>caogx@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 412, Mechanics Building </span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/6.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201411/19153001cpxn/chenguoqian1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/6.htm">
+												Guoqian Chen
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span>gqchen@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/100.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/10144950icw0/Pu Chen.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/100.htm">
+												Pu Chen 
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62751828</span>
+										</div>
+										<div>
+											<span>chenpuus@yahoo.com</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/7.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24165006qfb0/20091204150455978859.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/7.htm">
+												Shiyi Chen
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62757426</span>
+										</div>
+										<div>
+											<span>syc@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span>No.60 Yannan Yuan</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/8.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24174310swgm/20091021133205660694.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/8.htm">
+												Yongqiang Chen
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62757890 </span>
+										</div>
+										<div>
+											<span>chenyq@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/9.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/25155903w442/3.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/9.htm">
+												Zheng Chen
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62568935</span>
+										</div>
+										<div>
+											<span>cz@pku.edu.cn</span>
+										</div>
+										<div>
+											<span> College of Engineering, Peking University</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/10.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201411/14105433cgg6/Huiling Duan1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/10.htm">
+												Huiling Duan
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+ 86-10-62753228</span>
+										</div>
+										<div>
+											<span>hlduan@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/11.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/17100611ov4p/3.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/11.htm">
+												Zhisheng Duan
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62765037</span>
+										</div>
+										<div>
+											<span>duanzs@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 231, Mechanics Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/41.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/250717587h5j/201616609.jpeg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/41.htm">
+												Jing Fang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62753237</span>
+										</div>
+										<div>
+											<span>jfang@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/13.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/20225627r0qr/20091127110912572297.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/13.htm">
+												Ceji Fu
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62753675 </span>
+										</div>
+										<div>
+											<span>cjfu@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/14.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24082656zsq8/20091127101356504537.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/14.htm">
+												Zhiyong Geng
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62761043 </span>
+										</div>
+										<div>
+											<span>zygeng@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/103.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/02012103uc33/2011389189241.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/103.htm">
+												Xiantu He
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Academician</span>
+										</div>
+										<div>
+											<span>+86-10-62564072</span>
+										</div>
+										<div>
+											<span>xthe@iapcm.ac.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/16.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24084928mrim/20091204094602660270.gif">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/16.htm">
+												Lin Huang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Academician</span>
+										</div>
+										<div>
+											<span>+86-10-62764044 </span>
+										</div>
+										<div>
+											<span>hl35hj75@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/144.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201304/27102831l19w/yunlong_huo1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/144.htm">
+												Yunlong Huo
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62755417</span>
+										</div>
+										<div>
+											<span>yhuo@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Mechanics Building 507, College of Engineering, Peking University, Beijing 100871</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/135.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201205/07143548yv91/Wei Kang1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/135.htm">
+												Wei Kang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Associate Professor</span>
+										</div>
+										<div>
+											<span>86-10-62754177</span>
+										</div>
+										<div>
+											<span>weikang@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/18.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24091507f5b4/20091127104322845140.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/18.htm">
+												Faxin Li
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62757454</span>
+										</div>
+										<div>
+											<span>lifaxin@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/19.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/250016365v3d/loadImage.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/19.htm">
+												Shuixiang Li
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62753603</span>
+										</div>
+										<div>
+											<span>lsx@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/20.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/251250552dxe/3.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/20.htm">
+												Zheng Li
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph. D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62754624</span>
+										</div>
+										<div>
+											<span>lizheng@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Room 419, Mechanics Building</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/94.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/10145310mh6n/Zhi Li.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/94.htm">
+												Zhi Li
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62754280</span>
+										</div>
+										<div>
+											<span>zhili@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/145.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201309/12100915yemd/zhongkui Li.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/145.htm">
+												Zhongkui Li
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span>zhongkli@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/21.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201107/2321051573jm/no_face.gif">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/21.htm">
+												Jianfei Liu
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span>ljf@mech.pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/147.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201406/17150006ay0o/Michael Li Liu1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/147.htm">
+												Li Michael Liu
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Adjunct Professor</span>
+										</div>
+										<div>
+											<span>+86-18600655852</span>
+										</div>
+										<div>
+											<span>liuli@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span>2415 Ziyuan West Building, Peking University, Beijing China 100871</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/149.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201411/24140455ha9j/liumoubin1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/149.htm">
+												Moubin Liu
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-82529039</span>
+										</div>
+										<div>
+											<span>mbliu@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/23.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24100940ykda/20100105142156690632.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/23.htm">
+												Yongmao Pei
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62757417</span>
+										</div>
+										<div>
+											<span>peiym@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Beijing, 100871, China</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/58.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/1017005992pp/rqg3.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/58.htm">
+												Qiguo Rong
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-6275-7429</span>
+										</div>
+										<div>
+											<span>qrong@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Lixue Building 303 Beijing 100871 People's Republic of China</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/24.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24101411a3m4/20091204101947528380.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/24.htm">
+												Zhensu She
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+ 86-10-62757944 </span>
+										</div>
+										<div>
+											<span>she@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Beijing, 100871, China </span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/96.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/10143213gqs6/Yipeng Shi.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/96.htm">
+												Yipeng Shi 
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Associate Professor </span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/25.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/17104332jyhz/3.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/25.htm">
+												Weidong Su
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62759674 </span>
+										</div>
+										<div>
+											<span>swd@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/98.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201210/10145413bn4s/Shuli Sun.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/98.htm">
+												Shuli Sun 
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62757418</span>
+										</div>
+										<div>
+											<span>sunsl@mech.pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/48.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201105/20184314vnz7/20091127110912572297.png">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/48.htm">
+												Wenchang Tan
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62754244 </span>
+										</div>
+										<div>
+											<span>tanwch@mech.pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/27.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201404/17120555a4o9/tsq1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/27.htm">
+												Shaoqiang Tang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+8610-62755410</span>
+										</div>
+										<div>
+											<span>maotang@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Beijing, 100871, China </span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/60.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/25164825c61k/20091127110117477842.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/60.htm">
+												Jianjun Tao
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86+10-62756151</span>
+										</div>
+										<div>
+											<span>jjtao@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/29.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/2411192157q3/20091127110549609052.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/29.htm">
+												Jianping Wang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D. , Professor</span>
+										</div>
+										<div>
+											<span>+8610-82529038</span>
+										</div>
+										<div>
+											<span>wangjp@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Beijing, 100871, China</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/30.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24122223imya/20091127110732829107.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/30.htm">
+												Jianxiang Wang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+ 86-10-62757948</span>
+										</div>
+										<div>
+											<span>jxwang@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Mechanics Building 417</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/31.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24123202t29d/20091127110912572297.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/31.htm">
+												Jinzhi Wang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor  </span>
+										</div>
+										<div>
+											<span>+86-10-62754032</span>
+										</div>
+										<div>
+											<span>jinzhiw@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Beijing, 100871, China</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/32.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24124331zqby/20091127111038880338.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/32.htm">
+												Yong Wang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62757946</span>
+										</div>
+										<div>
+											<span>yongwang@mech.pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/155.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201703/09105313bs4r/xdwei1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/155.htm">
+												Xiaoding Wei
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62765844</span>
+										</div>
+										<div>
+											<span>xdwei@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>Mechanics Building 421</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/160.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201612/16104218czrz/weiyg1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/160.htm">
+												Yueguang Wei
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62767191</span>
+										</div>
+										<div>
+											<span>weiyg@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/34.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24130554s6p8/20091127154751533588.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/34.htm">
+												Zuoli Xiao
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D. , Associate Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62567941   </span>
+										</div>
+										<div>
+											<span>zxiao@coe.pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/54.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201104/24230413c7o0/20155629897.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/54.htm">
+												Chunyang Xiong
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-6275-7940</span>
+										</div>
+										<div>
+											<span>cyxiong@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/36.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201411/051120335wuy/Jianying Yang1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/36.htm">
+												Jianying Yang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62765963</span>
+										</div>
+										<div>
+											<span>yjy@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/162.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201707/03114618gb08/yang yantao.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/162.htm">
+												Yantao Yang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span>yantao.yang@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/35.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201411/141108315vi5/yang ying1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/35.htm">
+												Ying Yang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D. , Professor</span>
+										</div>
+										<div>
+											<span>+86-10-62751815</span>
+										</div>
+										<div>
+											<span>yy@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/146.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201309/17102316xmoz/yangyue-s.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/146.htm">
+												Yue Yang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span>yyg@pku.edu.cn</span>
+										</div>
+										<div>
+											<span>310 Building #1, College of Engineering</span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/161.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201703/091110262pzx/yixin.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/161.htm">
+												Xin Yi
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Assistant Professor</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+										<div>
+											<span>xyi@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+							<li style="border-bottom: 1px dotted gray;padding:9px 0;">
+								<div>
+									<div class="fl photo_hover">
+										<a href="/Faculty-by-Dept/55.htm">
+												<img width="100" height="100" src="/loadImage.htm?imagePath=photo/201411/19151209l3yf/zhangjue1.jpg">
+										</a>
+									</div>
+									<div class="fl" style="padding-left: 7px;color: gray;width: 605px;">
+										<div style="padding-bottom: 5px;">
+											<a href="/Faculty-by-Dept/55.htm">
+												Jue Zhang
+											</a>&nbsp;&nbsp;&nbsp;
+										</div>
+										<div>
+											<span>Ph.D., Associate Professor</span>
+										</div>
+										<div>
+											<span> +86-10-6275-5036</span>
+										</div>
+										<div>
+											<span>zhangjue@pku.edu.cn</span>
+										</div>
+										<div>
+											<span></span>
+										</div>
+									</div>
+									<div class="fr" style="vertical-align: bottom;">
+										<a href="#top" style="float: right;font-weight: normal;;color:#333333;font-size:11px;">top ↑</a>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</li>
+					</ul>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+		</div>
+<link href="/css/footer.css" type="text/css" rel="stylesheet">
+<div id="footer">
+	<div class="footer_nav">
+		<h3>
+			<a href="#">Directory</a>
+			<span class="footer_line">|</span>
+		</h3>
+		<h3>
+			<a href="http://www.coe.pku.edu.cn" target="_blank">简体中文</a>
+			<span class="footer_line">|</span>
+		</h3>
+		<h3>
+			<a href="http://english.pku.edu.cn" target="_blank">Peking University</a>
+			<span class="footer_line">|</span>
+		</h3>
+		<h3>
+			<a channelId='12' href="/contact-us/index.htm">Contact Us</a>
+			<span class="footer_line">|</span>
+		</h3>
+		<h3>
+			<a href="/links.htm" class="last">Useful Links</a>
+		</h3>
+		<div class="clear"></div>
+	</div>
+	<address>
+		No.60 Yannan Yuan, Peking University
+		<br>
+		Beijing, 100871, China
+	</address>
+	<p>
+		&copy; Copyright 2011 College of Engineering, Peking University. All Rights Reserved.
+		<script src="http://s20.cnzz.com/stat.php?id=3182393&web_id=3182393&show=pic" language="JavaScript"></script>
+	</p>
+</div>	</div>
+  </body>
+</html>

@@ -5,6 +5,19 @@ import re
 from bs4 import BeautifulSoup
 from bs4.element import NavigableString
 
+def c_token(text):
+  special_chars = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿšŽčžŠšČłńężść".decode("utf-8")
+  chars         = "aaaaaaeceeeeiiiidnoooooxouuuuypsaaaaaaeceeeeiiiionooooooouuuuypysZczSsClnezsc"
+
+  new_text = ""
+  for c in text:
+    index = special_chars.find(c)
+    if index != -1:
+      new_text += chars[index]
+    else:
+      new_text += c
+  return new_text
+
 class Token():
   def __init__(self, tkn, element, is_first_tkn, last_tkn, next_tkn, word_pos):
     self.tkn = tkn
@@ -29,7 +42,10 @@ class Token():
     self.class_name = ""
     while element != None:
       if element.has_attr("class"):
-        self.class_name = " ".join(element.get("class"))
+        try:
+          self.class_name = c_token(" ".join(element.get("class")).encode('utf-8'))
+        except:
+          break
         break
       element = element.parent
     # if element.has_attr('class'):

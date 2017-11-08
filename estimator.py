@@ -81,9 +81,10 @@ class Estimator():
     if tkn_value in self.name_cond_probs:
       prob_name = self.name_cond_probs[tkn_value]
 
-    incidence = self.unique_tkns[tkn_value]
-    prob_word += self.token_incidence[incidence][0]
-    prob_name += self.token_incidence[incidence][1]
+    if tkn_value in self.unique_tkns:
+      incidence = self.unique_tkns[tkn_value]
+      prob_word += self.token_incidence[incidence][0]
+      prob_name += self.token_incidence[incidence][1]
 
     # Token length.
     length = len(tkn_value) if len(tkn_value) < 9 else 9
@@ -93,18 +94,26 @@ class Estimator():
     if second_passing:
       # print tkn.tkn, tkn.class_name, self.class_names[tkn.class_name], self.first_parents[tkn.parent]
       # print tkn.tkn, prob_word, prob_name
-      prob_word += self.first_parents[tkn.parent][0]
+      if tkn.parent in self.first_parents:
+        prob_word += self.first_parents[tkn.parent][0]
+        prob_name += self.first_parents[tkn.parent][1]
+
+      if tkn.third_parent in self.third_parents:
+        prob_word += self.third_parents[tkn.third_parent][0]
+        prob_name += self.third_parents[tkn.third_parent][1]
+
+      if tkn.class_name in self.class_names:
+        prob_word += self.class_names[tkn.class_name][0]
+        prob_name += self.class_names[tkn.class_name][1]
+
+      if tkn.element_position in self.element_positions:
+        prob_word += self.element_positions[tkn.element_position][0]
+        prob_name += self.element_positions[tkn.element_position][1]
+
       # prob_word += self.second_parents[tkn.second_parent][0]
-      prob_word += self.third_parents[tkn.third_parent][0]
-      prob_word += self.class_names[tkn.class_name][0]
       # prob_word += self.child_pos_[tkn.text_depth][0]
-      prob_word += self.element_positions[tkn.element_position][0]
-      prob_name += self.first_parents[tkn.parent][1]
       # prob_name += self.second_parents[tkn.second_parent][1]
-      prob_name += self.third_parents[tkn.third_parent][1]
-      prob_name += self.class_names[tkn.class_name][1]
       # prob_name += self.child_pos_[tkn.text_depth][1]
-      prob_name += self.element_positions[tkn.element_position][1]
     # print tkn.tkn, prob_word, prob_name
 
     return prob_word, prob_name
@@ -182,7 +191,9 @@ class Estimator():
       self.class_names[tkn.class_name][index] += 1
       self.child_pos_[tkn.text_depth][index] += 1
       self.element_positions[tkn.element_position][index] += 1
-
+ 
+    name_count += 1
+    not_name_count += 1
     for key in self.first_parents:
       self.first_parents[key][0] = log(float(self.first_parents[key][0] + 1) / (not_name_count + len(self.first_parents)))
       self.first_parents[key][1] = log(float(self.first_parents[key][1] + 1) / (name_count + len(self.first_parents)))

@@ -61,38 +61,39 @@ feature_labels = [
   'length', 'num_names'
 ]
 
+tokenizer = Tokenizer()
+model = create_model()
 class WebPage:
-  def __init__(self, tokenizer, model, url, filename):
+  def __init__(self, tokenizer, model, url, html):
     self.tokenizer = tokenizer 
-    self.model = model
+    self.m = model
     self.url = url
-    print url
     self.features = []
-    with open(filename) as f:
-      html =  f.read()
-      soup = BeautifulSoup(html, 'html.parser')
-      title = soup.find('title')
 
-      # print [t.tkn for t in self.tokenizer.tokenize_text(url)]
-      self.features = self.features + self.generate_url_features(url.decode('utf-8'))
-      self.features = self.features + self.generate_title_features([title])
-      self.features = self.features + self.generate_title_features(soup.find_all('h1'))
-      self.features = self.features + self.generate_title_features(soup.find_all('h2'))
-      self.features = self.features + self.generate_title_features(soup.find_all('h3'))
+    soup = BeautifulSoup(html, 'html.parser')
+    title = soup.find('title')
 
-      [s.extract() for s in soup('script')]
-      [s.extract() for s in soup('style')]
-      [s.extract() for s in soup('title')]
-      [s.extract() for s in soup('h1')]
-      [s.extract() for s in soup('h2')]
-      [s.extract() for s in soup('h3')]
-      self.features = self.features + self.generate_text_features(soup.find('body'))
-      self.model.extract(filename)
+    # print [t.tkn for t in self.tokenizer.tokenize_text(url)]
+    self.features = self.features + self.generate_url_features(url.decode('utf-8'))
+    self.features = self.features + self.generate_title_features([title])
+    self.features = self.features + self.generate_title_features(soup.find_all('h1'))
+    self.features = self.features + self.generate_title_features(soup.find_all('h2'))
+    self.features = self.features + self.generate_title_features(soup.find_all('h3'))
 
-      # Most important feature: number of names found.
-      self.features = self.features + [len(self.model.found_names)]
-     
-      print [(feature_labels[i], self.features[i]) for i in range(0, len(self.features))]
+    [s.extract() for s in soup('script')]
+    [s.extract() for s in soup('style')]
+    [s.extract() for s in soup('title')]
+    [s.extract() for s in soup('h1')]
+    [s.extract() for s in soup('h2')]
+    [s.extract() for s in soup('h3')]
+    self.features = self.features + self.generate_text_features(soup.find('body'))
+    self.m.extract_html(html)
+
+    # Most important feature: number of names found.
+    self.features = self.features + [len(self.m.found_names)]
+    
+    # print [(feature_labels[i], self.features[i]) for i in range(0, len(self.features))]
+    # sys.stdout.flush()
 
   def get_text_from_element(self, element):
     if element == None:
@@ -136,105 +137,117 @@ class WebPage:
     features[-1] = len(tkns)
     return features
 
+class Classifier:
+  def __init__(self):
+    self.m = create_model()
+
+    # Classifier.
+    faculty_data = []
+    non_faculty_data = []
+
+    data_path = "data/"
+    faculty_file = data_path + 'faculty_classifier_features_2.txt'
+    non_faculty_file = data_path + 'non_faculty_classifier_features_2.txt'
+    with open(faculty_file) as f: 
+      for line in f:
+        if len(line) > 1:
+          faculty_data.append([int(x) for x in line.split(', ')])
+
+    with open(non_faculty_file) as f: 
+      for line in f:
+        if len(line) > 1:
+          non_faculty_data.append([int(x) for x in line.split(', ')])
+
+    x = non_faculty_data[:-100] + faculty_data[20:] 
+    y = [0] * (len(non_faculty_data) - 100)
+    y = y + [1] * (len(faculty_data) - 20)
+
+    x_test = non_faculty_data[-100:] + faculty_data[:20]
+    y_test = [0] * 100 + [1] * 20
+
+    # Create classifiers
+    # m = GaussianNB()
+    # m = LogisticRegression()
+    # m = LinearSVC(C=1.0)
+    m = RandomForestClassifier(n_estimators=100)
+    
+    self.model = m.fit(x, y)
+ 
+    # x_test = x
+    # y_test = y 
+    # predicted = self.model.predict(x_test)
+    # np.set_printoptions(threshold='nan')
+    # print predicted
+    # errors = 0
+    # for i in range(0, len(y_test)):
+    #   if predicted[i] != y_test[i]:
+    #     errors += 1
+
+    #     if i > len(non_faculty_data) - 100:
+    #       print "Errou faculty", i - len(non_faculty_data) + 100
+    #     else:
+    #       print "Errou non faculty", i
+    # print 'Errors:', errors, '/', len(y_test)
+
+  def Predict(self, url, text):
+    web_page = WebPage(tokenizer, self.m, url, text)
+    predicted = self.model.predict([web_page.features])
+    return predicted[0]
+
 if __name__ == "__main__":
-  tokenizer = Tokenizer()
-  model = create_model()
-
   # Faculty
-  faculty_path = "downloaded_pages/faculty/"
-  files = [f for f in os.listdir(faculty_path) if os.path.isfile(os.path.join(faculty_path, f))]
+  # faculty_path = "downloaded_pages/faculty/"
+  # files = [f for f in os.listdir(faculty_path) if os.path.isfile(os.path.join(faculty_path, f))]
 
-  faculty_features = [[]] * 216
-  urls = [0] * 216
-  with open('data/faculty_pages.txt') as f: 
-    i = 0
-    for line in f:
-      urls[i] = line.strip()
-      i += 1
+  # faculty_features = [[]] * 331
+  # urls = [0] * 331
+  # with open('data/faculty_pages.txt') as f: 
+  #   i = 0
+  #   for line in f:
+  #     urls[i] = line.strip()
+  #     i += 1
 
-  for i in range(1, 217):
-    num = str(i).zfill(3)
-    # num = int(f[:3])
-    f = str(num) + '.html'
-    print f
-    if os.path.isfile(os.path.join(faculty_path, f)):
-      web_page = WebPage(tokenizer, model, urls[i - 1], faculty_path + f)
-      faculty_features[i - 1] = web_page.features
+  # for i in range(1, 331):
+  #   num = str(i).zfill(3)
+  #   # num = int(f[:3])
+  #   f = str(num) + '.html'
+  #   print f
+  #   if os.path.isfile(os.path.join(faculty_path, f)):
+  #     with open(faculty_path + f) as file:
+  #       html =  file.read()
+  #       web_page = WebPage(tokenizer, model, urls[i - 1], html)
+  #       faculty_features[i - 1] = web_page.features
 
-  print '================================================='
-  for features in faculty_features:
-    print ', '.join([str(f) for f in features])
+  # print '================================================='
+  # for features in faculty_features:
+  #   print ', '.join([str(f) for f in features])
+  # sys.stdout.flush()
   
 
   # Non Faculty
   # non_faculty_path = "../name_extractor_data/non_faculty/"
   # files = [f for f in os.listdir(non_faculty_path) if os.path.isfile(os.path.join(non_faculty_path, f))]
 
-  # non_faculty_features = [[]] * 1174
-  # urls = [0] * 1174
+  # non_faculty_features = [[]] * 1541
+  # urls = [0] * 1541
   # with open('data/non_faculty_pages.txt') as f: 
   #   i = 0
   #   for line in f:
   #     urls[i] = line.strip()
   #     i += 1
 
-  # for i in range(1, 1175):
+  # for i in range(1, 1542):
   #   num = str(i)
   #   f = str(num) + '.html'
   #   print f
   #   if os.path.isfile(os.path.join(non_faculty_path, f)):
-  #     web_page = WebPage(tokenizer, model, urls[i - 1], non_faculty_path + f)
-  #     non_faculty_features[i - 1] = web_page.features
+  #     with open(non_faculty_path + f) as file:
+  #       html =  file.read()
+  #       web_page = WebPage(tokenizer, model, urls[i - 1], html)
+  #       non_faculty_features[i - 1] = web_page.features
 
   # print '================================================='
   # for features in non_faculty_features:
   #   print ', '.join([str(f) for f in features])
 
-
-  # Classifier.
-  # faculty_data = []
-  # non_faculty_data = []
-
-  # data_path = "data/"
-  # faculty_file = data_path + 'faculty_classifier_features.txt'
-  # non_faculty_file = data_path + 'non_faculty_classifier_features.txt'
-  # with open(faculty_file) as f: 
-  #   for line in f:
-  #     if len(line) > 1:
-  #       faculty_data.append([int(x) for x in line.split(', ')])
-
-  # with open(non_faculty_file) as f: 
-  #   for line in f:
-  #     if len(line) > 1:
-  #       non_faculty_data.append([int(x) for x in line.split(', ')])
-
-  # x = non_faculty_data[:-100] + faculty_data[:-20]
-  # y = [0] * (len(non_faculty_data) - 100)
-  # y = y + [1] * (len(faculty_data) - 20)
-
-  # x_test = non_faculty_data[-100:] + faculty_data[-20:]
-  # y_test = [0] * 100 + [1] * 20
-
-  # # Create classifiers
-  # # m = GaussianNB()
-  # # m = LogisticRegression()
-  # # m = LinearSVC(C=1.0)
-  # m = RandomForestClassifier(n_estimators=100)
-  # 
-  # model = m.fit(x, y)
- 
-  # x_test = x
-  # y_test = y 
-  # predicted = model.predict(x_test)
-  # np.set_printoptions(threshold='nan')
-  # print predicted
-  # errors = 0
-  # for i in range(0, len(y_test)):
-  #   if predicted[i] != y_test[i]:
-  #     errors += 1
-
-  #     if i > len(non_faculty_data) - 100:
-  #       print "Errou faculty", i - len(non_faculty_data) + 100
-  #     else:
-  #       print "Errou non faculty", i
-  # print 'Errors:', errors, '/', len(y_test)
+  classifier  = Classifier()

@@ -4,10 +4,12 @@
 import sys
 import io
 import os
-from tokenize_text import tokenize_text
+from tokenizer import Tokenizer
+
+tokenizer = Tokenizer()
 
 def tokenize(text):
-  return (" ".join(tokenize_text(text.decode("utf-8").strip()))).strip()
+  return (" ".join(tokenizer.tokenize_text(text.decode("utf-8").strip()))).strip()
 
 def calculate_errors(expected_names_file, test_names):
   type_1_errors = [] # False positive.

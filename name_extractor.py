@@ -115,17 +115,19 @@ class Model():
       if verbose: print name, self.found_names[name]
       else: print name
 
+  def extract_html(self, html):
+    tkns = self.tokenizer.tokenize(html)
+    # self.estimator.calculate_tkn_incidence(tkns)
+    tkns = self.extract_names(tkns, False)
+    # for i in range(0, 3):
+    #   self.estimator.calculate_secondary_features(tkns)
+    #   tkns = self.tokenizer.tokenize(html)
+    #   tkns = self.extract_names(tkns, True)
+
   def extract(self, filename):
     with open(filename) as f:
       html =  f.read()
-
-      tkns = self.tokenizer.tokenize(html)
-      self.estimator.calculate_tkn_incidence(tkns)
-      tkns = self.extract_names(tkns, False)
-      for i in range(0, 3):
-        self.estimator.calculate_secondary_features(tkns)
-        tkns = self.tokenizer.tokenize(html)
-        tkns = self.extract_names(tkns, True)
+      self.extract_html(html)
 
 def create_model():
   tokenizer = Tokenizer()
