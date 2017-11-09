@@ -2,6 +2,8 @@
 
 import psycopg2
 import datetime
+import sys
+import re
 
 class DB():
   class __DB():
@@ -28,6 +30,8 @@ class DB():
 
   def execute(self, query):
     DB.instance.cur = DB.instance.conn.cursor()
+    # print 'Executing query', query
+    sys.stdout.flush()
     DB.instance.cur.execute(query)
     DB.instance.conn.commit()
 
@@ -51,6 +55,39 @@ class Entity():
   def escape(text):
     return text.replace("'", "''")
 
+  @staticmethod
+  def trim(text): 
+    if text == '':
+      return None
+
+    if len(text) > 0 and text[0] == '"':
+      text = text[1:]
+    if len(text) > 0 and text[-1] == '"':
+      text = text[:-1]
+    return text.replace('\\\\', '\\')
+
+  @classmethod
+  def arr_to_values(cls, text): 
+    matches = re.findall('(("(("")|[^"])+")|([^,]+)|,)', text)
+    matches = [m[0] for m in matches]
+    row = []
+    value = ''
+    for m in matches:
+      if m == ',':
+        row.append(value)
+        value = ''
+      else:
+        value = m
+
+    if len(m) > 1:
+      row.append(value)
+     
+    values = {}
+    for i in range(0, len(cls.fields)):
+      values[cls.fields[i]] = Entity.trim(row[i + 1])
+    values['id'] = Entity.trim(row[0])
+    return values
+
   @classmethod
   def all(cls):
     field_str = ', '.join(cls.fields)
@@ -62,7 +99,7 @@ class Entity():
       values = {}
       row = row[0][1:-1].split(',')
       for i in range(0, len(cls.fields)):
-        values[cls.fields[i]] = row[i + 1] if row[i + 1] != '' else None
+        values[cls.fields[i]] = Entity.trim(row[i + 1])
       obj = cls(values)
       obj.values['id'] = int(row[0])
       objs.append(obj)
@@ -88,8 +125,10 @@ class Entity():
 
   @classmethod
   def find(cls, id):
-    DB().execute('SELECT * FROM %s WHERE id = %d' % (cls.table_name, id))
-    return DB().fetch()
+    DB().execute('SELECT (id, ' + ', '.join(cls.fields) + ') FROM %s WHERE id = %d' % (cls.table_name, id))
+    row = DB().fetch()
+    if len(row) == 0: return None
+    return cls(cls.arr_to_values(row[0][0][1:-1]))
 
   def update(self):
     if self.values['id'] == None:
@@ -133,7 +172,7 @@ class DblpResearcher(Entity):
     values = {}
     row = row[0][0][1:-1].split(',')
     for i in range(0, len(DblpResearcher.fields)):
-      values[DblpResearcher.fields[i]] = row[i + 1] if row[i + 1] != '' else None
+      values[DblpResearcher.fields[i]] = Entity.trim(row[i + 1])
     obj = DblpResearcher(values)
     obj.values['id'] = int(row[0])
     return obj
@@ -158,7 +197,7 @@ class ResearchGroup(Entity):
     values = {}
     row = row[0][0][1:-1].split(',')
     for i in range(0, len(ResearchGroup.fields)):
-      values[ResearchGroup.fields[i]] = row[i + 1] if row[i + 1] != '' else None
+      values[ResearchGroup.fields[i]] = Entity.trim(row[i + 1])
     obj = ResearchGroup(values)
     obj.values['id'] = int(row[0])
     return obj
@@ -179,7 +218,7 @@ class Url(Entity):
     values = {}
     row = row[0][0][1:-1].split(',')
     for i in range(0, len(Url.fields)):
-      values[Url.fields[i]] = row[i + 1] if row[i + 1] != '' else None
+      values[Url.fields[i]] = Entity.trim(row[i + 1])
     obj = Url(values)
     obj.values['id'] = int(row[0])
     return obj
@@ -200,7 +239,7 @@ class Url(Entity):
       values = {}
       row = row[0][1:-1].split(',')
       for i in range(0, len(Url.fields)):
-        values[Url.fields[i]] = row[i + 1] if row[i + 1] != '' else None
+        values[Url.fields[i]] = Entity.trim(row[i + 1])
       obj = Url(values)
       obj.values['id'] = int(row[0])
       objs.append(obj)
@@ -227,7 +266,47 @@ class WebPage(Entity):
     values = {}
     row = row[0][0][1:-1].split(',')
     for i in range(0, len(WebPage.fields)):
-      values[WebPage.fields[i]] = row[i + 1] if row[i + 1] != '' else None
+      values[WebPage.fields[i]] = Entity.trim(row[i + 1])
+    obj = WebPage(values)
+    obj.values['id'] = int(row[0])
+    return obj
+
+  @staticmethod
+  def get_num_unknown():
+    query = "SELECT COUNT (*) FROM " + WebPage.table_name + \
+            " WHERE is_faculty_repo IS NULL"
+    DB().execute(query)
+    row = DB().fetch() 
+    return row[0][0]
+
+  @staticmethod
+  def get_first_unknown():
+    field_str = ', '.join(WebPage.fields)
+    query = "SELECT (id, " + field_str + ") FROM " + WebPage.table_name + \
+            " WHERE is_faculty_repo IS NULL LIMIT 1"
+    DB().execute(query)
+
+    objs = []
+    row = DB().fetch()
+    if len(row) == 0: return None
+
+    matches = re.findall('(("(("")|[^"])+")|([^,]+)|,)', row[0][0][1:-1])
+    matches = [m[0] for m in matches]
+    row = []
+    value = ''
+    for m in matches:
+      if m == ',':
+        row.append(value)
+        value = ''
+      else:
+        value = m
+
+    if len(m) > 1:
+      row.append(value)
+     
+    values = {}
+    for i in range(0, len(WebPage.fields)):
+      values[WebPage.fields[i]] = Entity.trim(row[i + 1])
     obj = WebPage(values)
     obj.values['id'] = int(row[0])
     return obj

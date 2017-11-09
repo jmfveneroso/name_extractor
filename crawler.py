@@ -16,7 +16,6 @@ import heapq
 import warc
 import signal
 from orm import Url, WebPage, ResearchGroup
-import find_dblp_researcher
 
 def strip_url(url):
   if url == None or len(url) == 0:
@@ -118,8 +117,8 @@ class UrlManager():
     if url != None:
       url.values['crawled'] = 'TRUE'
       url.update()
-      return url.values['url']
-    return ""
+      return url
+    return None
 
   def has_url(self): 
     url = Url.get_next_uncrawled_url()
@@ -153,30 +152,17 @@ class UniTrackerThread(threading.Thread):
       url = urlparse(href).geturl()
       self.url_manager.push_url(url)
 
-  def set_downloaded(self, url): 
-    url = strip_url(url)
-    u = Url.find_by_url(url)
-    if u == None:
-      raise Exception('Url %s is not in the database.' % (url))
-    u.values['download_time'] = str(datetime.datetime.utcnow())[:-7]
-    u.update()
+  def set_downloaded(self, url_obj): 
+    url_obj.values['download_time'] = str(datetime.datetime.utcnow())[:-7]
+    url_obj.update()
 
-  def set_failed(self, url): 
-    url = strip_url(url)
-    u = Url.find_by_url(url)
-    if u == None:
-      raise Exception('Url %s is not in the database.' % (url))
-    u.values['failed'] = 'TRUE'
-    u.update()
+  def set_failed(self, url_obj): 
+    url_obj.values['failed'] = 'TRUE'
+    url_obj.update()
    
-  def save_html(self, url, content):
-    url = strip_url(url)
-    u = Url.find_by_url(url)
-    if u == None:
-      raise Exception('Url %s is not in the database.' % (url))
-
+  def save_html(self, url_obj, content):
     WebPage.create({
-      'url_id': u.values['id'],
+      'url_id': url_obj.values['id'],
       'content': content
     })
 
@@ -190,11 +176,13 @@ class UniTrackerThread(threading.Thread):
       UniTrackerThread.lock.release()
 
       UniTrackerThread.lock.acquire()
-      base_url = self.url_manager.pop_url()
+      url_obj = self.url_manager.pop_url()
       UniTrackerThread.lock.release()
+      if url_obj == None: break
+
+      base_url = str(url_obj.values['url']).strip()
       print "Url:", base_url
 
-      base_url = base_url.strip()
       if len(base_url) == 0:
         time.sleep(1)
         continue
@@ -215,17 +203,17 @@ class UniTrackerThread(threading.Thread):
       try:
         r = requests.get(base_url, proxies = { 'http': proxy }, timeout = 5)
         failed = False
-      except requests.exceptions.RequestException as e:
+      except (requests.exceptions.RequestException, requests.packages.urllib3.exceptions.LocationParseError) as e:
         error = e
         UniTrackerThread.lock.acquire()
-        self.set_failed(base_url)
+        self.set_failed(url_obj)
         UniTrackerThread.lock.release()
         print "Failed", base_url, e
         continue;
       print "Downloaded", base_url
 
       UniTrackerThread.lock.acquire()
-      self.set_downloaded(base_url)
+      self.set_downloaded(url_obj)
       UniTrackerThread.lock.release()
 
       text = r.text.encode('utf-8')
@@ -233,7 +221,7 @@ class UniTrackerThread(threading.Thread):
         if self.classifier.Predict(base_url, text):
           print "Faculty:", base_url.strip()
           UniTrackerThread.lock.acquire()
-          self.save_html(base_url, text)
+          self.save_html(url_obj, text)
           UniTrackerThread.lock.release()
 
       UniTrackerThread.lock.acquire()
