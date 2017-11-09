@@ -1,3 +1,8 @@
 *.pyc
 *.swp
 crawler.log
+tex/exemplo.lof
+tex/exemplo.log
+tex/exemplo.lot
+tex/exemplo.out
+tex/exemplo.toc

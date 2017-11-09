@@ -1,0 +1,99 @@
+\begin{thebibliography}{}
+
+\bibitem[Bichsel \ppgccciteauthorand {} Pentland, 1992]{bichsel92simple}
+\ppgccbibauthordoformat {Bichsel, M. \ppgccbibauthorand {} Pentland, A.~P.}
+  (\ppgccyeardoformat {1992}).
+\newblock \ppgccbibtitledoformat {A simple algorithm for shape from shading}.
+\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
+  {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
+  \ppgccbibpagesstring {} \ppgccpagedoformat {459}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {465}.
+
+\bibitem[Dror et~al.\@, 2001]{dror01statistics}
+\ppgccbibauthordoformat {Dror, R.~O.\ppgccbibauthorsep {} Leung,
+  T.~K.\ppgccbibauthorsep {} Adelson, E.~H.\ppgccbibauthorlastsep {}
+  \ppgccbibauthorand {} Willsky, A.~S.} (\ppgccyeardoformat {2001}).
+\newblock \ppgccbibtitledoformat {Statistics of real-world illumination}.
+\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
+  {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})}.
+
+\bibitem[Guisser et~al.\@, 1992]{guisser92new}
+\ppgccbibauthordoformat {Guisser, L.\ppgccbibauthorsep {} Payrissat,
+  R.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Castan, S.}
+  (\ppgccyeardoformat {1992}).
+\newblock \ppgccbibtitledoformat {A new {3-D} surface measurement system using
+  a structured light}.
+\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
+  {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
+  \ppgccbibpagesstring {} \ppgccpagedoformat {784}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {786}.
+
+\bibitem[Horn, 1986]{horn86robot}
+\ppgccbibauthordoformat {Horn, B. K.~P.} (\ppgccyeardoformat {1986}).
+\newblock \ppgccbibbtitledoformat {Robot Vision}.
+\newblock McGraw-Hill Book Company, Cambridge, Massachusetts.
+\newblock MIT Electrical Engineering and Computer Science Series.
+
+\bibitem[Hougen \ppgccciteauthorand {} Ahuja, 1993]{hougen93estimation}
+\ppgccbibauthordoformat {Hougen, D.~R. \ppgccbibauthorand {} Ahuja, N.}
+  (\ppgccyeardoformat {1993}).
+\newblock \ppgccbibtitledoformat {Estimation of the light source distribution
+  and its use in integrated shape recovery from stereo and shading}.
+\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
+  {IEEE} International Conference on Computer Vision ({ICCV})},
+  \ppgccbibpagesstring {} \ppgccpagedoformat {148}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {155}.
+
+\bibitem[Samaras \ppgccciteauthorand {} Metaxas, 1999]{samaras99coupled}
+\ppgccbibauthordoformat {Samaras, D. \ppgccbibauthorand {} Metaxas, D.}
+  (\ppgccyeardoformat {1999}).
+\newblock \ppgccbibtitledoformat {Coupled lighting direction and shape
+  estimation from single images}.
+\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
+  {IEEE} International Conference on Computer Vision ({ICCV})},
+  \ppgccbibpagesstring {} \ppgccpagedoformat {868}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {874}.
+
+\bibitem[Sato et~al.\@, 1999a]{sato99illumination2}
+\ppgccbibauthordoformat {Sato, I.\ppgccbibauthorsep {} Sato,
+  Y.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Ikeuchi, K.}
+  (\ppgccyeardoformat {1999a}).
+\newblock \ppgccbibtitledoformat {Illumination distribution from brightness in
+  shadows: Adaptive estimation of illumination distribution with unknown
+  reflectance properties in shadow regions}.
+\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
+  {IEEE} International Conference on Computer Vision ({ICCV})},
+  \ppgccbibpagesstring {} \ppgccpagedoformat {875}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {882}.
+
+\bibitem[Sato et~al.\@, 1999b]{sato99illumination1}
+\ppgccbibauthordoformat {Sato, I.\ppgccbibauthorsep {} Sato,
+  Y.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Ikeuchi, K.}
+  (\ppgccyeardoformat {1999b}).
+\newblock \ppgccbibtitledoformat {Illumination distribution from shadows}.
+\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
+  {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
+  \ppgccbibpagesstring {} \ppgccpagedoformat {306}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {312}.
+
+\bibitem[Sato et~al.\@, 2001]{sato01stability}
+\ppgccbibauthordoformat {Sato, I.\ppgccbibauthorsep {} Sato,
+  Y.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Ikeuchi, K.}
+  (\ppgccyeardoformat {2001}).
+\newblock \ppgccbibtitledoformat {Stability issues in recovering illumination
+  distribution from brightness in shadows}.
+\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
+  {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
+  \ppgccbibpagesstring {} \ppgccpagedoformat {400}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {407}.
+
+\bibitem[Shashua, 1997]{shashua97photometric}
+\ppgccbibauthordoformat {Shashua, A.} (\ppgccyeardoformat {1997}).
+\newblock \ppgccbibtitledoformat {On photometric issues in {3D} visual
+  recognition from a single {2D} image}.
+\newblock \ppgccbibjournaldoformat {International Journal of Computer Vision
+  ({IJCV})}, \ppgccvolumedoformat {21}({\ppgccnumberdoformat
+  {1/2}}):\ppgccpagedoformat {99}-\ppgccpagedoformat {}-\ppgccpagedoformat
+  {122}.
+
+\end{thebibliography}
