@@ -33,7 +33,7 @@
 \begin{document}
 
 \ppgccufmg{
-  title={Data extraction from semi structured documents},
+  title={Web data extraction in semi-structured documents},
   authorrev={de Freitas Veneroso, João Mateus},
   cutter={D1234p},
   cdu={519.6*82.10},
@@ -51,7 +51,67 @@
 
 \chapter{Introduction}
 
-This proposal begins here.
+Web data extraction is the task of automatically extracting structured information
+from unstructured or semi-structured web documents. It is a subset of the broader
+field of Information Extraction, and thus it faces many of the same challenges. 
+
+Structured information such as that found in a well organized relational database must 
+conform to an underlying data model, namely an abstract model that formalizes
+the entities and relationships in a given application domain. Unstructured information
+however is not organized according to a logical model and has useful information often 
+permeated by large chunks of irrelevant data.
+
+Tipically, Information Extraction tasks consist of mapping unstructured or poorly
+structured information to a semantically well defined structure. The input is usually
+composed of a set of documents that describe a group of entities in a similar manner 
+while the Information Extraction task deals with identifying those entities and 
+organizing them according to a template. 
+
+As an example, consider a collection of 
+novels and the task of identifying the name of the main character in each novel. 
+For this task, the model must first identify proper nouns and then understand the 
+text sufficiently to allow inference on the relative importance of each noun. 
+
+To achieve such a goal it is often useful to employ methods developed in the disciplines 
+of Information Retrieval and Natural Language Processing. The former has achieved a 
+great deal of success in the task of classifying documents according to statistical 
+properties and the latter led to huge improvements in modelling human language.
+Many times, the various methods employed in these disciplines lead to different 
+approaches in the field of Information Extraction.
+
+In the scope of this work, we are interested in the semi-structured data usually
+found in HTML web documents. Web documents most often lie in between the 
+structured-unstructured data paradigm, meaning that they take a rather
+relaxed approach in regard to formal structure. Hierarchy, element disposition,
+class names, and other features related to document structure and indirectly associated
+with the data itself are valuable information in the task of identifying entities and 
+determining relationships. So much that many times they the major source of information 
+for classification purposes such as when extracting information from standardized tables.
+However, far from a structured database, web documents usually provide very limited structure
+to otherwise unstructured data such as that found in free text. Take for example the
+staff page for the intelligent robotics laboratory of Osaka University shown in figure 1.
+Say we want to extract the name, position, email and picture of all members. It is easy to see
+there is some sort of structure to the information we want to extract from this particular 
+website, however, parts of the information are missing, repeated or disposed differently for
+each particular member. If we want to go further it may be necessary to identify which
+people are full members and which are visitors, a task that may pose a different challenge.
+
+
+
+http://eng.irl.sys.es.osaka-u.ac.jp/home/member
+
+
+
+It is often possible 
+
+
+
+
+
+
+
+
+
 
 \chapter{Related Work}
 
