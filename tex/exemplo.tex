@@ -88,34 +88,96 @@ with the data itself are valuable information in the task of identifying entitie
 determining relationships. So much that many times they the major source of information 
 for classification purposes such as when extracting information from standardized tables.
 However, far from a structured database, web documents usually provide very limited structure
-to otherwise unstructured data such as that found in free text. Take for example the
+to otherwise unstructured data such as that found in free text. 
+
+Take for example the
 staff page for the intelligent robotics laboratory of Osaka University shown in figure 1.
 Say we want to extract the name, position, email and picture of all members. It is easy to see
 there is some sort of structure to the information we want to extract from this particular 
 website, however, parts of the information are missing, repeated or disposed differently for
-each particular member. If we want to go further it may be necessary to identify which
-people are full members and which are visitors, a task that may pose a different challenge.
+each particular member. If we want to go further it may be necessary to only extract information
+from full members, a task that may pose a harder challenge. We may use grouping similarity 
+combined with textual information in order to properly identify the desired entities.
+In many cases the HTML element relative position or CSS class name is sufficient to identify
+occurrences of the same entity.
+If we do a good enough job at this first task we may extrapolate our model to extract information
+from similar web pages. The harder challenge lies in building a more general approach to collect
+data with a similar underlying structure from many different types of web pages.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1.0\textwidth]{pics/jap_intelligent_robotics_lab}
+  \caption{Example of semi structured information}
+\end{figure}
 
 
+Our current focused research interest regarding web data extraction is collecting
+computer science researcher information from university websites. We need this 
+information in order to compare the reputations of national and international 
+research groups in the area of computer science with the academic reputation ranking
+algorithm pscore. 
 
-http://eng.irl.sys.es.osaka-u.ac.jp/home/member
+Pscore is a recent author level metric that attempts to measure academic reputation by calculating
+Markov chain static distributions. It showed promising results in ranking publication venues and 
+individual authors in the area of Computer Science using only information publically available in 
+the DBLP database. However the DBLP database has sparse information about author affiliation and it 
+is often outdated. To remedy this problem in the past few years researchers from UFMG have been 
+laboriously collecting this data manually, but this process is tedious and error prone. Currently, 
+only about 1\% of the DBLP authors have associated affiliation information, being most of them from 
+USA and Brazil. Not nearly enough to allow broad international research group comparison.
 
+Up to now, our goal has been to build an automatic information extraction system for
+collecting author affiliation information from university websites. It has already 
+achieved significant progress which shall be described further in the text. However, the ideas 
+developed in this concrete case will be further improved in order to construct a more general
+approach to the broader Information Extraction task.
 
-
-It is often possible 
-
-
-
-
-
-
-
-
-
+The research here described hopes to contribute by proposing a novel approach to the main 
+Information Extraction task, making the computer science affiliation database available for 
+further research and testing the quality of pscore results regarding computer science research 
+group comparison.
 
 \chapter{Related Work}
 
-Related work here.
+Surveys
+We provided a simple classification framework in which existing Web Data Extraction 
+applications are grouped into two main classes, namely applications at the Enterprise 
+level and at the Social Web level.
+
+The design and implementation of Web Data Extraction systems has been discussed from different 
+perspectives and it leverages on scientific methods coming from various disciplines including 
+Information Retrieval, Machine Learning, and Natural Language Processing.
+
+Some technological solutions which appear to be effective in some application contexts are not 
+suitable in others.
+
+Challenges:
+Web Data Extraction techniques implemented in a Web Data Extraction system often require the help of human experts. A first challenge consists of providing a high degree of automation by reducing human efforts as much as possible. Human feedback, however, may play an important role in raising the level of accuracy achieved by a Web Data Extraction system.
+A related challenge is, therefore, to identify a reasonable trade-off between the need of building highly automated Web Data Extraction procedures and the requirement of achieving accurate performance.
+
+Web Data Extraction techniques should be able to process large volumes of data in relatively 
+short time. This requirement is particularly stringent in the field of Business and 
+Competitive Intelligence because a company needs to perform timely analysis of 
+market conditions.
+
+Applications in the field of Social Web or, more in general, those dealing with 
+personal data must provide solid privacy guarantees. Therefore, potential (even 
+if unintentional) attempts to violate user privacy should be timely and adequately 
+identified and counteracted.
+
+Approaches relying on Machine Learning often require a significantly large training 
+set of manually labeled Web pages. In general, the task of labeling pages is 
+time-expensive and error-prone and, therefore, in many cases we cannot assume 
+the existence of labeled pages.
+
+Oftentimes, a Web Data Extraction tool has to routinely extract data from a Web Data 
+source which can evolve over time. Web sources are continuously evolving and structural 
+changes happen with no forewarning, thus are unpredictable. Eventually, in real-world 
+scenarios it emerges the need of maintaining these systems, that might stop working 
+correctly if lacking of flexibility to detect and face structural modifications of 
+related Web sources.
+
+Debye
 
 \chapter{Methodology}
 
