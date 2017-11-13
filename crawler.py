@@ -16,6 +16,7 @@ import heapq
 import warc
 import signal
 from orm import Url, WebPage, ResearchGroup
+from HTMLParser import HTMLParseError
 
 def strip_url(url):
   if url == None or len(url) == 0:
@@ -139,7 +140,13 @@ class UniTrackerThread(threading.Thread):
     return get_main_domain(url_1) == get_main_domain(url_2)
 
   def extract_links(self, base_url, text): 
-    soup = BeautifulSoup(text, 'html.parser')
+    soup = None
+    try:
+      soup = BeautifulSoup(text, 'html.parser')
+    except HTMLParseError:
+      print 'Parse error:', base_url
+      return
+
     for a in soup.find_all('a'):
       if not a.has_attr('href'): continue
       if len(a['href']) > 0 and a['href'][0] == "#": continue
@@ -199,11 +206,14 @@ class UniTrackerThread(threading.Thread):
 
       r = None
       error = None
-      failed = True
       try:
         r = requests.get(base_url, proxies = { 'http': proxy }, timeout = 5)
-        failed = False
-      except (requests.exceptions.RequestException, requests.packages.urllib3.exceptions.LocationParseError) as e:
+        if r.status_code != 200:
+          UniTrackerThread.lock.acquire()
+          self.set_failed(url_obj)
+          UniTrackerThread.lock.release()
+          continue
+      except (requests.exceptions.RequestException, requests.packages.urllib3.exceptions.LocationParseError, requests.packages.urllib3.exceptions.LocationValueError) as e:
         error = e
         UniTrackerThread.lock.acquire()
         self.set_failed(url_obj)

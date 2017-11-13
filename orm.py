@@ -32,6 +32,10 @@ class DB():
     DB.instance.cur = DB.instance.conn.cursor()
     # print 'Executing query', query
     sys.stdout.flush()
+    query = query.decode('utf-8')
+    for i in range(0, 32):
+      query = query.replace(unichr(i), '')
+    query = query.encode('utf-8')
     DB.instance.cur.execute(query)
     DB.instance.conn.commit()
 
@@ -79,14 +83,30 @@ class Entity():
       else:
         value = m
 
-    if len(m) > 1:
+    if len(matches) > 1:
       row.append(value)
      
     values = {}
+    sys.stdout.flush()
     for i in range(0, len(cls.fields)):
       values[cls.fields[i]] = Entity.trim(row[i + 1])
     values['id'] = Entity.trim(row[0])
     return values
+
+  @classmethod
+  def select_where(cls, where):
+    query = "SELECT (id, " + ', '.join(cls.fields) + ") FROM " + cls.table_name + " WHERE " + where
+    DB().execute(query)
+
+    rows = DB().fetch()
+    if len(rows) == 0: return None
+    elif len(rows) == 1:
+      return cls(cls.arr_to_values(rows[0][0][1:-1]))
+    else:
+      objs = []
+      for row in rows:
+        objs.append(cls(cls.arr_to_values(row[0][1:-1])))
+      return objs
 
   @classmethod
   def all(cls):
@@ -96,13 +116,7 @@ class Entity():
     objs = []
     rows = DB().fetch()
     for row in rows:
-      values = {}
-      row = row[0][1:-1].split(',')
-      for i in range(0, len(cls.fields)):
-        values[cls.fields[i]] = Entity.trim(row[i + 1])
-      obj = cls(values)
-      obj.values['id'] = int(row[0])
-      objs.append(obj)
+      objs.append(cls(cls.arr_to_values(row[0][1:-1])))
     return objs
 
   @classmethod
@@ -166,16 +180,9 @@ class DblpResearcher(Entity):
     query = "SELECT (id, " + field_str + ") FROM " + DblpResearcher.table_name + " WHERE name = '" + Entity.escape(name) + "'"
     DB().execute(query)
 
-    objs = []
     row = DB().fetch()
     if len(row) == 0: return None
-    values = {}
-    row = row[0][0][1:-1].split(',')
-    for i in range(0, len(DblpResearcher.fields)):
-      values[DblpResearcher.fields[i]] = Entity.trim(row[i + 1])
-    obj = DblpResearcher(values)
-    obj.values['id'] = int(row[0])
-    return obj
+    return DblpResearcher(DblpResearcher.arr_to_values(row[0][0][1:-1]))
 
 class Researcher(Entity):
   table_name = 'researchers'
@@ -191,16 +198,9 @@ class ResearchGroup(Entity):
     query = "SELECT (id, " + field_str + ") FROM " + ResearchGroup.table_name + " WHERE url = '" + Entity.escape(url) + "'"
     DB().execute(query)
 
-    objs = []
     row = DB().fetch()
     if len(row) == 0: return None
-    values = {}
-    row = row[0][0][1:-1].split(',')
-    for i in range(0, len(ResearchGroup.fields)):
-      values[ResearchGroup.fields[i]] = Entity.trim(row[i + 1])
-    obj = ResearchGroup(values)
-    obj.values['id'] = int(row[0])
-    return obj
+    return ResearchGroup(ResearchGroup.arr_to_values(row[0][0][1:-1]))
 
 class Url(Entity):
   table_name = 'urls'
@@ -208,24 +208,11 @@ class Url(Entity):
 
   @staticmethod
   def find_by_url(url):
-    field_str = ', '.join(Url.fields)
-    query = "SELECT (id, " + field_str + ") FROM " + Url.table_name + " WHERE url = '" + Entity.escape(url) + "'"
-    DB().execute(query)
-
-    objs = []
-    row = DB().fetch()
-    if len(row) == 0: return None
-    values = {}
-    row = row[0][0][1:-1].split(',')
-    for i in range(0, len(Url.fields)):
-      values[Url.fields[i]] = Entity.trim(row[i + 1])
-    obj = Url(values)
-    obj.values['id'] = int(row[0])
-    return obj
+    return Url.select_where("url = '" + Entity.escape(url) + "'")
 
   @staticmethod
   def get_next_uncrawled_url():
-    timestamp = str(datetime.datetime.utcnow())[:-7]
+    timestamp = str(datetime.datetime.utcnow())[:19]
 
     field_str = ', '.join(Url.fields)
     query = "SELECT (id, " + field_str + ") FROM " + Url.table_name + \
@@ -233,21 +220,9 @@ class Url(Entity):
             "' OR scheduled_time IS NULL) ORDER BY LENGTH(url) ASC LIMIT 1"
     DB().execute(query)
 
-    objs = []
-    rows = DB().fetch()
-    for row in rows:
-      values = {}
-      row = row[0][1:-1].split(',')
-      for i in range(0, len(Url.fields)):
-        values[Url.fields[i]] = Entity.trim(row[i + 1])
-      obj = Url(values)
-      obj.values['id'] = int(row[0])
-      objs.append(obj)
-
-    if len(objs) > 0:
-      return objs[0]
-    else: 
-      return None
+    row = DB().fetch()
+    if len(row) == 0: return None
+    return Url(Url.arr_to_values(row[0][0][1:-1]))
 
 class WebPage(Entity):
   table_name = 'web_pages'
@@ -260,16 +235,9 @@ class WebPage(Entity):
             " INNER JOIN urls ON (urls.id = web_pages.url_id) WHERE urls.url = '" + Entity.escape(url) + "'"
     DB().execute(query)
 
-    objs = []
     row = DB().fetch()
     if len(row) == 0: return None
-    values = {}
-    row = row[0][0][1:-1].split(',')
-    for i in range(0, len(WebPage.fields)):
-      values[WebPage.fields[i]] = Entity.trim(row[i + 1])
-    obj = WebPage(values)
-    obj.values['id'] = int(row[0])
-    return obj
+    return WebPage(WebPage.arr_to_values(row[0][1:-1]))
 
   @staticmethod
   def get_num_unknown():
@@ -286,27 +254,6 @@ class WebPage(Entity):
             " WHERE is_faculty_repo IS NULL LIMIT 1"
     DB().execute(query)
 
-    objs = []
     row = DB().fetch()
     if len(row) == 0: return None
-
-    matches = re.findall('(("(("")|[^"])+")|([^,]+)|,)', row[0][0][1:-1])
-    matches = [m[0] for m in matches]
-    row = []
-    value = ''
-    for m in matches:
-      if m == ',':
-        row.append(value)
-        value = ''
-      else:
-        value = m
-
-    if len(m) > 1:
-      row.append(value)
-     
-    values = {}
-    for i in range(0, len(WebPage.fields)):
-      values[WebPage.fields[i]] = Entity.trim(row[i + 1])
-    obj = WebPage(values)
-    obj.values['id'] = int(row[0])
-    return obj
+    return WebPage(WebPage.arr_to_values(row[0][0][1:-1]))

@@ -80,32 +80,6 @@ class Model():
         self.found_names[name] = [full_probs[0], full_probs[index]]
     return tkns
 
-  # def remove_repeated_names(self):
-  #   prefixes = {}
-  #   suffixes = {}
-  #   for name in self.found_names:
-  #     prefix = self.found_names[name][0]
-  #     suffix = self.found_names[name][-1]
-  #     if not prefix in prefixes:
-  #       prefixes[prefix] = 0
-  #     if not suffix in suffixes:
-  #       suffixes[suffix] = 0
-  #     prefixes[prefix] += 1
-  #     suffixes[suffix] += 1
-
-  #   prefixes = [p for p in prefixes if prefixes[p] > 15]
-  #   suffixes = [s for s in suffixes if suffixes[s] > 15]
-  #   for name in self.found_names:
-  #     prefix = self.found_names[name][0]
-  #     suffix = self.found_names[name][-1]
-  #     if prefix in prefixes:
-  #       self.found_names[name] = self.found_names[name][1:]
-
-  #     if suffix in suffixes:
-  #       self.found_names[name] = self.found_names[name][:-1]
-  #       
-  #   self.found_names = [" ".join(self.found_names[name]).encode('utf-8') for name in self.found_names if len(self.found_names[name]) > 1]
-
   def compare(self, x, y):
     return int((float(y[0]) - float(y[1])) - (float(x[0]) - float(x[1])))
 
@@ -117,12 +91,19 @@ class Model():
 
   def extract_html(self, html):
     tkns = self.tokenizer.tokenize(html)
-    # self.estimator.calculate_tkn_incidence(tkns)
+    self.estimator.calculate_tkn_incidence(tkns)
     tkns = self.extract_names(tkns, False)
-    # for i in range(0, 3):
-    #   self.estimator.calculate_secondary_features(tkns)
-    #   tkns = self.tokenizer.tokenize(html)
-    #   tkns = self.extract_names(tkns, True)
+    for i in range(0, 3):
+      self.estimator.calculate_secondary_features(tkns)
+      tkns = self.tokenizer.tokenize(html)
+      tkns = self.extract_names(tkns, True)
+
+  # This method is a faster version of the name extraction
+  # algorithm. It is less efficient, but it is enough to serve
+  # as a feature for the classifier.
+  def extract_html_simple(self, html):
+    tkns = self.tokenizer.tokenize(html)
+    tkns = self.extract_names(tkns, False)
 
   def extract(self, filename):
     with open(filename) as f:

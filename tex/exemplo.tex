@@ -278,75 +278,108 @@ necessary to identify their status regarding full or partial membership.
 Proposed solution
 
 The name extraction problem is no different than a Named Entity Recognition problem, however 
-approaches like Conditional Random Fields, Hidden Markov Models or Maximum Entropy Models that 
-tipically achieve a high accuracy on free text perform very poorly in this particular case, 
+approaches that tipically achieve a high accuracy on free text like Conditional Random Fields, 
+Hidden Markov Models or Maximum Entropy Models perform very poorly in this particular case, 
 because the data we are trying to extract is disposed in a tabular form and the words do not 
-hold dependencies toward each other the same way they do in long pieces of text. Structural HTML
-features and token probability distributions play a key role in the name extraction problem.
+hold dependencies toward each other the same way they do in long pieces of text. In the name
+extraction problem, structural HTML features and proper noun conditional probabilities play 
+a key role.
 
-It is possible to solve the name extraction problem with a Bayesian statistical approach. 
-But first lets define some notations: 
-
-A simple Bayesian approach to solving the name extraction problem would be to calculate
-the probability of a token being a name with the following expressions:
-
-\[
-P(is a name|token_n) = \frac{P(is a name) P(token_n|is a name)}{P(token_n)}
-P(is not a name|token_n) = \frac{P(is not a name) P(token_n|is not a name)}{P(token_n)}
-\]
-
-Probabilities $ P(is a name), P(token_n|is a name) $ can be easily estimated, and, there
-is no need to estimate $ {P(token_n)} $ since both scores will be divided by the same quantity.
-However this model does not achieve a very good performance because it doesn't incorporate information
-about surrounding tokens. Since name tokens are usually grouped together, it is expected that when
-we know the previous tokens to be names the probability of the next token also being a name become higher. 
-We can incorporate this knowledge in our expression and compute n-gram probabilities instead of 
-unigrams: 
+Let $ T = (t_1, t_2, ..., t_n) $ be a sequence of tokens, and $ Y = (y_i, y_{i + 1}, ..., y_n) $ 
+a sequence of labels where $ y_i = N $ means token $ i $ is a name and $ y_i = W $ means token 
+$ i $ is  a word (not a name). Then, we are interested in estimating the sequence of labels $ Y $ 
+with maximum probability for a given sequence of tokens:
 
 \[
-P(w_1^{N}, ..., w_n^{N})
+
+\argmax_Y P(t_i = y_i, t_{i+1} = y_{i+1}, ..., t_n = y_n)
+
 \]
 
-Here we may use the probability chain rule to determine the window size with the assumption that
-tokens outside that window have independent probability distributions. The sequence probability 
-expression is given by:
+where $ P(x_i = Y_i) $ means the probability of $ x_i $ having label $ y_i $.
+We may employ the probability chain rule to better estimate the joint probability
+such as in a regular n-gram model. For a bigram model for example we would have:
 
 \[
-P(w_1^{N}, ..., w_n^{N}|w_1, ..., w_n) = \frac{P(w_1^{N}, ..., w_n^{N}) P(w_1, ..., w_n|w_1^{N}, ..., w_n^{N})}{P(w_1, ..., w_n)}
+
+P(y_i|x_{i-1} = y_{i-1}, x_{i-2} = y_{i-2}, ... x_1 = y_1) = P(y_i|x_{i-1} = y_{i-1})
+
 \]
 
-We take here a simplifying assumption of conditional independence, otherwise it becomes hard
-to obtain reliable probabilities.
-
-$ P(w_1, ..., w_n|w_1^{N}, ..., w_n^{N}) = P(w_1|w_1^{N}) ... P(w_n|w_n^{N})$
-
-
-So our expression becomes:
+At this point we make an assumption that the probability of token $ i $ having label
+$ Y_i $ depends on the labels, however it is independent of the particular values
+of the previous tokens. For example, given a sequence of tokens $ (John, Hall) $ then 
+the conditional probability $ P(Hall|John = name) = P(Hall|any name) $. In other words, 
+this means that the probability of "Hall" being a last name is the same regardless of a 
+person's first name, as long as we are sure the previous token is a name. So we can
+write the conditional probability as:
 
 \[
-P(w_1^{N}, ..., w_n^{N}|w_1, ..., w_n) = \frac{P(w_1^{N}, ..., w_n^{N}) P(w_1|w_1^{N})}...{P(w_n, w_n^N)}
+
+P(t_i = y_i|t_{i-1} = y_{i-1}, t_{i-2} = t_{i-2}, ... t_1 = y_1) = P(t_i = y_i|y_{i-1}, y_{i-2}, ... y_1)
+
 \]
 
-This is our base formula. Taking a window of size 4, we would need to estimate the probabilities:
-P(NNNN) P(WWWW) ....
+Where $ P(y_i) $ means the unconditional probability of any token having label $ y_i $.
+And the joint probability then becomes:
 
-Most of the time, names are wholy contained inside a single html element, so it is useful to 
-incorporate this evidence in our formula to delimit name boundaries. Instead of estimating P(NNNN)
-we would need estimate P(N*NNN) P(NN*NN) etc.
+\[
 
-Finally, we need to estimate the single token probabilities P(t|N) and P(t|W) and at this time
-we may incorporate other sources of evidence as features in a Naive Bayes model. Some useful features
-are token length and token incidence.
+P(t_i = y_i, t_{i+1} = y_{i+1}, ..., t_n = y_n) = P(t_i = y_i) P(t_{i+1} = y_{i+1}|y_i) ... P(t_n = y_n|y_i, y_{i+1}, ...)
+
+\]
+
+Considering that $ P(t_i = y_i) $ is just a notation for $ P(t_i, y_i) $ and
+given that $ P(t_i, y_i) = P(t_i|y_i)P(y_i) $ we can write the joint probability as:
+
+\[
+
+P(t_i = y_i, t_{i+1} = y_{i+1}, ..., t_n = y_n) = P(t_i|y_i)P(y_i) x P(t_{i+1}|y_{i+1}, y_i)P(y_{i+1}|y_i) ... P(t_n|y_n)P(y_n|y_i, y_{i+1}, ...)
+P(t_i = y_i, t_{i+1} = y_{i+1}, ..., t_n = y_n) = P(t_i|y_i)P(t_{i+1}|y_{i+1}, y_i)... P(t_n|y_n,...) P(y_i, y_{i+1}, ..., y_n)
+
+\]
+
+Approximating $ P(t_i|y_i, y_{i-1}, ...) $ by $ P(t_i|y_i) $ we get
+
+\[
+
+P(t_i = y_i, t_{i+1} = y_{i+1}, ..., t_n = y_n) = P(t_i|y_i)P(t_{i+1}|y_{i+1})... P(t_n|y_n) P(y_i, y_{i+1}, ..., y_n)
+
+\]
+
+This is out basic formula. We can easily obtain estimates for $ P(t_i|y_i) $. The probabilities
+were estimated $ P(token|name) $ with the DBLP author names, which amount to aproximately 1.5 million
+names. The probabilities $ P(token|not name) $ were estimated from the corpus built from university
+websites, as a heuristic to remove all names, all captalized words were ignored.
+
+The probabilities $ P(y_i, y_i+1, ..., y_n) $ were estimated on the labeled examples. All names
+were tagged manually. In this case it is necessary to estimate all possible combinations
+of words and names for a given window size. 
 
 At this moment we still haven't incorporated any information about HTML structure in our model
 besides the tag borders. Web page structure varies significantly among the different faculty
 repositories, so it is hard to incorporate generalized features envolving HTML structure that
 will perform well in most situations. 
 
+Most of the time, names are wholy contained inside a single html element, eventhough this is
+not always the case. So it is useful to incorporate this evidence in our formula to delimit 
+name boundaries. For example, the probability P(NNWW) becomes higher when the second element
+is inside a different element than the third, this evidence will be presented in the following
+format P(NN*WW). So we need to estimate all sets of labels for each breaking point.
+
+We may also incorporate other sources of evidence in the single token probabilities 
+P(t|N) and P(t|W). Some useful features are token length and token incidence.
+
+Second passing:
+
 Faculty repositories usually have names disposed in an ordery fashion. That means they share
-similar attributes. If our crude model was able to find a relevant part of the names on the
-first passing, we may improve its precision by estimating some structural attributes on this 
-collection of names and using them to identify other names at a second passing.
+similar attributes. If our basic model was able to find a relevant part of the names on the
+first passing, we may improve its precision by estimating some structural attributes on the
+returned collection of names and then use those estimates to improve individual token 
+probabilities.
+
+The following features were tested in the second passing: 
+first and second parent, third parent, element position, class name, element depth.
 
 Evaluation
 

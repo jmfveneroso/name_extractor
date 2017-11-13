@@ -6,6 +6,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import LinearSVC
 from sklearn.calibration import calibration_curve
+from sklearn.externals import joblib
+from sklearn.model_selection import cross_val_score
 
 import os
 import sys
@@ -14,11 +16,13 @@ from bs4 import BeautifulSoup
 from bs4.element import NavigableString
 from tokenizer import Tokenizer
 from name_extractor import create_model
+from orm import Url, WebPage, ResearchGroup
+from random import shuffle
 
 relevant_titles = [
   'faculty', 'staff', 'people', 'lecturers', 'personnel', 
   'professors', 'members', 'professorat', 'professoren',
-  'directory', 'equipo'
+  'directory', 'equipo', 'news'
 ]
 
 relevant_text = [
@@ -30,25 +34,25 @@ relevant_text = [
   'dphil', 'senior', 'associate', 'emerita', 'assistant',
   'faculty', 'staff', 'people', 'lecturers', 'personnel', 
   'professors', 'members', 'professorat', 'professoren',
-  'directory', 'equipo'
+  'directory', 'equipo', 'the', 'news'
 ]
 
 feature_labels = [
   'url.faculty', 'url.staff', 'url.people', 'url.lecturers', 'url.personnel', 
   'url.professors', 'url.members', 'url.professorat', 'url.professoren',
-  'url.directory', 'url.equipo',
+  'url.directory', 'url.equipo', 'url.news',
   'title.faculty', 'title.staff', 'title.people', 'title.lecturers', 'title.personnel', 
   'title.professors', 'title.members', 'title.professorat', 'title.professoren',
-  'title.directory', 'title.equipo',
+  'title.directory', 'title.equipo', 'title.news',
   'h1.faculty', 'h1.staff', 'h1.people', 'h1.lecturers', 'h1.personnel', 
   'h1.professors', 'h1.members', 'h1.professorat', 'h1.professoren',
-  'h1.directory', 'h1.equipo',
+  'h1.directory', 'h1.equipo', 'h1.news',
   'h2.faculty', 'h2.staff', 'h2.people', 'h2.lecturers', 'h2.personnel', 
   'h2.professors', 'h2.members', 'h2.professorat', 'h2.professoren',
-  'h2.directory', 'h2.equipo',
+  'h2.directory', 'h2.equipo', 'h2.news',
   'h3.faculty', 'h3.staff', 'h3.people', 'h3.lecturers', 'h3.personnel', 
   'h3.professors', 'h3.members', 'h3.professorat', 'h3.professoren',
-  'h3.directory', 'h3.equipo',
+  'h3.directory', 'h3.equipo', 'h3.news',
   'dr', 'drs', 'drd', 'mr', 'mrs', 'ms', 'professor', 
   'dipl', 'prof', 'miss', 'emeritus', 'ing', 'assoc', 
   'asst', 'lecturer', 'ast', 'res', 'inf', 'diplom', 
@@ -57,13 +61,13 @@ feature_labels = [
   'dphil', 'senior', 'associate', 'emerita', 'assistant', 
   'faculty', 'staff', 'people', 'lecturers', 'personnel', 
   'professors', 'members', 'professorat', 'professoren',
-  'directory', 'equipo',
+  'directory', 'equipo', 'the', 'news',
   'length', 'num_names'
 ]
 
 tokenizer = Tokenizer()
 model = create_model()
-class WebPage:
+class Featurizer:
   def __init__(self, tokenizer, model, url, html):
     self.tokenizer = tokenizer 
     self.m = model
@@ -87,7 +91,7 @@ class WebPage:
     [s.extract() for s in soup('h2')]
     [s.extract() for s in soup('h3')]
     self.features = self.features + self.generate_text_features(soup.find('body'))
-    self.m.extract_html(html)
+    self.m.extract_html_simple(html)
 
     # Most important feature: number of names found.
     self.features = self.features + [len(self.m.found_names)]
@@ -140,114 +144,106 @@ class WebPage:
 class Classifier:
   def __init__(self):
     self.m = create_model()
+    self.model = joblib.load('data/classifier.pkl') 
+ 
+  def Predict(self, url, text):
+    web_page = Featurizer(tokenizer, self.m, url, text)
+    predicted = self.model.predict([web_page.features])
+    return predicted[0]
 
-    # Classifier.
-    faculty_data = []
-    non_faculty_data = []
-
-    data_path = "data/"
-    faculty_file = data_path + 'faculty_classifier_features_2.txt'
-    non_faculty_file = data_path + 'non_faculty_classifier_features_2.txt'
-    with open(faculty_file) as f: 
+  def fit(self, filename):
+    x = []
+    y = []
+    url_ids = []
+    lines = []
+    with open(filename) as f:
       for line in f:
-        if len(line) > 1:
-          faculty_data.append([int(x) for x in line.split(', ')])
+        lines.append(line)
 
-    with open(non_faculty_file) as f: 
-      for line in f:
-        if len(line) > 1:
-          non_faculty_data.append([int(x) for x in line.split(', ')])
+    shuffle(lines)
+    for line in lines:
+      arr = [int(el) for el in line.strip().split(', ')]
+ 
+      x.append(arr[:-2])
+      y.append(arr[-2])
+      url_ids.append(arr[-1])
 
-    x = non_faculty_data[:-100] + faculty_data[20:] 
-    y = [0] * (len(non_faculty_data) - 100)
-    y = y + [1] * (len(faculty_data) - 20)
-
-    x_test = non_faculty_data[-100:] + faculty_data[:20]
-    y_test = [0] * 100 + [1] * 20
-
-    # Create classifiers
     # m = GaussianNB()
     # m = LogisticRegression()
     # m = LinearSVC(C=1.0)
     m = RandomForestClassifier(n_estimators=100)
-    
-    self.model = m.fit(x, y)
- 
+
+    self.model = m.fit(x[:-200], y[:-200])
+    x_test = x[-200:]
+    y_test = y[-200:]
+    # self.model = m.fit(x, y)
     # x_test = x
     # y_test = y 
-    # predicted = self.model.predict(x_test)
-    # np.set_printoptions(threshold='nan')
+    predicted = self.model.predict(x_test)
+    np.set_printoptions(threshold='nan')
     # print predicted
-    # errors = 0
-    # for i in range(0, len(y_test)):
-    #   if predicted[i] != y_test[i]:
-    #     errors += 1
 
-    #     if i > len(non_faculty_data) - 100:
-    #       print "Errou faculty", i - len(non_faculty_data) + 100
-    #     else:
-    #       print "Errou non faculty", i
-    # print 'Errors:', errors, '/', len(y_test)
+    errors = 0
+    for i in range(0, len(y_test)):
+      if predicted[i] != y_test[i]:
+        errors += 1
+        id = int(WebPage.find(url_ids[i]).values['url_id'])
+        print 'Expected', y_test[i], 'url', Url.find(id).values['url'], url_ids[i]
 
-  def Predict(self, url, text):
-    web_page = WebPage(tokenizer, self.m, url, text)
-    predicted = self.model.predict([web_page.features])
-    return predicted[0]
+    print 'Errors:', errors, '/', len(y_test)
+
+    scores = cross_val_score(m, x, y, cv=5)
+    print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+
+    joblib.dump(self.model, 'data/classifier.pkl') 
+
+  def create_feature_vectors(self, filename):
+    feature_vectors = []
+    expected_values = []
+    web_page_ids = []
+
+    web_pages = WebPage.select_where('is_faculty_repo = TRUE')
+    num_pages = len(web_pages)
+    count = 1
+    for w in web_pages:
+      url = Url.find(int(w.values['url_id']))
+      v = Featurizer(tokenizer, self.m, url.values['url'], w.values['content']).features
+      feature_vectors.append(v)
+      expected_values.append(1)
+      web_page_ids.append(w.values['id'])
+      print 'Faculty:', url.values['url'], count, '/', num_pages
+      count += 1
+
+    web_pages = WebPage.select_where('is_faculty_repo = FALSE')
+    num_pages = len(web_pages)
+    count = 1
+    for w in web_pages:
+      url = Url.find(int(w.values['url_id']))
+      v = Featurizer(tokenizer, self.m, url.values['url'], w.values['content']).features
+      feature_vectors.append(v)
+      expected_values.append(0)
+      web_page_ids.append(w.values['id'])
+      print 'Non faculty:', url.values['url'], count, '/', num_pages
+      count += 1
+
+    # print '==============================================='
+    # for i in range(0, len(feature_vectors)):
+    #   v = feature_vectors[i] + [expected_values[i], int(web_page_ids[i])]
+    #   print ", ".join([str(el) for el in v])
+   
+    f = open(filename, 'w')  
+    for i in range(0, len(feature_vectors)):
+      v = feature_vectors[i] + [expected_values[i], int(web_page_ids[i])]
+      f.write(", ".join([str(el) for el in v]) + '\n')
+    f.close()
 
 if __name__ == "__main__":
-  # Faculty
-  # faculty_path = "downloaded_pages/faculty/"
-  # files = [f for f in os.listdir(faculty_path) if os.path.isfile(os.path.join(faculty_path, f))]
-
-  # faculty_features = [[]] * 331
-  # urls = [0] * 331
-  # with open('data/faculty_pages.txt') as f: 
-  #   i = 0
-  #   for line in f:
-  #     urls[i] = line.strip()
-  #     i += 1
-
-  # for i in range(1, 331):
-  #   num = str(i).zfill(3)
-  #   # num = int(f[:3])
-  #   f = str(num) + '.html'
-  #   print f
-  #   if os.path.isfile(os.path.join(faculty_path, f)):
-  #     with open(faculty_path + f) as file:
-  #       html =  file.read()
-  #       web_page = WebPage(tokenizer, model, urls[i - 1], html)
-  #       faculty_features[i - 1] = web_page.features
-
-  # print '================================================='
-  # for features in faculty_features:
-  #   print ', '.join([str(f) for f in features])
-  # sys.stdout.flush()
-  
-
-  # Non Faculty
-  # non_faculty_path = "../name_extractor_data/non_faculty/"
-  # files = [f for f in os.listdir(non_faculty_path) if os.path.isfile(os.path.join(non_faculty_path, f))]
-
-  # non_faculty_features = [[]] * 1541
-  # urls = [0] * 1541
-  # with open('data/non_faculty_pages.txt') as f: 
-  #   i = 0
-  #   for line in f:
-  #     urls[i] = line.strip()
-  #     i += 1
-
-  # for i in range(1, 1542):
-  #   num = str(i)
-  #   f = str(num) + '.html'
-  #   print f
-  #   if os.path.isfile(os.path.join(non_faculty_path, f)):
-  #     with open(non_faculty_path + f) as file:
-  #       html =  file.read()
-  #       web_page = WebPage(tokenizer, model, urls[i - 1], html)
-  #       non_faculty_features[i - 1] = web_page.features
-
-  # print '================================================='
-  # for features in non_faculty_features:
-  #   print ', '.join([str(f) for f in features])
-
   classifier  = Classifier()
+  if len(sys.argv) > 2:
+    filename = sys.argv[2]
+    if sys.argv[1] == 'fit':
+      classifier.fit(filename)
+    if sys.argv[1] == 'featurize':
+      classifier.create_feature_vectors(filename)
+  else:
+    print 'usage: classifier.py <fit|featurize> <filename>'
