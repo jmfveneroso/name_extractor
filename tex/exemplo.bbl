@@ -1,99 +1,328 @@
 \begin{thebibliography}{}
 
-\bibitem[Bichsel \ppgccciteauthorand {} Pentland, 1992]{bichsel92simple}
-\ppgccbibauthordoformat {Bichsel, M. \ppgccbibauthorand {} Pentland, A.~P.}
-  (\ppgccyeardoformat {1992}).
-\newblock \ppgccbibtitledoformat {A simple algorithm for shape from shading}.
-\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
-  {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
-  \ppgccbibpagesstring {} \ppgccpagedoformat {459}-\ppgccpagedoformat
-  {}-\ppgccpagedoformat {465}.
+\bibitem[Abdessalem et~al.\@, 2010]{Abdessalem2010}
+\ppgccbibauthordoformat {Abdessalem, T.\ppgccbibauthorsep {} Cautis,
+  B.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Derouiche, N.}
+  (\ppgccyeardoformat {2010}).
+\newblock \ppgccbibtitledoformat {{ObjectRunner: lightweight, targeted
+  extraction and querying of structured web data}}.
+\newblock \ppgccbibjournaldoformat {Proceedings of the VLDB {\ldots}},
+  \ppgccvolumedoformat {3}({\ppgccnumberdoformat {2}}):\ppgccpagedoformat
+  {1585}-\ppgccpagedoformat {}-\ppgccpagedoformat {1588}.
+\newblock ISSN \ppgccissndoformat {21508097}.
 
-\bibitem[Dror et~al.\@, 2001]{dror01statistics}
-\ppgccbibauthordoformat {Dror, R.~O.\ppgccbibauthorsep {} Leung,
-  T.~K.\ppgccbibauthorsep {} Adelson, E.~H.\ppgccbibauthorlastsep {}
-  \ppgccbibauthorand {} Willsky, A.~S.} (\ppgccyeardoformat {2001}).
-\newblock \ppgccbibtitledoformat {Statistics of real-world illumination}.
-\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
-  {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})}.
+\bibitem[Arasu et~al.\@, 2003]{Arasu2003}
+\ppgccbibauthordoformat {Arasu, A.\ppgccbibauthorsep {} Garcia-Molina,
+  H.\ppgccbibauthorsep {} Arasu, A.\ppgccbibauthorlastsep {} \ppgccbibauthorand
+  {} Garcia-Molina, H.} (\ppgccyeardoformat {2003}).
+\newblock \ppgccbibtitledoformat {{Extracting structured data from Web pages}}.
+\newblock \ppgccbibjournaldoformat {2003 ACM SIGMOD International Conference on
+  Management of Data}, \ppgccbibpagesstring {} \ppgccpagedoformat {337
+  }-\ppgccpagedoformat {}-\ppgccpagedoformat { 348}.
 
-\bibitem[Guisser et~al.\@, 1992]{guisser92new}
-\ppgccbibauthordoformat {Guisser, L.\ppgccbibauthorsep {} Payrissat,
-  R.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Castan, S.}
-  (\ppgccyeardoformat {1992}).
-\newblock \ppgccbibtitledoformat {A new {3-D} surface measurement system using
-  a structured light}.
-\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
-  {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
-  \ppgccbibpagesstring {} \ppgccpagedoformat {784}-\ppgccpagedoformat
-  {}-\ppgccpagedoformat {786}.
-
-\bibitem[Horn, 1986]{horn86robot}
-\ppgccbibauthordoformat {Horn, B. K.~P.} (\ppgccyeardoformat {1986}).
-\newblock \ppgccbibbtitledoformat {Robot Vision}.
-\newblock McGraw-Hill Book Company, Cambridge, Massachusetts.
-\newblock MIT Electrical Engineering and Computer Science Series.
-
-\bibitem[Hougen \ppgccciteauthorand {} Ahuja, 1993]{hougen93estimation}
-\ppgccbibauthordoformat {Hougen, D.~R. \ppgccbibauthorand {} Ahuja, N.}
-  (\ppgccyeardoformat {1993}).
-\newblock \ppgccbibtitledoformat {Estimation of the light source distribution
-  and its use in integrated shape recovery from stereo and shading}.
-\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
-  {IEEE} International Conference on Computer Vision ({ICCV})},
-  \ppgccbibpagesstring {} \ppgccpagedoformat {148}-\ppgccpagedoformat
-  {}-\ppgccpagedoformat {155}.
-
-\bibitem[Samaras \ppgccciteauthorand {} Metaxas, 1999]{samaras99coupled}
-\ppgccbibauthordoformat {Samaras, D. \ppgccbibauthorand {} Metaxas, D.}
+\bibitem[Arocena \ppgccciteauthorand {} Mendelzon, 1999]{Arocena1999}
+\ppgccbibauthordoformat {Arocena, G.~O. \ppgccbibauthorand {} Mendelzon, A.~O.}
   (\ppgccyeardoformat {1999}).
-\newblock \ppgccbibtitledoformat {Coupled lighting direction and shape
-  estimation from single images}.
-\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
-  {IEEE} International Conference on Computer Vision ({ICCV})},
-  \ppgccbibpagesstring {} \ppgccpagedoformat {868}-\ppgccpagedoformat
-  {}-\ppgccpagedoformat {874}.
+\newblock \ppgccbibtitledoformat {{WebOQL: Restructuring documents, databases,
+  and webs}}.
+\newblock \ppgccbibjournaldoformat {Theory and Practice of Object Systems},
+  \ppgccvolumedoformat {5}({\ppgccnumberdoformat {3}}):\ppgccpagedoformat
+  {127}-\ppgccpagedoformat {}-\ppgccpagedoformat {141}.
+\newblock ISSN \ppgccissndoformat {10743227}.
 
-\bibitem[Sato et~al.\@, 1999a]{sato99illumination2}
-\ppgccbibauthordoformat {Sato, I.\ppgccbibauthorsep {} Sato,
-  Y.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Ikeuchi, K.}
-  (\ppgccyeardoformat {1999a}).
-\newblock \ppgccbibtitledoformat {Illumination distribution from brightness in
-  shadows: Adaptive estimation of illumination distribution with unknown
-  reflectance properties in shadow regions}.
-\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
-  {IEEE} International Conference on Computer Vision ({ICCV})},
-  \ppgccbibpagesstring {} \ppgccpagedoformat {875}-\ppgccpagedoformat
-  {}-\ppgccpagedoformat {882}.
+\bibitem[Califf \ppgccciteauthorand {} Mooney, 1999]{Califf1999}
+\ppgccbibauthordoformat {Califf, M.~E. \ppgccbibauthorand {} Mooney, R.~J.}
+  (\ppgccyeardoformat {1999}).
+\newblock \ppgccbibtitledoformat {{Relational learning of pattern-match rules
+  for information extraction}}.
+\newblock \ppgccbibjournaldoformat {Computational Linguistics},
+  \ppgccvolumedoformat {4}:\ppgccpagedoformat {9}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {15}.
+\newblock ISSN \ppgccissndoformat {15324435}.
 
-\bibitem[Sato et~al.\@, 1999b]{sato99illumination1}
-\ppgccbibauthordoformat {Sato, I.\ppgccbibauthorsep {} Sato,
-  Y.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Ikeuchi, K.}
-  (\ppgccyeardoformat {1999b}).
-\newblock \ppgccbibtitledoformat {Illumination distribution from shadows}.
-\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
-  {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
-  \ppgccbibpagesstring {} \ppgccpagedoformat {306}-\ppgccpagedoformat
-  {}-\ppgccpagedoformat {312}.
+\bibitem[Chang et~al.\@, 2006]{Chang2006}
+\ppgccbibauthordoformat {Chang, C.-H.\ppgccbibauthorsep {} Kayed,
+  M.\ppgccbibauthorsep {} Girgis, M.~R.\ppgccbibauthorlastsep {}
+  \ppgccbibauthorand {} Shaalan, K.~F.} (\ppgccyeardoformat {2006}).
+\newblock \ppgccbibtitledoformat {{A Survey of Web Information Extraction
+  Systems}}.
+\newblock \ppgccbibjournaldoformat {IEEE Transactions on Knowledge and Data
+  Engineering}, \ppgccvolumedoformat {18}({\ppgccnumberdoformat
+  {10}}):\ppgccpagedoformat {1411}-\ppgccpagedoformat {}-\ppgccpagedoformat
+  {1428}.
+\newblock ISSN \ppgccissndoformat {1041-4347}.
 
-\bibitem[Sato et~al.\@, 2001]{sato01stability}
-\ppgccbibauthordoformat {Sato, I.\ppgccbibauthorsep {} Sato,
-  Y.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Ikeuchi, K.}
+\bibitem[Crescenzi et~al.\@, 2001]{Crescenzi2001}
+\ppgccbibauthordoformat {Crescenzi, V.\ppgccbibauthorsep {} Mecca,
+  G.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Merialdo, P.}
   (\ppgccyeardoformat {2001}).
-\newblock \ppgccbibtitledoformat {Stability issues in recovering illumination
-  distribution from brightness in shadows}.
-\newblock \ppgccbibinstring {} \ppgccbibbooktitledoformat {Proceedings of the
-  {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
-  \ppgccbibpagesstring {} \ppgccpagedoformat {400}-\ppgccpagedoformat
-  {}-\ppgccpagedoformat {407}.
+\newblock \ppgccbibtitledoformat {{Roadrunner: Towards automatic data
+  extraction from large web sites}}.
+\newblock \ppgccbibjournaldoformat {Proceedings of the 27th International
+  Conference on Very Large Data Bases}, \ppgccbibpagesstring {}
+  \ppgccpagedoformat {109}-\ppgccpagedoformat {}-\ppgccpagedoformat {118}.
+\newblock ISSN \ppgccissndoformat {10477349}.
 
-\bibitem[Shashua, 1997]{shashua97photometric}
-\ppgccbibauthordoformat {Shashua, A.} (\ppgccyeardoformat {1997}).
-\newblock \ppgccbibtitledoformat {On photometric issues in {3D} visual
-  recognition from a single {2D} image}.
-\newblock \ppgccbibjournaldoformat {International Journal of Computer Vision
-  ({IJCV})}, \ppgccvolumedoformat {21}({\ppgccnumberdoformat
-  {1/2}}):\ppgccpagedoformat {99}-\ppgccpagedoformat {}-\ppgccpagedoformat
-  {122}.
+\bibitem[Doan et~al.\@, 2008]{Doan2008}
+\ppgccbibauthordoformat {Doan, A.\ppgccbibauthorsep {} Naughton,
+  J.~F.\ppgccbibauthorsep {} Ramakrishnan, R.\ppgccbibauthorsep {} Baid,
+  A.\ppgccbibauthorsep {} Chai, X.\ppgccbibauthorsep {} Chen,
+  F.\ppgccbibauthorsep {} Chen, T.\ppgccbibauthorsep {} Chu,
+  E.\ppgccbibauthorsep {} Derose, P.\ppgccbibauthorsep {} Gao,
+  B.\ppgccbibauthorsep {} Gokhale, C.\ppgccbibauthorsep {} Huang,
+  J.\ppgccbibauthorsep {} Shen, W.\ppgccbibauthorlastsep {} \ppgccbibauthorand
+  {} Vuong, B.-q.} (\ppgccyeardoformat {2008}).
+\newblock \ppgccbibtitledoformat {{Information Extraction Challenges in
+  Managing Unstructured Data}}.
+\newblock \ppgccbibjournaldoformat {ACM SIGMOD Record}, \ppgccvolumedoformat
+  {37}({\ppgccnumberdoformat {4}}):\ppgccpagedoformat {14}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {20}.
+\newblock ISSN \ppgccissndoformat {0163-5808}.
+
+\bibitem[Ferrara et~al.\@, 2014]{Ferrara2014}
+\ppgccbibauthordoformat {Ferrara, E.\ppgccbibauthorsep {} {De Meo},
+  P.\ppgccbibauthorsep {} Fiumara, G.\ppgccbibauthorlastsep {}
+  \ppgccbibauthorand {} Baumgartner, R.} (\ppgccyeardoformat {2014}).
+\newblock \ppgccbibtitledoformat {{Web data extraction, applications and
+  techniques: A survey}}.
+\newblock \ppgccbibjournaldoformat {Knowledge-Based Systems},
+  \ppgccvolumedoformat {70}:\ppgccpagedoformat {301}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {323}.
+\newblock ISSN \ppgccissndoformat {09507051}.
+
+\bibitem[Figueiredo et~al.\@, 2017]{Figueiredo2017}
+\ppgccbibauthordoformat {Figueiredo, L. N.~L.\ppgccbibauthorsep {} de~Assis,
+  G.~T.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Ferreira, A.~A.}
+  (\ppgccyeardoformat {2017}).
+\newblock \ppgccbibtitledoformat {{DERIN: A data extraction method based on
+  rendering information and n-gram}}.
+\newblock \ppgccbibjournaldoformat {Information Processing {\&} Management},
+  \ppgccvolumedoformat {53}({\ppgccnumberdoformat {5}}):\ppgccpagedoformat
+  {1120}-\ppgccpagedoformat {}-\ppgccpagedoformat {1138}.
+\newblock ISSN \ppgccissndoformat {03064573}.
+
+\bibitem[Fiumara, 2007]{Fiumara2007}
+\ppgccbibauthordoformat {Fiumara, G.} (\ppgccyeardoformat {2007}).
+\newblock \ppgccbibtitledoformat {{Automated information extraction from Web
+  sources: A survey}}.
+\newblock \ppgccbibjournaldoformat {CEUR Workshop Proceedings},
+  \ppgccvolumedoformat {312}:\ppgccpagedoformat {1}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {9}.
+\newblock ISSN \ppgccissndoformat {16130073}.
+
+\bibitem[Flesca et~al.\@, 2004]{Flesca2004}
+\ppgccbibauthordoformat {Flesca, S.\ppgccbibauthorsep {} Manco,
+  G.\ppgccbibauthorsep {} Masciari, E.\ppgccbibauthorsep {} Rende,
+  E.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Tagarelli, A.}
+  (\ppgccyeardoformat {2004}).
+\newblock \ppgccbibtitledoformat {{Web wrapper induction: a brief survey}}.
+\newblock \ppgccbibjournaldoformat {AI Communications}, \ppgccvolumedoformat
+  {17}({\ppgccnumberdoformat {2}}):\ppgccpagedoformat {57}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {61}.
+\newblock ISSN \ppgccissndoformat {0921-7126}.
+
+\bibitem[Freitag, 1998]{Freitag1998}
+\ppgccbibauthordoformat {Freitag, D.} (\ppgccyeardoformat {1998}).
+\newblock \ppgccbibtitledoformat {{Information Extraction from HTML:
+  Application of a General Machine Learning Approach}}.
+\newblock \ppgccbibjournaldoformat {Proceedings of the Fifteenth National/Tenth
+  Conference on Artificial Intelligence/Innovative Applications of Artificial
+  Intelligence}, \ppgccbibpagesstring {} \ppgccpagedoformat
+  {517}-\ppgccpagedoformat {}-\ppgccpagedoformat {523}.
+
+\bibitem[Furche et~al.\@, 2012]{Furche2012}
+\ppgccbibauthordoformat {Furche, T.\ppgccbibauthorsep {} Gottlob,
+  G.\ppgccbibauthorsep {} Grasso, G.\ppgccbibauthorsep {} Orsi,
+  G.\ppgccbibauthorsep {} Schallhart, C.\ppgccbibauthorlastsep {}
+  \ppgccbibauthorand {} Wang, C.} (\ppgccyeardoformat {2012}).
+\newblock \ppgccbibtitledoformat {{AMBER: Automatic Supervision for
+  Multi-Attribute Extraction}}.
+\newblock \ppgccbibjournaldoformat {arXiv preprint}, \ppgccvolumedoformat
+  {1210}({\ppgccnumberdoformat {5984}}):\ppgccpagedoformat
+  {1}-\ppgccpagedoformat {}-\ppgccpagedoformat {22}.
+
+\bibitem[Garfield, 1955]{Garfield1955a}
+\ppgccbibauthordoformat {Garfield, E.} (\ppgccyeardoformat {1955}).
+\newblock \ppgccbibtitledoformat {{Citation Indexes for Science}}.
+\newblock \ppgccbibjournaldoformat {Science}, \ppgccvolumedoformat
+  {122}:\ppgccpagedoformat {108}-\ppgccpagedoformat {}-\ppgccpagedoformat
+  {111}.
+
+\bibitem[Hammer et~al.\@, 1997]{Hammer1997}
+\ppgccbibauthordoformat {Hammer, J.\ppgccbibauthorsep {} Mchugh,
+  J.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Garcia-molina, H.}
+  (\ppgccyeardoformat {1997}).
+\newblock \ppgccbibtitledoformat {{Semistructured Data : The TSIMMIS
+  Experience}}.
+\newblock \ppgccbibjournaldoformat {Proceedings of the First East-European
+  Symposium on Advances in Databases and Information Systems},
+  \ppgccbibpagesstring {} \ppgccpagedoformat {1}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {8}.
+
+\bibitem[Hsu \ppgccciteauthorand {} Dung, 1998]{Hsu1998}
+\ppgccbibauthordoformat {Hsu, C.~N. \ppgccbibauthorand {} Dung, M.~T.}
+  (\ppgccyeardoformat {1998}).
+\newblock \ppgccbibtitledoformat {{Generating finite-state transducers for
+  semi-structured data extraction from the Web}}.
+\newblock \ppgccbibjournaldoformat {Information Systems}, \ppgccvolumedoformat
+  {23}({\ppgccnumberdoformat {8}}):\ppgccpagedoformat {521}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {538}.
+\newblock ISSN \ppgccissndoformat {03064379}.
+
+\bibitem[Kaiser \ppgccciteauthorand {} Miksch, 2005]{Kaiser2005}
+\ppgccbibauthordoformat {Kaiser, K. \ppgccbibauthorand {} Miksch, S.}
+  (\ppgccyeardoformat {2005}).
+\newblock \ppgccbibtitledoformat {{Information Extraction}}.
+\newblock \ppgccbibjournaldoformat {Technology}, ({\ppgccnumberdoformat
+  {May}}):\ppgccpagedoformat {32}.
+
+\bibitem[Kao \ppgccciteauthorand {} Chen, 2010]{Kao2010}
+\ppgccbibauthordoformat {Kao, H.-A. \ppgccbibauthorand {} Chen, H.-H.}
+  (\ppgccyeardoformat {2010}).
+\newblock \ppgccbibtitledoformat {{Comment Extraction from Blog Posts and Its
+  Applications to Opinion Mining}}.
+\newblock \ppgccbibjournaldoformat {Proceedings of the 7th International
+  Conference on Language Resources and Evaluation}, \ppgccbibpagesstring {}
+  \ppgccpagedoformat {1113}-\ppgccpagedoformat {}-\ppgccpagedoformat {1120}.
+
+\bibitem[Khalil \ppgccciteauthorand {} Fakir, 2017]{Khalil2017}
+\ppgccbibauthordoformat {Khalil, S. \ppgccbibauthorand {} Fakir, M.}
+  (\ppgccyeardoformat {2017}).
+\newblock \ppgccbibtitledoformat {{RCrawler: An R package for parallel web
+  crawling and scraping}}.
+\newblock \ppgccbibjournaldoformat {SoftwareX}, \ppgccvolumedoformat
+  {6}:\ppgccpagedoformat {98}-\ppgccpagedoformat {}-\ppgccpagedoformat {106}.
+\newblock ISSN \ppgccissndoformat {23527110}.
+
+\bibitem[Kushmerick, 2000]{Kushmerick2000}
+\ppgccbibauthordoformat {Kushmerick, N.} (\ppgccyeardoformat {2000}).
+\newblock \ppgccbibtitledoformat {{Wrapper induction: efficiency and
+  expressiveness}}.
+\newblock \ppgccbibjournaldoformat {Artificial Intelligence},
+  \ppgccvolumedoformat {118}({\ppgccnumberdoformat {1-2}}):\ppgccpagedoformat
+  {15}-\ppgccpagedoformat {}-\ppgccpagedoformat {68}.
+\newblock ISSN \ppgccissndoformat {00043702}.
+
+\bibitem[Kushmerick \ppgccciteauthorand {} Kushmerick, 2003]{Kushmerick2003}
+\ppgccbibauthordoformat {Kushmerick, N. \ppgccbibauthorand {} Kushmerick, N.}
+  (\ppgccyeardoformat {2003}).
+\newblock \ppgccbibtitledoformat {{Finite-state approaches to Web information
+  extraction}}.
+\newblock \ppgccbibjournaldoformat {Lecture Notes in Computer Science},
+  \ppgccvolumedoformat {2700}:\ppgccpagedoformat {77}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {91}.
+\newblock ISSN \ppgccissndoformat {03029743}.
+
+\bibitem[Kushmerick et~al.\@, 1997]{Kushmerick1997}
+\ppgccbibauthordoformat {Kushmerick, N.\ppgccbibauthorsep {} Weld,
+  D.~S.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Doorenbos, R.}
+  (\ppgccyeardoformat {1997}).
+\newblock \ppgccbibtitledoformat {{Wrapper induction for information
+  extraction}}.
+\newblock \ppgccbibjournaldoformat {Intl Joint Conference on Artificial
+  Intelligence IJCAI}, \ppgccbibpagesstring {} \ppgccpagedoformat
+  {729}-\ppgccpagedoformat {}-\ppgccpagedoformat {737}.
+
+\bibitem[Laender et~al.\@, 2002a]{Laender2002}
+\ppgccbibauthordoformat {Laender, A.\ppgccbibauthorsep {} Ribeiro-Neto,
+  B.~A.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} S.Teixeria, J.}
+  (\ppgccyeardoformat {2002a}).
+\newblock \ppgccbibtitledoformat {{A brief survey of web data extraction
+  tools}}.
+\newblock \ppgccbibjournaldoformat {ACM SIGMOD Record 31(2)},
+  \ppgccbibpagesstring {} \ppgccpagedoformat {84}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {93}.
+
+\bibitem[Laender et~al.\@, 2002b]{Laender2002a}
+\ppgccbibauthordoformat {Laender, A. H.~F.\ppgccbibauthorsep {} Ribeiro-Neto,
+  B.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} da~Silva, A.~S.}
+  (\ppgccyeardoformat {2002b}).
+\newblock \ppgccbibtitledoformat {{DEByE - Date extraction by example}}.
+\newblock \ppgccbibjournaldoformat {Data Knowl. Eng.}, \ppgccvolumedoformat
+  {40}({\ppgccnumberdoformat {2}}):\ppgccpagedoformat {121}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {154}.
+\newblock ISSN \ppgccissndoformat {0169-023X}.
+
+\bibitem[Liu et~al.\@, 2000]{Liu2000}
+\ppgccbibauthordoformat {Liu, L.\ppgccbibauthorsep {} Pu,
+  C.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Han, W.}
+  (\ppgccyeardoformat {2000}).
+\newblock \ppgccbibtitledoformat {{XWRAP: an XML-enabled wrapper construction
+  system for Web information sources}}.
+\newblock \ppgccbibjournaldoformat {Proceedings of 16th International
+  Conference on Data Engineering}, \ppgccbibpagesstring {} \ppgccpagedoformat
+  {611}-\ppgccpagedoformat {}-\ppgccpagedoformat {621}.
+\newblock ISSN \ppgccissndoformat {1063-6382}.
+
+\bibitem[Ribas et~al.\@, 2015]{Ribas2015}
+\ppgccbibauthordoformat {Ribas, S.\ppgccbibauthorsep {} Ribeiro-Neto,
+  B.\ppgccbibauthorsep {} Santos, R.\ppgccbibauthorsep {} {Souza e Silva},
+  E.\ppgccbibauthorsep {} Ueda, A.\ppgccbibauthorlastsep {} \ppgccbibauthorand
+  {} Ziviani, N.} (\ppgccyeardoformat {2015}).
+\newblock \ppgccbibbtitledoformat {{Random Walks on the Reputation Graph}}.
+\newblock ACM Press, New York, New York, USA.
+\newblock ISBN \ppgccissndoformat {9781450338332}.
+
+\bibitem[Sahuguet \ppgccciteauthorand {} Azavant, 1999]{Sahuguet1999}
+\ppgccbibauthordoformat {Sahuguet, A. \ppgccbibauthorand {} Azavant, F.}
+  (\ppgccyeardoformat {1999}).
+\newblock \ppgccbibtitledoformat {{Building light-weight wrappers for legacy
+  Web data-sources using W4F}}.
+\newblock \ppgccbibjournaldoformat {Proceedings of the 25th VLDB Conference},
+  \ppgccvolumedoformat {99}:\ppgccpagedoformat {738}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {741}.
+
+\bibitem[Sarawagi, 2008]{Sarawagi2008}
+\ppgccbibauthordoformat {Sarawagi, S.} (\ppgccyeardoformat {2008}).
+\newblock \ppgccbibtitledoformat {{Information extraction}}.
+\newblock \ppgccbibjournaldoformat {Foundations and Trends in Databases},
+  \ppgccvolumedoformat {1}({\ppgccnumberdoformat {3}}):\ppgccpagedoformat
+  {261}-\ppgccpagedoformat {}-\ppgccpagedoformat {377}.
+\newblock ISSN \ppgccissndoformat {1931-7883}.
+
+\bibitem[Schulz et~al.\@, 2016]{Schulz2016}
+\ppgccbibauthordoformat {Schulz, A.\ppgccbibauthorsep {} L{\"{a}}ssig,
+  J.\ppgccbibauthorlastsep {} \ppgccbibauthorand {} Gaedke, M.}
+  (\ppgccyeardoformat {2016}).
+\newblock \ppgccbibtitledoformat {{Practical web data extraction: Are we there
+  yet? --- A short survey}}.
+\newblock \ppgccbibjournaldoformat {IEEE/WIC/ACM International Conference on
+  Web Intelligence (WI), 2016}, \ppgccbibpagesstring {} \ppgccpagedoformat
+  {562}-\ppgccpagedoformat {}-\ppgccpagedoformat {}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {567}.
+
+\bibitem[Soderland, 1999]{Soderland1999}
+\ppgccbibauthordoformat {Soderland, S.} (\ppgccyeardoformat {1999}).
+\newblock \ppgccbibtitledoformat {{Learning Information Extraction Rules for
+  Semi-Structured and Free Text}}.
+\newblock \ppgccbibjournaldoformat {Machine Learning}, \ppgccvolumedoformat
+  {34}({\ppgccnumberdoformat {1}}):\ppgccpagedoformat {233}-\ppgccpagedoformat
+  {}-\ppgccpagedoformat {272}.
+\newblock ISSN \ppgccissndoformat {0885-6125}.
+
+\bibitem[Su \ppgccciteauthorand {} Lochvsky, 2009]{Su2009}
+\ppgccbibauthordoformat {Su, W. \ppgccbibauthorand {} Lochvsky, F.~H.}
+  (\ppgccyeardoformat {2009}).
+\newblock \ppgccbibtitledoformat {{ODE : Ontology-assisted Data Extraction}}.
+\newblock \ppgccvolumedoformat {1}({\ppgccnumberdoformat {212}}).
+
+\bibitem[Varlamov \ppgccciteauthorand {} Turdakov, 2016]{Varlamov2016}
+\ppgccbibauthordoformat {Varlamov, M.~I. \ppgccbibauthorand {} Turdakov, D.~Y.}
+  (\ppgccyeardoformat {2016}).
+\newblock \ppgccbibtitledoformat {{A survey of methods for the extraction of
+  information from Web resources}}.
+\newblock \ppgccbibjournaldoformat {Programming and Computer Software},
+  \ppgccvolumedoformat {42}({\ppgccnumberdoformat {5}}):\ppgccpagedoformat
+  {279}-\ppgccpagedoformat {}-\ppgccpagedoformat {291}.
+\newblock ISSN \ppgccissndoformat {0361-7688}.
+
+\bibitem[Zhai \ppgccciteauthorand {} Liu, 2005]{Zhai2005}
+\ppgccbibauthordoformat {Zhai, Y. \ppgccbibauthorand {} Liu, B.}
+  (\ppgccyeardoformat {2005}).
+\newblock \ppgccbibtitledoformat {{Web data extraction based on partial tree
+  alignment}}.
+\newblock \ppgccbibjournaldoformat {Proceedings of the 14th international
+  conference on World Wide Web - WWW '05}, \ppgccbibpagestring {}~76.
+\newblock ISSN \ppgccissndoformat {10414347}.
 
 \end{thebibliography}
