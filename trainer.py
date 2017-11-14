@@ -1,3 +1,5 @@
+from math import log
+
 class Trainer():
   def __init__(self, tokenizer):
     self.tokenizer = tokenizer

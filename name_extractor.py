@@ -116,12 +116,14 @@ def create_model():
   trainer = Trainer(tokenizer)
   estimator.load_name_cond_probs("data/probabilities/tokenized_authors_prob.txt")
   estimator.load_word_cond_probs("data/probabilities/conditional_not_a_name_prob.txt")
-  estimator.load_conditional_probabilities("data/probabilities/conditional_probs_4.txt")
+  # estimator.load_conditional_probabilities("data/probabilities/conditional_probs_4.txt")
+  estimator.load_conditional_probabilities("data/probabilities/fold_1.txt")
   model = Model(tokenizer, estimator)
   return model
 
 if __name__ == "__main__":
   model = create_model()
+  trainer = Trainer(Tokenizer())
 
   if len(sys.argv) > 1:
     if len(sys.argv) > 2 and sys.argv[2] == '-v':
@@ -130,10 +132,34 @@ if __name__ == "__main__":
     if sys.argv[1] == 'train':
       test_path = "downloaded_pages/faculty"
       expected_path = "data/correct_names"
-      file_nums = [f[-7:-4] for f in os.listdir(expected_path) if os.path.isfile(os.path.join(expected_path, f))]
+      # file_nums = [f[-7:-4] for f in os.listdir(expected_path) if os.path.isfile(os.path.join(expected_path, f))]
+      file_nums = [
+        '180', '197', '156', '203', '095', '052', '072', '126', '184', '086', 
+        '102', '034', '007', '011', '105', '199', '182', '092', '128', '031', 
+        '014', '124', '129', '050', '024', '080', '122', '076', '134', '206', 
 
+        '067', '216', '170', '107', '174', '085', '027', '074', '049', '099', 
+        '177', '127', '131', '026', '192', '123', '019', '017', '178', '036', 
+        '187', '113', '098', '041', '020', '146', '001', '132', '191', '112', 
+
+        '101', '044', '037', '155', '022', '149', '201', '008', '077', '152', 
+        '161', '091', '189', '087', '114', '082', '157', '100', '120', '006', 
+        '147', '106', '039', '150', '209', '053', '144', '175', '005', '159', 
+
+        '183', '013', '118', '016', '136', '158', '162', '094', '088', '210', 
+        '151', '133', '029', '166', '069', '066', '061', '045', '195', '115', 
+        '176', '010', '116', '121', '015', '171', '057', '063', '207', '194', 
+
+        # '214', '179', '135', '021', '093', '208', '004', '047', '215', '211', 
+        # '025', '038', '033', '071', '190', '160', '108', '141', '096', '202', 
+        # '154', '009', '023', '186', '117', '002', '111', '125', '064'
+      ]
+
+      count = 1
       for file_num in file_nums:
-        print "File", file_num
+        print "File", file_num, count, 'of', len(file_nums)
+        count += 1
+
         test_file = os.path.join(test_path, file_num + ".html")
         expected_file = os.path.join(expected_path, "names_" + file_num + ".txt")
         if not os.path.isfile(test_file):
@@ -152,6 +178,27 @@ if __name__ == "__main__":
     test_path = "downloaded_pages/faculty"
     expected_path = "data/correct_names"
     file_nums = [f[-7:-4] for f in os.listdir(expected_path) if os.path.isfile(os.path.join(expected_path, f))]
+    file_nums = [
+      '180', '197', '156', '203', '095', '052', '072', '126', '184', '086', 
+      '102', '034', '007', '011', '105', '199', '182', '092', '128', '031', 
+      '014', '124', '129', '050', '024', '080', '122', '076', '134', '206', 
+
+      # '067', '216', '170', '107', '174', '085', '027', '074', '049', '099', 
+      # '177', '127', '131', '026', '192', '123', '019', '017', '178', '036', 
+      # '187', '113', '098', '041', '020', '146', '001', '132', '191', '112', 
+
+      # '101', '044', '037', '155', '022', '149', '201', '008', '077', '152', 
+      # '161', '091', '189', '087', '114', '082', '157', '100', '120', '006', 
+      # '147', '106', '039', '150', '209', '053', '144', '175', '005', '159', 
+
+      # '183', '013', '118', '016', '136', '158', '162', '094', '088', '210', 
+      # '151', '133', '029', '166', '069', '066', '061', '045', '195', '115', 
+      # '176', '010', '116', '121', '015', '171', '057', '063', '207', '194', 
+
+      # '214', '179', '135', '021', '093', '208', '004', '047', '215', '211', 
+      # '025', '038', '033', '071', '190', '160', '108', '141', '096', '202', 
+      # '154', '009', '023', '186', '117', '002', '111', '125', '064'
+    ]
 
     type_1_errors = 0
     type_2_errors = 0

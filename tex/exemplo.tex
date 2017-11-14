@@ -189,7 +189,7 @@ the unsupervised approaches: RoadRunner \cite{Crescenzi2001} and EXALG \cite{Ara
 The second group is divided between domain specific methods and domain agnostic methods.
 Domain specific methods are designed for extracting data about a particular 
 application domain across multiple websites. Our researcher name extractor 
-method that will be further described in section 3 falls in this category. Domain
+method that will be further described on section 3 falls in this category. Domain
 specific methods integrate information about the particular application domain in the 
 course of its development and thus are able to achieve superior performance in
 comparison to domain agnostic methods.
@@ -198,11 +198,10 @@ Domain agnostic methods are the most general extraction methods. They can extrac
 information from any application domain from multiple websites. They pose the hardest
 challenge because the tool must infer data relevance without any prior training in
 thar particular application domain. Some examples are: ODE \cite{Su2009}, ObjectRunner 
-\cite{Abdessalem2010}, and AMBER \cite{Furche2012}.
+\cite{Abdessalem2010}, and AMBER \cite{Furche2012}. As previously stated,
+these approaches tend to yield worse results than domain specific methods, however
+recent research has been improving domain agnostic methods by large steps.
 
-Our method is finely tuned for the researcher name extraction task, however it is 
-our intent to create a more general agnostic method based 
-on statistical properties in future research.
 
 \chapter{Methodology}
 
@@ -210,9 +209,11 @@ This section describes briefly a statistical NLP approach to solve the researche
 affiliation extraction problem presented in section 1. This problem is actually
 composed of two parts. The first one envolves crawling university websites and
 finding faculty repositories and the second one is extracting the actual researcher
-affiliation data from these repositories. 
+affiliation data from these repositories. We will present here the model
+developed up to now, and then we will present the further research goals that
+are still to be reached.
 
-The crawling
+\section{Crawler}
 
 The crawling problem has been partially solved by online aggregators that
 compiled university internet domains for most of the academic world. One of these
@@ -229,27 +230,39 @@ and 2067 were other types of pages. We took care to select a proportional number
 of pages from each country.
 
 Since the classification task is not our main research focus, the results will
-only be presented here briefly. Our classifier employed 112 features:
-60 were the number of occurrences of a set of relevant keywords in the URL, the page 
-title, h1, h2 and h3 tags. Each element having its own set of features.
-49 where the number of occurrences of a different set of keywords in the rest of the
-text of the page.
-1 feature measured the document length
-1 feature was the number of names found by a simplified version of our name extractor.
+only be presented here briefly. Our classifier employed only 112 features:
+\begin{itemize}
+  \item 60 for the number of occurrences of a set of relevant keywords in the URL, the page 
+         title, h1, h2 and h3 tags. Each element having its own set of features.
+  \item 49 for the number of occurrences of a different set of keywords in the rest of the
+        text of the page.
+  \item 1 feature measuring the document length.
+  \item 1 feature for the number of names found by a simplified version of the name extractor.
+\end{itemize}
 
-\begin{tabular}{ l c r }
-  Random Forest & 0.93 & 0.02 \\
-  Gaussian Naive Bayes & 0.88 & 0.03 \\
-  SVM & 0.85 & 0.05 \\
-  Logistic Regression & 0.90 & 0.02 \\
-\end{tabular}
+\begin{table}[h]
+  \begin{center}
+    \begin{tabular}{ |l|l|l| }
+      \hline
+      Model & Accuracy & Standard Deviation \\
+      \hline
+      Random Forest & 0.93 & 0.02 \\
+      Gaussian Naive Bayes & 0.88 & 0.03 \\
+      Linear SVM & 0.85 & 0.05 \\
+      Logistic Regression & 0.90 & 0.02 \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Classifier}
+  \label{tab:classifier}
+\end{table}
 
 Four models were tested by means of 5 fold cross validation, the results are presented in
-table 1. All models except Support Vector Machines achieved a reasonable performance,
-however, since the Random Forest Classifier presented a more stable predictive capability,
-it was chosen as the classifier method for labeling the remaining webpages.
+table \ref{tab:classifier}. All models except Support Vector Machines achieved a reasonable 
+performance, however, since the Random Forest Classifier presented a more stable predictive 
+capability, it was chosen as the classifier method for labeling the remaining webpages.
 
-Data extraction
+\section{Data extraction}
 
 The data extraction stage consists of extracting researcher names from faculty directories.
 The main challenge here is constructing a general enough approach that can be used 
@@ -277,8 +290,7 @@ extrapolate our model to extract information from similar web pages.
 However at this moment we are only interested in extracting researcher names and it is not
 necessary to identify their status regarding full or partial membership.
 
-
-Proposed solution
+\subsection{Proposed solution}
 
 The name extraction problem is no different than a Named Entity Recognition problem, however 
 approaches that tipically achieve a high accuracy on free text like Conditional Random Fields, 
@@ -289,7 +301,7 @@ extraction problem, structural HTML features and proper noun conditional probabi
 a key role.
 
 Let $ t = (t_1, t_2, ..., t_n) $ be a sequence of tokens, and $ y = (y_1, y_2, ..., y_n) $ 
-be a sequence of labels where $ y_i \in {N, W} \forall i \in \mathbb{N} $, such that $ y_i = N $ 
+be a sequence of labels where $ y_i \in \{N, W\} \forall i \in \mathbb{N} $, such that $ y_i = N $ 
 means token $ i $ is a name and $ y_i = W $ means token $ i $ is a word. The problem of extracting 
 names from a sequence of tokens is equivalent to the problem of finding an optimal sequence of 
 labels $ y^* $ for a sequence of tokens $ t $:
@@ -327,8 +339,8 @@ P(t_i, y_i|t_{i-1}, y_{i-1}, t_{i-2}, y_{i-2}, ...)
 
 so we make the assumption that the probability that token $ t_i $ has label $ y_i $ depends
 on the values of previous labels but is independent of the previous tokens. For example, 
-given a sequence of tokens $ (John, Hall) $, the conditional probability $ P(Hall|John = name) $ 
-is equivalent to $ P(Hall|any name) $. In other words, this means that the probability of 
+given a sequence of tokens $ \{John, Hall\} $, the conditional probability $ P(Hall|John = name) $ 
+is equivalent to $ P(Hall|any\ name) $. In other words, this means that the probability of 
 Hall being a last name is the same regardless of a person's first name, as long as we can make sure 
 that the previous token is a name. The conditional probabilities then become:
 
@@ -343,132 +355,279 @@ Replacing equation \ref{eq:4} in equation \ref{eq:2}, yields:
 
 \begin{equation}
 \\
-P(Y_1, Y_2, ..., Y_n) = P(Y_1) P(Y_2|y_1) ... P(Y_n|y_1, y_2, ..., y_{n-1})
+P(Y_1, Y_2, \ldots, Y_n) = P(Y_1) P(Y_2|y_1) \ldots P(Y_n|y_1, y_2, ..., y_{n-1})
 \\
 \label{eq:4}
 \end{equation}
 
-Finally, we can once again employ the chain rule of probability to write:
+We can once again employ the chain rule of probability to write:
 
 \begin{equation}
 \\
-\begin{split}
-P(x_i= y_i) = P(x_i|y_i)P(y_i) \\
-P(x_{i+1}=y_{i+1}|y_i) = P(x_{i+1}|y_i,y_{i+1})P(y_{i+1}|y_i) \\
+P(x_i, y_i|y_1, y_2, \ldots, y_{i-1}) = P(y_i|y_1, y_2, \ldots, y_{i-1})P(x_i|y_1, y_2, \ldots, y_i) \\
 \\
-\end{split}
 \label{eq:5}
 \end{equation}
 
-and so on.
-
-By replacing \ref{eq:5} in \ref{eq:4} we obtain:
+Approximating $ P(x_i|y_1, y_2, ..., y_i) $ by $ P(x_i|y_i) $ we obtain:
 
 \begin{equation}
 \\
-P(Y_1, Y_2, ..., Y_n) = P(x_1|y_1)P(y_1)P(x_2|y_1, y_2)P(y_2|y_1)...P(x_n|y_1, y_2, ..., y_n)P(y_n|y_1, y_2, ..., y_n-1)
-\label{eq:5}
-\end{equation}
-
-Approximating $ P(x_i|y_1, y_2, ..., y_i) $ by $ P(x_i|y_i) $ we finally obtain:
-
-\begin{equation}
+P(x_i, y_i|y_1, y_2, \ldots, y_{i-1}) = P(y_i|y_1, y_2, \ldots, y_{i-1})P(x_i|y_i) \\
 \\
-P(Y_1, Y_2, ..., Y_n) = P(y_1, y_2, ..., y_n) P(x_1|y_1)P(x_2|y_2) ... P(x_n|y_n) 
 \label{eq:6}
 \end{equation}
 
-Equation \ref{eq:6} can be split into two parts: the prior given by the first part on the 
-right side of the equation and the conditional given by the rest of the equation on the 
-right side. 
+Take notice that $ P(Y_i) $ is a different notation for $ P(x_i = y_i) $ or $ P(x_i, y_i) $.
+So, by replacing equation \ref{eq:6} in equation \ref{eq:4} we finally obtain:
 
-In order to obtain the prior probability we need to acquire estimates for all sequences of 
-labels. Let N be a name label and W be a word label, then for a window of size k we would 
-need to estimate all the posaible sequences of labels: Nnn, nnnw, etc.
+\begin{equation}
+\\
+P(Y_1, Y_2, \ldots, Y_n) = P(y_1, y_2, \ldots, y_n) P(x_1|y_1)P(x_2|y_2) \ldots P(x_n|y_n) 
+\label{eq:7}
+\end{equation}
 
-Somyimes differentr names occur adjacently, so if we simply tag names and words we may wrongly 
-conclude that two or more names form a single long name and we have no way to tell where one 
-name starts and the other one begins. In order to infer name boundaries we need to estimate 
-prior additional probabilities. Being n1 and n2 different names we need to estimate n1n1n2n2 etc.
+Equation \ref{eq:7} can be split into two parts: the prior, given by the first part of the 
+equation on the right side and the conditional token probabilities, given by the rest of the 
+equation on the right side. 
 
-Most of the times names are contained in a single HTML element. So we introduce a break point 
-prior probability denoting where the first element ends in a sequence. This is specially useful 
-when we are trying to delimit adjacent names. Being * the end of an element we qould need 
-to estimate nn*ww n*nww etc.
+\subsubsection{Prior probabilities}
 
-Token probabilities
+In order to obtain the prior probability, we need to acquire estimates for all possible 
+sequences of labels. Considering that label $ y_i $ must be either a name or a word,
+then there are $ 2^k $ different combinations for a window of size $ k $.
 
-The conditional probabilities can be easily obtained. Im our experiments, the p(token|name) 
-estimates were obtained from approximately 1.5 millions author names from the DBLP database 
-and the p(token|W) estimates were obtained from 100k random documents extracted from the 
-university webpage corpus described earlier in this document. In the latter case we used 
-a heuristic to remove the names: all capitalized words were ignored when estimating probabilities.
+Let $ N $ be a name label and $ W $ be a word label, then for a window of size $ k $ we 
+would need to estimate prior probabilities for all $ 2^k $ possible sequences of labels.
+In practice, a window of size $ 4 $ seems to be accurate enough. In this case, the
+sequences would be: $ \{W, W, W, W\}, \{W, W, W, N\}, \{W, W, N, W\}, \ldots $.
 
-Token probabilities can also benefit from additional features. Those may be grouped as textual 
-and structural. Previous and next words would be obvious choices here, however we didn't find 
-these types of features to be particularly effective, probably because of the semi tabular 
-organization of our data. Features can be incorporated in formula 1 by doing the following 
-modification:
+When names occur next to each other we have no way to tell where the first name ends and 
+the second one starts. In order to delimit name boundaries we need to estimate
+priors for different sequences of name labels in addition to our previous priors.
+Let the first and second name labels be $ N_1 $ and $ N_2 $, respectively. Then,
+we need to estimate priors for the sequences: $ \{W, N_1, N_1, N_2\}, 
+\{W, N_1, N_1, N_2\}, \{W, N_1, N_2, N_2\}, \ldots $. In practice, we are never interested
+in isolated occurrences of name labels so we can exclude combinations such as
+$ \{W_1, N_1, N_2, N_2\} $.
 
-$ P(t_i|y_i) $ becomes P(t,f1,f2,fn|n) = P(t|n)P(f1|n)...
-
-where $ f_i $ are the features which are assumed to be independent.
-
-Some useful textual features are:
-token incidence which measures the number of occurences of a term in a document and 
-the probability of it being a name. It is expected that names tend to be more unique.
-token length. Very long or very short token lengths tend to indicate words rather than names.
-
-Structural features are features obtained from the HTML structure and they are a little 
-different because they cannot be estimated from the entire corpus since they tend to change 
-radically between documents. Similar 
-structural characteristics indicate similar types of data inside a document, however that 
-cannot be sais for thw entire corpus. For examlle, if all names appear inside a <tr> tag in 
-a given document that does not mean names tend to appear more inside tr tags in any document, 
-but that information is useful in that partixular case.
-
-Given that our basic algorithm (without structural features) was able to extract a reasonable 
-amount of names from a page, we may estimate structural features from the extracted names in 
-order to boost the precision of the token estimates on a second passing. Some useful structural 
-features are (cpnsider token elwmwt to be the:
-
-- first, second and third parent. The immediate tag names of the parent HTML elements where a token occurs.
-- element position: that's the index of the token elemwnt in relation to the other children of firat parent
-- element depth: the number of HTML indents until we reach the token element
-- class name: the moat specific CSS class of token element
-
-Experiments
-
-Experiments were made to determine the best model and the best set of features. the test collection 
-was a set of 310 manually labeled faculty repositories. For each model and each group of features 
-we calculated the precision, recall and f-measure. Results were only considered correct when they 
-were an exact match. All measures were obtained by the averaged results of a 5 fold cross validation run.
-
-Table 1 describes the models and features and table 2 describes the results obtained.
-
-window size
-break point
-name boundaries
-token incidence
-token length
-first+second parents
-third parent
-class name
-element position
-element depth
-
-The model achieved excelent results despite its simplicity.
-
-Further research
-
-Our model is finely tuned for the particular problem of researcher name extraction, but we believe this 
-result can be used on a more general model.
+Most of the times when names happen inside a list they tend to be contained inside a 
+single HTML element. 
+Eventhough this is not always the case, this knowledge can be incorporated as an
+additional piece of evidence in our model. This evidence becomes specially useful 
+when we are trying to delimit name boundaries. Let $ * $ indicate a breaking point in 
+a sequence of labels, so $ {W, W*,N, N} $ means that the tokens taking labels WW
+are contained inside a single HTML element, while the remaining tokens are inside 
+different HTML elements.
+We could estimate sequences with multiple breaking points, however a single breaking
+point has shown good results. For our window of size 4, we need to estimate all prior 
+probabilities with the 4 possible breaking points:
+$ \{y_1, y_2, y_3, y_4\}, \{y_1*, y_2, y_3, y_4\}, \{y_1,y_2*, y_3, y_4\}, \{y_1, y_2, y_3*,y_4\}$.
 
 
+\subsubsection{Conditional token probabilities}
+
+We need to estimate conditional token probabilities for both labels: names and words.
+So we need to know $ P(t_i|N) $, the probability that a name is $ t_i $ and
+$ P(t_i|W) $, the probability that a word is $ t_i $.
+
+For our experiments, the conditional token probabilities were obtained by maximum
+likelihood estimation with Laplace smoothing to account for tokens that
+didn't occur in the corpus. The $ P(t_i|N) $ probabilities were estimated over a 
+collection of approximately 1.5 million names from the DBLP database. The
+$ P(t_i|W) $ probabilities were estimated over a corpus of 100 thousand documents
+obtained during the crawling stage. In the latter case all capitalized words 
+were ignored when estimating probabilities in order to remove most names
+from the corpus.
+
+Token probabilities can be made more precise by incorporating features
+in equation \ref{eq:7}. We do that by changing the token conditional 
+probabilities to:
+
+\begin{equation}
+\\
+P(t_i, f_1, f_2, \ldots, f_n|y_i) = P(t_i|y_i)P(f_1|y_i) \ldots P(f_n|y_i)
+\\
+\label{eq:8}
+\end{equation}
+
+where $ f_i $ are features, which are assumed to be independent between themselves.
+The features can be textual or structural. Textual features take textual
+clues like previous words and token length to predict if a given token is a name.
+Structural features infer token probabilities based on the HTML structure
+like tag names and nesting depth. In practice previous and 
+next words weren't particularly effective in empirical tests, possibly due
+to the fact that most names occured in lists in the test collection. So they were
+removed from the features list.
+
+Structural features estimated over the entire corpus end up being too general
+so they help little in increasing token probability estimates. HTML structure 
+varies radically between different documents such that the only stable characteristic 
+is that names tend to have similar structural contexts in the same faculty
+directory. For example, if all names appear inside a <tr> tag in a given document 
+it does not mean that names tend to appear inside <tr> rather than any other tag
+in other documents. However for that particular document we may be able to identify 
+other names and exclude words by knowing that tokens occuring inside <tr> tags
+have a higher probability of being names.
+
+If our basic algorithm (without structural features) was able to extract a
+good number of names from a page on the first passing, we may use
+their structural context to estimate probabilities for our structural 
+features. Of course those tokens that were tagged as words can be used
+to estimate the word conditional probabilities. On a second passing we can
+incorporate these improved estimates to boost the model's precision 
+considerably. This process can be repeated multiple times to further 
+increase peformance.
+
+\begin{table}[h]
+  \begin{center}
+    \begin{tabular}{ |l|l|l| }
+      \hline
+      Id & Feature & Description \\
+      \hline
+      1  & Token incidence      & How often a token happens in a document's text  \\
+      2  & Token length         & The token's character length                    \\
+      3  & First+Second parents & First and second HTML parents combined          \\
+      4  & Third parent         & Third HTML parent                               \\
+      5  & CSS class name       & Innermost CSS class valid for the token         \\
+      6  & Child number         & The child number in relation to the HTML parent \\
+      7  & Nesting depth        & The number of HTML parents up to root           \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Features}
+  \label{tab:features}
+\end{table}
+
+Table \ref{tab:features} describes the features used in our experiments. A couple of
+other features were tested, but they weren't included in our analysis because they didn't 
+have a significant impact on the experimental results. Some of them are: next word
+indicates some location (street, avenue, etc.), previous word is an honorific, 
+token is capitalized, token is the first element in an HTML child, etc.
+
+
+\subsection{Experiments}
+
+\begin{table}[h]
+  \begin{center}
+    \begin{tabular}{ |l|l|l|l| }
+      \hline
+      Feature & Precision & Recall & F-measure \\
+      \hline
+      None  & 0.1 & 0.3 & 0.3 \\
+      1     & 0.1 & 0.3 & 0.3 \\
+      2     & 0.1 & 0.3 & 0.3 \\
+      1+2   & 0.1 & 0.3 & 0.3 \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Textual features experiment}
+  \label{tab:base_model}
+\end{table}
+
+Experiments were made to determine the best model and the best set of features. The test collection 
+was a set of 310 manually labeled faculty directory pages. For each model and each group of features 
+the precision, recall and f-measure were calculated. Extracted names were only considered to be correct 
+when they resulted on an exact match with the test data. All measures were obtained by the averaged 
+results of a 5 fold cross validation run. We first compared the textual features on our base 
+model (NE), which passes only one time over the token list. The results are presented on table 
+\ref{tab:base_model}. 
+
+\begin{table}[h]
+  \begin{center}
+    \begin{tabular}{ |l|l|l|l| }
+      \hline
+      Feature & Precision & Recall & F-measure \\
+      \hline
+      None  & 0.1 & 0.3 & 0.3 \\
+      3     & 0.1 & 0.3 & 0.3 \\
+      4     & 0.1 & 0.3 & 0.3 \\
+      5     & 0.1 & 0.3 & 0.3 \\
+      6     & 0.1 & 0.3 & 0.3 \\
+      4     & 0.1 & 0.3 & 0.3 \\
+      All   & 0.1 & 0.3 & 0.3 \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Structural features experiment}
+  \label{tab:ne_2}
+\end{table}
+
+Next, we tested the structural features in a model that passes two times over the 
+token list (NE2) estimating the structural feature probabilities on the second passing. 
+We used the best set of textual features found in the previous experiment. The results 
+are presented on table \ref{tab:ne_2}.
+
+\begin{table}[h]
+  \begin{center}
+    \begin{tabular}{ |l|l|l|l| }
+      \hline
+      Number of passings & Precision & Recall & F-measure \\
+      \hline
+      1   & 0.1 & 0.3 & 0.3 \\
+      2   & 0.1 & 0.3 & 0.3 \\
+      3   & 0.1 & 0.3 & 0.3 \\
+      4   & 0.1 & 0.3 & 0.3 \\
+      5   & 0.1 & 0.3 & 0.3 \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Multiple passings experiment}
+  \label{tab:ne_plus}
+\end{table}
+
+Finally we compared models with 1, 2, 3, 4 and 5 passings over the token list using the 
+best set of features from the previous experiments. The results are presented on 
+table \ref{tab:ne_plus}.
+
+
+\subsection{Further Research}
+
+Our model is finely tuned for the particular problem of researcher name extraction, 
+but we believe this result can be generalized to solve other data extraction 
+problems. Furthermore, the researcher affiliation data collected by the name extractor 
+still needs to be used for evaluating the reputation metric proposed by \cite{Ribas2015}
+in the research group classification task.
 
 \chapter{Schedule}
 
-Schedule here.
+The dissertation project will be divided into 6 tasks that shall be accomplished
+along 2018. The tasks are:
+
+\begin{enumerate}
+  \item \textbf{Literature review}: review the literature about the topic of research
+  \item \textbf{Data analysis}: collect and structure the relevant data.
+  \item \textbf{Baseline}: recreate some key approaches from the literature.
+  \item \textbf{Model implementation}: implement the general approach of the model described in section 3.
+  \item \textbf{Experiments}: compare the implemented model with the baseline.
+  \item \textbf{Dissertation}: write the dissertation and reviewing the text.
+\end{enumerate}
+
+\begin{table}[h]
+  \begin{center}
+    \begin{tabular}{ |c|c|c|c|c|c|c|c|c|c|c|c|c| }
+      \hline
+      Task & Jan & Feb & Mar & Apr & May & Jun & Jul & Aug & Sep & Oct & Nov & Dec \\
+      \hline
+      \hline
+      1 & x & x & x &   &   &   &   &   &   &   &   &   \\
+      \hline
+      2 & x & x & x &   &   &   &   &   &   &   &   &   \\
+      \hline
+      3 &   &   &   & x & x & x &   &   &   &   &   &   \\
+      \hline
+      4 &   &   &   & x & x & x &   &   &   &   &   &   \\
+      \hline
+      5 &   &   &   &   &   &   & x & x & x &   &   &   \\
+      \hline
+      6 &   &   &   &   &   &   & x & x & x & x & x & x \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Schedule 2018}
+  \label{tab:schedule}
+\end{table}
+
 
 % ==========================================
 % End of text.                             |
