@@ -17,6 +17,8 @@
 \usepackage[T1]{fontenc}
 \usepackage{type1ec}
 \usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage[a4paper,
   portuguese,
   bookmarks=true,
@@ -29,6 +31,7 @@
   filecolor=black,
   ]{hyperref}
 \usepackage[square]{natbib}
+\DeclareMathOperator*{\argmax}{argmax}
 
 \begin{document}
 
@@ -285,111 +288,183 @@ hold dependencies toward each other the same way they do in long pieces of text.
 extraction problem, structural HTML features and proper noun conditional probabilities play 
 a key role.
 
-Let $ T = (t_1, t_2, ..., t_n) $ be a sequence of tokens, and $ Y = (y_i, y_{i + 1}, ..., y_n) $ 
-a sequence of labels where $ y_i = N $ means token $ i $ is a name and $ y_i = W $ means token 
-$ i $ is  a word (not a name). Then, we are interested in estimating the sequence of labels $ Y $ 
-with maximum probability for a given sequence of tokens:
+Let $ t = (t_1, t_2, ..., t_n) $ be a sequence of tokens, and $ y = (y_1, y_2, ..., y_n) $ 
+be a sequence of labels where $ y_i \in {N, W} \forall i \in \mathbb{N} $, such that $ y_i = N $ 
+means token $ i $ is a name and $ y_i = W $ means token $ i $ is a word. The problem of extracting 
+names from a sequence of tokens is equivalent to the problem of finding an optimal sequence of 
+labels $ y^* $ for a sequence of tokens $ t $:
 
-\[
+\begin{equation}
+\\
+y^* = \argmax_y P(t_i = y_i, t_{i+1} = y_{i+1}, ..., t_n = y_n)\\
+\\
+\label{eq:1}
+\end{equation}
 
-\argmax_Y P(t_i = y_i, t_{i+1} = y_{i+1}, ..., t_n = y_n)
+where $ P(t_i = y_i) $ is the probability that token $ t_i $ has label $ y_i $.
+We may employ the chain rule to explore the relationship between the joint and conditional 
+probabilities. Consider that $ P(Y_i) = P(t_i=y_i) $
 
-\]
+\begin{equation}
+\\
+P(Y_1, Y_2, ..., Y_n) = P(Y_n) P(Y_2|Y_1) ... P(Y_n|Y_1, Y_2, ..., Y_{n-1})
+\\
+\label{eq:2}
+\end{equation}
 
-where $ P(x_i = Y_i) $ means the probability of $ x_i $ having label $ y_i $.
-We may employ the probability chain rule to better estimate the joint probability
-such as in a regular n-gram model. For a bigram model for example we would have:
+we could approximate these conditional probabilities the same way we would do for a
+n-gram language model. However, the conditional probabilities $ P(t_i=y_i|t_{i-1}y_{i-1}, ...) $ are
+hard to estimate because the joint disctribution $ P(t_i, y_i) $ depends both on the previous 
+label and the previous token. If we express them in terms of joint probabilities the 
+problem becomes clearer:
 
-\[
+\begin{equation}
+\\
+P(t_i, y_i|t_{i-1}, y_{i-1}, t_{i-2}, y_{i-2}, ...)
+\\
+\label{eq:3}
+\end{equation}
 
-P(y_i|x_{i-1} = y_{i-1}, x_{i-2} = y_{i-2}, ... x_1 = y_1) = P(y_i|x_{i-1} = y_{i-1})
+so we make the assumption that the probability that token $ t_i $ has label $ y_i $ depends
+on the values of previous labels but is independent of the previous tokens. For example, 
+given a sequence of tokens $ (John, Hall) $, the conditional probability $ P(Hall|John = name) $ 
+is equivalent to $ P(Hall|any name) $. In other words, this means that the probability of 
+Hall being a last name is the same regardless of a person's first name, as long as we can make sure 
+that the previous token is a name. The conditional probabilities then become:
 
-\]
+\begin{equation}
+\\
+P(t_i, y_i|t_{i-1}, y_{i-1}, t_{i-2}, y_{i-2}, ...) = P(t_i, y_i|y_{i-1}, y_{i-2}, ...)
+\\
+\label{eq:4}
+\end{equation}
 
-At this point we make an assumption that the probability of token $ i $ having label
-$ Y_i $ depends on the labels, however it is independent of the particular values
-of the previous tokens. For example, given a sequence of tokens $ (John, Hall) $ then 
-the conditional probability $ P(Hall|John = name) = P(Hall|any name) $. In other words, 
-this means that the probability of "Hall" being a last name is the same regardless of a 
-person's first name, as long as we are sure the previous token is a name. So we can
-write the conditional probability as:
+Replacing equation \ref{eq:4} in equation \ref{eq:2}, yields:
 
-\[
+\begin{equation}
+\\
+P(Y_1, Y_2, ..., Y_n) = P(Y_1) P(Y_2|y_1) ... P(Y_n|y_1, y_2, ..., y_{n-1})
+\\
+\label{eq:4}
+\end{equation}
 
-P(t_i = y_i|t_{i-1} = y_{i-1}, t_{i-2} = t_{i-2}, ... t_1 = y_1) = P(t_i = y_i|y_{i-1}, y_{i-2}, ... y_1)
+Finally, we can once again employ the chain rule of probability to write:
 
-\]
+\begin{equation}
+\\
+\begin{split}
+P(x_i= y_i) = P(x_i|y_i)P(y_i) \\
+P(x_{i+1}=y_{i+1}|y_i) = P(x_{i+1}|y_i,y_{i+1})P(y_{i+1}|y_i) \\
+\\
+\end{split}
+\label{eq:5}
+\end{equation}
 
-Where $ P(y_i) $ means the unconditional probability of any token having label $ y_i $.
-And the joint probability then becomes:
+and so on.
 
-\[
+By replacing \ref{eq:5} in \ref{eq:4} we obtain:
 
-P(t_i = y_i, t_{i+1} = y_{i+1}, ..., t_n = y_n) = P(t_i = y_i) P(t_{i+1} = y_{i+1}|y_i) ... P(t_n = y_n|y_i, y_{i+1}, ...)
+\begin{equation}
+\\
+P(Y_1, Y_2, ..., Y_n) = P(x_1|y_1)P(y_1)P(x_2|y_1, y_2)P(y_2|y_1)...P(x_n|y_1, y_2, ..., y_n)P(y_n|y_1, y_2, ..., y_n-1)
+\label{eq:5}
+\end{equation}
 
-\]
+Approximating $ P(x_i|y_1, y_2, ..., y_i) $ by $ P(x_i|y_i) $ we finally obtain:
 
-Considering that $ P(t_i = y_i) $ is just a notation for $ P(t_i, y_i) $ and
-given that $ P(t_i, y_i) = P(t_i|y_i)P(y_i) $ we can write the joint probability as:
+\begin{equation}
+\\
+P(Y_1, Y_2, ..., Y_n) = P(y_1, y_2, ..., y_n) P(x_1|y_1)P(x_2|y_2) ... P(x_n|y_n) 
+\label{eq:6}
+\end{equation}
 
-\[
+Equation \ref{eq:6} can be split into two parts: the prior given by the first part on the 
+right side of the equation and the conditional given by the rest of the equation on the 
+right side. 
 
-P(t_i = y_i, t_{i+1} = y_{i+1}, ..., t_n = y_n) = P(t_i|y_i)P(y_i) x P(t_{i+1}|y_{i+1}, y_i)P(y_{i+1}|y_i) ... P(t_n|y_n)P(y_n|y_i, y_{i+1}, ...)
-P(t_i = y_i, t_{i+1} = y_{i+1}, ..., t_n = y_n) = P(t_i|y_i)P(t_{i+1}|y_{i+1}, y_i)... P(t_n|y_n,...) P(y_i, y_{i+1}, ..., y_n)
+In order to obtain the prior probability we need to acquire estimates for all sequences of 
+labels. Let N be a name label and W be a word label, then for a window of size k we would 
+need to estimate all the posaible sequences of labels: Nnn, nnnw, etc.
 
-\]
+Somyimes differentr names occur adjacently, so if we simply tag names and words we may wrongly 
+conclude that two or more names form a single long name and we have no way to tell where one 
+name starts and the other one begins. In order to infer name boundaries we need to estimate 
+prior additional probabilities. Being n1 and n2 different names we need to estimate n1n1n2n2 etc.
 
-Approximating $ P(t_i|y_i, y_{i-1}, ...) $ by $ P(t_i|y_i) $ we get
+Most of the times names are contained in a single HTML element. So we introduce a break point 
+prior probability denoting where the first element ends in a sequence. This is specially useful 
+when we are trying to delimit adjacent names. Being * the end of an element we qould need 
+to estimate nn*ww n*nww etc.
 
-\[
+Token probabilities
 
-P(t_i = y_i, t_{i+1} = y_{i+1}, ..., t_n = y_n) = P(t_i|y_i)P(t_{i+1}|y_{i+1})... P(t_n|y_n) P(y_i, y_{i+1}, ..., y_n)
+The conditional probabilities can be easily obtained. Im our experiments, the p(token|name) 
+estimates were obtained from approximately 1.5 millions author names from the DBLP database 
+and the p(token|W) estimates were obtained from 100k random documents extracted from the 
+university webpage corpus described earlier in this document. In the latter case we used 
+a heuristic to remove the names: all capitalized words were ignored when estimating probabilities.
 
-\]
+Token probabilities can also benefit from additional features. Those may be grouped as textual 
+and structural. Previous and next words would be obvious choices here, however we didn't find 
+these types of features to be particularly effective, probably because of the semi tabular 
+organization of our data. Features can be incorporated in formula 1 by doing the following 
+modification:
 
-This is out basic formula. We can easily obtain estimates for $ P(t_i|y_i) $. The probabilities
-were estimated $ P(token|name) $ with the DBLP author names, which amount to aproximately 1.5 million
-names. The probabilities $ P(token|not name) $ were estimated from the corpus built from university
-websites, as a heuristic to remove all names, all captalized words were ignored.
+$ P(t_i|y_i) $ becomes P(t,f1,f2,fn|n) = P(t|n)P(f1|n)...
 
-The probabilities $ P(y_i, y_i+1, ..., y_n) $ were estimated on the labeled examples. All names
-were tagged manually. In this case it is necessary to estimate all possible combinations
-of words and names for a given window size. 
+where $ f_i $ are the features which are assumed to be independent.
 
-At this moment we still haven't incorporated any information about HTML structure in our model
-besides the tag borders. Web page structure varies significantly among the different faculty
-repositories, so it is hard to incorporate generalized features envolving HTML structure that
-will perform well in most situations. 
+Some useful textual features are:
+token incidence which measures the number of occurences of a term in a document and 
+the probability of it being a name. It is expected that names tend to be more unique.
+token length. Very long or very short token lengths tend to indicate words rather than names.
 
-Most of the time, names are wholy contained inside a single html element, eventhough this is
-not always the case. So it is useful to incorporate this evidence in our formula to delimit 
-name boundaries. For example, the probability P(NNWW) becomes higher when the second element
-is inside a different element than the third, this evidence will be presented in the following
-format P(NN*WW). So we need to estimate all sets of labels for each breaking point.
+Structural features are features obtained from the HTML structure and they are a little 
+different because they cannot be estimated from the entire corpus since they tend to change 
+radically between documents. Similar 
+structural characteristics indicate similar types of data inside a document, however that 
+cannot be sais for thw entire corpus. For examlle, if all names appear inside a <tr> tag in 
+a given document that does not mean names tend to appear more inside tr tags in any document, 
+but that information is useful in that partixular case.
 
-We may also incorporate other sources of evidence in the single token probabilities 
-P(t|N) and P(t|W). Some useful features are token length and token incidence.
+Given that our basic algorithm (without structural features) was able to extract a reasonable 
+amount of names from a page, we may estimate structural features from the extracted names in 
+order to boost the precision of the token estimates on a second passing. Some useful structural 
+features are (cpnsider token elwmwt to be the:
 
-Second passing:
+- first, second and third parent. The immediate tag names of the parent HTML elements where a token occurs.
+- element position: that's the index of the token elemwnt in relation to the other children of firat parent
+- element depth: the number of HTML indents until we reach the token element
+- class name: the moat specific CSS class of token element
 
-Faculty repositories usually have names disposed in an ordery fashion. That means they share
-similar attributes. If our basic model was able to find a relevant part of the names on the
-first passing, we may improve its precision by estimating some structural attributes on the
-returned collection of names and then use those estimates to improve individual token 
-probabilities.
+Experiments
 
-The following features were tested in the second passing: 
-first and second parent, third parent, element position, class name, element depth.
+Experiments were made to determine the best model and the best set of features. the test collection 
+was a set of 310 manually labeled faculty repositories. For each model and each group of features 
+we calculated the precision, recall and f-measure. Results were only considered correct when they 
+were an exact match. All measures were obtained by the averaged results of a 5 fold cross validation run.
 
-Evaluation
+Table 1 describes the models and features and table 2 describes the results obtained.
 
-The algorithm precision on the first passing is: .
-The algorithm precision on the second passing is: .
+window size
+break point
+name boundaries
+token incidence
+token length
+first+second parents
+third parent
+class name
+element position
+element depth
+
+The model achieved excelent results despite its simplicity.
 
 Further research
 
-The two passing strategy has potential to improve any data extraction task on semi structured
-documents. It is out intent to explore it in different extraction scenarios.
+Our model is finely tuned for the particular problem of researcher name extraction, but we believe this 
+result can be used on a more general model.
+
+
 
 \chapter{Schedule}
 
