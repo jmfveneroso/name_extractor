@@ -1,49 +1,51 @@
 This is BibTeX, Version 0.99d (TeX Live 2016)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: exemplo.aux
-The style file: ppgccufmg.bst
+The style file: unsrt.bst
 Database file #1: bibfile.bib
-Warning--there's a number but no volume in Kaiser2005
 Warning--empty journal in Su2009
-You've used 33 entries,
-            2043 wiz_defined-function locations,
-            780 strings with 10877 characters,
-and the built_in function-call counts, 15225 in all, are:
-= -- 1539
-> -- 583
-< -- 27
-+ -- 197
-- -- 196
-* -- 1481
-:= -- 2515
-add.period$ -- 120
-call.type$ -- 33
-change.case$ -- 262
-chr.to.int$ -- 32
-cite$ -- 35
-duplicate$ -- 533
-empty$ -- 1039
-format.name$ -- 251
-if$ -- 3037
-int.to.chr$ -- 2
-int.to.str$ -- 0
-missing$ -- 67
-newline$ -- 189
-num.names$ -- 99
-pop$ -- 207
+Warning--there's a number but no volume in Kaiser2005
+Warning--empty journal in Chang2012
+Warning--there's a number but no volume in Chang2012
+You've used 45 entries,
+            1791 wiz_defined-function locations,
+            761 strings with 11997 characters,
+and the built_in function-call counts, 12072 in all, are:
+= -- 1170
+> -- 484
+< -- 17
++ -- 179
+- -- 134
+* -- 812
+:= -- 1827
+add.period$ -- 135
+call.type$ -- 45
+change.case$ -- 44
+chr.to.int$ -- 0
+cite$ -- 49
+duplicate$ -- 547
+empty$ -- 1081
+format.name$ -- 134
+if$ -- 2716
+int.to.chr$ -- 0
+int.to.str$ -- 45
+missing$ -- 46
+newline$ -- 228
+num.names$ -- 45
+pop$ -- 93
 preamble$ -- 1
-purify$ -- 263
+purify$ -- 0
 quote$ -- 0
-skip$ -- 467
+skip$ -- 333
 stack$ -- 0
-substring$ -- 1151
-swap$ -- 84
-text.length$ -- 10
+substring$ -- 1019
+swap$ -- 186
+text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 196
-warning$ -- 2
-while$ -- 135
-width$ -- 0
-write$ -- 472
-(There were 2 warnings)
+type$ -- 0
+warning$ -- 4
+while$ -- 139
+width$ -- 47
+write$ -- 495
+(There were 4 warnings)

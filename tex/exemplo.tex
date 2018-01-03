@@ -1,68 +1,94 @@
-\documentclass[
-  msc,proposal,
-  oneside,
-  hidecover,
-  hidededication,
-  hideack,
-  hideepigraph,
-  hidelof,
-  hidelot,
-  hideabstract,
-  hidecover,
-  extraporttitlepagefalse
-]{ppgccufmg}    
+% \documentclass[format=acmtog]{acmart}    
+% \documentclass{acmart}    
+\documentclass[acmtog, authorversion]{acmart}
 
-\usepackage[english]{babel}
+\usepackage{booktabs} % For formal tables
+\usepackage[ruled]{algorithm2e} % For algorithms
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+
 \usepackage[latin1]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{type1ec}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage[a4paper,
-  portuguese,
-  bookmarks=true,
-  bookmarksnumbered=true,
-  linktocpage,
-  colorlinks,
-  citecolor=black,
-  urlcolor=black,
-  linkcolor=black,
-  filecolor=black,
-  ]{hyperref}
-\usepackage[square]{natbib}
+
+% Metadata Information
+% \acmJournal{PACMHCI}
+\acmVolume{9}
+\acmNumber{4}
+\acmArticle{39}
+\acmYear{2010}
+\acmMonth{3}
+\acmArticleSeq{11}
+
+\setcopyright{usgovmixed}
+
+% \acmDOI{0000001.0000001}
+
+% Paper history
+\received{February 2007}
+\received{March 2009}
+\received[accepted]{June 2009}
+
 \DeclareMathOperator*{\argmax}{argmax}
 
 \begin{document}
 
-\ppgccufmg{
-  title={Web data extraction in semi-structured documents},
-  authorrev={de Freitas Veneroso, João Mateus},
-  cutter={D1234p},
-  cdu={519.6*82.10},
-  university={Federal University of Minas Gerais},
-  course={Computer Science},
-  address={Belo Horizonte},
-  date={2017-11},
-  advisor={Berthier Ribeiro de Araújo Neto},
-  approval={img/approvalsheet.eps}
-}
+\title{Researcher name extraction from faculty directories}
+
+\author{João Mateus de Freitas Veneroso}
+% \affiliation{%
+%   \institution{Universidade Federal de Minas Gerais}
+%   \streetaddress{Av. Pres. Antônio Carlos, 6627 - Pampulha}
+%   \city{Belo Horizonte}
+%   \state{MG}
+%   \postcode{31270-901}
+%   \country{Brazil}}
+\email{jmfveneroso@gmail.com}
+
+\begin{abstract}
+
+Public databases such as DBLP and Google Scholar contain valuable information 
+about the academic environment that have been incredibly useful
+helping answering numerous research questions. However, in these databases, only 
+a fraction of the records contain researcher affiliation information, and even 
+in the cases where the information is present it is frequently outdated. The 
+problem can be better or worse depending on the field of study.
+We propose a method to extract researcher names from faculty directories
+automatically in order to keep up to date information about researcher 
+affiliation and be general enough to solve any name extraction task.
+Various web data extraction methods have already been proposed in
+the literature and they typically lack either in generality, because
+wrappers trained on a set of examples do not perform well when handling
+different websites, or precision, because domain agnostic methods
+perform poorly compared to domain specific methods.
+Our statistical NLP approach solves the name extraction task with 
+a framework that incorporates both textual and structural features to
+yield an excellent tradeoff between generality and precision. 
+We conducted experiments over a collection of 310 faculty 
+web pages from multiple universities across the world and obtained 94.37\%
+precision, 97.61\% recall and 0.9596 F-measure.
+
+
+\end{abstract}
+
+\keywords{Information extraction, statistical classifier, natural language processing}
+
+\maketitle
 
 % ==========================================
 % Beginning of text.                       |
 % ==========================================
 
-\chapter{Introduction}
+\section{Introduction}
 
 Web data extraction is the task of automatically extracting structured information
 from unstructured or semi-structured web documents. It is a subset of the broader
 field of Information Extraction, and thus it faces many of the same challenges. 
-
-Structured information such as that found in a well organized relational database must 
-conform to an underlying data model, namely an abstract model that formalizes
-the entities and relationships in a given application domain. Unstructured information
-however is not organized according to a logical model, therefore useful bits of data won't
-be arranged cohesively and will ocasionally be permeated by chunks of irrelevant information.
 
 Tipically, Information Extraction tasks consist of mapping unstructured or poorly
 structured data to a semantically well defined structure. The input is usually
@@ -70,109 +96,167 @@ composed of a set of documents that describe a group of entities in a similar ma
 while the Information Extraction task deals with identifying those entities and 
 organizing them according to a template. 
 
-As an example, consider a collection of 
-novels and the task of identifying the name of the main character in each novel. 
-For this task, the model must first identify proper nouns and then understand the 
-text sufficiently to allow inference on the relative importance of each noun. 
-
-To achieve such a goal it is often useful to employ methods developed in the disciplines 
-of Information Retrieval and Natural Language Processing. The former has achieved a 
-great deal of success in the task of classifying documents according to statistical 
-properties and the latter led to huge improvements in modelling human language.
-Many times, the various methods employed in these disciplines lead to different 
-approaches in the field of Information Extraction.
-
-In the scope of this work, we are interested in the semi-structured data usually
-found in HTML web documents. Web documents most often lie in between the 
-structured-unstructured data paradigm, meaning that they take a rather
-relaxed approach in regard to formal structure. Hierarchy, element disposition,
-class names, and other features related to document structure and indirectly associated
+HTML documents most often lie in between the structured / unstructured data paradigm, which means that 
+they take a rather relaxed approach in regard to formal structure. Hierarchy, element disposition,
+class names, and other features related to the document structure and indirectly associated
 with the data itself are valuable information in the task of identifying entities and 
-determining relationships. So much that many times they are the major source of information 
-for classification purposes, such as when extracting information from standardized tables.
-However, far from a structured database, web documents usually provide very limited structure
-to otherwise unstructured data such as that found in free text.
+determining relationships, yet we cannot expect these features to be completely constrained by 
+any underlying pattern. Like natural language, organization patterns tend to follow some guidelines 
+but are in no way subject to any strict rule.
 
-Our current focused research interest regarding web data extraction is collecting
-computer science researcher information from university websites. We need this 
-information in order to compare the reputations of national and international 
-research groups in the area of computer science with the academic reputation ranking
-metric proposed by \cite{Ribas2015} based on random walks over reputation graphs. 
+We are interested in the task of name extraction, particularly extracting researcher names from 
+university websites to complement data from public databases such as the DBLP repository 
+(http://dblp.uni-trier.de/) in order to allow broad international research group comparison 
+and enquiring about publication patterns. The DBLP database has sparse information about author 
+affiliation and only contains information about computer science researchers. With our 
+probabilistic method we hope to build a general approach to solve this problem and handle the name 
+extraction problem in general.
 
-It showed promising results when ranking publication venues and 
-individual authors in the area of Computer Science by using information publically available in 
-the DBLP repository (http://dblp.uni-trier.de/). However the DBLP database has sparse information 
-about author affiliation and multiple records are outdated. To remedy this problem, in the past 
-few years researchers from UFMG have been laboriously collecting this data manually, however
-this process is tedious and inefficient. Currently, we only have affiliation information for 
-about 1\% of the authors, being most of them from USA and Brazil and this is not nearly enough to 
-allow broad international research group comparison.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{pics/jap_intelligent_robotics_lab}
+  \caption{Example of faculty directory}
+  \label{fig:faculty_directory}.
+\end{figure}
 
-Up to now, our goal has been to build an automatic information extraction system for
-collecting author affiliation information from university websites. It has already 
-achieved significant progress which shall be described further in section 3. However, the ideas 
-developed in this concrete case will be further improved in order to construct a more general
-approach to the broader Information Extraction task.
+In order to acknowledge the complexity of this extraction task take for example a snippet of 
+the staff page for the intelligent robotics laboratory from Osaka University shown in figure 
+\ref{fig:faculty_directory}. There is some structure to the way member profiles are arranged, 
+but the organization is rather flexible even considering this single website. Other websites 
+can show very different patterns, ranging from tables and lists to free form.
 
-The research here described hopes to contribute by proposing a novel approach to the main 
-Information Extraction task, making the computer science affiliation database available for 
-further research and testing the quality of academic reputation metrics regarding 
-research groups.
+Researcher names can happen inside plain text, similar to typical named entity recognition 
+scenarios. Names may be part of larger sentences such as in "Michael Johnson Chair" and "John 
+Doe Avenue" yielding false positives. Names can be composed of common words (e.g. Summer Hall) 
+yielding false negatives. In short, there is no one rule that fits all cases.
 
-\chapter{Related Work}
+State-of-the-art named entity recognition approaches like conditional random fields do not 
+perform so well in information extraction cases such as the one presented in figure 
+\ref{fig:faculty_directory}, because the text is insufficient to provide any contextual information 
+about the semantic category of a word. 
 
-In the last 20 years, the exponential growth of public information in the web has 
+Since we lack a database with all possible name combinations, we propose a 
+hollistic statistical method that accounts for discrepancies in data organization by assigning 
+probabilities to sequences of tokens without relying on per-website training. Our method of
+label assignement resembles a Naive Bayesian classifier without the assumption of 
+token independence, we also rely as little as possible on contextual information to avoid
+the mistakes of other classifiers. The base model has already achieved recall and precision rates 
+above 90\%, but the performance can be increased even further by incorporating HTML structural
+features to help estimating probabilities.
+
+
+\section{Related Work}
+
+In the last 20 years, the astonishing growth of public information in the web has 
 led to the development of a number of different approaches to the problem of web 
 data extraction. Traditionally, the task was solved by designing special purpose
-programs called wrappers to pinpoint relevant data and store it in some structured
-format. The multiple tools varied wildly according to their degree of automation. 
+programs called wrappers to recognize relevant data and store it in a structured
+format. These early tools varied wildly relative to their degree of automation. 
 
 It was readily perceived that manual wrapper generation was a rather tedious and
-error prone process, unsuited for large scale operations. Already in 2000,
-\cite{Kushmerick2000} advocated for wrapper induction, a technique for automatically
-constructing wrappers. This approach is known in the literature by the acronym 
-WIEN (Wrapper Induction ENvironment).
+error prone process, unsuited for large scale operations. Wrappers tend to
+break frequently because they rely heavily on web page features that can change 
+often. So, in the late nineties, several authors advocated for wrapper induction, a technique 
+that consists of automatically constructing wrappers from a small set of examples by 
+identifying delimiters or context tokens that single out the desired attributes. 
+Some remarkable wrapper induction methods are WIEN \cite{Kushmerick2000}, Soft 
+Mealy \cite{Hsu1998} and STALKER \cite{Muslea1999}.
 
-Web data extraction techniques often require some sort of assistance from human 
-experts to boost accuracy. So the main challenge in the field lies in determining
-an adequate tradeoff between degree of automation and precision.
+Despite being better than constructing wrappers manually, wrapper induction methods 
+still suffered from a lack of expressive power and flexibility. These methods had 
+trouble handling records with missing attributes or unusual structures because
+patterns could only be identified if they happened at least once in the examples.
 
-In 2002, a survey by \cite{Laender2002} made a thorough classification of the
+Other approaches such as NoDoSE (\cite{Adelberg1998}) and Debye (\cite{Laender2002a}) 
+brought greater flexibility to wrapper induction methods by requiring a greater level 
+of human interaction through graphical user interfaces. Web data extraction techniques often 
+require some sort of assistance from human experts to boost accuracy. One of the main challenges 
+in the field lies in determining an adequate tradeoff between the degree of automation and 
+the precision and recall of the data extraction tool.
+
+In order to automate the task of web data extraction completely some approaches,
+such as Road Runner \cite{Crescenzi2001}, removed entirely the need for data examples.
+Road Runner parses documents belonging to a same class (e.g. books on Amazon) and 
+generated wrappers based on their similarities and differences, yielding comparable results 
+to those obtained by wrapper induction methods. However like previous approaches, it was 
+unsuited for cross site extraction tasks because the learned rules weren't general enough.
+
+NLP based approaches aimed at extracting more general rules that could possibly
+be employed over multiple websites. RAPIER \cite{Califf1999} is a method of rule
+extraction that uses information such as part-of-speech tags and semantic classes from
+a lexicon to derive patterns from a set of training examples. This approach is more
+flexible than the wrapper induction methods, however it achieves much lower rates of 
+recall and precision.
+
+In 2002, a survey by Laender et al. \cite{Laender2002} made a thorough classification of the
 early approaches with a taxonomy based on their main technology, being them: languages for
 wrapper development, HTML-aware tools, NLP-based tools, Wrapper Induction Tools,
 Modeling-based tools and Ontology-based tools. Some noteworthy examples from this era
 are: 
 
-TSIMMIS \cite{Hammer1997} and WebOQL \cite{Arocena1999}, which are special purpose 
+\begin{itemize}
+\item TSIMMIS \cite{Hammer1997} and WebOQL \cite{Arocena1999}, which are special purpose 
 languages for building wrappers.
 
-Road Runner \cite{Crescenzi2001}, XWRAP \cite{Liu2000} and W4F \cite{Sahuguet1999}, 
+\item Road Runner \cite{Crescenzi2001}, XWRAP \cite{Liu2000} and W4F \cite{Sahuguet1999}, 
 which are HTML-aware tools that infer meaningful patterns from the HTML structure.
 
-RAPIER \cite{Califf1999}, SRV \cite{Freitag1998}, WHISK \cite{Soderland1999}, which 
+\item RAPIER \cite{Califf1999}, SRV \cite{Freitag1998}, WHISK \cite{Soderland1999}, which 
 are NLP-based tools.
 
-WIEN \cite{Kushmeric2000}, Soft Mealy \cite{Hsu1998} and STALKER \cite{Muslea1999} which 
+\item WIEN \cite{Kushmerick2000}, Soft Mealy \cite{Hsu1998} and STALKER \cite{Muslea1999} which 
 are wrapper induction methods.
 
-NoDoSE \cite{Adelberg1998} and Debye \cite{Laender2002a}, which are semi supervised modeling
+\item NoDoSE \cite{Adelberg1998} and Debye \cite{Laender2002a}, which are semi supervised modeling
 based tools that require some interaction with the user by means of a graphical
 user interface.
+\end{itemize}
 
-In 2004, \cite{Flesca2004} developed a taxonomy emphasizing the advantages and 
-drawbacks of web data extraction technologies according to the user viewpoint.
-In 2006 \cite{Chang2006} complemented the previous surveys with new technologies.
+In 2006, Chang et. al. \cite{Chang2006} complemented the previous surveys with semisupervised 
+technologies such as Thresher \cite{Hogue2005}, IEPAD \cite{Chang2001} and 
+OLERA \cite{Chang2004}. They differed from supervised 
+and unsupervised methods because they either needed only a rough description of
+data from users for extraction rule generation or some level of post processing
+that needed user attention. The survey also mentioned newer unsupervised methods
+such as DeLa \cite{Wang2003}, Exalg \cite{Arasu2003} and Depta \cite{Zhai2005}.
 
-In 2008 \cite{Sarawagi2008} classifies wrappers in the following three types: 
-record-level, page-level and site-level wrappers. Record-level wrappers are only
-able to process single records, page-level wrappers are capable of 
-extracting data from a single page, and site-level wrappers are able to process
-the whole webpage structure including subpages and their linking structure.
+Most of the early information extraction systems were rule-based with either 
+manual rule description or automatic rule learning from examples, thus they
+suffered from a lack of flexibility when dealing with noisy and unstructured data.
+Huge progress in the field of statistical learning led to the development of
+statistical models that tried to solve this problem.
+
+In 2008, Sarawagi \cite{Sarawagi2008} produced a survey that classified wrappers in
+rule-based methods, statistical methods and hybrid models, bringing together
+the fields of named entity recognition, relationship extraction and information
+extraction. The rule based methods encompass most of the previous models. The statistical 
+methods convert the extraction task into a token labeling task, identifying the 
+target entities through the assignment of labels.
+Any classifiers such as a Support Vector Machines, Logistic Classifiers or
+Neural Networks could be employed to perform this task. However Hidden Markov Models, 
+Maximum Entropy Taggers and Conditional Random Fields tend to perform better at most
+extraction tasks because of the way they model token and label dependencies. Hybrid models
+incorporate both rule-based and statistical methods.
+
+Statistical models have proven to be reliable tools for performing numerous NLP tasks. 
+However, information from web documents relevant to data extraction tasks is usually 
+arranged in a tabular form rather than in a plain text format. Therefore, typical state
+of the art classifiers can yield poor results if they rely exclusively on textual 
+information. In the web information extraction task, the document structure must be 
+incorporated as a feature in an effective classifier.
 
 More recently, surveys by \cite{Ferrara2014} and \cite{Schulz2016} updated the 
-previous surveys and included new approaches.
+previous surveys with some interesting innovations. Some examples are: the Visual 
+Box Model \cite{Krupl2005}, a data extraction system that produces a visualization of 
+the web page to exploit visual cues to identify data presented in a tabular form;
+automatic wrapper adaptation \cite{Ferrara2011}, a tecnique that tries to reduce the cost of 
+wrapper maintenance by measuring the similarity of HTML trees and adapting
+wrappers to the new page structure; AutoRM \cite{Shi2015}, a method to mine
+records from a single web page by identifying similar data regions through DOM
+tree analysis; and Knowledge Vault \cite{Dong2014}, a method that combines different 
+extraction approaches to feed a probabilistic knowledge base.
 
-In 2016 \cite{Varlamov2016}, argued that the degree of automation can no
+In 2016, Varlamov et. al. \cite{Varlamov2016} argued that the degree of automation can no
 longer be the main classification criterion for the data extraction systems
 because unsupervised methods which were widely considered to be the state 
 of the art when dealing with individual websites performed poorly or were
@@ -182,113 +266,31 @@ The competing approaches were separated into two groups: methods for individual
 websites and methods that are applicable to whole application domains. 
 
 The first group contains most of the earlier approaches, including the supervised
-approaches: SRV \cite{Freitag1998}, RAPIER \cite{Califf1999}, WHISK \cite{Soderland1999}, 
-WIEN \cite{Kushmeric2000} SoftMealy \cite{Hsu1998} and STALKER \cite{Muslea1999}; and
-the unsupervised approaches: RoadRunner \cite{Crescenzi2001} and EXALG \cite{Arasu2003}.
+approaches: SRV (\cite{Freitag1998}), RAPIER (\cite{Califf1999}), WHISK (\cite{Soderland1999}), 
+WIEN (\cite{Kushmerick2000}) SoftMealy (\cite{Hsu1998}) and STALKER (\cite{Muslea1999}); and
+the unsupervised approaches: RoadRunner (\cite{Crescenzi2001}) and EXALG (\cite{Arasu2003}).
 
 The second group is divided between domain specific methods and domain agnostic methods.
 Domain specific methods are designed for extracting data about a particular 
-application domain across multiple websites. Our researcher name extractor 
-method that will be further described on section 3 falls in this category. Domain
-specific methods integrate information about the particular application domain in the 
+application domain across multiple websites.
+Domain specific methods integrate information about the particular application domain in the 
 course of its development and thus are able to achieve superior performance in
 comparison to domain agnostic methods.
+One example is the method of comment extraction 
+from blog posts described by Kao et. al. \cite{Kao2010}. By incorporating multiple tecniques and 
+domain specific features they are able to build a classifier that differentiates comment-blocks 
+and non-comment blocks. This is only one of many methods tuned for various domains.
+Our name extractor method also belongs to this category. 
 
 Domain agnostic methods are the most general extraction methods. They can extract
 information from any application domain from multiple websites. They pose the hardest
 challenge because the tool must infer data relevance without any prior training in
-thar particular application domain. Some examples are: ODE \cite{Su2009}, ObjectRunner 
-\cite{Abdessalem2010}, and AMBER \cite{Furche2012}. As previously stated,
-these approaches tend to yield worse results than domain specific methods, however
-recent research has been improving domain agnostic methods by large steps.
+that particular application domain. Some examples are: ODE (\cite{Su2009}), ObjectRunner 
+(\cite{Abdessalem2010}), and AMBER (\cite{Furche2012}). These approaches are broader but 
+yield worse results than domain specific methods.
 
 
-\chapter{Methodology}
-
-This section describes briefly a statistical NLP approach to solve the researcher 
-affiliation extraction problem presented in section 1. This problem is actually
-composed of two parts. The first one envolves crawling university websites and
-finding faculty repositories and the second one is extracting the actual researcher
-affiliation data from these repositories. We will present here the model
-developed up to now, and then we will present the further research goals that
-are still to be reached.
-
-\section{Crawler}
-
-The crawling problem has been partially solved by online aggregators that
-compiled university internet domains for most of the academic world. One of these
-aggregators is https://univ.cc/, which contains links for the main websites of
-9553 universities from 207 countries. These root domains were fed as seeds to
-our crawler, that downloaded the entire websites and its subdomains, amounting
-around 2 million documents. Once all webpages were downloaded the task at hand 
-becomes identifying faculty repositories among the downloaded pages. 
-
-This task can be accomplished quite efficiently by means of supervised machine
-learning models once we have labeled a subset of the university webpages.
-The labeling was manually done for 2440 pages, of which 373 were faculty repositories
-and 2067 were other types of pages. We took care to select a proportional number
-of pages from each country.
-
-Since the classification task is not our main research focus, the results will
-only be presented here briefly. Our classifier employed only 112 features:
-\begin{itemize}
-  \item 60 for the number of occurrences of a set of relevant keywords in the URL, the page 
-         title, h1, h2 and h3 tags. Each element having its own set of features.
-  \item 49 for the number of occurrences of a different set of keywords in the rest of the
-        text of the page.
-  \item 1 feature measuring the document length.
-  \item 1 feature for the number of names found by a simplified version of the name extractor.
-\end{itemize}
-
-\begin{table}[h]
-  \begin{center}
-    \begin{tabular}{ |l|l|l| }
-      \hline
-      Model & Accuracy & Standard Deviation \\
-      \hline
-      Random Forest & 0.93 & 0.02 \\
-      Gaussian Naive Bayes & 0.88 & 0.03 \\
-      Linear SVM & 0.85 & 0.05 \\
-      Logistic Regression & 0.90 & 0.02 \\
-      \hline
-    \end{tabular}
-  \end{center}
-  \caption{Classifier}
-  \label{tab:classifier}
-\end{table}
-
-Four models were tested by means of 5 fold cross validation, the results are presented in
-table \ref{tab:classifier}. All models except Support Vector Machines achieved a reasonable 
-performance, however, since the Random Forest Classifier presented a more stable predictive 
-capability, it was chosen as the classifier method for labeling the remaining webpages.
-
-\section{Data extraction}
-
-The data extraction stage consists of extracting researcher names from faculty directories.
-The main challenge here is constructing a general enough approach that can be used 
-effectively across different domains without extracting too much garbage together with the
-valuable information. This task faces a typical precision vs. recall tradeoff.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=1.0\textwidth]{pics/jap_intelligent_robotics_lab}
-  \caption{Example of semi structured information}
-\end{figure}
-
-In order to understand the complexity of this extraction task take for example the
-staff page for the intelligent robotics laboratory of Osaka University shown in figure 1.
-Say we want to extract the name, position, email and picture of all members. It is easy to see
-there is some sort of structure to the information we want to extract from this particular 
-website, however, parts of the information are missing, repeated or disposed differently for
-each particular member. If we want to go further it may be necessary to only extract information
-from full members, a task that may pose a harder challenge. We may use grouping similarity 
-combined with textual information in order to properly identify the desired entities.
-In many cases the HTML element's relative position or CSS class name is sufficient to identify
-particular occurrences of a same entity. If we do a good enough job at this first task we may 
-extrapolate our model to extract information from similar web pages. 
-
-However at this moment we are only interested in extracting researcher names and it is not
-necessary to identify their status regarding full or partial membership.
+\section{Name extraction}
 
 \subsection{Proposed solution}
 
@@ -406,8 +408,8 @@ When names occur next to each other we have no way to tell where the first name 
 the second one starts. In order to delimit name boundaries we need to estimate
 priors for different sequences of name labels in addition to our previous priors.
 Let the first and second name labels be $ N_1 $ and $ N_2 $, respectively. Then,
-we need to estimate priors for the sequences: $ \{W, N_1, N_1, N_2\}, 
-\{W, N_1, N_1, N_2\}, \{W, N_1, N_2, N_2\}, \ldots $. In practice, we are never interested
+we need to estimate priors for the sequences: $ \{W, N_1, N_1, N_2\} $, 
+$ \{W, N_1, N_1, N_2\} $, $\{W, N_1, N_2, N_2\} $, $ \ldots $. In practice, we are never interested
 in isolated occurrences of name labels so we can exclude combinations such as
 $ \{W_1, N_1, N_2, N_2\} $.
 
@@ -422,7 +424,7 @@ different HTML elements.
 We could estimate sequences with multiple breaking points, however a single breaking
 point has shown good results. For our window of size 4, we need to estimate all prior 
 probabilities with the 4 possible breaking points:
-$ \{y_1, y_2, y_3, y_4\}, \{y_1*, y_2, y_3, y_4\}, \{y_1,y_2*, y_3, y_4\}, \{y_1, y_2, y_3*,y_4\}$.
+$ \{y_1, y_2, y_3, y_4\} $, $ \{y_1*, y_2, y_3, y_4\} $, $ \{y_1,y_2*, y_3, y_4\} $, $ \{y_1, y_2, y_3*,y_4\} $.
 
 
 \subsubsection{Conditional token probabilities}
@@ -480,17 +482,18 @@ considerably. This process can be repeated multiple times to further
 increase peformance.
 
 \begin{table}[h]
+  \small
   \begin{center}
     \begin{tabular}{ |l|l|l| }
       \hline
       Id & Feature & Description \\
       \hline
-      1  & Token incidence      & How often a token happens in a document's text  \\
+      1  & Token incidence      & How often a token happens in a document         \\
       2  & Token length         & The token's character length                    \\
       3  & First+Second parents & First and second HTML parents combined          \\
       4  & Third parent         & Third HTML parent                               \\
       5  & CSS class name       & Innermost CSS class valid for the token         \\
-      6  & Child number         & The child number in relation to the HTML parent \\
+      6  & Child number         & The child number relative to the HTML parent    \\
       7  & Nesting depth        & The number of HTML parents up to root           \\
       \hline
     \end{tabular}
@@ -499,11 +502,11 @@ increase peformance.
   \label{tab:features}
 \end{table}
 
-Table \ref{tab:features} describes the features used in our experiments. A couple of
-other features were tested, but they weren't included in our analysis because they didn't 
-have a significant impact on the experimental results. Some of them are: next word
+Table \ref{tab:features} describes the features tested in our experiments. A couple of
+other features were tested, but they weren't included in the analysis due to the lack
+of significant impact on the results. Some of them were: next word
 indicates some location (street, avenue, etc.), previous word is an honorific, 
-token is capitalized, token is the first element in an HTML child, etc.
+token is capitalized, token is the first child in an HTML element, etc. 
 
 
 \subsection{Experiments}
@@ -512,12 +515,12 @@ token is capitalized, token is the first element in an HTML child, etc.
   \begin{center}
     \begin{tabular}{ |l|l|l|l| }
       \hline
-      Feature & Precision & Recall & F-measure \\
+      Features & Precision & Recall & F-measure \\
       \hline
-      None  & 0.1 & 0.3 & 0.3 \\
-      1     & 0.1 & 0.3 & 0.3 \\
-      2     & 0.1 & 0.3 & 0.3 \\
-      1+2   & 0.1 & 0.3 & 0.3 \\
+      None  & 91.71\% -        & 91.39\% -        & 0.9155          \\ 
+      1     & 91.28\% (0.3880) & 93.79\% (0.1836) & 0.9252 (0.3026) \\ 
+      2     & 92.00\% (0.4189) & 92.03\% (0.4086) & 0.9201 (0.4042) \\
+      1+2   & 91.83\% (0.4660) & 93.90\% (0.1586) & 0.9285 (0.2336) \\
       \hline
     \end{tabular}
   \end{center}
@@ -525,27 +528,31 @@ token is capitalized, token is the first element in an HTML child, etc.
   \label{tab:base_model}
 \end{table}
 
-Experiments were made to determine the best model and the best set of features. The test collection 
-was a set of 310 manually labeled faculty directory pages. For each model and each group of features 
-the precision, recall and f-measure were calculated. Extracted names were only considered to be correct 
+
+The test collection was a set of 310 manually labeled faculty directory pages. 
+For each model the precision, recall and f-measures were calculated. All
+measures were tested for statistical significance with a one tailed paired T-test, the 
+t-values are presented inside parenthesis next to each measure. Results were
+considered to be significant when the t-value was smaller than 0.05.
+
+Extracted names were only considered to be correct 
 when they resulted on an exact match with the test data. All measures were obtained by the averaged 
 results of a 5 fold cross validation run. We first compared the textual features on our base 
-model (NE), which passes only one time over the token list. The results are presented on table 
+model (NE), which passes only one time over the token list. The results are presented in table 
 \ref{tab:base_model}. 
 
 \begin{table}[h]
   \begin{center}
     \begin{tabular}{ |l|l|l|l| }
       \hline
-      Feature & Precision & Recall & F-measure \\
+      Features & Precision & Recall & F-measure \\
       \hline
-      None  & 0.1 & 0.3 & 0.3 \\
-      3     & 0.1 & 0.3 & 0.3 \\
-      4     & 0.1 & 0.3 & 0.3 \\
-      5     & 0.1 & 0.3 & 0.3 \\
-      6     & 0.1 & 0.3 & 0.3 \\
-      4     & 0.1 & 0.3 & 0.3 \\
-      All   & 0.1 & 0.3 & 0.3 \\
+      3         & 93.43\% (0.1280) & \textbf{96.14\% (0.361)} & 0.9477 (0.475)           \\
+      4         & 93.04\% (0.1965) & 95.67\% (0.508) & 0.9433 (0.740)                    \\
+      5         & 93.04\% (0.1781) & 95.50\% (0.653) & 0.9425 (0.819)                    \\
+      6         & 92.70\% (0.2307) & \textbf{95.60\% (0.451)} & 0.9413 (0.725)           \\
+      7         & 92.83\% (0.2374) & \textbf{95.79\% (0.467)} & 0.9429 (0.789)           \\
+      3 + 5 + 7 & 94.23\% (0.0664) & \textbf{97.14\% (0.163)} & \textbf{0.9566 (0.212)}  \\
       \hline
     \end{tabular}
   \end{center}
@@ -554,21 +561,20 @@ model (NE), which passes only one time over the token list. The results are pres
 \end{table}
 
 Next, we tested the structural features in a model that passes two times over the 
-token list (NE2) estimating the structural feature probabilities on the second passing. 
+token list, estimating the structural feature probabilities on the second passing. 
 We used the best set of textual features found in the previous experiment. The results 
-are presented on table \ref{tab:ne_2}.
+are presented in table \ref{tab:ne_2}.
 
 \begin{table}[h]
   \begin{center}
     \begin{tabular}{ |l|l|l|l| }
       \hline
-      Number of passings & Precision & Recall & F-measure \\
+      \# passings & Precision & Recall & F-measure \\
       \hline
-      1   & 0.1 & 0.3 & 0.3 \\
-      2   & 0.1 & 0.3 & 0.3 \\
-      3   & 0.1 & 0.3 & 0.3 \\
-      4   & 0.1 & 0.3 & 0.3 \\
-      5   & 0.1 & 0.3 & 0.3 \\
+      2 & 94.40\% (0.525) & \textbf{97.48\% (0.117)} & \textbf{0.9592 (0.151)} \\ 
+      3 & 94.37\% (0.544) & \textbf{97.58\% (0.104)} & \textbf{0.9595 (0.141)} \\
+      4 & 94.40\% (0.523) & \textbf{97.61\% (0.100)} & \textbf{0.9597 (0.135)} \\
+      5 & 94.37\% (0.544) & \textbf{97.61\% (0.100)} & \textbf{0.9596 (0.138)} \\
       \hline
     \end{tabular}
   \end{center}
@@ -580,6 +586,13 @@ Finally we compared models with 1, 2, 3, 4 and 5 passings over the token list us
 best set of features from the previous experiments. The results are presented on 
 table \ref{tab:ne_plus}.
 
+By comparing the results, it becomes clear that incorporating structural features
+with the two passing strategy improved all metrics significantly, even though the
+precision improvements came slightly above our significance threshold. By design, the
+features were chosen with improvements to recall rather than precision in mind. Because
+when a data extractor misses useful results, it becomes hard to obtain that data, 
+however cleaning bad results is a much simpler task to be carried manually.
+
 
 \subsection{Further Research}
 
@@ -589,51 +602,12 @@ problems. Furthermore, the researcher affiliation data collected by the name ext
 still needs to be used for evaluating the reputation metric proposed by \cite{Ribas2015}
 in the research group classification task.
 
-\chapter{Schedule}
-
-The dissertation project will be divided into 6 tasks that shall be accomplished
-along 2018. The tasks are:
-
-\begin{enumerate}
-  \item \textbf{Literature review}: review the literature about the topic of research
-  \item \textbf{Data analysis}: collect and structure the relevant data.
-  \item \textbf{Baseline}: recreate some key approaches from the literature.
-  \item \textbf{Model implementation}: implement the general approach of the model described in section 3.
-  \item \textbf{Experiments}: compare the implemented model with the baseline.
-  \item \textbf{Dissertation}: write the dissertation and reviewing the text.
-\end{enumerate}
-
-\begin{table}[h]
-  \begin{center}
-    \begin{tabular}{ |c|c|c|c|c|c|c|c|c|c|c|c|c| }
-      \hline
-      Task & Jan & Feb & Mar & Apr & May & Jun & Jul & Aug & Sep & Oct & Nov & Dec \\
-      \hline
-      \hline
-      1 & x & x & x &   &   &   &   &   &   &   &   &   \\
-      \hline
-      2 & x & x & x &   &   &   &   &   &   &   &   &   \\
-      \hline
-      3 &   &   &   & x & x & x &   &   &   &   &   &   \\
-      \hline
-      4 &   &   &   & x & x & x &   &   &   &   &   &   \\
-      \hline
-      5 &   &   &   &   &   &   & x & x & x &   &   &   \\
-      \hline
-      6 &   &   &   &   &   &   & x & x & x & x & x & x \\
-      \hline
-    \end{tabular}
-  \end{center}
-  \caption{Schedule 2018}
-  \label{tab:schedule}
-\end{table}
-
-
 % ==========================================
 % End of text.                             |
 % ==========================================
 
-\ppgccbibliography{bibfile}
 \nocite{*}
+\bibliographystyle{unsrt}
+\bibliography{bibfile}
 
 \end{document}
