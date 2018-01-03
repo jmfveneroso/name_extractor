@@ -93,7 +93,7 @@ class Model():
     tkns = self.tokenizer.tokenize(html)
     self.estimator.calculate_tkn_incidence(tkns)
     tkns = self.extract_names(tkns, False)
-    for i in range(0, 3):
+    for i in range(0, 2): 
       self.estimator.calculate_secondary_features(tkns)
       tkns = self.tokenizer.tokenize(html)
       tkns = self.extract_names(tkns, True)
@@ -110,6 +110,7 @@ class Model():
       html =  f.read()
       self.extract_html(html)
 
+fold = 1
 def create_model():
   tokenizer = Tokenizer()
   estimator= Estimator(tokenizer)
@@ -117,7 +118,7 @@ def create_model():
   estimator.load_name_cond_probs("data/probabilities/tokenized_authors_prob.txt")
   estimator.load_word_cond_probs("data/probabilities/conditional_not_a_name_prob.txt")
   # estimator.load_conditional_probabilities("data/probabilities/conditional_probs_4.txt")
-  estimator.load_conditional_probabilities("data/probabilities/fold_1.txt")
+  estimator.load_conditional_probabilities("data/probabilities/fold_" + str(fold) + ".txt")
   model = Model(tokenizer, estimator)
   return model
 
@@ -178,54 +179,66 @@ if __name__ == "__main__":
     test_path = "downloaded_pages/faculty"
     expected_path = "data/correct_names"
     file_nums = [f[-7:-4] for f in os.listdir(expected_path) if os.path.isfile(os.path.join(expected_path, f))]
-    file_nums = [
-      '180', '197', '156', '203', '095', '052', '072', '126', '184', '086', 
-      '102', '034', '007', '011', '105', '199', '182', '092', '128', '031', 
-      '014', '124', '129', '050', '024', '080', '122', '076', '134', '206', 
 
-      # '067', '216', '170', '107', '174', '085', '027', '074', '049', '099', 
-      # '177', '127', '131', '026', '192', '123', '019', '017', '178', '036', 
-      # '187', '113', '098', '041', '020', '146', '001', '132', '191', '112', 
+    for i in range(1, 6):
+      fold = i
+      model = create_model()
+ 
+      file_nums_fold = [
+        ['180', '197', '156', '203', '095', '052', '072', '126', '184', '086', 
+        '102', '034', '007', '011', '105', '199', '182', '092', '128', '031', 
+        '014', '124', '129', '050', '024', '080', '122', '076', '134', '206'],
 
-      # '101', '044', '037', '155', '022', '149', '201', '008', '077', '152', 
-      # '161', '091', '189', '087', '114', '082', '157', '100', '120', '006', 
-      # '147', '106', '039', '150', '209', '053', '144', '175', '005', '159', 
+        ['067', '216', '170', '107', '174', '085', '027', '074', '049', '099', 
+        '177', '127', '131', '026', '192', '123', '019', '017', '178', '036', 
+        '187', '113', '098', '041', '020', '146', '001', '132', '191', '112'], 
 
-      # '183', '013', '118', '016', '136', '158', '162', '094', '088', '210', 
-      # '151', '133', '029', '166', '069', '066', '061', '045', '195', '115', 
-      # '176', '010', '116', '121', '015', '171', '057', '063', '207', '194', 
+        ['101', '044', '037', '155', '022', '149', '201', '008', '077', '152', 
+        '161', '091', '189', '087', '114', '082', '157', '100', '120', '006', 
+        '147', '106', '039', '150', '209', '053', '144', '175', '005', '159'], 
 
-      # '214', '179', '135', '021', '093', '208', '004', '047', '215', '211', 
-      # '025', '038', '033', '071', '190', '160', '108', '141', '096', '202', 
-      # '154', '009', '023', '186', '117', '002', '111', '125', '064'
-    ]
+        ['183', '013', '118', '016', '136', '158', '162', '094', '088', '210', 
+        '151', '133', '029', '166', '069', '066', '061', '045', '195', '115', 
+        '176', '010', '116', '121', '015', '171', '057', '063', '207', '194'], 
 
-    type_1_errors = 0
-    type_2_errors = 0
-    test_names_count = 0
-    expected_names_count = 0
+        ['214', '179', '135', '021', '093', '208', '004', '047', '215', '211', 
+        '025', '038', '033', '071', '190', '160', '108', '141', '096', '202', 
+        '154', '009', '023', '186', '117', '002', '111', '125', '064']
+      ]
+      file_nums = file_nums_fold[fold - 1] 
 
-    for file_num in file_nums:
-      test_file = os.path.join(test_path, file_num + ".html")
-      expected_file = os.path.join(expected_path, "names_" + file_num + ".txt")
+      type_1_errors = 0
+      type_2_errors = 0
+      test_names_count = 0
+      expected_names_count = 0
 
-      if not os.path.isfile(test_file):
-        print "Missing file", test_file
-        quit()
-      elif not os.path.isfile(expected_file):
-        print "Missing file", expected_file
-        quit()
+      for file_num in file_nums:
+        test_file = os.path.join(test_path, file_num + ".html")
+        expected_file = os.path.join(expected_path, "names_" + file_num + ".txt")
 
-      model.extract(test_file)
-      type_1, type_2, correct_names = calculate_errors(expected_file, model.found_names) 
-      type_1_errors += len(type_1)
-      type_2_errors += len(type_2)
-      test_names_count += len(type_1) + len(correct_names)
-      expected_names_count += len(type_2) + len(correct_names)
+        if not os.path.isfile(test_file):
+          print "Missing file", test_file
+          quit()
+        elif not os.path.isfile(expected_file):
+          print "Missing file", expected_file
+          quit()
 
-      print "File", test_file
-      print "False positives:", len(type_1), "/", (len(type_1) + len(correct_names))
-      print "False negatives:", len(type_2), "/", (len(type_2) + len(correct_names))
+        model.extract(test_file)
+        type_1, type_2, correct_names = calculate_errors(expected_file, model.found_names) 
+        type_1_errors += len(type_1)
+        type_2_errors += len(type_2)
+        test_names_count += len(type_1) + len(correct_names)
+        expected_names_count += len(type_2) + len(correct_names)
 
-    print "Total false positives:", type_1_errors, "/", test_names_count, float(type_1_errors) / test_names_count
-    print "Total false negatives:", type_2_errors, "/", expected_names_count, float(type_2_errors) / expected_names_count
+        # print "File", test_file
+        precision = 1.0 - float(len(type_1)) / (len(type_1) + len(correct_names))
+        recall = 1.0 - float(len(type_2)) / (len(type_2) + len(correct_names))
+        # print precision, ',', recall
+        # print "False positives:", float(len(type_1)), '/', (len(type_1) + len(correct_names))
+        # print "False negatives:", float(len(type_2)), '/', (len(type_2) + len(correct_names))
+
+      # print "Total false positives:", type_1_errors, "/", test_names_count, float(type_1_errors) / test_names_count
+      # print "Total false negatives:", type_2_errors, "/", expected_names_count, float(type_2_errors) / expected_names_count
+      precision = 1.0 - float(type_1_errors) / test_names_count
+      recall = 1.0 - float(type_2_errors) / expected_names_count
+      print precision, ',', recall

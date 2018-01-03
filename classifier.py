@@ -8,6 +8,7 @@ from sklearn.svm import LinearSVC
 from sklearn.calibration import calibration_curve
 from sklearn.externals import joblib
 from sklearn.model_selection import cross_val_score
+from sklearn.dummy import DummyClassifier
 
 import os
 import sys
@@ -74,30 +75,32 @@ class Featurizer:
     self.url = url
     self.features = []
 
-    soup = BeautifulSoup(html, 'html.parser')
-    title = soup.find('title')
+    try:
+      soup = BeautifulSoup(html, 'html.parser')
+      title = soup.find('title')
 
-    # print [t.tkn for t in self.tokenizer.tokenize_text(url)]
-    self.features = self.features + self.generate_url_features(url.decode('utf-8'))
-    self.features = self.features + self.generate_title_features([title])
-    self.features = self.features + self.generate_title_features(soup.find_all('h1'))
-    self.features = self.features + self.generate_title_features(soup.find_all('h2'))
-    self.features = self.features + self.generate_title_features(soup.find_all('h3'))
+      # print [t.tkn for t in self.tokenizer.tokenize_text(url)]
+      self.features = self.features + self.generate_url_features(url.decode('utf-8'))
+      self.features = self.features + self.generate_title_features([title])
+      self.features = Self.features + self.generate_title_features(soup.find_all('h1'))
+      self.features = self.features + self.generate_title_features(soup.find_all('h2'))
+      self.features = self.features + self.generate_title_features(soup.find_all('h3'))
 
-    [s.extract() for s in soup('script')]
-    [s.extract() for s in soup('style')]
-    [s.extract() for s in soup('title')]
-    [s.extract() for s in soup('h1')]
-    [s.extract() for s in soup('h2')]
-    [s.extract() for s in soup('h3')]
-    self.features = self.features + self.generate_text_features(soup.find('body'))
-    self.m.extract_html_simple(html)
+      [s.extract() for s in soup('script')]
+      [s.extract() for s in soup('style')]
+      [s.extract() for s in soup('title')]
+      [s.extract() for s in soup('h1')]
+      [s.extract() for s in soup('h2')]
+      [s.extract() for s in soup('h3')]
+      self.features = self.features + self.generate_text_features(soup.find('body'))
+      self.m.extract_html_simple(html)
 
-    # Most important feature: number of names found.
-    self.features = self.features + [len(self.m.found_names)]
-    
-    # print [(feature_labels[i], self.features[i]) for i in range(0, len(self.features))]
-    # sys.stdout.flush()
+      # Most important feature: number of names found.
+      self.features = self.features + [len(self.m.found_names)]
+      
+      # print [(feature_labels[i], self.features[i]) for i in range(0, len(self.features))]
+      # sys.stdout.flush()
+    except:
 
   def get_text_from_element(self, element):
     if element == None:
@@ -168,6 +171,7 @@ class Classifier:
       y.append(arr[-2])
       url_ids.append(arr[-1])
 
+    # m = DummyClassifier(strategy='most_frequent')
     # m = GaussianNB()
     # m = LogisticRegression()
     # m = LinearSVC(C=1.0)
@@ -193,6 +197,8 @@ class Classifier:
     print 'Errors:', errors, '/', len(y_test)
 
     scores = cross_val_score(m, x, y, cv=5)
+    for l in scores:
+      print l
     print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 
     joblib.dump(self.model, 'data/classifier.pkl') 
