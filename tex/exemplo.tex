@@ -87,30 +87,28 @@ precision, 97.61\% recall and 0.9596 F-measure.
 \section{Introduction}
 
 Web data extraction is the task of automatically extracting structured information
-from unstructured or semi-structured web documents. It is a subset of the broader
-field of Information Extraction, and thus it faces many of the same challenges. 
-
-Tipically, Information Extraction tasks consist of mapping unstructured or poorly
-structured data to a semantically well defined structure. The input is usually
+from unstructured or semi-structured web documents. Tipically, Information Extraction 
+tasks consist of mapping unstructured or poorly
+structured data to a semantically well defined structure. The input is most commonly
 composed of a set of documents that describe a group of entities in a similar manner,
 while the Information Extraction task deals with identifying those entities and 
 organizing them according to a template. 
 
 HTML documents most often lie in between the structured / unstructured data paradigm, which means that 
-they take a rather relaxed approach in regard to formal structure. Hierarchy, element disposition,
+authors take a rather relaxed approach in regard to formal structure. Hierarchy, element disposition,
 class names, and other features related to the document structure and indirectly associated
 with the data itself are valuable information in the task of identifying entities and 
 determining relationships, yet we cannot expect these features to be completely constrained by 
 any underlying pattern. Like natural language, organization patterns tend to follow some guidelines 
-but are in no way subject to any strict rule.
+but are in no way subject to strict rules.
 
 We are interested in the task of name extraction, particularly extracting researcher names from 
 university websites to complement data from public databases such as the DBLP repository 
 (http://dblp.uni-trier.de/) in order to allow broad international research group comparison 
 and enquiring about publication patterns. The DBLP database has sparse information about author 
 affiliation and only contains information about computer science researchers. With our 
-probabilistic method we hope to build a general approach to solve this problem and handle the name 
-extraction problem in general.
+probabilistic method we hope to build a general approach to solve this problem without having
+to rely on metadata from PDF papers and handle the name extraction problem in general.
 
 \begin{figure}
   \centering
@@ -130,7 +128,7 @@ scenarios. Names may be part of larger sentences such as in "Michael Johnson Cha
 Doe Avenue" yielding false positives. Names can be composed of common words (e.g. Summer Hall) 
 yielding false negatives. In short, there is no one rule that fits all cases.
 
-State-of-the-art named entity recognition approaches like conditional random fields do not 
+State-of-the-art named entity recognition approaches such as Conditional Random Fields do not 
 perform so well in information extraction cases such as the one presented in figure 
 \ref{fig:faculty_directory}, because the text is insufficient to provide any contextual information 
 about the semantic category of a word. 
@@ -139,10 +137,10 @@ Since we lack a database with all possible name combinations, we propose a
 hollistic statistical method that accounts for discrepancies in data organization by assigning 
 probabilities to sequences of tokens without relying on per-website training. Our method of
 label assignement resembles a Naive Bayesian classifier without the assumption of 
-token independence, we also rely as little as possible on contextual information to avoid
-the mistakes of other classifiers. The base model has already achieved recall and precision rates 
+token independence. We also rely as little as possible on contextual information to avoid
+the mistakes of other classifiers. The base model already achieves recall and precision rates 
 above 90\%, but the performance can be increased even further by incorporating HTML structural
-features to help estimating probabilities.
+features to estimate better probabilities, specially to avoid filtering out false negatives.
 
 
 \section{Related Work}
@@ -292,13 +290,19 @@ yield worse results than domain specific methods.
 
 \section{Name extraction}
 
-\subsection{Proposed solution}
-
 The name extraction problem is no different than a Named Entity Recognition problem, however 
-approaches that tipically achieve a high accuracy on free text like Conditional Random Fields, 
-Hidden Markov Models or Maximum Entropy Models perform very poorly in this particular case, 
-because the data we are trying to extract is disposed in a tabular form and the words do not 
-hold dependencies toward each other the same way they do in long pieces of text. In the name
+approaches that tipically achieve high accuracy on NER tasks like Conditional Random Fields, 
+Hidden Markov Models or Maximum Entropy Models do not necessarily perform so well when
+handling tabular data, as it is most common on web data extraction tasks. For example, in 
+narrative text we could learn patterns such as "X spoke to Y" and then discover from 
+the sentence "Alice spoke to Bob" that Alice and Bob are names. However in the name extraction task,
+the lack of context words prevents these methods from detecting useful patterns over sequences 
+of tokens. Instead we rely on a priori probabilities and structural HTML features to attribute 
+probabilities to tokens.
+
+
+
+In the name
 extraction problem, structural HTML features and proper noun conditional probabilities play 
 a key role.
 
