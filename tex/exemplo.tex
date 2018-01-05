@@ -52,14 +52,14 @@
 
 \begin{abstract}
 
-Public databases such as DBLP and Google Scholar contain valuable information 
-about the academic environment that have been incredibly useful
-helping answering numerous research questions. However, in these databases, only 
-a fraction of the records contain researcher affiliation information, and even 
-in the cases where the information is present it is frequently outdated. The 
-problem can be better or worse depending on the field of study.
-We propose a method to extract researcher names from faculty directories
-automatically in order to keep up to date information about researcher 
+Reliable researcher affiliation data is necessary to allow enquiring
+about international research group productivity and publication patterns.
+Public bibliographic databases such as DBLP and Google Scholar hold
+invaluable data about the academic environment. However, researcher
+affiliation information is frequently missing or outdated.
+We propose a method of researcher name extraction from faculty directories
+to keep up to date information about researcher 
+
 affiliation and be general enough to solve any name extraction task.
 Various web data extraction methods have already been proposed in
 the literature and they typically lack either in generality, because
@@ -69,9 +69,9 @@ perform poorly compared to domain specific methods.
 Our statistical NLP approach solves the name extraction task with 
 a framework that incorporates both textual and structural features to
 yield an excellent tradeoff between generality and precision. 
-We conducted experiments over a collection of 310 faculty 
-web pages from multiple universities across the world and obtained 94.37\%
-precision, 97.61\% recall and 0.9596 F-measure.
+We conducted experiments over a collection of 152 faculty 
+web pages from multiple universities across the world in various languages 
+and obtained 94.40\% precision, 97.61\% recall and 0.9597 F-measure.
 
 
 \end{abstract}
@@ -429,27 +429,34 @@ equation on the right side.
 \subsubsection{Prior probabilities}
 
 The prior probabilities are given by the expression $ P(y_1, y_2, \ldots, y_n) $, which
-represent the probability of a series of tokens assuming labels $ \{ y_1, y_2, ..., y_n \} $
+represents the probability of a series of tokens assuming labels $ \{ y_1, y_2, ..., y_n \} $
 without any prior knowledge about the actual token values.
 
 By assuming a window of size $ k \leq n $ we may approximate the priors by calculating the
-joint probability $ P(y_1, y_2, \ldots, y_k) $. In this case we need to acquire estimates for 
-all possible sequences of labels. Considering that label $ y_i $ must be either a name or a word,
-then there are $ 2^k $ different combinations for a window of size $ k $.
+joint probability $ P(y_1, y_2, \ldots, y_k) $. We observed empirically that when a name 
+token is found, it is very likely that the next token will
+also be a name. However, arbitrary sequences of non-name tokens do not alter significantly the
+probabilities for the next token's label. Put in other words, $ P(y_i|t_{i-1} \neq Name) \approx P(y_i) $.
+We can use this property to slide the window of $ k $ tokens over the entire sequence of tokens 
+and estimate probabilities without deviating too much from the real distribution. We start at
+the beginning of the token list and calculate probabilities for each possible sequence of labels,
+taking the most likely one. If the first token is not a name we slide the window right by one token 
+and repeat the process. If the first token is a name, then we extract all the tokens that are part of
+that name starting from the first one and slide the window right by the number of name tokens. It is
+important that the window is at least the size of the biggest possible name (5 seems to be enough on most 
+cases), so we can extract it as a single name.
 
 Let $ N $ be a name label and $ W $ be a word label, then for a window of size $ k $ we 
 would need to estimate prior probabilities for all $ 2^k $ possible sequences of labels.
-In practice, a window of size $ 4 $ seems to be accurate enough. In this case, the
-sequences would be: $ \{W, W, W, W\}, \{W, W, W, N\}, \{W, W, N, W\}, \ldots $.
+For example, taking a window of size $ 4 $, the sequences would be: 
+$ \{W, W, W, W\}, \{W, W, W, N\}, \{W, W, N, W\}, \ldots $.
 
-When names occur next to each other we have no way to tell where the first name ends and 
+When names occur next to each other there is no way to tell where the first name ends and 
 the second one starts. In order to delimit name boundaries we need to estimate
 priors for different sequences of name labels in addition to our previous priors.
 Let the first and second name labels be $ N_1 $ and $ N_2 $, respectively. Then,
 we need to estimate priors for the sequences: $ \{W, N_1, N_1, N_2\} $, 
-$ \{W, N_1, N_1, N_2\} $, $\{W, N_1, N_2, N_2\} $, $ \ldots $. In practice, we are never interested
-in isolated occurrences of name labels so we can exclude combinations such as
-$ \{W_1, N_1, N_2, N_2\} $.
+$ \{W, N_1, N_1, N_2\} $, $\{W, N_1, N_2, N_2\} $, $ \ldots $. 
 
 Most of the times when names happen inside a list they tend to be contained inside a 
 single HTML element. 
@@ -460,13 +467,15 @@ a sequence of labels, so $ {W, W*,N, N} $ means that the tokens taking labels WW
 are contained inside a single HTML element, while the remaining tokens are inside 
 different HTML elements.
 We could estimate sequences with multiple breaking points, however a single breaking
-point has shown good results. For our window of size 4, we need to estimate all prior 
+point has shown good results. For a window of size 4, we would need to estimate prior 
 probabilities with the 4 possible breaking points:
-$ \{y_1, y_2, y_3, y_4\} $, $ \{y_1*, y_2, y_3, y_4\} $, $ \{y_1,y_2*, y_3, y_4\} $, $ \{y_1, y_2, y_3*,y_4\} $.
+$ \{y_1, y_2, y_3, y_4\} $, $ \{y_1*, y_2, y_3, y_4\} $, $ \{y_1, y_2*, y_3, y_4\} $, $ \{y_1, y_2, y_3*,y_4\} $.
 
 
 \subsubsection{Conditional token probabilities}
 
+The conditional probabilities are given by the second part of equation \ref{eq:7}, that is
+$ P(t_1|y_1)P(t_2|y_2) \ldots P(t_n|y_n) $.
 We need to estimate conditional token probabilities for both labels: names and words.
 So we need to know $ P(t_i|N) $, the probability that a name is $ t_i $ and
 $ P(t_i|W) $, the probability that a word is $ t_i $.
@@ -474,13 +483,12 @@ $ P(t_i|W) $, the probability that a word is $ t_i $.
 For our experiments, the conditional token probabilities were obtained by maximum
 likelihood estimation with Laplace smoothing to account for tokens that
 didn't occur in the corpus. The $ P(t_i|N) $ probabilities were estimated over a 
-collection of approximately 1.5 million names from the DBLP database. The
-$ P(t_i|W) $ probabilities were estimated over a corpus of 100 thousand documents
-obtained during the crawling stage. In the latter case all capitalized words 
-were ignored when estimating probabilities in order to remove most names
-from the corpus.
+collection of approximately 1.5 million author names from the DBLP database. The
+$ P(t_i|W) $ probabilities were estimated over a corpus of a hundred thousand documents
+obtained during the crawling stage. In the latter case all names were removed from the 
+corpus in order to keep only non-name tokens.
 
-Token probabilities can be made more precise by incorporating features
+Conditional token probabilities can be made more precise by incorporating features
 in equation \ref{eq:7}. We do that by changing the token conditional 
 probabilities to:
 
@@ -491,33 +499,39 @@ P(t_i, f_1, f_2, \ldots, f_n|y_i) = P(t_i|y_i)P(f_1|y_i) \ldots P(f_n|y_i)
 \label{eq:8}
 \end{equation}
 
-where $ f_i $ are features, which are assumed to be independent between themselves.
+where $ f_i $ are features, which are assumed to be independent.
 The features can be textual or structural. Textual features take textual
-clues like previous words and token length to predict if a given token is a name.
-Structural features infer token probabilities based on the HTML structure
-like tag names and nesting depth. In practice previous and 
-next words weren't particularly effective in empirical tests, possibly due
-to the fact that most names occured in lists in the test collection. So they were
-removed from the features list.
+clues from context words and the current token value. Structural features 
+infer token probabilities based on the surrounding HTML structure
+such as tag names and nesting depth. 
 
-Structural features estimated over the entire corpus end up being too general
-so they help little in increasing token probability estimates. HTML structure 
-varies radically between different documents such that the only stable characteristic 
-is that names tend to have similar structural contexts in the same faculty
-directory. For example, if all names appear inside a <tr> tag in a given document 
-it does not mean that names tend to appear inside <tr> rather than any other tag
+
+\subsubsection{Secondary estimates}
+
+Structural features that were estimated over the entire corpus ended up 
+being too general. HTML structure varies wildly between different websites, 
+so we cannot extract useful probabilities looking through the entire collection. 
+For example, if all names appear inside a <tr> tag in a given document 
+it does not mean that names tend to appear inside <tr> tags rather than any other HTML tag
 in other documents. However for that particular document we may be able to identify 
-other names and exclude words by knowing that tokens occuring inside <tr> tags
+other names and exclude non name tokens by knowing that tokens that occur inside <tr> tags
 have a higher probability of being names.
 
-If our basic algorithm (without structural features) was able to extract a
-good number of names from a page on the first passing, we may use
-their structural context to estimate probabilities for our structural 
-features. Of course those tokens that were tagged as words can be used
-to estimate the word conditional probabilities. On a second passing we can
-incorporate these improved estimates to boost the model's precision 
-considerably. This process can be repeated multiple times to further 
-increase peformance.
+Given that the basic algorithm (without structural features) was able to extract a
+satisfactory number of names from a web page with sufficient precision on a first run.
+We may estimate probabilities for a structural feature $ P(f_j|y_i) $ by looking at
+the extracted names. In fact, since we already attributed a label to every token in the 
+web page, we can access the originating DOM element through the token object and estimate
+feature probabilities by maximum likelihood as we did for the token conditional probabilities.
+For example, we could easily estimate the probability that a name will occur inside a <div> tag 
+$ P(div|Name) $ with this method and incorporate this information as a feature in 
+equation \ref{eq:8} on a next run. Since estimates should get better after a second run,
+this method can be repeated multiple times to further increase the algorithm's performance.
+This method boosted the algorithm's performance considerably in our experiments, even with a
+single secondary run.
+
+
+\subsubsection{Features}
 
 \begin{table}[h]
   \small
@@ -530,7 +544,7 @@ increase peformance.
       2  & Token length         & The token's character length                    \\
       3  & First+Second parents & First and second HTML parents combined          \\
       4  & Third parent         & Third HTML parent                               \\
-      5  & CSS class name       & Innermost CSS class valid for the token         \\
+      5  & CSS class name       & Innermost valid CSS class                       \\
       6  & Child number         & The child number relative to the HTML parent    \\
       7  & Nesting depth        & The number of HTML parents up to root           \\
       \hline
@@ -540,12 +554,16 @@ increase peformance.
   \label{tab:features}
 \end{table}
 
-Table \ref{tab:features} describes the features tested in our experiments. A couple of
-other features were tested, but they weren't included in the analysis due to the lack
-of significant impact on the results. Some of them were: next word
-indicates some location (street, avenue, etc.), previous word is an honorific, 
-token is capitalized, token is the first child in an HTML element, etc. 
+Table \ref{tab:features} describes the list of features tested in our experiments. 
+Only features that showed some evidence of improvement are being shown here.
+The missing features were usually thought to handle specific problems such as
+street names that could be confused for a person's name. They involved looking at 
+context words, word capitalization, honorifics, etc. However, these trials
+were not very productive.
 
+By design, the features were chosen with improvements to recall rather than precision in mind. Because
+when a data extractor misses useful results, it becomes hard to obtain that data, 
+however cleaning bad results is a much simpler task to be carried manually.
 
 \subsection{Experiments}
 
@@ -567,17 +585,19 @@ token is capitalized, token is the first child in an HTML element, etc.
 \end{table}
 
 
-The test collection was a set of 310 manually labeled faculty directory pages. 
+The test collection was a set of 152 manually labeled faculty directory web pages from
+49 different countries. 
 For each model the precision, recall and f-measures were calculated. All
-measures were tested for statistical significance with a one tailed paired T-test, the 
-t-values are presented inside parenthesis next to each measure. Results were
-considered to be significant when the t-value was smaller than 0.05.
+measures were tested for statistical significance with a one tailed paired T-test in
+comparison with the base model, the t-values are presented inside parenthesis next to each measure. 
+Results were considered to be significant when the t-value was smaller than 0.05. Statistically
+significant results are boldened. The base model uses only priors with the details already described 
+in the last section and token conditional probabilities, but no textual or structural features.
+Extracted names were only considered to be correct when they resulted on an exact match with the test data.
+All measures were obtained by the averaged results of a 5 fold cross validation run. 
 
-Extracted names were only considered to be correct 
-when they resulted on an exact match with the test data. All measures were obtained by the averaged 
-results of a 5 fold cross validation run. We first compared the textual features on our base 
-model (NE), which passes only one time over the token list. The results are presented in table 
-\ref{tab:base_model}. 
+Table \ref{tab:base_model} describes the results for the base model incorporating different 
+textual features.
 
 \begin{table}[h]
   \begin{center}
@@ -585,12 +605,12 @@ model (NE), which passes only one time over the token list. The results are pres
       \hline
       Features & Precision & Recall & F-measure \\
       \hline
-      3         & 93.43\% (0.1280) & \textbf{96.14\% (0.361)} & 0.9477 (0.475)           \\
-      4         & 93.04\% (0.1965) & 95.67\% (0.508) & 0.9433 (0.740)                    \\
-      5         & 93.04\% (0.1781) & 95.50\% (0.653) & 0.9425 (0.819)                    \\
-      6         & 92.70\% (0.2307) & \textbf{95.60\% (0.451)} & 0.9413 (0.725)           \\
-      7         & 92.83\% (0.2374) & \textbf{95.79\% (0.467)} & 0.9429 (0.789)           \\
-      3 + 5 + 7 & 94.23\% (0.0664) & \textbf{97.14\% (0.163)} & \textbf{0.9566 (0.212)}  \\
+      3         & 93.43\% (0.1280) & \textbf{96.14\% (0.0361)} & \textbf{0.9477 (0.0475)}  \\
+      4         & 93.04\% (0.1965) & 95.67\%         (0.0508)  & 0.9433         (0.0740)   \\
+      5         & 93.04\% (0.1781) & 95.50\%         (0.0653)  & 0.9425         (0.0819)   \\
+      6         & 92.70\% (0.2307) & \textbf{95.60\% (0.0451)} & 0.9413         (0.0725)   \\
+      7         & 92.83\% (0.2374) & \textbf{95.79\% (0.0467)} & 0.9429         (0.0789)   \\
+      3 + 5 + 7 & 94.23\% (0.0664) & \textbf{97.14\% (0.0163)} & \textbf{0.9566 (0.0212)}  \\
       \hline
     \end{tabular}
   \end{center}
@@ -598,21 +618,19 @@ model (NE), which passes only one time over the token list. The results are pres
   \label{tab:ne_2}
 \end{table}
 
-Next, we tested the structural features in a model that passes two times over the 
-token list, estimating the structural feature probabilities on the second passing. 
-We used the best set of textual features found in the previous experiment. The results 
-are presented in table \ref{tab:ne_2}.
+Table \ref{tab:ne_2} describes the results for the base model with secondary estimates 
+calculated over double runs and different combinations of structural features.
 
 \begin{table}[h]
   \begin{center}
     \begin{tabular}{ |l|l|l|l| }
       \hline
-      \# passings & Precision & Recall & F-measure \\
+      \# runs & Precision & Recall & F-measure \\
       \hline
-      2 & 94.40\% (0.525) & \textbf{97.48\% (0.117)} & \textbf{0.9592 (0.151)} \\ 
-      3 & 94.37\% (0.544) & \textbf{97.58\% (0.104)} & \textbf{0.9595 (0.141)} \\
-      4 & 94.40\% (0.523) & \textbf{97.61\% (0.100)} & \textbf{0.9597 (0.135)} \\
-      5 & 94.37\% (0.544) & \textbf{97.61\% (0.100)} & \textbf{0.9596 (0.138)} \\
+      3 & 94.40\% (0.0525) & \textbf{97.48\% (0.0117)} & \textbf{0.9592 (0.0151)} \\ 
+      4 & 94.37\% (0.0544) & \textbf{97.58\% (0.0104)} & \textbf{0.9595 (0.0141)} \\
+      5 & 94.40\% (0.0523) & \textbf{97.61\% (0.0100)} & \textbf{0.9597 (0.0135)} \\
+      6 & 94.37\% (0.0544) & \textbf{97.61\% (0.0100)} & \textbf{0.9596 (0.0138)} \\
       \hline
     \end{tabular}
   \end{center}
@@ -620,25 +638,36 @@ are presented in table \ref{tab:ne_2}.
   \label{tab:ne_plus}
 \end{table}
 
-Finally we compared models with 1, 2, 3, 4 and 5 passings over the token list using the 
-best set of features from the previous experiments. The results are presented on 
-table \ref{tab:ne_plus}.
+Table \ref{tab:ne_plus} describes the results for the best model 
+(features 3, 5 and 7) running secondary estimates 3, 4, 5 and 6 times.
 
-By comparing the results, it becomes clear that incorporating structural features
-with the two passing strategy improved all metrics significantly, even though the
-precision improvements came slightly above our significance threshold. By design, the
-features were chosen with improvements to recall rather than precision in mind. Because
-when a data extractor misses useful results, it becomes hard to obtain that data, 
-however cleaning bad results is a much simpler task to be carried manually.
+Our base model already achieves good results (91.71\% precision, 91.39\% recall,
+and 0.9155 F-measure), because it relies on simple but universal probabilities
+without making assumptions about data organization or contextual information.
+
+The secondary estimates strategy was very succesful in improving all metrics by
+incorporating structural features on the base model. The best model, achieved
+a precision of 94.23\%, recall of 97.14\% and F-measure 0.9566 with statistical
+significant improvement in both recall and F-measure.
+
+Finally, we observe that multiple runs on the secondary estimates strategy do not
+increase performance significantly. In fact, it reaches a plateau after only 3 to 4
+runs. Further runs were omitted because there were no further changes after 6 runs.
 
 
-\subsection{Further Research}
+\section{Further Research}
 
-Our model is finely tuned for the particular problem of researcher name extraction, 
+Our name extraction method achieved 94.40\% precision, 97.61\% recall 
+and 0.9597 F-measure on a corpus of 152 faculty directory web pages from
+49 different countries. 
+The model is tuned for the particular problem of name extraction, 
 but we believe this result can be generalized to solve other data extraction 
-problems. Furthermore, the researcher affiliation data collected by the name extractor 
-still needs to be used for evaluating the reputation metric proposed by \cite{Ribas2015}
-in the research group classification task.
+problems. The algorithm is general enough to handle other types of information
+extraction tasks without the need for too much tinkering.
+The secondary estimates strategy was very succesful in further improving the
+base model. It can also be remodeled to fit other statistical classifiers since
+it doesn't rely on any particular implementation details of our strategy.
+
 
 % ==========================================
 % End of text.                             |
