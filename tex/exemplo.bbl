@@ -1,11 +1,5 @@
 \begin{thebibliography}{10}
 
-\bibitem{Ribas2015}
-Sabir Ribas, Berthier Ribeiro-Neto, Rodrygo Santos, Edmundo {Souza e Silva},
-  Alberto Ueda, and Nivio Ziviani.
-\newblock {\em {Random Walks on the Reputation Graph}}.
-\newblock ACM Press, New York, New York, USA, 2015.
-
 \bibitem{Kushmerick2000}
 Nicholas Kushmerick.
 \newblock {Wrapper induction: efficiency and expressiveness}.
@@ -202,66 +196,5 @@ Tim Furche, Georg Gottlob, Giovanni Grasso, Giorgio Orsi, Christian Schallhart,
   and Cheng Wang.
 \newblock {AMBER: Automatic Supervision for Multi-Attribute Extraction}.
 \newblock {\em arXiv preprint}, 1210(5984):1--22, 2012.
-
-\bibitem{Liu2003}
-Bing Liu and Robert Grossman.
-\newblock {Mining data records in Web pages}.
-\newblock {\em Knowledge discovery and data mining}, page 601, 2003.
-
-\bibitem{Garfield1955a}
-Eugene Garfield.
-\newblock {Citation Indexes for Science}.
-\newblock {\em Science}, 122:108--111, 1955.
-
-\bibitem{Kushmerick1997}
-Nicholas Kushmerick, Daniel~S Weld, and R~Doorenbos.
-\newblock {Wrapper induction for information extraction}.
-\newblock {\em Intl Joint Conference on Artificial Intelligence IJCAI}, pages
-  729--737, 1997.
-
-\bibitem{Kaiser2005}
-Katharina Kaiser and Silvia Miksch.
-\newblock {Information Extraction}.
-\newblock {\em Technology}, (May):32, 2005.
-
-\bibitem{Flesca2004}
-S.~Flesca, G.~Manco, E.~Masciari, E.~Rende, and A.~Tagarelli.
-\newblock {Web wrapper induction: a brief survey}.
-\newblock {\em AI Communications}, 17(2):57--61, 2004.
-
-\bibitem{Doan2008}
-Anhai Doan, Jeffrey~F Naughton, Raghu Ramakrishnan, Akanksha Baid, Xiaoyong
-  Chai, Fei Chen, Ting Chen, Eric Chu, Pedro Derose, Byron Gao, Chaitanya
-  Gokhale, Jiansheng Huang, Warren Shen, and Ba-quy Vuong.
-\newblock {Information Extraction Challenges in Managing Unstructured Data}.
-\newblock {\em ACM SIGMOD Record}, 37(4):14--20, 2008.
-
-\bibitem{Chang2012}
-Chia-hui Chang.
-\newblock {FiVaTech2 : A Supervised Approach to Role Differentiation for Web
-  Data Extraction From Template Pages}.
-\newblock (March 2015), 2012.
-
-\bibitem{Kushmerick2003}
-Nicholas Kushmerick and Nicholas Kushmerick.
-\newblock {Finite-state approaches to Web information extraction}.
-\newblock {\em Lecture Notes in Computer Science}, 2700:77--91, 2003.
-
-\bibitem{Figueiredo2017}
-Leandro Neiva~Lopes Figueiredo, Guilherme~Tavares de~Assis, and Anderson~A.
-  Ferreira.
-\newblock {DERIN: A data extraction method based on rendering information and
-  n-gram}.
-\newblock {\em Information Processing {\&} Management}, 53(5):1120--1138, 2017.
-
-\bibitem{Fiumara2007}
-Giacomo Fiumara.
-\newblock {Automated information extraction from Web sources: A survey}.
-\newblock {\em CEUR Workshop Proceedings}, 312:1--9, 2007.
-
-\bibitem{Khalil2017}
-Salim Khalil and Mohamed Fakir.
-\newblock {RCrawler: An R package for parallel web crawling and scraping}.
-\newblock {\em SoftwareX}, 6:98--106, 2017.
 
 \end{thebibliography}
