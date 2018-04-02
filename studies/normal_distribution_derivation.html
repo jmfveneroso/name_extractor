@@ -1,0 +1,134 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Derivation of the normal distribution</title>
+  <meta name="description" content="Derivation of the normal distribution based on the paper by Dan Teague">
+  <meta name="author" content="João Mateus de Freitas Veneroso">
+  <script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+</head>
+
+<body>
+  <p>https://castatistics.wikispaces.com/file/view/normal+der..pdf</p>
+  <p>https://angms.science/doc/Math/Stat/Math_Stat_6_Gauss.pdf</p>
+  <h1>Derivation of the normal distribution</h1>
+  <p>We want to obtain the normal probability density function, given by:</p>
+  <div lang="latex">
+    f(x|\mu,\sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{\frac{(x-\mu)^2}{2\sigma^2}}
+  </div>
+  <p>from a few basic principles.</p>
+  <p>
+  Consider that we are throwing a dart at the origin of the Cartesian plane, 
+  but random errors in the throw produce varying results. We assume that:
+  </p>
+  <ol>
+    <li>Large errors are less likely than small errors.</li>
+    <li>Errors at the same distance from the origin are equally probable.</li>
+    <li>Errors in the X axis are independent of errors in the Y axis.</li>
+  </ol>
+  <p>
+  The probability that a dart will fall in a vertical strip 
+  <span lang="latex">x + \varDelta x</span>, for an infnitesimally small 
+  <span lang="latex">\varDelta x</span>, is:
+  </p>
+  <div lang="latex">
+    P(x \leq x_i \leq x + \varDelta x) = \int_{x}^{x + \varDelta} P(x)\,dx \approx P(x) \varDelta x
+  </div>
+  <p>
+  Similarly, the probability that a dart will fall in a horizontal strip 
+  <span lang="latex">y + \varDelta y</span>, for an infnitesimally small 
+  <span lang="latex">\varDelta y</span>, is:
+  <div lang="latex">
+    P(y \leq y_i \leq y + \varDelta y) \approx P(y) \varDelta y
+  </div>
+  <p>
+  From assumption 3, we assumed that errors in the X and Y axis are independent. Therefore, the
+  probability that a dart falls in the rectangular region given by the intersection between the
+  vertical strip <span lang="latex">x + \varDelta x</span> and the horizontal strip
+  <span lang="latex">y + \varDelta y</span> is:
+  </p>
+  <div lang="latex">
+    P(x \leq x_i \leq x + \varDelta x, y \leq y_i \leq y + \varDelta y) \approx P(x) \varDelta x P(y) \varDelta y
+  </div>
+  <p>
+  and from assumption 2, we assumed that orientation does not matter. Therefore, any region
+  at distance <span lang="latex">r</span> from the origin and area 
+  <span lang="latex">\varDelta x \varDelta y</span> has the same probability. So:
+  </p>
+  <div lang="latex">
+    P(x) P(y) \varDelta x \varDelta y = G(r) \varDelta x \varDelta y
+  </div>
+  <br/>
+  <div lang="latex">
+    P(x) P(y) = G(r)
+  </div>
+  <p>
+  Where function <span lang="latex">G</span> is the probability that a dart falls at
+  point <span lang="latex">(x, y)</span>.
+  </p>
+  <p>
+  Differentiating both sides of the equation with respect to the angle of the throw
+  <span lang="latex">\theta</span>, we get:
+  </p>
+  <div lang="latex">
+  P(x)\frac{d P(y)}{d \theta} + P(y) \frac{d P(x)}{d \theta} = 0
+  </div>
+  <p>
+  Since, from assumption 2 we can say that Probability <span lang="latex">G(r)</span>
+  is independent of <span lang="latex">\theta</span>. Or: 
+  </p>
+  <div lang="latex">
+  \frac{d G(r)}{d \theta} = 0
+  </div>
+  <p>
+  Also, observe that:
+  </p>
+  <div lang="latex">
+    x = r cos(\theta)
+  </div>
+  <br/>
+  <div lang="latex">
+    y = r sin(\theta)
+  </div>
+  <p>
+  Observe that:
+  </p>
+  <div lang="latex">
+  \frac{d x}{d \theta} = - r sin(\theta)
+  </div>
+  <br/>
+  <div lang="latex">
+  \frac{d P(x)}{d \theta} = \frac{d P(x)}{dx} \frac{d x}{d \theta} 
+  </div>
+  <br/>
+  <div lang="latex">
+  \frac{d P(x)}{d \theta} = - \frac{d P(x)}{dx} r sin(\theta)
+  </div>
+  <p>
+  Similarly:
+  </p>
+  <div lang="latex">
+  \frac{d P(y)}{d \theta} = \frac{d P(y)}{dy} r cos(\theta)
+  </div>
+  <p>
+  Replacing <span lang="latex">x</span> and <span lang="latex">y</span> in the previous
+  equation, we get:
+  </p>
+  <div lang="latex">
+  \frac{d P(y)}{dy} r cos(\theta) - \frac{d P(x)}{dx} r sin(\theta) = 0
+  </div>
+  <p>
+  Replacing <span lang="latex">x</span> and <span lang="latex">y</span> back, we get:
+  </p>
+  <br/>
+  <div lang="latex">
+  P(x)\frac{d P(y)}{dy} x - P(y)\frac{d P(x)}{dx} y = 0
+  </div>
+  <br/>
+  <div lang="latex">
+  \frac{P'(x)}{x P(x)} = \frac{P'(y)}{y P(y)} 
+  </div>
+</body>
+</html>
