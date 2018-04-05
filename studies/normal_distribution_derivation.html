@@ -16,7 +16,7 @@
   <h1>Derivation of the normal distribution</h1>
   <p>We want to obtain the normal probability density function, given by:</p>
   <div lang="latex">
-    f(x|\mu,\sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{\frac{(x-\mu)^2}{2\sigma^2}}
+    f(x|\mu,\sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
   </div>
   <p>from a few basic principles.</p>
   <p>
@@ -30,24 +30,25 @@
   </ol>
   <p>
   The probability that a dart will fall in a vertical strip 
-  <span lang="latex">x + \varDelta x</span>, for an infnitesimally small 
+  <span lang="latex">x + \varDelta x</span>, for an infinitesimally small 
   <span lang="latex">\varDelta x</span>, is:
   </p>
   <div lang="latex">
-    P(x \leq x_i \leq x + \varDelta x) = \int_{x}^{x + \varDelta} P(x)\,dx \approx P(x) \varDelta x
+    P(x \leq x_i \leq x + \varDelta x) = \int_{x}^{x + \varDelta x} P(x)\,dx \approx P(x) \varDelta x
   </div>
   <p>
   Similarly, the probability that a dart will fall in a horizontal strip 
-  <span lang="latex">y + \varDelta y</span>, for an infnitesimally small 
+  <span lang="latex">y + \varDelta y</span>, for an infinitesimally small 
   <span lang="latex">\varDelta y</span>, is:
   <div lang="latex">
     P(y \leq y_i \leq y + \varDelta y) \approx P(y) \varDelta y
   </div>
+  <img src="./figure_1.png">
   <p>
   From assumption 3, we assumed that errors in the X and Y axis are independent. Therefore, the
   probability that a dart falls in the rectangular region given by the intersection between the
   vertical strip <span lang="latex">x + \varDelta x</span> and the horizontal strip
-  <span lang="latex">y + \varDelta y</span> is:
+  <span lang="latex">y + \varDelta y</span> (as shown in Figure 1) is:
   </p>
   <div lang="latex">
     P(x \leq x_i \leq x + \varDelta x, y \leq y_i \leq y + \varDelta y) \approx P(x) \varDelta x P(y) \varDelta y
@@ -70,14 +71,15 @@
   </p>
   <p>
   Differentiating both sides of the equation with respect to the angle of the throw
-  <span lang="latex">\theta</span>, we get:
+  <span lang="latex">\theta</span>, we get (Equation 1):
   </p>
   <div lang="latex">
   P(x)\frac{d P(y)}{d \theta} + P(y) \frac{d P(x)}{d \theta} = 0
   </div>
+  <hr/>
   <p>
-  Since, from assumption 2 we can say that Probability <span lang="latex">G(r)</span>
-  is independent of <span lang="latex">\theta</span>. Or: 
+  From assumption 2 we can say that Probability <span lang="latex">G(r)</span>
+  is independent of <span lang="latex">\theta</span>:
   </p>
   <div lang="latex">
   \frac{d G(r)}{d \theta} = 0
@@ -93,7 +95,7 @@
     y = r sin(\theta)
   </div>
   <p>
-  Observe that:
+  And:
   </p>
   <div lang="latex">
   \frac{d x}{d \theta} = - r sin(\theta)
@@ -112,23 +114,288 @@
   <div lang="latex">
   \frac{d P(y)}{d \theta} = \frac{d P(y)}{dy} r cos(\theta)
   </div>
+  <hr/>
   <p>
-  Replacing <span lang="latex">x</span> and <span lang="latex">y</span> in the previous
-  equation, we get:
+  Replacing <span lang="latex">\frac{d P(x)}{d\theta}</span> and 
+  <span lang="latex">\frac{d P(y)}{d\theta}</span> in Equation 1, we get:
   </p>
   <div lang="latex">
-  \frac{d P(y)}{dy} r cos(\theta) - \frac{d P(x)}{dx} r sin(\theta) = 0
+  P(x)\frac{d P(y)}{dy} r cos(\theta) - P(y)\frac{d P(x)}{dx} r sin(\theta) = 0
   </div>
   <p>
-  Replacing <span lang="latex">x</span> and <span lang="latex">y</span> back, we get:
+  Replacing <span lang="latex">r cos(\theta)</span> by <span lang="latex">x</span>
+  and <span lang="latex">r sin(\theta)</span> by <span lang="latex">y</span>, we get:
   </p>
   <br/>
   <div lang="latex">
   P(x)\frac{d P(y)}{dy} x - P(y)\frac{d P(x)}{dx} y = 0
   </div>
   <br/>
+  <p>Equation 2</p>
   <div lang="latex">
   \frac{P'(x)}{x P(x)} = \frac{P'(y)}{y P(y)} 
   </div>
+  <p>
+  Note that from Assumption 3, given <span lang="latex">x_i</span>,
+  <span lang="latex">\frac{P'(x_i)}{x_i P(x_i)} = C_1 \ \forall y</span> where <span lang="latex">C_1</span>
+  is a constant. And, given <span lang="latex">y_i</span>,
+  <span lang="latex">\frac{P'(y_i)}{y_i P(y_i)} = C_2 \ \forall x</span> where <span lang="latex">C_2</span>
+  is a constant. 
+  </p>
+  <p>
+  The only way for Equation 2 to hold, is if <span lang="latex">C_1 = C_2 = C</span>. Therefore:
+  </p>
+  <div lang="latex">
+  \frac{P'(x)}{x P(x)} = \frac{P'(y)}{y P(y)} = C
+  </div>
+  <hr/>
+  <p>
+  Solving for <span lang="latex">P(x)</span>:
+  </p>
+  <div lang="latex">
+  \frac{P'(x)}{x P(x)} = C
+  </div>
+  <br/>
+  <div lang="latex">
+  \frac{P'(x)}{P(x)} = C x
+  </div>
+  <p>
+  Which is an Ordinary Differential Equantion. By integrating both sides we get:
+  </p>
+  <div lang="latex">
+  \int \frac{P'(x)}{P(x)} \ dx = \int C x \ dx
+  </div>
+  <br/>
+  <div lang="latex">
+  ln(P(x)) = \frac{C}{2} x^2 + c
+  </div>
+  <p>
+  Exponentiating:
+  </p>
+  <div lang="latex">
+  P(x) = e ^ {\frac{C}{2} x^2 + c}
+  </div>
+  <br/>
+  <div lang="latex">
+  P(x) = e^c e ^ {\frac{C}{2} x^2}
+  </div>
+  <p>
+  Equation 3:
+  </p>
+  <div lang="latex">
+  P(x) = A e ^ {\frac{C}{2} x^2}
+  </div>
+  <p>
+  In Assumption 1, we assumed that large errors are less likely that small errors. Therefore, 
+  we know that <span lang="latex">C</span> must be a negative number. So we rewrite Equation 3
+  as:
+  </p>
+  <div lang="latex">
+  P(x) = A e ^ {-\frac{k}{2} x^2}
+  </div>
+  <p>
+  with a positive <span lang="latex">k</span>.
+  </p>
+  <p>
+  This is the basic form of the normal distribution. We now need to determine appropriate values
+  for <span lang="latex">A</span> and <span lang="latex">k</span>.
+  </p>
+  <hr/>
+  <h2>The coefficient A</h2>
+  <p>
+  For <span lang="latex">P(x)</span> to describe a probability distribution, the total area under
+  the curve must be 1.
+  </p>
+  <div lang="latex">
+  \int_{-\infty}^{\infty} A e ^ {-\frac{k}{2} x^2} \ dx = 1
+  </div>
+  <p>Equation 4:</p>
+  <div lang="latex">
+  \int_{-\infty}^{\infty} e ^ {-\frac{k}{2} x^2} \ dx = \frac{1}{A}
+  </div>
+  <p>
+  Equation 3 is a symmetrical function because <span lang="latex">x^2 > 0 </span>.
+  Since equation 3 is a symmetrical function, we have that:
+  </p>
+  <div lang="latex">
+  \int_{-\infty}^{\infty} e ^ {-\frac{k}{2} x^2} \ dx = 2 \int_{0}^{\infty} e ^ {-\frac{k}{2} x^2} \ dx
+  </div>
+  <br/>
+  <div lang="latex">
+  \int_{0}^{\infty} e ^ {-\frac{k}{2} x^2} \ dx = \frac{1}{2 A}
+  </div>
+  <p>
+  Similarly:
+  </p>
+  <div lang="latex">
+  \int_{0}^{\infty} e ^ {-\frac{k}{2} y^2} \ dy = \frac{1}{2 A}
+  </div>
+  <p>
+  Then we write the double integral:
+  </p>
+  <div lang="latex">
+  \int_{0}^{\infty} e ^ {-\frac{k}{2} x^2} \ dx \int_{0}^{\infty} e ^ {-\frac{k}{2} y^2} \ dy = \frac{1}{4 A^2}
+  </div>
+  <p style="color:red">
+  This part demands proof:
+  </p>
+  <div lang="latex">
+  \int_{0}^{\infty} \int_{0}^{\infty} e ^ {-\frac{k}{2} (x^2 + y^2)} \ dy\ dx = \frac{1}{4 A^2}
+  </div>
+  <p>We then map the double integral to Polar Coordinates.</p>
+  <p>http://tutorial.math.lamar.edu/Classes/CalcIII/DIPolarCoords.aspx</p>
+  <div lang="latex">
+  \int_{0}^{\frac{\pi}{2}} \int_{0}^{\infty} e ^ {-\frac{k}{2} r^2} r \ dr\ d\theta = \frac{1}{4 A^2}
+  </div>
+  <p>We then apply the substitution rule to solve the integral. Note that the upper limit
+  also changes to <span lang="latex">-\infty</span></p> since the sign of 
+  <span lang="latex">u</span></p> is always negative for any <span lang="latex">r</span>.</p>
+  <p>http://www.math.northwestern.edu/~mlerma/courses/math214-2-03f/notes/c2-subs.pdf</p>
+  <div lang="latex">
+  u = -\frac{k}{2} r^2
+  </div>
+  <br/>
+  <div lang="latex">
+  \frac{du}{dr} = -k r
+  </div>
+  <br/>
+  <div lang="latex">
+  -\frac{du}{k} = r \ dr
+  </div>
+  <br/>
+  <div lang="latex">
+  -\frac{1}{k} \int_{0}^{\frac{\pi}{2}} \int_{0}^{-\infty} e ^ {u} \ du\ d\theta = \frac{1}{4 A^2}
+  </div>
+  <br/>
+  <div lang="latex">
+  \int_{0}^{-\infty} e ^ {u} \ du = -1
+  </div>
+  <br/>
+  <div lang="latex">
+  \frac{1}{k} \int_{0}^{\frac{\pi}{2}} d\theta = \frac{1}{4 A^2}
+  </div>
+  <br/>
+  <div lang="latex">
+  \frac{\pi}{2k} = \frac{1}{4 A^2}
+  </div>
+  <br/>
+  <div lang="latex">
+  A = \sqrt{\frac{k}{2\pi}}
+  </div>
+  <p>Finally:</p>
+  <div lang="latex">
+  P(x) = \sqrt{\frac{k}{2\pi}} e ^ {-\frac{k}{2} x^2}
+  </div>
+  <hr/>
+  <h2>The coefficient k</h2>
+  <p>It is often useful to characterize distributions by their mean and variance.</p>
+  <p>The mean <span lang="latex">m</span> of <span lang="latex">P(x)</span> is given by:</p>
+  <div lang="latex">
+  \mu = \int_{-\infty}^{\infty} x P(x) \ dx
+  </div>
+  <p>Since <span lang="latex">x P(x)</span> is and odd function (symmetrical in the x-axis):</p>
+  <div lang="latex">
+  \mu = 0
+  </div>
+  <p>The variance <span lang="latex">\sigma^2</span> of <span lang="latex">P(x)</span> is given by:</p>
+  <div lang="latex">
+  \sigma^2 = \int_{-\infty}^{\infty} (x - \mu)^2 P(x) \ dx
+  </div>
+  <p>As before, we integrate only on the positive axis, doubling the value:<p>
+  <div lang="latex">
+  \sigma^2 = \int_{-\infty}^{\infty} x^2 P(x) \ dx
+  </div>
+  <br/>
+  <div lang="latex">
+  \sigma^2 = 2\sqrt{\frac{k}{2\pi}} \int_{0}^{\infty} x^2 e ^ {-\frac{k}{2} x^2} \ dx
+  </div>
+  <p>We solve this integral by parts:<p>
+  <p>http://www.mathcentre.ac.uk/resources/uploaded/mc-ty-parts-2009-1.pdf</p>
+  <div lang="latex">
+  \int u\ dv = uv - \int v\ du
+  </div>
+  <br/>
+  <div lang="latex">
+  u = x
+  </div>
+  <br/>
+  <div lang="latex">
+  dv = x e ^ {-\frac{k}{2} x^2} dx
+  </div>
+  <br/>
+  <div lang="latex">
+  v = -\frac{1}{k} e ^ {-\frac{k}{2} x^2}
+  </div>
+  <br/>
+  <div lang="latex">
+  du = 1\ dx
+  </div>
+  <br/>
+  <div lang="latex">
+  \sigma^2 = 2\sqrt{\frac{k}{2\pi}}  \lim_{M\to\infty} \left.-\frac{x}{k} e ^ {-\frac{k}{2} x^2}\right|_{0}^{\infty} + \frac{1}{k} \int_{0}^{\infty} e ^ {-\frac{k}{2} x^2} dx
+  </div>
+  <p>Now we evaluate:</p>
+  <div lang="latex">
+  \lim_{M\to\infty} \left.-\frac{x}{k} e ^ {-\frac{k}{2} x^2}\right|_{0}^{\infty} =
+  \lim_{x\to\infty} -\frac{x}{k} e ^ {-\frac{k}{2} x^2} - \lim_{x\to 0} -\frac{x}{k} e ^ {-\frac{k}{2} x^2}
+  </div>
+  <br/>
+  <div lang="latex">
+  \lim_{x\to\infty} -\frac{x}{k} e ^ {-\frac{k}{2} x^2} = -\frac{1}{k} \lim_{x\to\infty} \frac{x}{e ^ {\frac{k}{2} x^2}}
+  </div>
+  <p>Using L'Hospital's Rule:<p>
+  <p>http://ecalculo.if.usp.br/ferramentas/limites/regras_lhospital/regras_lhospital.htm<p>
+  <div lang="latex">
+  \lim_{x\to\infty} \frac{x}{e ^ {\frac{k}{2} x^2}} = \lim_{x\to\infty} \frac{1}{k e ^ {\frac{k}{2} x^2} x} = 0
+  </div>
+  <br/>
+  <div lang="latex">
+  \lim_{M\to\infty} \left.-\frac{x}{k} e ^ {-\frac{k}{2} x^2}\right|_{0}^{\infty} = 0 - \lim_{x\to 0} -\frac{x}{k} e ^ {-\frac{k}{2} x^2} = 0
+  </div>
+  <p>Then, we have that:<p>
+  <div lang="latex">
+  \sigma^2 = \frac{2}{k}\sqrt{\frac{k}{2\pi}} \int_{0}^{\infty} e ^ {-\frac{k}{2} x^2} dx
+  </div>
+  <p>And we know from our previous work that:<p>
+  <div lang="latex">
+  \int_{0}^{\infty} e ^ {-\frac{k}{2} x^2} dx = \frac{1}{2A}
+  </div>
+  <p>And:<p>
+  <div lang="latex">
+  A = \sqrt{\frac{k}{2\pi}}
+  </div>
+  <br/>
+  <div lang="latex">
+  \int_{0}^{\infty} e ^ {-\frac{k}{2} x^2} dx = \frac{1}{2}\sqrt{\frac{2\pi}{k}}
+  </div>
+  <br/>
+  <div lang="latex">
+  \sigma^2 = \frac{2}{k}\sqrt{\frac{k}{2\pi}} \frac{1}{2}\sqrt{\frac{2\pi}{k}}
+  </div>
+  <br/>
+  <div lang="latex">
+  \sigma^2 = \frac{1}{k}
+  </div>
+  <hr/>
+  <p>We had obtained the probability distribution in terms of <span lang="latex">k</span>:<p>
+  <div lang="latex">
+  P(x) = \sqrt{\frac{k}{2\pi}} e ^ {-\frac{k}{2} x^2}
+  </div>
+  <p>And now we know that:<p>
+  <div lang="latex">
+  k = \frac{1}{\sigma^2}
+  </div>
+  <p>Replacing <span lang="latex">k</span> in the equation we can describe the 
+  probability distribution in terms of its mean and variance:<p>
+  <div lang="latex">
+    P(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{x^2}{2\sigma^2}}
+  </div>
+  <p>And, by doing a horizontal shift to center the distribution at the mean, 
+  we finally get the canonical form:<p>
+  <div lang="latex">
+    f(x|\mu,\sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+  </div>
+  <p>With the recognizable form:<p>
+  <img src="./figure_2.png">
 </body>
 </html>
