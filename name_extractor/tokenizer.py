@@ -176,4 +176,3 @@ class Tokenizer():
       if tokens[i].element != el:
         return i - 1
     return 3
-

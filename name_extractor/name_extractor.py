@@ -38,7 +38,6 @@ class Model():
       ]
       name = " ".join([t.tkn for t in tkns[i:i+4]])
       probs = [arr[j] + str(full_probs[j]) for j in range(0,19)]
-      # print "xxx", name, probs
 
       if index < 12: # Is word.
         tkns[i].is_name = False
@@ -84,7 +83,6 @@ class Model():
     return int((float(y[0]) - float(y[1])) - (float(x[0]) - float(x[1])))
 
   def print_results(self):
-    # for name in self.found_names:
     for name in sorted(self.found_names, cmp=self.compare, key=self.found_names.get):
       if verbose: print name, self.found_names[name]
       else: print name
@@ -98,13 +96,6 @@ class Model():
       tkns = self.tokenizer.tokenize(html)
       tkns = self.extract_names(tkns, True)
 
-  # This method is a faster version of the name extraction
-  # algorithm. It is less efficient, but it is enough to serve
-  # as a feature for the classifier.
-  def extract_html_simple(self, html):
-    tkns = self.tokenizer.tokenize(html)
-    tkns = self.extract_names(tkns, False)
-
   def extract(self, filename):
     with open(filename) as f:
       html =  f.read()
@@ -115,10 +106,9 @@ def create_model():
   tokenizer = Tokenizer()
   estimator= Estimator(tokenizer)
   trainer = Trainer(tokenizer)
-  estimator.load_name_cond_probs("data/probabilities/tokenized_authors_prob.txt")
-  estimator.load_word_cond_probs("data/probabilities/conditional_not_a_name_prob.txt")
-  # estimator.load_conditional_probabilities("data/probabilities/conditional_probs_4.txt")
-  estimator.load_conditional_probabilities("data/probabilities/fold_" + str(fold) + ".txt")
+  estimator.load_name_cond_probs("../data/probabilities/tokenized_authors_prob.txt")
+  estimator.load_word_cond_probs("../data/probabilities/conditional_not_a_name_prob.txt")
+  estimator.load_conditional_probabilities("../data/probabilities/fold_" + str(fold) + ".txt")
   model = Model(tokenizer, estimator)
   return model
 
@@ -131,8 +121,8 @@ if __name__ == "__main__":
       verbose = True
   
     if sys.argv[1] == 'train':
-      test_path = "downloaded_pages/faculty"
-      expected_path = "data/correct_names"
+      test_path = "../downloaded_pages/faculty"
+      expected_path = "../data/correct_names"
       # file_nums = [f[-7:-4] for f in os.listdir(expected_path) if os.path.isfile(os.path.join(expected_path, f))]
       file_nums = [
         '180', '197', '156', '203', '095', '052', '072', '126', '184', '086', 
@@ -176,8 +166,8 @@ if __name__ == "__main__":
       model.extract(sys.argv[1])
       model.print_results()
   else:
-    test_path = "downloaded_pages/faculty"
-    expected_path = "data/correct_names"
+    test_path = "../downloaded_pages/faculty"
+    expected_path = "../data/correct_names"
     file_nums = [f[-7:-4] for f in os.listdir(expected_path) if os.path.isfile(os.path.join(expected_path, f))]
 
     for i in range(1, 6):
@@ -230,15 +220,9 @@ if __name__ == "__main__":
         test_names_count += len(type_1) + len(correct_names)
         expected_names_count += len(type_2) + len(correct_names)
 
-        # print "File", test_file
         precision = 1.0 - float(len(type_1)) / (len(type_1) + len(correct_names))
         recall = 1.0 - float(len(type_2)) / (len(type_2) + len(correct_names))
-        # print precision, ',', recall
-        # print "False positives:", float(len(type_1)), '/', (len(type_1) + len(correct_names))
-        # print "False negatives:", float(len(type_2)), '/', (len(type_2) + len(correct_names))
 
-      # print "Total false positives:", type_1_errors, "/", test_names_count, float(type_1_errors) / test_names_count
-      # print "Total false negatives:", type_2_errors, "/", expected_names_count, float(type_2_errors) / expected_names_count
       precision = 1.0 - float(type_1_errors) / test_names_count
       recall = 1.0 - float(type_2_errors) / expected_names_count
       print precision, ',', recall
