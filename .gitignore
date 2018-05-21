@@ -1,6 +1,7 @@
 *.pyc
 *.swp
 crawler.log
+name_extractor/*.pyc
 tex/exemplo.lof
 tex/exemplo.log
 tex/exemplo.lot

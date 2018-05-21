@@ -22,7 +22,6 @@ Brandt, Sami Sebastian
 Breddam, Svend Lund
 Brix, Matthias Christian
 Carlqvist, Alexander
-cdl966, cdl966
 Christensen, Amalie Vangekjær
 Christensen, Niels Liljedahl
 Cox, Ingemar Johansson
@@ -72,7 +71,7 @@ Havn, Erling Carl
 Hellfritzsch, Sune
 Henglein, Fritz
 Henriksen, Marianne
-Henriksen, Troels &#955;
+Henriksen, Troels
 Hernandez, Alejandro
 Hindkjær, Christian
 Hjuler, Niklas Oskar Daniel
@@ -130,7 +129,6 @@ Mallasto, Anton
 Mansourvar, Marjan
 Matthiesen, Stina
 McGillion, Sarah Alice
-mct671, mct671
 Mogensen, Torben Ægidius
 Moll, Jonas
 Mottelson, Aske

@@ -1,8 +1,11 @@
 # coding=UTF-8
 
-import dataset
-import extractor
+import sys
 import itertools
+import dataset
+import exact_matching_extractor
+import naive_bayesian_extractor
+import complex_extractor
 
 class Tester():
   dataset = dataset.Dataset()
@@ -29,10 +32,8 @@ class Tester():
     return type_1_errors, type_2_errors, correct_names
 
   def cross_val(self, num_folds=5):
-    test_extractor = extractor.Extractor()
-    names = test_extractor.extract(Tester.dataset.documents[0][1])
-
-    fold_size = len(Tester.dataset.documents) / num_folds
+    Tester.dataset.load()
+    fold_size = int(len(Tester.dataset.documents) / num_folds)
     if len(Tester.dataset.documents) % num_folds != 0:
       fold_size += 1
 
@@ -48,7 +49,11 @@ class Tester():
       test_names_count = 0
       expected_names_count = 0
 
-      test_extractor = extractor.Extractor()
+      # TODO: convert to Python3 and use interfaces.
+      # test_extractor = exact_matching_extractor.ExactMatchingExtractor(simple_matching=False)
+      test_extractor = naive_bayesian_extractor.NaiveBayesianExtractor()
+      # test_extractor = complex_extractor.ComplexExtractor()
+
       test_extractor.fit(list(itertools.chain.from_iterable(train_folds)))
       for d in folds[test_fold]:
         names = test_extractor.extract(d[1])
@@ -64,6 +69,36 @@ class Tester():
       precision = 1.0 - float(type_1_errors) / test_names_count
       recall = 1.0 - float(type_2_errors) / expected_names_count
       print precision, ',', recall
-      
-tester = Tester()
-tester.cross_val()
+
+if __name__ == "__main__":
+  tester = Tester()
+  if len(sys.argv) > 1:
+    doc = Tester.dataset.get_document(int(sys.argv[1]))
+    # test_extractor = exact_matching_extractor.ExactMatchingExtractor(simple_matching=True)
+    # test_extractor = naive_bayesian_extractor.NaiveBayesianExtractor()
+    test_extractor = complex_extractor.ComplexExtractor()
+    test_extractor.fit([])
+    names = test_extractor.extract(doc[1])
+
+    print 'URL:', doc[0]
+    print 'Returned names:', len(names)
+    print 'Correct names:', len(doc[2])
+
+    type_1, type_2, correct_names = tester.calculate_errors(doc[2], names) 
+    precision = 0.0
+    if len(names) > 0:
+      precision = 1.0 - float(len(type_1)) / len(names)
+    recall = 1.0 - float(len(type_2)) / len(doc[2])
+    print 'P:', precision, ', R:', recall
+
+    print '=============================='
+    print 'False positives:'
+    for n in type_1:
+      print '   ', n
+
+    print '=============================='
+    print 'False negatives:'
+    for n in type_2:
+      print '   ', n
+  else:
+    tester.cross_val()

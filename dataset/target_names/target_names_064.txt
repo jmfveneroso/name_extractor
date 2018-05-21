@@ -1,10 +1,10 @@
 Balleer, Almut
 Bendul, Julia Christine
-BÃ¶hm, Robert
+Bohm, Robert
 Brettel, Malte
 Breuer, Wolfgang
 Grund, Christian
-GÃ¼rerk, Ã–zgÃ¼r
+Gurerk, Ozgur
 Harbring, Christine
 Hopp, Christian
 Huber, Christian
@@ -12,10 +12,10 @@ Kittsteiner, Thomas
 Letmathe, Peter
 Lontzek, Thomas S.
 Lorz, Oliver
-LÃ¼bbecke, Marco
+Lubbecke, Marco
 Madlener, Reinhard
 Ott, Marion
-Paape, BjÃ¶rn
+Paape, Bjorn
 Paluch, Stefanie
 Peis, Britta
 Piller, Frank T.
@@ -25,6 +25,6 @@ Salge, Torsten-Oliver
 Schneider, Michael
 Steininger, Bertram Ingolf
 Thomes, Paul
-von Nitzsch, RÃ¼diger
+von Nitzsch, Rudiger
 Walther, Grit
 Wentzel, Daniel
