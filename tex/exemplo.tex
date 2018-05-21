@@ -80,7 +80,7 @@ the extraction task.
 \section{Introduction}
 
 Web data extraction is the task of automatically extracting structured information
-from unstructured or semi-structured web documents. Tipically, Information Extraction 
+from unstructured or semi-structured web documents. Typically, Information Extraction 
 tasks consist of mapping unstructured or poorly
 structured data to a semantically well defined structure. The input is most commonly
 composed of a set of documents that describe a group of entities in a similar manner.
@@ -135,13 +135,13 @@ A key problem in the task of entity name extraction is accounting for all
 possible name combinations. Many names share their spelling with common words, 
 or are missing from our database because they are uncommon or unique.
 Since we lack a database with all possible name combinations in every language, we propose a 
-hollistic statistical method that accounts for discrepancies in data organization by assigning 
+holistic statistical method that accounts for discrepancies in data organization by assigning 
 probabilities to sequences of tokens without relying on per-website training. Our method of
 label assignement resembles a Naive Bayesian classifier without the assumption of 
 token independence. We also rely as little as possible on contextual information to avoid
 the mistakes of other classifiers. The base model already achieves recall and precision rates 
 above 90\%, but the performance can be increased even further by incorporating HTML structural
-features to estimate better probabilities, specially to avoid filtering out false negatives.
+features to estimate better probabilities, especially to avoid filtering out false negatives.
 
 
 \section{Related Work}
@@ -211,7 +211,7 @@ based tools that require some interaction with the user by means of a graphical
 user interface.
 \end{itemize}
 
-In 2006, Chang et. al. \cite{Chang2006} complemented the previous surveys with semisupervised 
+In 2006, Chang et al. \cite{Chang2006} complemented the previous surveys with semisupervised 
 technologies such as Thresher \cite{Hogue2005}, IEPAD \cite{Chang2001} and 
 OLERA \cite{Chang2004}. They differed from supervised 
 and unsupervised methods because they either needed only a rough description of
@@ -244,18 +244,18 @@ of the art classifiers can yield poor results if they rely exclusively on textua
 information. In the web information extraction task, the document structure must be 
 incorporated as a feature in an effective classifier.
 
-More recently, surveys by Ferrara et. al. \cite{Ferrara2014} and Schulz et. al. \cite{Schulz2016} 
+More recently, surveys by Ferrara et al. \cite{Ferrara2014} and Schulz et al. \cite{Schulz2016} 
 updated the previous surveys with some interesting innovations. Some examples are: the Visual 
 Box Model \cite{Krupl2005}, a data extraction system that produces a visualization of 
 the web page to exploit visual cues to identify data presented in a tabular form;
-automatic wrapper adaptation \cite{Ferrara2011}, a tecnique that tries to reduce the cost of 
+automatic wrapper adaptation \cite{Ferrara2011}, a technique that tries to reduce the cost of 
 wrapper maintenance by measuring the similarity of HTML trees and adapting
 wrappers to the new page structure; AutoRM \cite{Shi2015}, a method to mine
 records from a single web page by identifying similar data regions through DOM
 tree analysis; and Knowledge Vault \cite{Dong2014}, a method that combines different 
 extraction approaches to feed a probabilistic knowledge base.
 
-In 2016, Varlamov et. al. \cite{Varlamov2016} argued that the degree of automation can no
+In 2016, Varlamov et al. \cite{Varlamov2016} argued that the degree of automation can no
 longer be the main classification criterion for the data extraction systems
 because unsupervised methods which were widely considered to be the state 
 of the art when dealing with individual websites performed poorly or were
@@ -276,7 +276,7 @@ Domain specific methods integrate information about the particular application d
 course of its development and thus are able to achieve superior performance in
 comparison to domain agnostic methods.
 One example is the method of comment extraction 
-from blog posts described by Kao et. al. \cite{Kao2010}. By incorporating multiple tecniques and 
+from blog posts described by Kao et al. \cite{Kao2010}. By incorporating multiple techniques and 
 domain specific features they are able to build a classifier that differentiates comment-blocks 
 and non-comment blocks. This is only one of many methods tuned for various domains.
 Our name extractor method also belongs to this category. 
@@ -292,7 +292,7 @@ yield worse results than domain specific methods.
 \section{Implementation Overview}
 
 The name extraction problem is no different from a Named Entity Recognition problem, however 
-approaches that tipically achieve high accuracy on NER tasks like Conditional Random Fields, 
+approaches that typically achieve high accuracy on NER tasks like Conditional Random Fields, 
 Hidden Markov Models or Maximum Entropy Models do not necessarily perform so well when
 handling tabular data, as is most common in web data extraction tasks. For example, in 
 narrative text, a classifier could learn patterns such as "X spoke to Y" and then discover from 
@@ -303,7 +303,7 @@ minimal textual context.
 
 We are also interested in developing a method to extract researcher names regardless of 
 the website's main language, even though at this moment we will not be considering non extended-ASCII 
-encodings such as chinese and farsi characters. Training classifiers over multiple corpuses in 
+encodings such as Chinese and Farsi characters. Training classifiers over multiple corpora in 
 different languages could be in itself a very challenging task. Instead we rely on a priori 
 probabilities and structural HTML features to attribute label probabilities to tokens. When manually 
 scanning through faculty pages in search of researcher names, the intuitive method to extract them 
@@ -470,7 +470,7 @@ $ \{N_1, N_1, N_2, N_2\} $, $ \{N_1, N_2, N_2, N_2\} $.
 Most of the times when names happen inside a list they tend to be contained inside a 
 single HTML element. Even though this is not always the case, this knowledge can be 
 incorporated as an additional piece of evidence in our model. This evidence becomes 
-specially useful when we are trying to delimit name boundaries. 
+especially useful when we are trying to delimit name boundaries. 
 
 \begin{figure}
   \centering

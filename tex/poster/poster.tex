@@ -1,8 +1,8 @@
 \documentclass[sigconf]{acmart}
-\settopmatter{printacmref=false} % Removes citation information below abstract
-\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
-\pagestyle{plain} % removes running headers
-\setcopyright{none}
+% \settopmatter{printacmref=false} % Removes citation information below abstract
+% \renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
+% \pagestyle{plain} % removes running headers
+% \setcopyright{none}
 
 \usepackage{booktabs} % For formal tables
 \usepackage[ruled]{algorithm2e} % For algorithms
@@ -22,7 +22,37 @@
 
 \begin{document}
 
-\title{Entity name extraction from faculty directories}
+\copyrightyear{2018} 
+\acmYear{2018} 
+\setcopyright{rightsretained} 
+\acmConference[JCDL '18]{The 18th ACM/IEEE Joint Conference on Digital Libraries}{June 3--7, 2018}{Fort Worth, TX, USA}
+\acmBooktitle{JCDL '18: The 18th ACM/IEEE Joint Conference on Digital Libraries, June 3--7, 2018, Fort Worth, TX, USA}
+\acmDOI{10.1145/3197026.3203902}
+\acmISBN{978-1-4503-5178-2/18/06}
+
+\fancyhead{}
+
+% \begin{CCSXML}
+% <ccs2012>
+% <concept>
+% <concept_id>10002951.10003317.10003347.10003352</concept_id>
+% <concept_desc>Information systems~Information extraction</concept_desc>
+% <concept_significance>500</concept_significance>
+% </concept>
+% <concept>
+% <concept_id>10010147.10010178.10010179.10003352</concept_id>
+% <concept_desc>Computing methodologies~Information extraction</concept_desc>
+% <concept_significance>500</concept_significance>
+% </concept>
+% </ccs2012>
+% \end{CCSXML}
+% 
+% \ccsdesc[500]{Information systems~Information extraction}
+% \ccsdesc[500]{Computing methodologies~Information extraction}
+
+\keywords{Name Extraction; Information Extraction; Statistical Classifier;}
+
+\title{Entity Name Extraction from Faculty Directories}
 
 \author{João Mateus de Freitas Veneroso}
 \affiliation{%
@@ -36,13 +66,17 @@
 
 \author{Berthier Ribeiro-Neto}
 \affiliation{%
-  \institution{Universidade Federal de Minas Gerais}
+  \institution{Universidade Federal de Minas Gerais \& Google Engineering}
   \streetaddress{Av. Pres. Antônio Carlos, 6627 - Pampulha}
   \city{Belo Horizonte}
   \state{MG}
   \postcode{31270-901}
   \country{Brazil}}
 \email{berthier@dcc.ufmg.br}
+<<<<<<< HEAD
+=======
+\email{berthier@google.com}
+>>>>>>> a1204b5b2451bf8a2c320846e2bb091596955c02
 
 \begin{abstract}
 
@@ -52,19 +86,20 @@ missing or outdated. We propose a statistical data extraction method to acquire
 affiliation information directly from university websites and solve the 
 name extraction task in general.
 Previous approaches to web data extraction either lack in flexibility,
+<<<<<<< HEAD
 because wrappers do not generalize well across website tasks, or 
+=======
+because wrappers do not generalize well across websites, or 
+>>>>>>> a1204b5b2451bf8a2c320846e2bb091596955c02
 they lack in precision, because domain agnostic methods neglect 
 useful properties of this particular application domain.
 Our statistical approach solves the name extraction task with 
 a good tradeoff between generality and precision. 
 We conducted experiments over a collection of 152 faculty 
 web pages in multiple languages from universities in 49 countries
-and obtained 94.40\% precision, 97.61\% recall and 0.9597 F-measure.
-
+and obtained 94.37 \% precision, 97.61\% recall, and 0.9596 F-measure.
 
 \end{abstract}
-
-% \keywords{Information extraction, statistical classifier, web data extraction}
 
 \maketitle
 
@@ -74,7 +109,7 @@ and obtained 94.40\% precision, 97.61\% recall and 0.9597 F-measure.
 
 \section{Introduction}
 
-Tipically, Information Extraction 
+Typically, Information Extraction 
 tasks consist of mapping unstructured or poorly
 structured data to a semantically well defined structure. The input is most commonly
 composed of a set of documents that describe a group of entities in a similar manner.
@@ -86,13 +121,7 @@ the problem of information extraction are documented in several surveys
 
 We are interested in the task of name extraction, particularly extracting researcher names from 
 university websites to complement data from public databases such as the DBLP repository 
-(http://dblp.uni-trier.de/) 
-\footnote{
-  This is useful, for instance, if one needs to compare the research output of 
-  deparments in Germany, or study international publication patterns.
-}.
-We propose a probabilistic method to handle the name extraction problem in general, 
-without having to rely on metadata from PDF papers.  
+\footnote{http://dblp.uni-trier.de/.}.
 
 The name extraction problem is not different from a Named Entity Recognition problem, because
 if we are able to recognize entities we may also map them to a structured format. However,
@@ -101,31 +130,24 @@ perform so well in information extraction scenarios such as the name extraction 
 because the text in web pages is usually insufficient to provide proper contextual information 
 about the semantic category of a word. For instance, tabular data such as the one found in most 
 faculty directories provides minimal textual context.
-Our method of label assignment resembles a Naive Bayesian classifier without the assumption of 
-token independence. We also rely as little as possible on contextual information to avoid
-the mistakes of other classifiers. 
-
+Our probabilistic method of label assignment resembles a Naive Bayesian classifier without the assumption of 
+token independence. We also rely as little as possible on contextual information because
+it is frequently missing, noisy or inadequate in web pages.
 
 \section{Implementation}
 
 Before applying the classifier over the web page content, we must run the input web page
-through a series of pre-processing steps to clean the data as much as possible. At this
-stage we remove useless tags, and account for malformed HTML. Spaces, tabs, newlines and 
-special characters are used as separators in a tokenization stage, producing 
-a list of tokens. Each token is saved as an object that holds the token value and a pointer
-to its position in the DOM tree. Through the DOM Element pointer we can figure out the parent 
-elements, nesting depth, siblings and other information that can be used to improve estimates 
-in the probabilistic method we adopt.
+through a series of preprocessing steps to clean the data as much as possible and tokenize
+the text. Each token is saved as an object that holds the token value and a pointer
+to its position in the DOM tree. 
 
+\subsection{Model}
 
-\subsection{Name Extraction}
-
-Let $ t = (t_1, t_2, ..., t_n) $ be a sequence of token objects obtained on the pre-processing
+Let $ t = (t_1, t_2, ..., t_n) $ be a sequence of token objects obtained at the preprocessing
 stage, and $ y = (y_1, y_2, ..., y_n) $ be a sequence of labels attributed to these tokens
 where $ y_i $ can be either a "Name Label" (N), meaning that token $ t_i $ is a person's name, or
-a "Word Label" (W), meaning that token $ t_i $ is a common word (not a person's name). Then,
-the problem of extracting names from a sequence of tokens is just a series of binary classification 
-problems. Considering that each token $ t_i $ has a probability $ P(t_i = y_i) $ of having label 
+a "Word Label" (W), meaning that token $ t_i $ is a common word (not a person's name).
+Considering that each token $ t_i $ has a probability $ P(t_i = y_i) $ of having label 
 $ y_i $, the problem of finding an optimal sequence of labels $ y^* $ for a sequence of tokens 
 $ t $ can be written as:
 
@@ -152,13 +174,12 @@ previous tokens. To simplify our modeling, let us assume that the probability th
 label $ y_i $ depends on the values of previous labels but is independent of the previous tokens. That is, 
 we assume that, given a sequence of tokens $ \{"John", "Smith"\} $, the conditional probability 
 $ P("Smith"|"John"=Name) $ 
-is equivalent to $ P("Smith"|Any\ name) $. In other words, this means that the probability of 
-Smith being a last name is the same regardless of a person's first name, as long as we can make sure 
-that the previous token is a name. By taking this assumption, Equation \ref{eq:2} becomes:
+is equivalent to $ P("Smith"|Any\ name) $. 
+By taking this assumption, we get:
 
 \begin{equation}
 \\
-P(Y_i|Y_{i-1}, Y_{i-2}, ...) = P(t_i|y_i, y_{i-1}, ...)P(y_i|y_{i-1}, y_{i-2}, ...) \\
+P(Y_i|Y_{i-1}, Y_{i-2}, ...) \approx P(t_i|y_i, y_{i-1}, ...)P(y_i|y_{i-1}, y_{i-2}, ...) \\
 \\
 \label{eq:3}
 \end{equation}
@@ -169,7 +190,7 @@ be approximated by $ P(t_i|y_i) $. With this assumption, Equation \ref{eq:3} bec
 
 \begin{equation}
 \\
-P(Y_i|Y_{i-1}, Y_{i-2}, ...) = P(t_i|y_i)P(y_i|y_{i-1}, y_{i-2}, ...) \\
+P(Y_i|Y_{i-1}, Y_{i-2}, ...) \approx P(t_i|y_i)P(y_i|y_{i-1}, y_{i-2}, ...) \\
 \\
 \label{eq:6}
 \end{equation}
@@ -180,12 +201,12 @@ $ P(y_1, y_2, \ldots, y_n) $, we obtain:
 
 \begin{equation}
 \\
-P(Y_1, \ldots, Y_n) = P(y_1, \ldots, y_n) P(t_1|y_1)P(t_2|y_2) \ldots P(t_n|y_n) 
+P(Y_1, \ldots, Y_n) \approx P(y_1, \ldots, y_n) P(t_1|y_1)P(t_2|y_2) \ldots P(t_n|y_n) 
 \label{eq:7}
 \end{equation}
 
-Equation \ref{eq:7} can be split into two parts: the prior $ P(y_1, y_2, \ldots, y_n) $
-and the conditional token probabilities $ P(t_1|y_1)P(t_2|y_2) \ldots P(t_n|y_n) $.
+Equation \ref{eq:7} can be split into two parts: the prior: $ P(y_1, y_2, \ldots, y_n) $,
+and the conditional token probabilities: $ P(t_1|y_1)P(t_2|y_2) \ldots P(t_n|y_n) $.
 
 \subsubsection{Prior probabilities}
 
@@ -206,13 +227,13 @@ that name starting from the first one and slide the window right by the number o
 
 For our experiments, the conditional token probabilities 
 were obtained by maximum likelihood estimation with Laplace smoothing to account for tokens that
-didn't occur in the corpus. Conditional token probabilities can be made more precise by incorporating 
+did not occur in the corpus. Conditional token probabilities can be made more precise by incorporating 
 features in equation \ref{eq:7}. We do that by changing the token conditional 
 probabilities to:
 
 \begin{equation}
 \\
-P(t_i, f_1, f_2, \ldots, f_n|y_i) = P(t_i|y_i)P(f_1|y_i) \ldots P(f_n|y_i)
+P(t_i, f_1, f_2, \ldots, f_n|y_i) \approx P(t_i|y_i)P(f_1|y_i) \ldots P(f_n|y_i)
 \\
 \label{eq:8}
 \end{equation}
@@ -223,7 +244,7 @@ Structural features infer token probabilities based on the surrounding HTML stru
 The textual features found to be useful in our model were: token value, token incidence 
 and token length.
 The structural features found to be useful in our model were: first and second HTML parents,
-CSS class name and nesting depth.
+CSS class name, and nesting depth.
 
 \subsubsection{Secondary estimates}
 
@@ -246,14 +267,14 @@ feature probabilities by maximum likelihood, as we did for the token conditional
 
 \begin{table}[h]
   \begin{center}
-    \begin{tabular}{ |l|l|l|l| }
-      \hline
+    \begin{tabular}{ l l l l }
+      \toprule
       Features & Precision & Recall & F-measure \\
-      \hline
+      \midrule
       None                  & 91.71\% & 91.39\%           & 0.9155          \\ 
       Textual               & 91.83\% (0.46) & 93.90\% (0.15)  & 0.9285 (0.23) \\
       Full                  & 94.37\% (0.05) & \textbf{97.61\% (0.01)} & \textbf{0.9596 (0.01)} \\
-      \hline
+      \bottomrule
     \end{tabular}
   \end{center}
   \caption{Name extraction experiment}
@@ -261,27 +282,25 @@ feature probabilities by maximum likelihood, as we did for the token conditional
 \end{table}
 
 The test collection was a set of 152 manually labeled faculty directory web pages from
-49 different countries with 11782 researcher names. These names are the target of our 
-extraction procedure. We calculated the precision, recall and f-measures for a base model
+49 different countries with 11,782 researcher names. We calculated the precision, recall, 
+and f-measure for a base model
 with no additional features besides conditional token probabilities and priors, a model 
-with only textual features and a full model with textual and structural features. All
+with only textual features, and a full model with textual and structural features. All
 measures were tested for statistical significance with a one tailed paired T-test in
 comparison with the base model, the t-values are presented inside parenthesis next to each measure. 
-The measures were obtained by the averaged results of a 5 fold cross validation run. Extracted 
-names were only considered to be correct when they resulted on an exact match with the test data.
+The measures were obtained by the averaged results of a 5 fold cross validation run. 
 
 \section{Conclusion}
 
-Our name extraction method achieved 94.40\% precision, 97.61\% recall 
-and 0.9597 F-measure over the test corpus.
+Our name extraction method achieved 94.37\% precision, 97.61\% recall 
+and 0.9596 F-measure over the test corpus.
 The model is tuned for the particular problem of name extraction, 
 but we believe this result can be generalized to solve other data extraction 
 problems. The algorithm is general enough to handle other types of information
 extraction tasks without the need for too much tinkering.
-The secondary estimates strategy was very successful in further improving the
+The secondary estimates strategy was successful in further improving the
 base model. It can also be remodeled to fit other statistical classifiers since
 it does not rely on any particular implementation details of our strategy.
-
 
 % ==========================================
 % End of text.                             |
