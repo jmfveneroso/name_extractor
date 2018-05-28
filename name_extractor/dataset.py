@@ -43,7 +43,7 @@ class Dataset():
             target_names.append(name.strip())
 
         with open(html_page_file) as f:
-          html = Dataset.tokenizer.tokenize(f.read(), target_names)
+          html = f.read()
 
         # Add document tuple with the format: (url, tokens, target_names).
         self.documents.append((url.strip(), html, target_names))
@@ -87,6 +87,6 @@ class Dataset():
         target_names.append(name.strip())
 
     with open(html_page_file) as f:
-      html = Dataset.tokenizer.tokenize(f.read(), target_names)
+      html = f.read()
 
     return (url.strip(), html, target_names)

@@ -3,6 +3,7 @@
 import os
 import re
 from math import log
+import tokenizer
 
 class ComplexExtractor():
   """ 
@@ -10,6 +11,7 @@ class ComplexExtractor():
   the most likely sequence of labels on a sliding window given
   the prior and conditional probabilities.
   """
+  tokenizer = tokenizer.Tokenizer()
 
   def __init__(self):
     # The conditional name P(t|N) and word probabilities P(t|W) were estimated 
@@ -64,7 +66,9 @@ class ComplexExtractor():
 
     for doc in docs:
       i = 0
-      tkns = doc[1]
+      tkns = ComplexExtractor.tokenizer.tokenize(doc[1])
+      ComplexExtractor.tokenizer.assign_correct_labels(tkns, doc[2])
+
       while i <= len(tkns) - 4:
         index = self.get_sequence_index(tkns[i:i+4])
         self.prior_probs[index] += 1
@@ -239,7 +243,7 @@ class ComplexExtractor():
         for tkn in name_tkns:
           tkn.is_name = True
 
-        # Slide window by the name length.
+        # Slide window.
         i += name_length
         if len(name_tkns) <= 1:
           continue
@@ -254,10 +258,11 @@ class ComplexExtractor():
           names.append(name)
     return names
 
-  def extract(self, tkns):
+  def extract(self, html):
     """ 
     Extracts names from a list of tokens.
     """ 
+    tkns = ComplexExtractor.tokenizer.tokenize(html)
     self.feature_probs = [{}, {}, {}, {}, {}]
     names = self.assign_labels(tkns, False)
     for i in range(0, 2): 

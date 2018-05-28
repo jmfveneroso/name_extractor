@@ -3,6 +3,7 @@
 import os
 import re
 from math import log
+import tokenizer
 
 class ExactMatchingExtractor():
   """ 
@@ -13,6 +14,7 @@ class ExactMatchingExtractor():
   the composite matching strategy checks if a sequence of tokens exists in
   the database, returning the longest matching sequence.
   """
+  tokenizer = tokenizer.Tokenizer()
 
   def __init__(self, simple_matching=True):
     self.simple_matching = simple_matching
@@ -56,10 +58,11 @@ class ExactMatchingExtractor():
       return key
     return None
 
-  def extract(self, tkns):
+  def extract(self, html):
     """ 
     Extracts names from a list of tokens.
     """ 
+    tkns = ExactMatchingExtractor.tokenizer.tokenize(html)
     names = []
 
     i = 0

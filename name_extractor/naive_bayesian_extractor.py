@@ -3,6 +3,7 @@
 import os
 import re
 from math import log
+import tokenizer
 
 class NaiveBayesianExtractor():
   """ 
@@ -11,6 +12,7 @@ class NaiveBayesianExtractor():
   TODO: this class is a special case of the complex extractor. The
   window size there should be variable.
   """
+  tokenizer = tokenizer.Tokenizer()
 
   def __init__(self):
     # The conditional name P(t|N) and word probabilities P(t|W) were estimated 
@@ -46,7 +48,8 @@ class NaiveBayesianExtractor():
     num_tkns = 0
 
     for doc in docs:
-      tkns = doc[1]
+      tkns = NaiveBayesianExtractor.tokenizer.tokenize(doc[1])
+      NaiveBayesianExtractor.tokenizer.assign_correct_labels(tkns, doc[2])
       for t in tkns:
         if t.is_name:
           self.prior_probs[1] += 1
@@ -59,7 +62,6 @@ class NaiveBayesianExtractor():
       self.prior_probs[i] = log(self.laplace_smoothing(
         self.prior_probs[i], num_tkns, 2
       ))
-    print self.prior_probs
 
   def load_prior_probs(self, directory = "../probabilities"):
     with open(os.path.join(directory, "naive_bayes_prior_probs.txt")) as f:
@@ -124,11 +126,12 @@ class NaiveBayesianExtractor():
 
     return prob_word, prob_name
 
-  def extract(self, tkns):
+  def extract(self, html):
     """ 
     Assigns the most probable labels for a sliding window of tokens and
     returns the extracted names.
     """ 
+    tkns = NaiveBayesianExtractor.tokenizer.tokenize(html)
     names = []
 
     i = 0

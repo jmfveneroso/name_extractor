@@ -7,8 +7,7 @@ from bs4.element import NavigableString
 
 class HtmlToken():
   """ 
-  An HTML token is a composite object containing a value, and
-  the corresponding HTML element from where that value was extracted.
+  An HTML token is a composite object containing a value, and the corresponding HTML element from where that value was extracted.
   It also holds a list of textual and structural features.
   """
 
@@ -210,7 +209,7 @@ class Tokenizer():
           tokens[j].is_name = True
         i += size
 
-  def tokenize(self, html, correct_names):
+  def tokenize(self, html, correct_names=[]):
     """ 
     Returns a list of HtmlTokens extracted from an HTML document.
     """
@@ -247,5 +246,7 @@ class Tokenizer():
       'ajarn', 'honorarprof', 'theol', 'math', 'phil', 'doz', 'dphil', 'ir'
     ]]
     result = [t for t in result if re.search('[0-9]', t.tkn) == None]
-    self.assign_correct_labels(result, correct_names)
+
+    if len(correct_names) > 0:
+      self.assign_correct_labels(result, correct_names)
     return result

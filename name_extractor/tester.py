@@ -5,6 +5,7 @@ import itertools
 import dataset
 import exact_matching_extractor
 import naive_bayesian_extractor
+import nltk_extractor
 import complex_extractor
 
 class Tester():
@@ -51,8 +52,9 @@ class Tester():
 
       # TODO: convert to Python3 and use interfaces.
       # test_extractor = exact_matching_extractor.ExactMatchingExtractor(simple_matching=False)
-      test_extractor = naive_bayesian_extractor.NaiveBayesianExtractor()
-      # test_extractor = complex_extractor.ComplexExtractor()
+      # test_extractor = naive_bayesian_extractor.NaiveBayesianExtractor()
+      # test_extractor = nltk_extractor.NltkExtractor()
+      test_extractor = complex_extractor.ComplexExtractor()
 
       test_extractor.fit(list(itertools.chain.from_iterable(train_folds)))
       for d in folds[test_fold]:
@@ -75,20 +77,23 @@ if __name__ == "__main__":
   if len(sys.argv) > 1:
     doc = Tester.dataset.get_document(int(sys.argv[1]))
     # test_extractor = exact_matching_extractor.ExactMatchingExtractor(simple_matching=False)
-    # test_extractor = naive_bayesian_extractor.NaiveBayesianExtractor()
-    test_extractor = complex_extractor.ComplexExtractor()
+    test_extractor = naive_bayesian_extractor.NaiveBayesianExtractor()
+    # test_extractor = complex_extractor.ComplexExtractor()
+    # test_extractor = nltk_extractor.NltkExtractor()
     test_extractor.fit([])
     names = test_extractor.extract(doc[1])
 
     print 'URL:', doc[0]
     print 'Returned names:', len(names)
-    print 'Correct names:', len(doc[2])
+    print 'Expected correct names:', len(doc[2])
 
     type_1, type_2, correct_names = tester.calculate_errors(doc[2], names) 
     precision = 0.0
     if len(names) > 0:
       precision = 1.0 - float(len(type_1)) / len(names)
     recall = 1.0 - float(len(type_2)) / len(doc[2])
+    print 'Correct names:', len(correct_names)
+    print 'Wrong names:', len(type_2)
     print 'P:', precision, ', R:', recall
 
     print '=============================='
