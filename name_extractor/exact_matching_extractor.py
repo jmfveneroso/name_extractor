@@ -68,7 +68,7 @@ class ExactMatchingExtractor():
     i = 0
     while i < len(tkns) - 1:
       found_name = False
-      for name_size in [4, 3, 2]:
+      for name_size in [5, 4, 3, 2]:
         if i + name_size >= len(tkns):
           continue
 

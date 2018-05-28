@@ -51,7 +51,7 @@ class Tester():
       expected_names_count = 0
 
       # TODO: convert to Python3 and use interfaces.
-      # test_extractor = exact_matching_extractor.ExactMatchingExtractor(simple_matching=False)
+      # test_extractor = exact_matching_extractor.ExactMatchingExtractor(simple_matching=True)
       # test_extractor = naive_bayesian_extractor.NaiveBayesianExtractor()
       # test_extractor = nltk_extractor.NltkExtractor()
       test_extractor = complex_extractor.ComplexExtractor()
@@ -77,9 +77,9 @@ if __name__ == "__main__":
   if len(sys.argv) > 1:
     doc = Tester.dataset.get_document(int(sys.argv[1]))
     # test_extractor = exact_matching_extractor.ExactMatchingExtractor(simple_matching=False)
-    test_extractor = naive_bayesian_extractor.NaiveBayesianExtractor()
+    # test_extractor = naive_bayesian_extractor.NaiveBayesianExtractor()
     # test_extractor = complex_extractor.ComplexExtractor()
-    # test_extractor = nltk_extractor.NltkExtractor()
+    test_extractor = nltk_extractor.NltkExtractor()
     test_extractor.fit([])
     names = test_extractor.extract(doc[1])
 

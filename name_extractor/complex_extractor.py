@@ -28,7 +28,7 @@ class ComplexExtractor():
     # Consider that the corresponding index for a given sequence is the binary
     # number obtained when W=0 and N=1. For example: WWNN == 0011, so its index
     # is 3.
-    self.prior_probs = [0] * 16
+    self.prior_probs = [0] * 32
 
     # Feature probabilities will be calculated on a second run over the
     # token list. Only structural features are being currently used.
@@ -51,7 +51,7 @@ class ComplexExtractor():
     given sequence of labels is the binary number obtained when word=0 and name=1. 
     For example: WWNN == 0011, so the index is 3.
     """
-    return sum([2**j if seq[::-1][j].is_name else 0 for j in range(0, 4)])
+    return sum([2**j if seq[::-1][j].is_name else 0 for j in range(0, 5)])
 
   def fit(self, docs):
     """ 
@@ -61,7 +61,7 @@ class ComplexExtractor():
       self.load_prior_probs()
       return
 
-    self.prior_probs = [0] * 16
+    self.prior_probs = [0] * 32
     num_seqs = 0
 
     for doc in docs:
@@ -69,17 +69,25 @@ class ComplexExtractor():
       tkns = ComplexExtractor.tokenizer.tokenize(doc[1])
       ComplexExtractor.tokenizer.assign_correct_labels(tkns, doc[2])
 
-      while i <= len(tkns) - 4:
-        index = self.get_sequence_index(tkns[i:i+4])
+      while i <= len(tkns) - 5:
+        index = self.get_sequence_index(tkns[i:i+5])
         self.prior_probs[index] += 1
         num_seqs += 1
         i += 1
 
+    arr = [
+      'WWWWW', 'WWWWN', 'WWWNW', 'WWWNN', 'WWNWW', 'WWNWN', 'WWNNW', 'WWNNN', 
+      'WNWWW', 'WNWWN', 'WNWNW', 'WNWNN', 'WNNWW', 'WNNWN', 'WNNNW', 'WNNNN',
+      'NWWWW', 'NWWWN', 'NWWNW', 'NWWNN', 'NWNWW', 'NWNWN', 'NWNNW', 'NWNNN', 
+      'NNWWW', 'NNWWN', 'NNWNW', 'NNWNN', 'NNNWW', 'NNNWN', 'NNNNW', 'NNNNN',
+    ]
+
     # Compute prior probabilities.
-    for i in range(0, 16):
+    for i in range(0, 32):
       self.prior_probs[i] = log(self.laplace_smoothing(
-        self.prior_probs[i], num_seqs, 16
+        self.prior_probs[i], num_seqs, 32
       ))
+      print arr[i], self.prior_probs[i]
 
   def load_conditional_probs(self, directory = "../probabilities"):
     """ 
@@ -107,7 +115,7 @@ class ComplexExtractor():
     Loads prior probabilities P(yyyy) from a file. 
     """
     with open(os.path.join(directory, "prior_probs.txt")) as f:
-      for i in range(0, 16):
+      for i in range(0, 32):
         prob = f.readline().split(" ")[1]
         self.prior_probs[i] = float(prob.strip())
 
@@ -165,9 +173,9 @@ class ComplexExtractor():
       tkn_probs.append(self.get_tkn_probs(tkn, last_el, use_structural_features))
       last_el = tkn.element
 
-    sequence_probs = [0] * 16
-    for i in range(0, 16):
-      selector_array = [1 if ((i & 2**j) == 2**j) else 0 for j in reversed(range(0, 4))] 
+    sequence_probs = [0] * 32
+    for i in range(0, 32):
+      selector_array = [1 if ((i & 2**j) == 2**j) else 0 for j in reversed(range(0, 5))] 
       for j in range(0, len(tkns)):
         sequence_probs[i] += tkn_probs[j][selector_array[j]]
       sequence_probs[i] += self.prior_probs[i]
@@ -212,8 +220,8 @@ class ComplexExtractor():
     names = []
 
     i = 0
-    while i <= len(tkns) - 4:
-      cur_tkns = tkns[i:i+4]
+    while i <= len(tkns) - 5:
+      cur_tkns = tkns[i:i+5]
 
       # Get the sequence of labels with maximum probability.
       seq_probs = self.get_sequence_probs(cur_tkns, use_structural_features)
@@ -224,14 +232,22 @@ class ComplexExtractor():
       # token is a name but the second token is a word. Since we don't
       # want single names we will discard those as words and slide the window
       # by one token.
-      if index < 12:
+      if index < 24:
         tkns[i].is_name = False
         i += 1
 
       # At least the two first tokens are names. These are the sequences:
       # NNWW, NNWN, NNNW, NNNN.
       else:
-        name_length = 2 if (index - 12 == 0) else index - 11
+        'NNWWW', 'NNWWN', 'NNWNW', 'NNWNN', 'NNNWW', 'NNNWN', 'NNNNW', 'NNNNN',
+        if index >= 24 and index <= 27:
+          name_length = 2 
+        if index >= 28 and index <= 29:
+          name_length = 3 
+        if index == 30:
+          name_length = 4 
+        if index == 31:
+          name_length = 5 
 
         if name_length > len(cur_tkns):
           name_length = len(cur_tkns)
