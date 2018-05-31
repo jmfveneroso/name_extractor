@@ -1,0 +1,4 @@
+from nsnb_extractor import NsnbExtractor
+from naive_bayesian_extractor import NaiveBayesianExtractor
+from nltk_extractor import NltkExtractor
+from exact_matching_extractor import ExactMatchingExtractor

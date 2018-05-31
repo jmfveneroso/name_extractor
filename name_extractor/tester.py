@@ -1,12 +1,13 @@
 # coding=UTF-8
 
+import os
 import sys
 import itertools
 import dataset
 import exact_matching_extractor
 import naive_bayesian_extractor
 import nltk_extractor
-import complex_extractor
+import nsnb_extractor
 
 class Tester():
   dataset = dataset.Dataset()
@@ -54,7 +55,7 @@ class Tester():
       # test_extractor = exact_matching_extractor.ExactMatchingExtractor(simple_matching=True)
       # test_extractor = naive_bayesian_extractor.NaiveBayesianExtractor()
       # test_extractor = nltk_extractor.NltkExtractor()
-      test_extractor = complex_extractor.ComplexExtractor()
+      test_extractor = nsnb_extractor.NsnbExtractor()
 
       test_extractor.fit(list(itertools.chain.from_iterable(train_folds)))
       for d in folds[test_fold]:
@@ -73,12 +74,14 @@ class Tester():
       print precision, ',', recall
 
 if __name__ == "__main__":
+  os.chdir(os.path.dirname(__file__))
+
   tester = Tester()
   if len(sys.argv) > 1:
     doc = Tester.dataset.get_document(int(sys.argv[1]))
     # test_extractor = exact_matching_extractor.ExactMatchingExtractor(simple_matching=False)
     # test_extractor = naive_bayesian_extractor.NaiveBayesianExtractor()
-    # test_extractor = complex_extractor.ComplexExtractor()
+    # test_extractor = nsnb_extractor.NsnbExtractor()
     test_extractor = nltk_extractor.NltkExtractor()
     test_extractor.fit([])
     names = test_extractor.extract(doc[1])

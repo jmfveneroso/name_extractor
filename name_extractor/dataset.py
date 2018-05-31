@@ -1,6 +1,7 @@
 # coding=UTF-8
 
 import os
+import sys
 import errno
 import tokenizer
 
@@ -14,7 +15,7 @@ class Dataset():
     urls_file = os.path.join(Dataset.directory, 'urls.txt')
 
     if not os.path.isfile(urls_file):
-      raise FileNotFoundError(
+      raise Exception(
         errno.ENOENT, os.strerror(errno.ENOENT), urls_file
       )
 
@@ -26,13 +27,13 @@ class Dataset():
 
         html_page_file = os.path.join(Dataset.directory, 'html_pages/%s.html' % file_num)
         if not os.path.isfile(html_page_file):
-          raise FileNotFoundError(
+          raise Exception(
             errno.ENOENT, os.strerror(errno.ENOENT), html_page_file
           )
 
         target_names_file = os.path.join(Dataset.directory, 'target_names/target_names_%s.txt' % file_num)
         if not os.path.isfile(target_names_file):
-          raise FileNotFoundError(
+          raise Exception(
             errno.ENOENT, os.strerror(errno.ENOENT), target_names_file
           )
 
@@ -53,7 +54,7 @@ class Dataset():
     urls_file = os.path.join(Dataset.directory, 'urls.txt')
 
     if not os.path.isfile(urls_file):
-      raise FileNotFoundError(
+      raise Exception(
         errno.ENOENT, os.strerror(errno.ENOENT), urls_file
       )
 
@@ -70,13 +71,13 @@ class Dataset():
 
     html_page_file = os.path.join(Dataset.directory, 'html_pages/%s.html' % doc_num)
     if not os.path.isfile(html_page_file):
-      raise FileNotFoundError(
+      raise Exception(
         errno.ENOENT, os.strerror(errno.ENOENT), html_page_file
       )
 
     target_names_file = os.path.join(Dataset.directory, 'target_names/target_names_%s.txt' % doc_num)
     if not os.path.isfile(target_names_file):
-      raise FileNotFoundError(
+      raise Exception(
         errno.ENOENT, os.strerror(errno.ENOENT), target_names_file
       )
 

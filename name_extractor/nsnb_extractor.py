@@ -2,14 +2,16 @@
 
 import os
 import re
+import sys
 from math import log
 import tokenizer
+import requests
 
-class ComplexExtractor():
+class NsnbExtractor():
   """ 
-  The extractor class extracts names from a list of tokens based on
-  the most likely sequence of labels on a sliding window given
-  the prior and conditional probabilities.
+  The Not-so-Naive Bayesian extractor class extracts names from a list 
+  of tokens based on the most likely sequence of labels on a sliding window 
+  given the prior and conditional probabilities.
   """
   tokenizer = tokenizer.Tokenizer()
 
@@ -66,8 +68,8 @@ class ComplexExtractor():
 
     for doc in docs:
       i = 0
-      tkns = ComplexExtractor.tokenizer.tokenize(doc[1])
-      ComplexExtractor.tokenizer.assign_correct_labels(tkns, doc[2])
+      tkns = NsnbExtractor.tokenizer.tokenize(doc[1])
+      NsnbExtractor.tokenizer.assign_correct_labels(tkns, doc[2])
 
       while i <= len(tkns) - 5:
         index = self.get_sequence_index(tkns[i:i+5])
@@ -87,7 +89,6 @@ class ComplexExtractor():
       self.prior_probs[i] = log(self.laplace_smoothing(
         self.prior_probs[i], num_seqs, 32
       ))
-      print arr[i], self.prior_probs[i]
 
   def load_conditional_probs(self, directory = "../probabilities"):
     """ 
@@ -278,10 +279,31 @@ class ComplexExtractor():
     """ 
     Extracts names from a list of tokens.
     """ 
-    tkns = ComplexExtractor.tokenizer.tokenize(html)
+    tkns = NsnbExtractor.tokenizer.tokenize(html)
     self.feature_probs = [{}, {}, {}, {}, {}]
     names = self.assign_labels(tkns, False)
     for i in range(0, 2): 
       self.estimate_structural_features(tkns)
       names = self.assign_labels(tkns, True)
     return names
+
+if __name__ == "__main__":
+  os.chdir(os.path.dirname(__file__))
+
+  extractor = NsnbExtractor()
+
+  # Will load probabilities from file.
+  extractor.fit([])
+
+  if len(sys.argv) < 2:
+    print('nsnb_extractor <url>')
+    quit() 
+
+  r = requests.get(sys.argv[1])
+  if r.status_code != 200:
+    print('HTTP response not successful')
+    quit() 
+
+  names = extractor.extract(r.text)
+  for n in names:
+    print(n)

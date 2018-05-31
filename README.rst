@@ -1,164 +1,56 @@
-This repo has been modified to make the code clearer. The
-JCDL results were produced using the version in commit 
-13e5949868adce3ee942c798b7628b7ea6b89559. In time I will upgrade
-the current version to contain all features from the
-JCDL version, that produces better results.
+# Name Extractor
 
-Simple matching
-0.558620689655 , 0.877665152045
-0.595294919877 , 0.855044074437
-0.620356612184 , 0.847285641806
-0.640642615558 , 0.749423013518
-0.509256025148 , 0.813616071429
+This repository contains the results of an ongoing research on Web Information Extraction, and, more precisely, Researcher Name Extraction from faculty directories.
 
-Composite matching
-0.870689655172 , 0.141160027952
-0.935162094763 , 0.367107195301
-0.912451361868 , 0.235915492958
-0.915294117647 , 0.254497873732
-0.849099099099 , 0.209677419355
+The partial results for this information extraction model have been described in a poster published on the [Joint Conference on Digital Libraries 2018](https://2018.jcdl.org/). The poster can be read [here](https://github.com/jmfveneroso/name_extractor/blob/master/tex/poster/poster.pdf). For more information, the full paper can be read [here](https://github.com/jmfveneroso/name_extractor/blob/master/tex/example.pdf).
 
-Naive Bayesian matching
-0.882681564246 , 0.441803565187
-0.820728291317 , 0.286833088595
-0.897304236200 , 0.352141057935
-0.783460282916 , 0.235756385069
-0.795731707317 , 0.290645879733
+This repository has been modified considerably since the original poster was published. The JCDL 2018 results were produced with the version from commit 
+13e5949868adce3ee942c798b7628b7ea6b89559. 
+
+The current version was made cleaner to be more easily comprehended, but, in time it will be upgraded with all the features from the old version.
+
+## Extractors
+
+This module implements 4 name extractors:
+
+* Exact matching extractor
+* NLTK extractor
+* Naive Bayesian extractor
+* Not-so-naive Bayesian (NSNB) extractor (the model described in the poster)
+
+## Dataset
+
+This repository contains a dataset of 149 faculty pages inside the "dataset" directory. The directory also contains the target names for each page.
 
 
-Page 074
-Result with the JCDL version.
+## Running the code
 
-False positives: 3 / 38 0.0789473684
-False negatives: 2 / 37 0.0540540541
+First install the required packages with:
+```
+make init
+```
 
-Precision: 0.921052632
-Recall: 0.945945946
+To run the 5 fold cross validation test with all 149 pages for the NSNB extractor, execute:
+```
+make run
+```
+It wil print the **precision** and **recall** for each test fold.
 
-False positives (3)
-m shiomi
-m igashira
-geminoid f
+---
 
-False negatives (2)
-Hideyuki Takahashi
-Jun Baba
+To extract names from a faculty page and print them, run:
 
-Correct (35):
-hiroshi ishiguro
-masashi kasaki
-chiaki ii
-oskar palinko
-takamasa iio
-oriza hirata
-takenobu chikaraishi
-hamed mahzoon
-tora koyama
-sho ito
-hidenobu sumioka
-takahiro miyashita
-masahiko igashira
-daisuke ikari
-yuichiro yoshikawa
-itaru kuramoto
-makiko kashioka
-takashi minato
-shuichi nishio
-hideyuki nakanishi
-kohei ogawa
-dylan f glas
-takayuki kanda
-shinobu kawasaki
-katsuaki suganuma
-anna ueda
-yoko asakura
-yoshihiro nakata
-masahiro shiomi
-yutaka nakamura
-yoshio matsumoto
-carlos toshinori ishi
-katsuhiro hirata
-minoru asada
-penaloza sanchez christian isaac
+```
+make extract URL=${URL}
+```
+*It may take a few seconds to load the probabilities.*
 
+Just to start, you can try:
+```
+make extract URL=https://www.sice.indiana.edu/all-people/index.html
+make extract URL=http://www.dcc.ufmg.br/dcc/?q=pt-br/professores
+```
 
-URL: http://eng.irl.sys.es.osaka-u.ac.jp/home/member
-Returned names: 50
-Correct names: 37
-P: 0.68 , R: 0.918918918919
-==============================
-False positives:
-    ishiguro lab
-    this site
-    school of
-    graduate school of
-    nagoya university
-    of liberal arts and
-    group leader
-    m shiomi
-    domain art
-    osaka university
-    domain u
-    high performance
-    university of the arts
-    by hiroshi ishiguro all
-    sign in
-    print page
-==============================
-False negatives:
-    hideyuki takahashi
-    jun baba
-    masahiko igashira
+## Contact
 
-
-Returned names: 25
-Correct names: 37
-P: 1.0 , R: 0.675675675676
-==============================
-False positives:
-==============================
-False negatives:
-    hideyuki takahashi
-    tora koyama
-    hamed mahzoon
-    jun baba
-    masashi kasaki
-    masahiko igashira
-    penaloza sanchez christian isaac
-    chiaki ii
-    makiko kashioka
-    yoko asakura
-    anna ueda
-    shinobu kawasaki
-
-
-
-
-Returned names: 19
-Correct names: 36
-P: 1.0 , R: 0.527777777778
-==============================
-False positives:
-==============================
-False negatives:
-    yoshihiro nakata
-    hideyuki takahashi
-    takamasa iio
-    hamed mahzoon
-    jun baba
-    masahiro shiomi
-    dylan f glas
-    hidenobu sumioka
-    shuichi nishio
-    masahiko igashira
-    penaloza sanchez christian isaac
-    chiaki ii
-    sho ito
-    anna ueda
-    katsuhiro hirata
-    minoru asada
-    takenobu chikaraishi
-
-
-376 disambiguation pages in DBLP for the first 10000 authors by number of publications.
-376 / 10000 = 0.0376
+If you have any question send an email to **jmfveneroso@gmail.com**.
