@@ -2,7 +2,7 @@
 
 This repository contains the results of an ongoing research on Web Information Extraction, and, more precisely, Researcher Name Extraction from faculty directories.
 
-The partial results for this information extraction model have been described in a poster published on the [Joint Conference on Digital Libraries 2018](https://2018.jcdl.org/). The poster can be read [here](https://github.com/jmfveneroso/name_extractor/blob/master/tex/poster/poster.pdf). For more information, the full paper can be read [here](https://github.com/jmfveneroso/name_extractor/blob/master/tex/example.pdf).
+The partial results for this information extraction model have been described in a poster published on the [Joint Conference on Digital Libraries 2018](https://2018.jcdl.org/). The poster can be read [here](https://github.com/jmfveneroso/name_extractor/blob/master/tex/poster/poster.pdf). For more information, the full paper can be read [here](https://github.com/jmfveneroso/name_extractor/blob/master/tex/exemplo.pdf).
 
 This repository has been modified considerably since the original poster was published. The JCDL 2018 results were produced with the version from commit 
 13e5949868adce3ee942c798b7628b7ea6b89559. 
